@@ -499,6 +499,8 @@
     color: var(--text-gray);
     font-size: 0.95rem;
     line-height: 1.7;
+    text-align: justify;
+    margin-bottom: 0.75rem;
   }
 
   /* PLACEMENT TEST */
@@ -530,6 +532,71 @@
   .social-links a { width: 42px; height: 42px; border-radius: 50%; background: rgba(167, 102, 220, 0.1); border: 1.5px solid var(--primary); display: flex; align-items: center; justify-content: center; color: var(--primary); font-size: 1.1rem; transition: all 0.3s; }
   .social-links a:hover { background: var(--gradient-accent); color: white; border-color: transparent; transform: translateY(-4px); }
   .footer-bottom { max-width: 1300px; margin: 0 auto; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); text-align: center; font-size: 0.9rem; color: var(--text-light); }
+
+  /* MINIMIZED POPUP - LEFT CORNER */
+  .popup-notification {
+    position: fixed;
+    bottom: 20px;
+    left: -350px;
+    background: white;
+    border-radius: 12px;
+    padding: 1rem 1.5rem;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    max-width: 300px;
+    transition: left 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    border-left: 4px solid var(--primary);
+  }
+  
+  .popup-notification.active {
+    left: 20px;
+  }
+  
+  .popup-notification-icon {
+    width: 40px;
+    height: 40px;
+    background: var(--gradient-accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+  }
+  
+  .popup-notification-content {
+    flex: 1;
+  }
+  
+  .popup-notification-title {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 0.15rem;
+  }
+  
+  .popup-notification-text {
+    font-size: 0.8rem;
+    color: var(--text-gray);
+  }
+  
+  .popup-notification-close {
+    background: none;
+    border: none;
+    color: var(--text-light);
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 0.25rem;
+    transition: all 0.3s;
+  }
+  
+  .popup-notification-close:hover {
+    color: var(--primary);
+  }
 
   /* RESPONSIVE */
   @media (max-width: 1024px) {
@@ -578,7 +645,7 @@
       text-align: center;
     }
     
-    /* Mobile Dropdown */
+    /* Mobile Dropdown - FIXED */
     .nav-dropdown {
       width: 100%;
     }
@@ -597,6 +664,7 @@
       overflow: hidden; 
       transition: max-height 0.3s ease;
       width: 100%;
+      border-radius: 8px;
     }
     .nav-dropdown.open .dropdown-menu { 
       max-height: 200px;
@@ -644,6 +712,17 @@
     .carousel-btn {
       width: 40px;
       height: 40px;
+    }
+    
+    /* Mobile popup - full width at bottom */
+    .popup-notification {
+      left: -100%;
+      bottom: 20px;
+      right: 20px;
+      max-width: calc(100% - 40px);
+    }
+    .popup-notification.active {
+      left: 20px;
     }
   }
   
@@ -983,7 +1062,8 @@
         </div>
         <h3>Aisa</h3>
         <div class="teacher-title">Senior IELTS Tutor</div>
-        <p>Aisa is an experienced English educator with 8 years of IELTS teaching experience and 10 years of experience teaching English overall. She holds an outstanding IELTS score of 8.5, including a perfect 9.0 in Speaking. Aisa is currently pursuing a master's degree through the MA TEFL program, specializing in Teaching English as a Foreign Language, at an American University of Armenia.</p>
+        <p>Aisa is an experienced English educator with 8 years of IELTS teaching experience and 10 years of experience teaching English overall. She holds an outstanding IELTS score of 8.5, including a perfect 9.0 in Speaking.</p>
+        <p>Aisa is currently pursuing a master's degree through the MA TEFL program, specializing in Teaching English as a Foreign Language, at an American University of Armenia.</p>
       </div>
     </div>
   </div>
@@ -1053,6 +1133,16 @@
   <div class="footer-bottom">© 2026 AClass English School. All rights reserved.</div>
 </footer>
 
+<!-- MINIMIZED POPUP - LEFT CORNER -->
+<div class="popup-notification" id="popupNotification">
+  <div class="popup-notification-icon"><i class="fas fa-rocket"></i></div>
+  <div class="popup-notification-content">
+    <div class="popup-notification-title">Pre-Registration Opens July 25!</div>
+    <div class="popup-notification-text">Be the first to secure your spot</div>
+  </div>
+  <button class="popup-notification-close" onclick="closePopupNotification()"><i class="fas fa-times"></i></button>
+</div>
+
 <script>
   // Force scroll to top
   if (history.scrollRestoration) { history.scrollRestoration = 'manual'; }
@@ -1118,6 +1208,23 @@
       closeMenuOnLink();
     }
   });
+  
+  // POPUP NOTIFICATION - LEFT CORNER
+  function showPopupNotification() { 
+    document.getElementById('popupNotification').classList.add('active'); 
+  }
+  
+  function closePopupNotification() { 
+    document.getElementById('popupNotification').classList.remove('active'); 
+    try { sessionStorage.setItem('popupClosed', 'true'); } catch(e) {}
+  }
+  
+  let popupClosed = false; 
+  try { popupClosed = sessionStorage.getItem('popupClosed') === 'true'; } catch(e) {}
+  
+  if (!popupClosed) { 
+    setTimeout(showPopupNotification, 2000); 
+  }
   
   // SWIPEABLE CAROUSEL
   let currentSlide = 2; // Start at middle
