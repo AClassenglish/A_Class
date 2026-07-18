@@ -38,7 +38,7 @@
     overflow-x: hidden;
   }
 
-  /* LIGHTER ANIMATED BACKGROUND */
+  /* ANIMATED BACKGROUND */
   .animated-bg {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
     background: linear-gradient(135deg, #ffffff 0%, #fafbff 50%, #f8f5ff 100%);
@@ -55,6 +55,136 @@
     50% { transform: translate(30px, -40px) scale(1.05); }
   }
 
+  /* HEADER ANIMATIONS - Subtle blobs behind navbar */
+  .header-animations {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 500px;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  
+  .header-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.15;
+  }
+  
+  .header-blob-1 {
+    width: 300px;
+    height: 300px;
+    background: var(--primary);
+    top: -100px;
+    left: 10%;
+    animation: blobMove1 12s ease-in-out infinite;
+  }
+  
+  .header-blob-2 {
+    width: 250px;
+    height: 250px;
+    background: var(--secondary);
+    top: -50px;
+    right: 15%;
+    animation: blobMove2 15s ease-in-out infinite;
+  }
+  
+  .header-blob-3 {
+    width: 200px;
+    height: 200px;
+    background: var(--primary);
+    top: 100px;
+    left: 50%;
+    animation: blobMove3 18s ease-in-out infinite;
+  }
+  
+  @keyframes blobMove1 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(50px, 30px) scale(1.1); }
+  }
+  @keyframes blobMove2 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(-40px, 40px) scale(0.9); }
+  }
+  @keyframes blobMove3 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(30px, -20px) scale(1.15); }
+  }
+
+  /* SIDE TRACKS - Label style from both sides */
+  .side-tracks {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+  }
+  
+  .side-track {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 40px;
+    overflow: hidden;
+  }
+  
+  .side-track.left { left: 0; }
+  .side-track.right { right: 0; }
+  
+  .side-track-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 2rem 0;
+  }
+  
+  .side-track.left .side-track-content {
+    animation: scrollUp 40s linear infinite;
+  }
+  
+  .side-track.right .side-track-content {
+    animation: scrollDown 40s linear infinite;
+  }
+  
+  @keyframes scrollUp {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-50%); }
+  }
+  
+  @keyframes scrollDown {
+    0% { transform: translateY(-50%); }
+    100% { transform: translateY(0); }
+  }
+  
+  .track-label {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    transform: rotate(180deg);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--primary);
+    opacity: 0.4;
+    padding: 1rem 0;
+    white-space: nowrap;
+  }
+  
+  .track-label-dot {
+    width: 4px;
+    height: 4px;
+    background: var(--primary);
+    border-radius: 50%;
+    margin: 0 auto;
+    opacity: 0.3;
+  }
+
   /* NAVBAR */
   .navbar {
     position: fixed; top: 0; left: 0; right: 0;
@@ -63,7 +193,7 @@
     transition: all 0.3s ease;
   }
   .navbar.scrolled { padding: 0.75rem 0; box-shadow: 0 4px 20px rgba(167, 102, 220, 0.08); }
-  .nav-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 2rem; }
+  .nav-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 2rem; position: relative; z-index: 2; }
   
   .logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
   .logo-img { width: 42px; height: 42px; border-radius: 50%; object-fit: cover; border: 2px solid var(--primary); }
@@ -75,13 +205,14 @@
   .nav-link {
     text-decoration: none; color: var(--text-gray); font-weight: 500; font-size: 0.95rem;
     transition: color 0.3s ease; position: relative; display: flex; align-items: center; gap: 0.35rem;
+    cursor: pointer;
   }
   .nav-link:hover { color: var(--primary); }
   
   .dropdown-menu {
     position: absolute; top: 150%; left: 50%; transform: translateX(-50%) translateY(8px);
-    background: white; border: 1px solid var(--border); border-radius: 14px;
-    padding: 0.5rem; min-width: 240px;
+    background: white; border: 1px solid var(--border); border-radius: 12px;
+    padding: 0.5rem; min-width: 200px;
     box-shadow: 0 10px 30px rgba(167, 102, 220, 0.1);
     opacity: 0; visibility: hidden;
     transition: all 0.25s ease;
@@ -90,17 +221,13 @@
   .nav-dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
   
   .dropdown-menu li a {
-    display: flex; align-items: center; gap: 0.7rem; padding: 0.75rem 0.9rem;
-    color: var(--text-gray); text-decoration: none; font-weight: 500; font-size: 0.9rem;
+    display: flex; align-items: center; gap: 0.7rem; padding: 0.75rem 1rem;
+    color: var(--text-gray); text-decoration: none; font-weight: 600; font-size: 0.9rem;
     border-radius: 8px; transition: all 0.2s;
+    justify-content: center;
   }
   .dropdown-menu li a:hover { background: var(--primary-light); color: var(--primary); }
-  .dropdown-menu li a i { width: 18px; text-align: center; color: var(--primary); font-size: 0.85rem; }
-  
-  .dropdown-divider { height: 1px; background: var(--border); margin: 0.4rem 0; }
-  .dropdown-menu .explore-link { background: var(--gradient-accent); color: white !important; justify-content: space-between; font-weight: 600; margin-top: 0.2rem; }
-  .dropdown-menu .explore-link i { color: white; }
-  .dropdown-menu .explore-link:hover { opacity: 0.92; }
+  .dropdown-menu li a i { color: var(--primary); font-size: 0.9rem; }
 
   .nav-cta {
     background: var(--gradient-accent); color: white !important; padding: 0.7rem 1.5rem;
@@ -114,12 +241,12 @@
     border-radius: 10px;
   }
 
-  /* HERO - LIGHTER */
+  /* HERO */
   .hero {
     min-height: 100vh; display: flex; align-items: center; justify-content: center;
     padding: 10rem 2rem 6rem; position: relative;
   }
-  .hero-container { max-width: 1000px; margin: 0 auto; text-align: center; }
+  .hero-container { max-width: 1000px; margin: 0 auto; text-align: center; position: relative; z-index: 2; }
   
   .hero-badge {
     display: inline-flex; align-items: center; gap: 0.5rem; background: var(--primary-light);
@@ -151,72 +278,17 @@
   .hero-stat-number { font-size: 2rem; font-weight: 800; background: var(--gradient-accent); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 0.3rem; }
   .hero-stat-label { font-size: 0.85rem; color: var(--text-gray); font-weight: 500; }
 
-  /* VERTICAL MOVING TRACK */
-  .vertical-track {
-    padding: 4rem 0;
-    background: var(--bg-light);
-    overflow: hidden;
-    position: relative;
-  }
-  .vertical-track::before, .vertical-track::after {
-    content: ''; position: absolute; left: 0; right: 0; height: 80px; z-index: 2; pointer-events: none;
-  }
-  .vertical-track::before { top: 0; background: linear-gradient(to bottom, var(--bg-light), transparent); }
-  .vertical-track::after { bottom: 0; background: linear-gradient(to top, var(--bg-light), transparent); }
-  
-  .vertical-track-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    max-width: 900px;
-    margin: 0 auto;
-    height: 400px;
-  }
-  
-  .vertical-column {
-    overflow: hidden;
-    position: relative;
-  }
-  
-  .vertical-track-content {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    animation: scrollVertical 25s linear infinite;
-  }
-  
-  .vertical-column.reverse .vertical-track-content {
-    animation-direction: reverse;
-  }
-  
-  @keyframes scrollVertical {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(-50%); }
-  }
-  
-  .track-item-vertical {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 1.25rem 1.5rem;
-    background: white;
-    border-radius: 14px;
-    border: 1px solid var(--border);
-    font-weight: 600;
-    font-size: 0.95rem;
-    color: var(--text-dark);
-    white-space: nowrap;
-  }
-  
-  .track-item-vertical i {
-    color: var(--primary);
-    font-size: 1.2rem;
-    width: 24px;
-    text-align: center;
-  }
+  /* SECTIONS */
+  .about, .courses, .how-it-works, .packages, .contact, .reviews-section { padding: 6rem 2rem; position: relative; z-index: 2; }
+  .about, .how-it-works, .contact, .reviews-section { background: var(--bg-light); }
+  .courses, .packages { background: var(--white); }
+  .container { max-width: 1300px; margin: 0 auto; }
+  .section-header { text-align: center; margin-bottom: 3.5rem; }
+  .section-tag { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--primary-light); color: var(--primary-dark); padding: 0.5rem 1.25rem; border-radius: 50px; font-size: 0.85rem; font-weight: 600; margin-bottom: 1.25rem; border: 1px solid rgba(167, 102, 220, 0.15); }
+  .section-header h2 { font-size: 2.5rem; font-weight: 800; color: var(--text-dark); margin-bottom: 1rem; letter-spacing: -0.5px; }
+  .section-header p { color: var(--text-gray); max-width: 600px; margin: 0 auto; font-size: 1.05rem; }
 
   /* CAROUSEL */
-  .reviews-section { padding: 6rem 2rem; background: var(--white); overflow: hidden; }
   .reviews-header { text-align: center; margin-bottom: 3rem; }
   .reviews-header h2 { font-size: 2.5rem; font-weight: 800; background: var(--gradient-accent); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 0.75rem; }
   .reviews-header p { color: var(--text-gray); font-size: 1.05rem; }
@@ -238,16 +310,7 @@
   .carousel-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--border); cursor: pointer; transition: all 0.3s; }
   .carousel-dot.active { background: var(--primary); width: 28px; border-radius: 5px; }
 
-  /* SECTIONS - LIGHTER */
-  .about, .courses, .how-it-works, .packages, .contact { padding: 6rem 2rem; }
-  .about, .how-it-works, .contact { background: var(--bg-light); }
-  .courses, .packages { background: var(--white); }
-  .container { max-width: 1300px; margin: 0 auto; }
-  .section-header { text-align: center; margin-bottom: 3.5rem; }
-  .section-tag { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--primary-light); color: var(--primary-dark); padding: 0.5rem 1.25rem; border-radius: 50px; font-size: 0.85rem; font-weight: 600; margin-bottom: 1.25rem; border: 1px solid rgba(167, 102, 220, 0.15); }
-  .section-header h2 { font-size: 2.5rem; font-weight: 800; color: var(--text-dark); margin-bottom: 1rem; letter-spacing: -0.5px; }
-  .section-header p { color: var(--text-gray); max-width: 600px; margin: 0 auto; font-size: 1.05rem; }
-
+  /* ABOUT */
   .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
   .about-text h3 { font-size: 2rem; color: var(--text-dark); margin-bottom: 1.25rem; font-weight: 700; }
   .about-text p { color: var(--text-gray); margin-bottom: 1.25rem; font-size: 1rem; }
@@ -256,6 +319,7 @@
   .stat-number { font-size: 2.5rem; font-weight: 800; background: var(--gradient-accent); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 0.4rem; }
   .stat-label { font-size: 0.9rem; color: var(--text-gray); font-weight: 500; }
 
+  /* COURSES */
   .courses-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; }
   .course-card { background: white; border-radius: 20px; padding: 2.5rem; border: 1px solid var(--border); transition: all 0.4s; }
   .course-card:hover { transform: translateY(-8px); border-color: var(--primary); box-shadow: 0 15px 40px rgba(167, 102, 220, 0.12); }
@@ -267,12 +331,14 @@
   .course-features li:last-child { border-bottom: none; }
   .course-features li::before { content: '✓'; color: var(--primary); font-weight: 700; font-size: 1.1rem; flex-shrink: 0; }
 
+  /* HOW IT WORKS */
   .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
   .step-card { background: white; padding: 2.5rem; border-radius: 18px; position: relative; border: 1px solid var(--border); }
   .step-number { position: absolute; top: -16px; left: 2rem; width: 45px; height: 45px; background: var(--gradient-accent); color: white; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.2rem; }
   .step-card h4 { color: var(--text-dark); margin: 1.25rem 0 0.75rem; font-size: 1.2rem; font-weight: 700; }
   .step-card p { color: var(--text-gray); font-size: 0.95rem; }
 
+  /* PACKAGES */
   .packages-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; max-width: 1100px; margin: 0 auto; }
   .package-card { background: white; border-radius: 20px; padding: 2.5rem; border: 1px solid var(--border); position: relative; transition: all 0.4s; }
   .package-card:hover { transform: translateY(-8px); border-color: var(--primary); }
@@ -303,7 +369,7 @@
   .btn-explore:hover i { transform: translateX(4px); }
 
   /* PLACEMENT TEST */
-  .placement-cta { background: var(--gradient-accent); color: white; text-align: center; padding: 5rem 2rem; position: relative; overflow: hidden; }
+  .placement-cta { background: var(--gradient-accent); color: white; text-align: center; padding: 5rem 2rem; position: relative; overflow: hidden; z-index: 2; }
   .placement-cta h2 { font-size: 2.5rem; margin-bottom: 1rem; font-weight: 800; }
   .placement-cta p { font-size: 1.1rem; margin-bottom: 2.5rem; opacity: 0.95; max-width: 600px; margin-left: auto; margin-right: auto; }
   .test-buttons { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; }
@@ -320,7 +386,7 @@
   .contact-note { text-align: center; margin-top: 2.5rem; padding: 1.5rem; background: white; border-radius: 16px; color: var(--text-gray); font-size: 0.95rem; border: 1px solid var(--border); }
 
   /* FOOTER */
-  footer { background: var(--text-dark); color: var(--text-light); padding: 4rem 2rem 2rem; }
+  footer { background: var(--text-dark); color: var(--text-light); padding: 4rem 2rem 2rem; position: relative; z-index: 2; }
   .footer-grid { max-width: 1300px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
   .footer-col h4 { color: white; margin-bottom: 1.25rem; font-size: 1.1rem; font-weight: 700; }
   .footer-col p { font-size: 0.95rem; line-height: 1.7; margin-bottom: 0.75rem; }
@@ -332,12 +398,163 @@
   .social-links a:hover { background: var(--gradient-accent); color: white; border-color: transparent; transform: translateY(-4px); }
   .footer-bottom { max-width: 1300px; margin: 0 auto; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); text-align: center; font-size: 0.9rem; color: var(--text-light); }
 
+  /* POPUP MODAL */
+  .popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(8px);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s ease;
+  }
+  
+  .popup-overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .popup-modal {
+    background: white;
+    border-radius: 24px;
+    padding: 3rem 2.5rem;
+    max-width: 480px;
+    width: 100%;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 25px 60px rgba(167, 102, 220, 0.3);
+    transform: scale(0.9) translateY(20px);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 2px solid var(--primary-light);
+  }
+  
+  .popup-overlay.active .popup-modal {
+    transform: scale(1) translateY(0);
+  }
+  
+  .popup-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--bg-light);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-gray);
+    font-size: 1rem;
+    transition: all 0.3s;
+  }
+  
+  .popup-close:hover {
+    background: var(--primary-light);
+    color: var(--primary);
+    transform: rotate(90deg);
+  }
+  
+  .popup-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1.5rem;
+    background: var(--gradient-accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 2rem;
+    box-shadow: 0 10px 30px rgba(167, 102, 220, 0.4);
+    animation: popupPulse 2s ease-in-out infinite;
+  }
+  
+  @keyframes popupPulse {
+    0%, 100% { transform: scale(1); box-shadow: 0 10px 30px rgba(167, 102, 220, 0.4); }
+    50% { transform: scale(1.05); box-shadow: 0 15px 40px rgba(167, 102, 220, 0.5); }
+  }
+  
+  .popup-tag {
+    display: inline-block;
+    background: var(--primary-light);
+    color: var(--primary-dark);
+    padding: 0.4rem 1rem;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    letter-spacing: 0.5px;
+  }
+  
+  .popup-modal h3 {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--text-dark);
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.5px;
+  }
+  
+  .popup-modal h3 span {
+    background: var(--gradient-accent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .popup-date {
+    font-size: 1.1rem;
+    color: var(--primary-dark);
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+  
+  .popup-modal p {
+    color: var(--text-gray);
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+  }
+  
+  .popup-cta {
+    background: var(--gradient-accent);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    font-weight: 700;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    transition: all 0.3s;
+    box-shadow: 0 8px 25px rgba(167, 102, 220, 0.4);
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    font-family: inherit;
+  }
+  
+  .popup-cta:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(167, 102, 220, 0.5);
+  }
+
   /* RESPONSIVE */
   @media (max-width: 1024px) {
     .hero h1 { font-size: 3rem; }
     .hero-stats { grid-template-columns: repeat(2, 1fr); }
     .about-grid { grid-template-columns: 1fr; gap: 3rem; }
     .footer-grid { grid-template-columns: 1fr 1fr; }
+    .side-tracks { display: none; }
   }
   
   @media (max-width: 768px) {
@@ -359,20 +576,23 @@
     .test-buttons, .contact-buttons { flex-direction: column; align-items: stretch; }
     .btn-test, .contact-btn { justify-content: center; }
     
-    /* Mobile dropdown - CLOSED by default, toggle on click */
+    /* Mobile dropdown - simple open */
     .dropdown-menu {
       position: static; transform: none; opacity: 1; visibility: visible;
-      box-shadow: none; border: 1px solid var(--border); background: var(--bg-light);
-      padding: 0.5rem; margin-top: 0.5rem;
+      box-shadow: none; border: none; background: transparent;
+      padding: 0; margin-top: 0.5rem;
       max-height: 0; overflow: hidden; transition: max-height 0.3s ease;
     }
-    .nav-dropdown.open .dropdown-menu { max-height: 400px; }
+    .nav-dropdown.open .dropdown-menu { max-height: 200px; }
     .nav-dropdown:hover .dropdown-menu { max-height: 0; }
-    .nav-dropdown.open:hover .dropdown-menu { max-height: 400px; }
+    .nav-dropdown.open:hover .dropdown-menu { max-height: 200px; }
     
-    .vertical-track-grid { grid-template-columns: 1fr; height: 300px; gap: 1.5rem; }
     .review-card { flex: 0 0 75vw; transform: scale(0.92); }
     .review-card.active { transform: scale(1); }
+    
+    .popup-modal { padding: 2.5rem 1.5rem; }
+    .popup-modal h3 { font-size: 1.5rem; }
+    .popup-icon { width: 70px; height: 70px; font-size: 1.75rem; }
   }
   
   @media (max-width: 480px) {
@@ -391,6 +611,66 @@
   <div class="floating-shape"></div>
 </div>
 
+<!-- HEADER ANIMATIONS -->
+<div class="header-animations">
+  <div class="header-blob header-blob-1"></div>
+  <div class="header-blob header-blob-2"></div>
+  <div class="header-blob header-blob-3"></div>
+</div>
+
+<!-- SIDE TRACKS - Labels from both sides -->
+<div class="side-tracks">
+  <div class="side-track left">
+    <div class="side-track-content">
+      <div class="track-label">IELTS</div><div class="track-label-dot"></div>
+      <div class="track-label">SAT</div><div class="track-label-dot"></div>
+      <div class="track-label">ENGLISH</div><div class="track-label-dot"></div>
+      <div class="track-label">RESULTS</div><div class="track-label-dot"></div>
+      <div class="track-label">EXCELLENCE</div><div class="track-label-dot"></div>
+      <div class="track-label">AClass</div><div class="track-label-dot"></div>
+      <!-- Duplicate for seamless loop -->
+      <div class="track-label">IELTS</div><div class="track-label-dot"></div>
+      <div class="track-label">SAT</div><div class="track-label-dot"></div>
+      <div class="track-label">ENGLISH</div><div class="track-label-dot"></div>
+      <div class="track-label">RESULTS</div><div class="track-label-dot"></div>
+      <div class="track-label">EXCELLENCE</div><div class="track-label-dot"></div>
+      <div class="track-label">AClass</div><div class="track-label-dot"></div>
+    </div>
+  </div>
+  <div class="side-track right">
+    <div class="side-track-content">
+      <div class="track-label">PREPARE</div><div class="track-label-dot"></div>
+      <div class="track-label">ACHIEVE</div><div class="track-label-dot"></div>
+      <div class="track-label">SUCCEED</div><div class="track-label-dot"></div>
+      <div class="track-label">LEARN</div><div class="track-label-dot"></div>
+      <div class="track-label">GROW</div><div class="track-label-dot"></div>
+      <div class="track-label">THRIVE</div><div class="track-label-dot"></div>
+      <!-- Duplicate for seamless loop -->
+      <div class="track-label">PREPARE</div><div class="track-label-dot"></div>
+      <div class="track-label">ACHIEVE</div><div class="track-label-dot"></div>
+      <div class="track-label">SUCCEED</div><div class="track-label-dot"></div>
+      <div class="track-label">LEARN</div><div class="track-label-dot"></div>
+      <div class="track-label">GROW</div><div class="track-label-dot"></div>
+      <div class="track-label">THRIVE</div><div class="track-label-dot"></div>
+    </div>
+  </div>
+</div>
+
+<!-- POPUP MODAL -->
+<div class="popup-overlay" id="popupOverlay">
+  <div class="popup-modal">
+    <button class="popup-close" onclick="closePopup()" aria-label="Close"><i class="fas fa-times"></i></button>
+    <div class="popup-icon"><i class="fas fa-rocket"></i></div>
+    <div class="popup-tag"> EXCITING NEWS</div>
+    <h3>Pre-Registration <span>Opens Soon!</span></h3>
+    <div class="popup-date">📅 July 25, 2026</div>
+    <p>Be the first to secure your spot in our IELTS, SAT, and General English courses. Limited places available!</p>
+    <a href="https://wa.me/37477347364?text=Hi!%20I'm%20interested%20in%20pre-registration%20for%20AClass%20courses." target="_blank" class="popup-cta">
+      <i class="fab fa-whatsapp"></i> Notify Me
+    </a>
+  </div>
+</div>
+
 <nav class="navbar">
   <div class="nav-container">
     <a href="#home" class="logo">
@@ -404,15 +684,10 @@
       <li><a href="#courses" class="nav-link">Courses</a></li>
       <li><a href="#reviews" class="nav-link">Reviews</a></li>
       
-      <!-- DROPDOWN - click to open on mobile -->
       <li class="nav-dropdown" id="packagesDropdown">
-        <a href="#packages" class="nav-link" onclick="toggleDropdown(event)">Packages <i class="fas fa-chevron-down" style="font-size: 0.65rem; margin-left: 2px;"></i></a>
+        <a class="nav-link" onclick="toggleDropdown(event)">Packages <i class="fas fa-chevron-down" style="font-size: 0.65rem; margin-left: 2px;"></i></a>
         <ul class="dropdown-menu">
-          <li><a href="ielts-packages.html"><i class="fas fa-graduation-cap"></i> IELTS Packages</a></li>
-          <li><a href="sat-packages.html"><i class="fas fa-book-open"></i> SAT Packages</a></li>
-          <li><a href="general-english-packages.html"><i class="fas fa-comments"></i> General English</a></li>
-          <div class="dropdown-divider"></div>
-          <li><a href="all-packages.html" class="explore-link">Explore All Packages <i class="fas fa-arrow-right"></i></a></li>
+          <li><a href="all-packages.html"><i class="fas fa-compass"></i> Explore & Compare</a></li>
         </ul>
       </li>
       
@@ -439,66 +714,25 @@
   </div>
 </section>
 
-<!-- VERTICAL MOVING TRACK -->
-<section class="vertical-track">
-  <div class="vertical-track-grid">
-    <!-- Column 1 - scrolls up -->
-    <div class="vertical-column">
-      <div class="vertical-track-content">
-        <div class="track-item-vertical"><i class="fas fa-graduation-cap"></i> IELTS Preparation</div>
-        <div class="track-item-vertical"><i class="fas fa-book"></i> SAT Training</div>
-        <div class="track-item-vertical"><i class="fas fa-comments"></i> General English</div>
-        <div class="track-item-vertical"><i class="fas fa-chalkboard-teacher"></i> Expert Teachers</div>
-        <div class="track-item-vertical"><i class="fas fa-trophy"></i> Proven Results</div>
-        <div class="track-item-vertical"><i class="fas fa-user-graduate"></i> Personalized Learning</div>
-        <!-- Duplicate for seamless loop -->
-        <div class="track-item-vertical"><i class="fas fa-graduation-cap"></i> IELTS Preparation</div>
-        <div class="track-item-vertical"><i class="fas fa-book"></i> SAT Training</div>
-        <div class="track-item-vertical"><i class="fas fa-comments"></i> General English</div>
-        <div class="track-item-vertical"><i class="fas fa-chalkboard-teacher"></i> Expert Teachers</div>
-        <div class="track-item-vertical"><i class="fas fa-trophy"></i> Proven Results</div>
-        <div class="track-item-vertical"><i class="fas fa-user-graduate"></i> Personalized Learning</div>
-      </div>
-    </div>
-    
-    <!-- Column 2 - scrolls down (reverse) -->
-    <div class="vertical-column reverse">
-      <div class="vertical-track-content">
-        <div class="track-item-vertical"><i class="fas fa-globe"></i> Online & In-Person</div>
-        <div class="track-item-vertical"><i class="fas fa-clock"></i> Flexible Schedule</div>
-        <div class="track-item-vertical"><i class="fas fa-chart-line"></i> Progress Tracking</div>
-        <div class="track-item-vertical"><i class="fas fa-certificate"></i> Certified Teachers</div>
-        <div class="track-item-vertical"><i class="fas fa-users"></i> Small Groups</div>
-        <div class="track-item-vertical"><i class="fas fa-heart"></i> Student Success</div>
-        <!-- Duplicate for seamless loop -->
-        <div class="track-item-vertical"><i class="fas fa-globe"></i> Online & In-Person</div>
-        <div class="track-item-vertical"><i class="fas fa-clock"></i> Flexible Schedule</div>
-        <div class="track-item-vertical"><i class="fas fa-chart-line"></i> Progress Tracking</div>
-        <div class="track-item-vertical"><i class="fas fa-certificate"></i> Certified Teachers</div>
-        <div class="track-item-vertical"><i class="fas fa-users"></i> Small Groups</div>
-        <div class="track-item-vertical"><i class="fas fa-heart"></i> Student Success</div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <section id="reviews" class="reviews-section">
-  <div class="reviews-header">
-    <h2>Student Success Stories</h2>
-    <p>Real results from our amazing students</p>
-  </div>
-  <div class="reviews-carousel">
-    <div class="carousel-track" id="carouselTrack">
-      <div class="review-card"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/1rewiew.png" alt="Review 1"></div>
-      <div class="review-card"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/2review.png" alt="Review 2"></div>
-      <div class="review-card"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/3review.png" alt="Review 3"></div>
-      <div class="review-card"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/6review.png" alt="Review 4"></div>
-      <div class="review-card"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/7review.png" alt="Review 5"></div>
+  <div class="container">
+    <div class="reviews-header">
+      <h2>Student Success Stories</h2>
+      <p>Real results from our amazing students</p>
     </div>
-    <div class="carousel-controls">
-      <button class="carousel-btn" onclick="changeCarousel(-1)"><i class="fas fa-chevron-left"></i></button>
-      <div class="carousel-dots" id="carouselDots"></div>
-      <button class="carousel-btn" onclick="changeCarousel(1)"><i class="fas fa-chevron-right"></i></button>
+    <div class="reviews-carousel">
+      <div class="carousel-track" id="carouselTrack">
+        <div class="review-card"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/1rewiew.png" alt="Review 1"></div>
+        <div class="review-card"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/2review.png" alt="Review 2"></div>
+        <div class="review-card"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/3review.png" alt="Review 3"></div>
+        <div class="review-card"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/6review.png" alt="Review 4"></div>
+        <div class="review-card"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/7review.png" alt="Review 5"></div>
+      </div>
+      <div class="carousel-controls">
+        <button class="carousel-btn" onclick="changeCarousel(-1)"><i class="fas fa-chevron-left"></i></button>
+        <div class="carousel-dots" id="carouselDots"></div>
+        <button class="carousel-btn" onclick="changeCarousel(1)"><i class="fas fa-chevron-right"></i></button>
+      </div>
     </div>
   </div>
 </section>
@@ -655,7 +889,7 @@
     
     <div class="explore-more-container">
       <a href="all-packages.html" class="btn-explore">
-        View All Packages <i class="fas fa-arrow-right"></i>
+        Explore & Compare All Packages <i class="fas fa-arrow-right"></i>
       </a>
     </div>
   </div>
@@ -708,9 +942,9 @@
     <div class="footer-col">
       <h4>Programs</h4>
       <ul class="footer-links">
-        <li><a href="ielts-packages.html"><i class="fas fa-chevron-right"></i> IELTS</a></li>
-        <li><a href="sat-packages.html"><i class="fas fa-chevron-right"></i> SAT</a></li>
-        <li><a href="general-english-packages.html"><i class="fas fa-chevron-right"></i> General English</a></li>
+        <li><a href="#courses"><i class="fas fa-chevron-right"></i> IELTS</a></li>
+        <li><a href="#courses"><i class="fas fa-chevron-right"></i> SAT</a></li>
+        <li><a href="#courses"><i class="fas fa-chevron-right"></i> General English</a></li>
       </ul>
     </div>
     <div class="footer-col">
@@ -726,32 +960,38 @@
 </footer>
 
 <script>
-  window.addEventListener('load', () => { window.scrollTo({ top: 0, behavior: 'auto' }); });
+  // Force scroll to top on page load/refresh
+  if (history.scrollRestoration) {
+    history.scrollRestoration = 'manual';
+  }
+  window.addEventListener('load', () => {
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  });
+  window.addEventListener('beforeunload', () => {
+    window.scrollTo(0, 0);
+  });
   
   function toggleMenu() { 
     document.getElementById('navMenu').classList.toggle('active'); 
-    // Close dropdown when menu opens
     document.getElementById('packagesDropdown').classList.remove('open');
   }
   
-  // Mobile dropdown toggle - click to open/close
   function toggleDropdown(event) {
     if (window.innerWidth <= 768) {
       event.preventDefault();
+      event.stopPropagation();
       document.getElementById('packagesDropdown').classList.toggle('open');
     }
   }
   
   document.querySelectorAll('.nav-link').forEach(link => {
     link.addEventListener('click', (e) => {
-      // Don't close if it's the dropdown trigger on mobile
       if (link.parentElement.classList.contains('nav-dropdown')) return;
       document.getElementById('navMenu').classList.remove('active');
       document.getElementById('packagesDropdown').classList.remove('open');
     });
   });
   
-  // Close dropdown when clicking outside
   document.addEventListener('click', (e) => {
     if (!e.target.closest('.nav-dropdown')) {
       document.getElementById('packagesDropdown').classList.remove('open');
@@ -761,6 +1001,37 @@
   window.addEventListener('scroll', () => {
     const navbar = document.querySelector('.navbar');
     if (window.scrollY > 50) { navbar.classList.add('scrolled'); } else { navbar.classList.remove('scrolled'); }
+  });
+  
+  // POPUP - Show after 1.5 seconds
+  function showPopup() {
+    document.getElementById('popupOverlay').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  
+  function closePopup() {
+    document.getElementById('popupOverlay').classList.remove('active');
+    document.body.style.overflow = '';
+    // Remember user closed it for this session
+    try { sessionStorage.setItem('popupClosed', 'true'); } catch(e) {}
+  }
+  
+  // Show popup after delay if not already closed this session
+  let popupClosed = false;
+  try { popupClosed = sessionStorage.getItem('popupClosed') === 'true'; } catch(e) {}
+  
+  if (!popupClosed) {
+    setTimeout(showPopup, 1500);
+  }
+  
+  // Close popup when clicking overlay
+  document.getElementById('popupOverlay').addEventListener('click', (e) => {
+    if (e.target === e.currentTarget) closePopup();
+  });
+  
+  // Close on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closePopup();
   });
   
   // CAROUSEL
