@@ -28,7 +28,7 @@
   }
   
   * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-  html { scroll-behavior: smooth; scroll-padding-top: 120px; }
+  html { scroll-behavior: smooth; scroll-padding-top: 140px; }
   
   body {
     font-family: 'Plus Jakarta Sans', sans-serif;
@@ -114,29 +114,29 @@
   }
   .track-label-dot { width: 6px; height: 6px; background: var(--primary); border-radius: 50%; margin: 0 auto; opacity: 0.4; }
 
-  /* MOBILE HEADER TRACK (SLIM) */
+  /* MOBILE HEADER TRACK (SLIM) - DIRECTLY UNDER NAVBAR */
   .mobile-header-track {
     display: none;
     position: fixed;
-    top: 72px; /* Right under navbar */
+    top: 70px; /* Directly under navbar */
     left: 0; right: 0;
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--border);
-    z-index: 998;
-    padding: 0.4rem 0;
+    z-index: 997; /* Below navbar (1000) but above content */
+    padding: 0.35rem 0;
     overflow: hidden;
   }
   .track-row {
-    display: flex; gap: 2rem; white-space: nowrap;
-    font-size: 0.7rem; font-weight: 700; letter-spacing: 2px;
-    color: var(--primary); opacity: 0.6;
+    display: flex; gap: 1.5rem; white-space: nowrap;
+    font-size: 0.65rem; font-weight: 700; letter-spacing: 1.5px;
+    color: var(--primary); opacity: 0.5;
   }
-  .track-row-left { animation: scrollLeft 15s linear infinite; }
-  .track-row-right { animation: scrollRight 15s linear infinite; }
+  .track-row-left { animation: scrollLeft 12s linear infinite; }
+  .track-row-right { animation: scrollRight 12s linear infinite; }
   @keyframes scrollLeft { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
   @keyframes scrollRight { 0% { transform: translateX(-50%); } 100% { transform: translateX(0); } }
-  .track-row .track-dot { width: 4px; height: 4px; background: var(--primary); border-radius: 50%; opacity: 0.5; align-self: center; }
+  .track-row .track-dot { width: 3px; height: 3px; background: var(--primary); border-radius: 50%; opacity: 0.5; align-self: center; }
 
   /* NAVBAR */
   .navbar {
@@ -231,28 +231,44 @@
   .section-header h2 { font-size: 2.5rem; font-weight: 800; color: var(--text-dark); margin-bottom: 1rem; letter-spacing: -0.5px; }
   .section-header p { color: var(--text-gray); max-width: 600px; margin: 0 auto; font-size: 1.05rem; }
 
-  /* CAROUSEL */
+  /* INFINITE CAROUSEL */
   .reviews-header { text-align: center; margin-bottom: 3rem; }
   .reviews-header h2 { font-size: 2.5rem; font-weight: 800; background: var(--gradient-accent); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 0.75rem; }
   .reviews-header p { color: var(--text-gray); font-size: 1.05rem; }
-  .reviews-carousel { position: relative; max-width: 1100px; margin: 0 auto; overflow: hidden; }
-  .carousel-track { display: flex; transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); gap: 1.5rem; padding: 2rem 0; cursor: grab; }
-  .carousel-track:active { cursor: grabbing; }
+  .reviews-carousel { position: relative; max-width: 100%; margin: 0 auto; overflow: hidden; }
   
-  .review-card {
-    flex: 0 0 280px; background: white; border-radius: 20px; overflow: hidden;
-    border: 1px solid var(--border); transition: all 0.5s ease;
-    transform: scale(0.88); opacity: 0.6; filter: blur(3px);
+  .infinite-track {
+    display: flex;
+    gap: 1.5rem;
+    animation: infiniteScroll 40s linear infinite;
+    width: max-content;
   }
-  .review-card.active { transform: scale(1.08); opacity: 1; filter: blur(0); border-color: var(--primary); box-shadow: 0 20px 50px rgba(167, 102, 220, 0.2); z-index: 10; }
-  .review-card img { width: 100%; height: auto; display: block; }
   
-  .carousel-controls { display: flex; justify-content: center; align-items: center; gap: 1.5rem; margin-top: 1.5rem; }
-  .carousel-btn { width: 48px; height: 48px; border-radius: 50%; background: white; border: 1.5px solid var(--primary); box-shadow: 0 4px 15px rgba(167, 102, 220, 0.15); cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--primary); font-size: 1.2rem; transition: all 0.3s; }
-  .carousel-btn:hover { background: var(--gradient-accent); color: white; border-color: transparent; transform: scale(1.1); }
-  .carousel-dots { display: flex; gap: 0.6rem; }
-  .carousel-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--border); cursor: pointer; transition: all 0.3s; }
-  .carousel-dot.active { background: var(--primary); width: 28px; border-radius: 5px; }
+  .infinite-track:hover {
+    animation-play-state: paused;
+  }
+  
+  @keyframes infiniteScroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  
+  .review-card-infinite {
+    flex: 0 0 280px;
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    transition: all 0.3s ease;
+  }
+  
+  .review-card-infinite:hover {
+    transform: scale(1.05);
+    border-color: var(--primary);
+    box-shadow: 0 15px 40px rgba(167, 102, 220, 0.2);
+  }
+  
+  .review-card-infinite img { width: 100%; height: auto; display: block; }
 
   /* ABOUT */
   .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
@@ -300,6 +316,46 @@
   .package-btn { width: 100%; padding: 1rem; background: var(--text-dark); color: white; border: none; border-radius: 14px; font-weight: 700; cursor: pointer; transition: all 0.3s; font-size: 1rem; font-family: inherit; }
   .package-card.featured .package-btn { background: white; color: var(--primary); }
   .package-btn:hover { transform: translateY(-3px); }
+
+  /* PACKAGE SLIDER (MOBILE) */
+  .packages-slider-mobile {
+    display: none;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: 1.5rem;
+    padding: 1rem 0 2rem;
+    scrollbar-width: none;
+  }
+  .packages-slider-mobile::-webkit-scrollbar { display: none; }
+  
+  .package-slide {
+    flex: 0 0 85vw;
+    max-width: 340px;
+    scroll-snap-align: center;
+    background: white;
+    border-radius: 20px;
+    padding: 2.5rem 2rem;
+    border: 1px solid var(--border);
+    position: relative;
+  }
+  .package-slide.featured {
+    background: var(--gradient-accent);
+    color: white;
+    border-color: transparent;
+  }
+  .package-slide .package-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: #fde68a; color: var(--text-dark); padding: 0.4rem 1.2rem; border-radius: 20px; font-size: 0.75rem; font-weight: 700; }
+  .package-slide .package-name { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.75rem; text-align: center; }
+  .package-slide .package-price { text-align: center; margin: 1.25rem 0; padding: 1.25rem; background: rgba(167, 102, 220, 0.08); border-radius: 14px; }
+  .package-slide.featured .package-price { background: rgba(255,255,255,0.15); }
+  .package-slide .package-features { list-style: none; margin: 1.5rem 0; }
+  .package-slide .package-features li { padding: 0.6rem 0; display: flex; align-items: center; gap: 0.75rem; border-bottom: 1px solid var(--border); font-size: 0.9rem; }
+  .package-slide.featured .package-features li { border-bottom-color: rgba(255,255,255,0.2); }
+  .package-slide .package-features li:last-child { border-bottom: none; }
+  .package-slide .package-features li i { color: var(--primary); font-size: 0.9rem; }
+  .package-slide.featured .package-features li i { color: #fde68a; }
+  .package-slide .package-btn { width: 100%; padding: 0.9rem; background: var(--text-dark); color: white; border: none; border-radius: 14px; font-weight: 700; cursor: pointer; font-size: 0.95rem; font-family: inherit; }
+  .package-slide.featured .package-btn { background: white; color: var(--primary); }
 
   .explore-more-container { text-align: center; margin-top: 3rem; }
   .btn-explore {
@@ -392,7 +448,22 @@
   
   @media (max-width: 768px) {
     .mobile-header-track { display: block; }
-    .nav-menu { position: fixed; top: 110px; left: 0; right: 0; background: white; flex-direction: column; padding: 1.5rem; gap: 1.25rem; border-bottom: 1px solid var(--border); transform: translateY(-150%); transition: transform 0.3s ease; z-index: 999; }
+    
+    .nav-menu { 
+      position: fixed; 
+      top: 105px; /* Below mobile track */
+      left: 0; right: 0; 
+      background: white; 
+      flex-direction: column; 
+      padding: 1.5rem; 
+      gap: 1.25rem; 
+      border-bottom: 1px solid var(--border); 
+      transform: translateY(-150%); 
+      transition: transform 0.3s ease; 
+      z-index: 998;
+      max-height: calc(100vh - 105px);
+      overflow-y: auto;
+    }
     .nav-menu.active { transform: translateY(0); }
     .menu-toggle { display: flex; }
     
@@ -404,27 +475,28 @@
     .hero-stat-number { font-size: 1.75rem; }
     
     .section-header h2, .reviews-header h2 { font-size: 2rem; }
-    .courses-grid, .packages-grid { grid-template-columns: 1fr; }
-    .package-card.featured { transform: none; }
+    .courses-grid { grid-template-columns: 1fr; }
     .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
     .test-buttons, .contact-buttons { flex-direction: column; align-items: stretch; }
     .btn-test, .contact-btn { justify-content: center; }
     
+    /* Packages: hide grid, show slider */
+    .packages-grid { display: none; }
+    .packages-slider-mobile { display: flex; }
+    
+    /* Dropdown on mobile */
     .dropdown-menu {
       position: static; transform: none; opacity: 1; visibility: visible;
       box-shadow: none; border: none; background: transparent; padding: 0; margin-top: 0.5rem;
       max-height: 0; overflow: hidden; transition: max-height 0.3s ease;
     }
     .nav-dropdown.open .dropdown-menu { max-height: 200px; }
-    .nav-dropdown:hover .dropdown-menu { max-height: 0; }
-    .nav-dropdown.open:hover .dropdown-menu { max-height: 200px; }
-    
-    .review-card { flex: 0 0 75vw; transform: scale(0.92); }
-    .review-card.active { transform: scale(1); }
     
     .popup-modal { padding: 2.5rem 1.5rem; }
     .popup-modal h3 { font-size: 1.5rem; }
     .popup-icon { width: 70px; height: 70px; font-size: 1.75rem; }
+    
+    .review-card-infinite { flex: 0 0 260px; }
   }
   
   @media (max-width: 480px) {
@@ -432,7 +504,7 @@
     .section-header h2, .reviews-header h2 { font-size: 1.75rem; }
     .about-stats { grid-template-columns: 1fr; }
     .btn { padding: 0.9rem 1.75rem; font-size: 0.95rem; }
-    .review-card { flex: 0 0 85vw; }
+    .review-card-infinite { flex: 0 0 240px; }
   }
 </style>
 </head>
@@ -526,19 +598,19 @@
     </a>
     <button class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
     <ul class="nav-menu" id="navMenu">
-      <li><a href="#home" class="nav-link">Home</a></li>
-      <li><a href="#about" class="nav-link">About</a></li>
-      <li><a href="#courses" class="nav-link">Courses</a></li>
-      <li><a href="#reviews" class="nav-link">Reviews</a></li>
+      <li><a href="#home" class="nav-link" onclick="closeMenuOnLink()">Home</a></li>
+      <li><a href="#about" class="nav-link" onclick="closeMenuOnLink()">About</a></li>
+      <li><a href="#courses" class="nav-link" onclick="closeMenuOnLink()">Courses</a></li>
+      <li><a href="#reviews" class="nav-link" onclick="closeMenuOnLink()">Reviews</a></li>
       
       <li class="nav-dropdown" id="packagesDropdown">
         <a class="nav-link" onclick="toggleDropdown(event)">Packages <i class="fas fa-chevron-down" style="font-size: 0.65rem; margin-left: 2px;"></i></a>
         <ul class="dropdown-menu">
-          <li><a href="all-packages.html"><i class="fas fa-compass"></i> Explore & Compare</a></li>
+          <li><a href="all-packages.html" onclick="closeMenuOnLink()"><i class="fas fa-compass"></i> Explore & Compare</a></li>
         </ul>
       </li>
       
-      <li><a href="#contact" class="nav-cta">Contact Us</a></li>
+      <li><a href="#contact" class="nav-cta" onclick="closeMenuOnLink()">Contact Us</a></li>
     </ul>
   </div>
 </nav>
@@ -568,17 +640,19 @@
       <p>Real results from our amazing students</p>
     </div>
     <div class="reviews-carousel">
-      <div class="carousel-track" id="carouselTrack">
-        <div class="review-card" onclick="goToSlide(0)"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/1rewiew.png" alt="Review 1"></div>
-        <div class="review-card" onclick="goToSlide(1)"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/2review.png" alt="Review 2"></div>
-        <div class="review-card" onclick="goToSlide(2)"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/3review.png" alt="Review 3"></div>
-        <div class="review-card" onclick="goToSlide(3)"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/6review.png" alt="Review 4"></div>
-        <div class="review-card" onclick="goToSlide(4)"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/7review.png" alt="Review 5"></div>
-      </div>
-      <div class="carousel-controls">
-        <button class="carousel-btn" onclick="changeCarousel(-1)"><i class="fas fa-chevron-left"></i></button>
-        <div class="carousel-dots" id="carouselDots"></div>
-        <button class="carousel-btn" onclick="changeCarousel(1)"><i class="fas fa-chevron-right"></i></button>
+      <div class="infinite-track" id="infiniteTrack">
+        <!-- Original set -->
+        <div class="review-card-infinite"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/1rewiew.png" alt="Review 1"></div>
+        <div class="review-card-infinite"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/2review.png" alt="Review 2"></div>
+        <div class="review-card-infinite"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/3review.png" alt="Review 3"></div>
+        <div class="review-card-infinite"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/6review.png" alt="Review 4"></div>
+        <div class="review-card-infinite"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/7review.png" alt="Review 5"></div>
+        <!-- Duplicated set for infinite loop -->
+        <div class="review-card-infinite"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/1rewiew.png" alt="Review 1"></div>
+        <div class="review-card-infinite"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/2review.png" alt="Review 2"></div>
+        <div class="review-card-infinite"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/3review.png" alt="Review 3"></div>
+        <div class="review-card-infinite"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/6review.png" alt="Review 4"></div>
+        <div class="review-card-infinite"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/7review.png" alt="Review 5"></div>
       </div>
     </div>
   </div>
@@ -697,6 +771,8 @@
       <h2>Choose Your Package</h2>
       <p>Flexible lesson formats designed to fit your schedule</p>
     </div>
+    
+    <!-- Desktop Grid -->
     <div class="packages-grid">
       <div class="package-card">
         <div class="package-name">Standard Group</div>
@@ -722,6 +798,44 @@
         <button class="package-btn" onclick="document.getElementById('contact').scrollIntoView()">Enroll Now</button>
       </div>
       <div class="package-card">
+        <div class="package-name">Individual</div>
+        <div class="package-price"><strong>12 lessons/month</strong><br><small>3 lessons/week • 60 min</small></div>
+        <ul class="package-features">
+          <li><i class="fas fa-check"></i> Fully personalized</li>
+          <li><i class="fas fa-check"></i> Focus on weaknesses</li>
+          <li><i class="fas fa-check"></i> Flexible schedule</li>
+          <li><i class="fas fa-check"></i> One-on-one attention</li>
+        </ul>
+        <button class="package-btn" onclick="document.getElementById('contact').scrollIntoView()">Enroll Now</button>
+      </div>
+    </div>
+    
+    <!-- Mobile Slider -->
+    <div class="packages-slider-mobile">
+      <div class="package-slide">
+        <div class="package-name">Standard Group</div>
+        <div class="package-price"><strong>12 lessons/month</strong><br><small>3 lessons/week • 90 min</small></div>
+        <ul class="package-features">
+          <li><i class="fas fa-check"></i> Teacher-led lessons</li>
+          <li><i class="fas fa-check"></i> Exam strategies</li>
+          <li><i class="fas fa-check"></i> Practice exercises</li>
+          <li><i class="fas fa-check"></i> Homework & feedback</li>
+        </ul>
+        <button class="package-btn" onclick="document.getElementById('contact').scrollIntoView()">Enroll Now</button>
+      </div>
+      <div class="package-slide featured">
+        <div class="package-badge">⭐ MOST POPULAR</div>
+        <div class="package-name">Intensive Group</div>
+        <div class="package-price"><strong>20 lessons/month</strong><br><small>5 lessons/week • 90 min</small></div>
+        <ul class="package-features">
+          <li><i class="fas fa-check"></i> Fastest progress</li>
+          <li><i class="fas fa-check"></i> Ideal for exams</li>
+          <li><i class="fas fa-check"></i> High practice volume</li>
+          <li><i class="fas fa-check"></i> Priority support</li>
+        </ul>
+        <button class="package-btn" onclick="document.getElementById('contact').scrollIntoView()">Enroll Now</button>
+      </div>
+      <div class="package-slide">
         <div class="package-name">Individual</div>
         <div class="package-price"><strong>12 lessons/month</strong><br><small>3 lessons/week • 60 min</small></div>
         <ul class="package-features">
@@ -820,7 +934,7 @@
     cursor.classList.add('active');
   });
   document.addEventListener('mouseleave', () => cursor.classList.remove('active'));
-  document.querySelectorAll('a, button, .review-card, .package-card, .course-card').forEach(el => {
+  document.querySelectorAll('a, button, .package-card, .course-card, .step-card').forEach(el => {
     el.addEventListener('mouseenter', () => cursor.classList.add('hovering'));
     el.addEventListener('mouseleave', () => cursor.classList.remove('hovering'));
   });
@@ -830,25 +944,46 @@
     document.getElementById('navMenu').classList.toggle('active'); 
     document.getElementById('packagesDropdown').classList.remove('open');
   }
+  
+  function closeMenuOnLink() {
+    document.getElementById('navMenu').classList.remove('active');
+    document.getElementById('packagesDropdown').classList.remove('open');
+  }
+  
   function toggleDropdown(event) {
     if (window.innerWidth <= 768) {
-      event.preventDefault(); event.stopPropagation();
+      event.preventDefault(); 
+      event.stopPropagation();
       document.getElementById('packagesDropdown').classList.toggle('open');
     }
   }
-  document.querySelectorAll('.nav-link').forEach(link => {
-    link.addEventListener('click', (e) => {
-      if (link.parentElement.classList.contains('nav-dropdown')) return;
-      document.getElementById('navMenu').classList.remove('active');
+  
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.nav-dropdown')) {
       document.getElementById('packagesDropdown').classList.remove('open');
+    }
+  });
+  
+  // Auto-close menu on scroll
+  let menuOpen = false;
+  const navMenu = document.getElementById('navMenu');
+  const menuObserver = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      if (mutation.attributeName === 'class') {
+        menuOpen = navMenu.classList.contains('active');
+      }
     });
   });
-  document.addEventListener('click', (e) => {
-    if (!e.target.closest('.nav-dropdown')) document.getElementById('packagesDropdown').classList.remove('open');
-  });
+  menuObserver.observe(navMenu, { attributes: true });
+  
   window.addEventListener('scroll', () => {
     const navbar = document.querySelector('.navbar');
     if (window.scrollY > 50) { navbar.classList.add('scrolled'); } else { navbar.classList.remove('scrolled'); }
+    
+    // Close menu when scrolling
+    if (menuOpen && window.innerWidth <= 768) {
+      closeMenuOnLink();
+    }
   });
   
   // POPUP
@@ -858,70 +993,6 @@
   if (!popupClosed) { setTimeout(showPopup, 1500); }
   document.getElementById('popupOverlay').addEventListener('click', (e) => { if (e.target === e.currentTarget) closePopup(); });
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closePopup(); });
-  
-  // CAROUSEL
-  let currentSlide = 2;
-  const track = document.getElementById('carouselTrack');
-  const cards = document.querySelectorAll('.review-card');
-  const totalCards = cards.length;
-  const dotsContainer = document.getElementById('carouselDots');
-  let autoPlayInterval;
-  
-  cards.forEach((_, index) => {
-    const dot = document.createElement('div');
-    dot.className = 'carousel-dot' + (index === currentSlide ? ' active' : '');
-    dot.onclick = () => goToSlide(index);
-    dotsContainer.appendChild(dot);
-  });
-  const dots = document.querySelectorAll('.carousel-dot');
-  
-  function updateCarousel() {
-    const containerWidth = track.parentElement.offsetWidth;
-    const card = cards[0];
-    const cardWidth = card.offsetWidth;
-    const gap = 24;
-    const activeCardLeft = currentSlide * (cardWidth + gap);
-    const offset = (containerWidth / 2) - (cardWidth / 2) - activeCardLeft;
-    track.style.transform = `translateX(${offset}px)`;
-    cards.forEach((card, index) => { if (index === currentSlide) { card.classList.add('active'); } else { card.classList.remove('active'); } });
-    dots.forEach((dot, index) => { dot.classList.toggle('active', index === currentSlide); });
-  }
-  
-  function changeCarousel(direction) { 
-    currentSlide = (currentSlide + direction + totalCards) % totalCards; 
-    updateCarousel(); 
-    resetAutoPlay(); 
-  }
-  
-  function goToSlide(index) { 
-    currentSlide = index; 
-    updateCarousel(); 
-    resetAutoPlay(); 
-  }
-  
-  function resetAutoPlay() { 
-    clearInterval(autoPlayInterval); 
-    autoPlayInterval = setInterval(() => { currentSlide = (currentSlide + 1) % totalCards; updateCarousel(); }, 5000); 
-  }
-  
-  // Touch Swipe (Mobile)
-  let touchStartX = 0; let touchEndX = 0;
-  track.addEventListener('touchstart', (e) => { touchStartX = e.changedTouches[0].screenX; }, {passive: true});
-  track.addEventListener('touchend', (e) => { 
-    touchEndX = e.changedTouches[0].screenX; 
-    const diff = touchStartX - touchEndX; 
-    if (Math.abs(diff) > 50) { diff > 0 ? changeCarousel(1) : changeCarousel(-1); } 
-  }, {passive: true});
-  
-  // Trackpad Swipe (Desktop)
-  track.addEventListener('wheel', (e) => {
-    if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
-      if (e.deltaX > 20) changeCarousel(1);
-      else if (e.deltaX < -20) changeCarousel(-1);
-    }
-  }, { passive: true });
-  
-  updateCarousel(); resetAutoPlay(); window.addEventListener('resize', updateCarousel);
 </script>
 </body>
 </html>
