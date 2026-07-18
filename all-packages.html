@@ -26,7 +26,7 @@
   }
   
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; scroll-padding-top: 100px; }
+  html { scroll-behavior: smooth; scroll-padding-top: 110px; }
   
   body {
     font-family: 'Plus Jakarta Sans', sans-serif;
@@ -98,7 +98,7 @@
   
   .logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
   .logo-img { width: 42px; height: 42px; border-radius: 50%; object-fit: cover; border: 2px solid var(--primary); }
-  .logo-text { font-size: 1.4rem; font-weight: 800; background: var(--gradient-accent); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .logo-text { font-size: 1.4rem; font-weight: 800; background: var(--gradient-accent); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; letter-spacing: 1.5px; }
   
   .nav-menu { display: flex; align-items: center; gap: 2rem; list-style: none; }
   .nav-link {
@@ -112,7 +112,7 @@
     color: var(--primary); width: 40px; height: 40px; align-items: center; justify-content: center; border-radius: 10px;
   }
 
-  /* PAGE HEADER - TRANSLUCENT */
+  /* PAGE HEADER - WITH GLOWING ANIMATION */
   .page-header {
     padding: 12rem 2rem 5rem;
     text-align: center;
@@ -524,11 +524,13 @@
     box-shadow: 0 10px 40px rgba(0,0,0,0.08);
     overflow: hidden;
     border: 1px solid var(--border);
+    overflow-x: auto;
   }
   
   .comparison-table {
     width: 100%;
     border-collapse: collapse;
+    min-width: 700px;
   }
   
   .comparison-table thead {
@@ -546,6 +548,10 @@
   .comparison-table thead th:first-child {
     text-align: left;
     width: 25%;
+    position: sticky;
+    left: 0;
+    background: var(--gradient-accent);
+    z-index: 10;
   }
   
   .comparison-table tbody tr {
@@ -573,6 +579,14 @@
     text-align: left;
     font-weight: 700;
     color: var(--text-dark);
+    position: sticky;
+    left: 0;
+    background: white;
+    z-index: 5;
+  }
+  
+  .comparison-table tbody tr:hover td:first-child {
+    background: var(--primary-light);
   }
   
   .comparison-table td i.fa-check {
@@ -665,7 +679,7 @@
     transform: translateY(-4px);
   }
 
-  /* MOBILE TAB BAR */
+  /* MOBILE TAB BAR - FIXED POSITION */
   .mobile-tab-bar {
     display: none;
     position: fixed;
