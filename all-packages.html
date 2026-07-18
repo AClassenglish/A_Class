@@ -112,7 +112,7 @@
     color: var(--primary); width: 40px; height: 40px; align-items: center; justify-content: center; border-radius: 10px;
   }
 
-  /* PAGE HEADER - WITH GLOWING ANIMATION */
+  /* PAGE HEADER */
   .page-header {
     padding: 12rem 2rem 5rem;
     text-align: center;
@@ -227,7 +227,7 @@
   }
   .package-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,0,0,0.2); }
 
-  /* TEACHERS SECTION - HORIZONTAL CARDS */
+  /* TEACHERS SECTION */
   .teachers-section-packages { background: var(--bg-light); padding: 6rem 2rem; }
   .teachers-container { max-width: 1200px; margin: 0 auto; }
   .teachers-horizontal-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2.5rem; margin-top: 3rem; }
@@ -288,76 +288,58 @@
   .btn-cta-secondary:hover { background: rgba(255,255,255,0.25); transform: translateY(-4px); }
 
   /* ==========================================
-     PREMIUM MOBILE TAB BAR (Segmented Control)
+     PREMIUM SEGMENTED CONTROL (Apple/Linear style)
      ========================================== */
-  .mobile-tab-bar {
-    display: none;
-    position: fixed;
-    bottom: 1.5rem;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 1000;
-    padding: 0.35rem;
-    background: rgba(255, 255, 255, 0.88);
-    backdrop-filter: blur(24px) saturate(180%);
-    -webkit-backdrop-filter: blur(24px) saturate(180%);
-    border: 1px solid rgba(255, 255, 255, 0.6);
-    border-radius: 28px;
-    box-shadow: 
-      0 4px 6px -1px rgba(0, 0, 0, 0.03),
-      0 15px 35px -5px rgba(167, 102, 220, 0.15),
-      inset 0 1px 1px rgba(255, 255, 255, 0.9);
+  .section-navigation {
+    display: flex;
+    justify-content: center;
+    margin: 2rem auto 3rem;
+    padding: 0 1rem;
   }
 
-  .tab-bar-container {
-    display: flex;
-    align-items: center;
-    gap: 0.25rem;
+  .segmented-control {
+    display: inline-flex;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    width: 100%;
+    max-width: 420px;
   }
 
-  .tab-item {
+  .segmented-tab {
+    flex: 1;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 0.65rem 1rem;
-    text-decoration: none;
-    color: var(--text-gray);
-    font-size: 0.7rem;
+    gap: 0.5rem;
+    padding: 10px 16px;
+    border-radius: 12px;
+    font-size: 0.9rem;
     font-weight: 600;
-    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-    border-radius: 22px;
-    position: relative;
-    gap: 0.2rem;
-    min-width: 76px;
+    color: var(--text-gray);
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     border: 1px solid transparent;
   }
 
-  .tab-item i {
-    font-size: 1.25rem;
-    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .tab-item:hover {
+  .segmented-tab:hover {
     color: var(--primary-dark);
     background: rgba(167, 102, 220, 0.06);
-    transform: translateY(-1px);
   }
 
-  .tab-item.active {
-    color: #ffffff;
+  .segmented-tab.active {
     background: var(--gradient-accent);
-    font-weight: 700;
-    border-color: rgba(255, 255, 255, 0.25);
-    box-shadow: 
-      0 6px 20px rgba(167, 102, 220, 0.4),
-      0 0 0 1px rgba(255, 255, 255, 0.2) inset;
-    transform: translateY(-2px);
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(167, 102, 220, 0.25);
+    transform: translateY(-1px);
+    border-color: rgba(255, 255, 255, 0.2);
   }
 
-  .tab-item.active i {
-    transform: translateY(-1px) scale(1.05);
-  }
+  .segmented-tab i { font-size: 1rem; }
 
   /* FOOTER */
   footer { background: var(--text-dark); color: var(--text-light); padding: 4rem 2rem 2rem; }
@@ -378,7 +360,6 @@
   }
   
   @media (max-width: 768px) {
-    .mobile-tab-bar { display: block; }
     .nav-menu { display: none; }
     .menu-toggle { display: none; }
     
@@ -401,15 +382,35 @@
     .teachers-horizontal-grid { grid-template-columns: 1fr; gap: 1.5rem; }
     .teacher-horizontal-card { flex-direction: column; align-items: center; text-align: center; padding: 2rem 1.5rem; }
     .teacher-horizontal-image { width: 100px; height: 100px; }
+
+    /* COMPACT MOBILE COMPARISON TABLE */
+    .comparison-section { padding: 3rem 1rem; }
+    .comparison-block { margin-bottom: 2.5rem; }
+    .comparison-header { margin-bottom: 1.5rem; }
+    .comparison-header h2 { font-size: 1.4rem; margin-bottom: 0.4rem; }
+    .comparison-header p { font-size: 0.85rem; }
     
-    .comparison-block { margin-bottom: 3rem; }
-    .comparison-header h2 { font-size: 1.8rem; }
-    .comparison-table-wrapper { overflow-x: auto; }
-    .comparison-table { min-width: 700px; }
+    .comparison-table-wrapper {
+      border-radius: 16px;
+      margin: 0 -1rem;
+      width: calc(100% + 2rem);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
     
-    .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .comparison-table { min-width: 580px; }
+    .comparison-table thead th { padding: 0.7rem 0.5rem; font-size: 0.8rem; font-weight: 700; }
+    .comparison-table tbody td { padding: 0.6rem 0.5rem; font-size: 0.8rem; line-height: 1.3; }
+    .comparison-table td i { font-size: 0.85rem; }
+    .comparison-table td:first-child { font-size: 0.8rem; font-weight: 600; }
+
     .cta-buttons { flex-direction: column; align-items: stretch; }
     .cta-section h2 { font-size: 2rem; }
+    .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+  }
+
+  @media (max-width: 480px) {
+    .segmented-tab { padding: 8px 12px; font-size: 0.85rem; }
+    .segmented-tab i { font-size: 0.9rem; }
   }
 </style>
 </head>
@@ -673,6 +674,21 @@
   </div>
 </div>
 
+<!-- PREMIUM SEGMENTED CONTROL NAVIGATION -->
+<div class="section-navigation">
+  <div class="segmented-control">
+    <a href="#teachers" class="segmented-tab active" onclick="setActiveTab(this)">
+      <i class="fas fa-chalkboard-teacher"></i> Teachers
+    </a>
+    <a href="#compare-packages" class="segmented-tab" onclick="setActiveTab(this)">
+      <i class="fas fa-table"></i> Compare
+    </a>
+    <a href="#contact" class="segmented-tab" onclick="setActiveTab(this)">
+      <i class="fas fa-envelope"></i> Contact
+    </a>
+  </div>
+</div>
+
 <!-- TEACHERS SECTION -->
 <section class="teachers-section-packages" id="teachers">
   <div class="teachers-container">
@@ -692,6 +708,7 @@
           <p class="teacher-horizontal-desc">Aisa is currently pursuing a master's degree through the MA TEFL program, specializing in Teaching English as a Foreign Language, at an American University of Armenia.</p>
         </div>
       </div>
+      
       <div class="teacher-horizontal-card">
         <div class="teacher-horizontal-image">
           <img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/Ademi.jpeg" alt="Ademi">
@@ -789,24 +806,6 @@
   </div>
 </section>
 
-<!-- PREMIUM MOBILE TAB BAR -->
-<div class="mobile-tab-bar">
-  <div class="tab-bar-container">
-    <a href="#teachers" class="tab-item active" onclick="setActiveTab(this)">
-      <i class="fas fa-chalkboard-teacher"></i>
-      <span>Teachers</span>
-    </a>
-    <a href="#compare-packages" class="tab-item" onclick="setActiveTab(this)">
-      <i class="fas fa-table"></i>
-      <span>Compare</span>
-    </a>
-    <a href="#contact" class="tab-item" onclick="setActiveTab(this)">
-      <i class="fas fa-envelope"></i>
-      <span>Contact</span>
-    </a>
-  </div>
-</div>
-
 <footer>
   <div class="footer-grid">
     <div class="footer-col">
@@ -877,12 +876,10 @@
   }
   
   function setActiveTab(element) {
-    document.querySelectorAll('.tab-item').forEach(tab => {
+    document.querySelectorAll('.segmented-tab').forEach(tab => {
       tab.classList.remove('active');
-      tab.removeAttribute('aria-current');
     });
     element.classList.add('active');
-    element.setAttribute('aria-current', 'page');
   }
 </script>
 </body>
