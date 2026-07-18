@@ -181,7 +181,6 @@
     color: var(--primary); width: 40px; height: 40px; align-items: center; justify-content: center; border-radius: 10px;
   }
 
-  /* POPUP MODAL - CENTERED */
   .popup-overlay {
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
@@ -328,7 +327,6 @@
     box-shadow: 0 12px 35px rgba(167, 102, 220, 0.5);
   }
 
-  /* MOBILE TAB BAR */
   .mobile-tab-bar {
     display: none;
     position: fixed;
@@ -422,54 +420,98 @@
   .section-header h2 { font-size: 2.5rem; font-weight: 800; color: var(--text-dark); margin-bottom: 1rem; letter-spacing: -0.5px; }
   .section-header p { color: var(--text-gray); max-width: 600px; margin: 0 auto; font-size: 1.05rem; }
 
+  /* ===== PREMIUM CAROUSEL ===== */
   .reviews-header { text-align: center; margin-bottom: 3rem; }
   .reviews-header h2 { font-size: 2.5rem; font-weight: 800; background: var(--gradient-accent); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 0.75rem; }
   .reviews-header p { color: var(--text-gray); font-size: 1.05rem; }
-  .reviews-carousel { 
-    position: relative; 
-    max-width: 100%; 
-    margin: 0 auto; 
+  
+  .reviews-carousel {
+    position: relative;
+    max-width: 1400px;
+    margin: 0 auto;
     overflow: hidden;
-    touch-action: pan-y;
   }
   
-  .swipe-track {
-    display: flex;
-    gap: 1.5rem;
-    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    cursor: grab;
+  .carousel-viewport {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
     padding: 2rem 0;
   }
   
-  .swipe-track:active { cursor: grabbing; }
+  .carousel-track {
+    display: flex;
+    gap: 1.5rem;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+  }
   
-  .review-card-swipe {
-    flex: 0 0 280px;
+  .review-card {
+    flex: 0 0 520px;
     background: white;
-    border-radius: 20px;
+    border-radius: 24px;
     overflow: hidden;
     border: 1px solid var(--border);
-    transition: all 0.3s ease;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0.5;
+    filter: blur(3px);
+    transform: scale(0.92);
+    cursor: pointer;
+    position: relative;
   }
   
-  .review-card-swipe:hover {
+  .review-card::after {
+    content: 'Tap to view';
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(15, 23, 42, 0.8);
+    color: white;
+    padding: 0.4rem 1rem;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+  }
+  
+  .review-card:hover::after {
+    opacity: 1;
+  }
+  
+  .review-card.active {
+    opacity: 1;
+    filter: blur(0);
     transform: scale(1.05);
     border-color: var(--primary);
-    box-shadow: 0 15px 40px rgba(167, 102, 220, 0.2);
+    box-shadow: 0 25px 60px rgba(167, 102, 220, 0.3);
+    z-index: 10;
   }
   
-  .review-card-swipe img { width: 100%; height: auto; display: block; }
+  .review-card.active::after {
+    display: none;
+  }
+  
+  .review-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+    pointer-events: none;
+    user-select: none;
+  }
   
   .carousel-controls { 
     display: flex; 
     justify-content: center; 
     align-items: center; 
     gap: 1.5rem; 
-    margin-top: 1.5rem; 
+    margin-top: 2rem; 
   }
   .carousel-btn { 
-    width: 48px; 
-    height: 48px; 
+    width: 52px; 
+    height: 52px; 
     border-radius: 50%; 
     background: white; 
     border: 1.5px solid var(--primary); 
@@ -501,6 +543,143 @@
     background: var(--primary); 
     width: 28px; 
     border-radius: 5px; 
+  }
+
+  /* ===== LIGHTBOX ===== */
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.96);
+    z-index: 3000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+    touch-action: none;
+  }
+  
+  .lightbox.active {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .lightbox-close {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+    z-index: 10;
+  }
+  
+  .lightbox-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: rotate(90deg);
+  }
+  
+  .lightbox-counter {
+    position: absolute;
+    top: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9rem;
+    font-weight: 600;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    z-index: 10;
+  }
+  
+  .lightbox-image-wrapper {
+    max-width: 90vw;
+    max-height: 85vh;
+    overflow: hidden;
+    touch-action: none;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .lightbox-image {
+    max-width: 100%;
+    max-height: 85vh;
+    object-fit: contain;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: center center;
+    user-select: none;
+    -webkit-user-drag: none;
+    cursor: grab;
+  }
+  
+  .lightbox-image.dragging {
+    cursor: grabbing;
+    transition: none;
+  }
+  
+  .lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+    z-index: 10;
+  }
+  
+  .lightbox-nav:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-50%) scale(1.1);
+  }
+  
+  .lightbox-nav.prev { left: 1.5rem; }
+  .lightbox-nav.next { right: 1.5rem; }
+  
+  .lightbox-hint {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.8rem;
+    font-weight: 500;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .lightbox-hint i {
+    font-size: 0.7rem;
   }
 
   .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
@@ -714,6 +893,7 @@
     .about-grid { grid-template-columns: 1fr; gap: 3rem; }
     .footer-grid { grid-template-columns: 1fr 1fr; }
     .side-tracks { display: none; }
+    .review-card { flex: 0 0 420px; }
   }
   
   @media (max-width: 768px) {
@@ -739,14 +919,46 @@
     .packages-container { display: none; }
     .packages-slider-mobile { display: flex; }
     
-    .review-card-swipe { flex: 0 0 260px; }
+    /* Mobile carousel - native gallery feel */
+    .carousel-viewport {
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      padding: 1rem 7.5%;
+      scroll-behavior: smooth;
+    }
+    .carousel-viewport::-webkit-scrollbar { display: none; }
+    .carousel-track {
+      gap: 1rem;
+      transition: none;
+    }
+    .review-card {
+      flex: 0 0 85%;
+      max-width: 340px;
+      scroll-snap-align: center;
+      opacity: 1 !important;
+      filter: none !important;
+      transform: none !important;
+      border-radius: 20px;
+    }
+    .review-card.active {
+      transform: none !important;
+      box-shadow: 0 10px 30px rgba(167, 102, 220, 0.15);
+    }
+    .review-card::after { display: none; }
     
-    .package-details-grid { grid-template-columns: 1fr; }
-    .package-features-list { grid-template-columns: 1fr; }
+    .carousel-controls { display: none; }
     
     .popup-modal { padding: 2.5rem 1.5rem; }
     .popup-modal h3 { font-size: 1.5rem; }
     .popup-icon { width: 70px; height: 70px; font-size: 1.75rem; }
+    
+    .lightbox-nav { width: 44px; height: 44px; font-size: 1rem; }
+    .lightbox-nav.prev { left: 0.75rem; }
+    .lightbox-nav.next { right: 0.75rem; }
+    .lightbox-close { top: 1rem; right: 1rem; width: 42px; height: 42px; }
+    .lightbox-counter { top: 1rem; }
+    .lightbox-hint { bottom: 1rem; font-size: 0.7rem; }
   }
   
   @media (max-width: 480px) {
@@ -754,7 +966,7 @@
     .section-header h2, .reviews-header h2 { font-size: 1.75rem; }
     .about-stats { grid-template-columns: 1fr; }
     .btn { padding: 0.9rem 1.75rem; font-size: 0.95rem; }
-    .review-card-swipe { flex: 0 0 240px; }
+    .review-card { flex: 0 0 88%; }
   }
 </style>
 </head>
@@ -810,8 +1022,7 @@
   </div>
 </div>
 
-<!-- MOBILE HEADER TRACK - Shows pre-registration after popup closes -->
-<div class="mobile-header-track" id="mobileTrack">
+<div class="mobile-header-track">
   <div class="track-row track-row-left">
     <span>🎉 PRE-REGISTRATION OPENS JULY 25</span><span class="track-dot"></span><span>BE THE FIRST TO SECURE YOUR SPOT</span><span class="track-dot"></span><span>🎉 PRE-REGISTRATION OPENS JULY 25</span><span class="track-dot"></span><span>BE THE FIRST TO SECURE YOUR SPOT</span><span class="track-dot"></span>
   </div>
@@ -820,7 +1031,6 @@
   </div>
 </div>
 
-<!-- POPUP MODAL -->
 <div class="popup-overlay" id="popupOverlay">
   <div class="popup-modal">
     <button class="popup-close" onclick="closePopup()"><i class="fas fa-times"></i></button>
@@ -860,7 +1070,6 @@
   </div>
 </nav>
 
-<!-- MOBILE TAB BAR -->
 <div class="mobile-tab-bar">
   <div class="tab-bar-container">
     <a href="#courses" class="tab-item active" onclick="setActiveTab(this)">
@@ -907,17 +1116,14 @@
       <p>Real results from our amazing students</p>
     </div>
     <div class="reviews-carousel">
-      <div class="swipe-track" id="swipeTrack">
-        <div class="review-card-swipe"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/1rewiew.png" alt="Review 1"></div>
-        <div class="review-card-swipe"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/2review.png" alt="Review 2"></div>
-        <div class="review-card-swipe"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/3review.png" alt="Review 3"></div>
-        <div class="review-card-swipe"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/6review.png" alt="Review 4"></div>
-        <div class="review-card-swipe"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/7review.png" alt="Review 5"></div>
-        <div class="review-card-swipe"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/1rewiew.png" alt="Review 1"></div>
-        <div class="review-card-swipe"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/2review.png" alt="Review 2"></div>
-        <div class="review-card-swipe"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/3review.png" alt="Review 3"></div>
-        <div class="review-card-swipe"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/6review.png" alt="Review 4"></div>
-        <div class="review-card-swipe"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/7review.png" alt="Review 5"></div>
+      <div class="carousel-viewport" id="carouselViewport">
+        <div class="carousel-track" id="carouselTrack">
+          <div class="review-card" data-index="0"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/1rewiew.png" alt="Review 1"></div>
+          <div class="review-card" data-index="1"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/2review.png" alt="Review 2"></div>
+          <div class="review-card" data-index="2"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/3review.png" alt="Review 3"></div>
+          <div class="review-card" data-index="3"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/6review.png" alt="Review 4"></div>
+          <div class="review-card" data-index="4"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/7review.png" alt="Review 5"></div>
+        </div>
       </div>
       <div class="carousel-controls">
         <button class="carousel-btn" onclick="changeCarousel(-1)"><i class="fas fa-chevron-left"></i></button>
@@ -927,6 +1133,18 @@
     </div>
   </div>
 </section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" onclick="closeLightbox()"><i class="fas fa-times"></i></button>
+  <div class="lightbox-counter" id="lightboxCounter">1 / 5</div>
+  <div class="lightbox-image-wrapper" id="lightboxWrapper">
+    <img src="" alt="" class="lightbox-image" id="lightboxImage">
+  </div>
+  <button class="lightbox-nav prev" onclick="navigateLightbox(-1)"><i class="fas fa-chevron-left"></i></button>
+  <button class="lightbox-nav next" onclick="navigateLightbox(1)"><i class="fas fa-chevron-right"></i></button>
+  <div class="lightbox-hint"><i class="fas fa-hand-pointer"></i> Swipe to navigate • Double-tap to zoom</div>
+</div>
 
 <section id="about" class="about">
   <div class="container">
@@ -1247,7 +1465,6 @@
     element.classList.add('active');
   }
   
-  // POPUP - Show on load, then move text to track bar
   function showPopup() { 
     document.getElementById('popupOverlay').classList.add('active'); 
   }
@@ -1264,41 +1481,73 @@
     setTimeout(showPopup, 1500); 
   }
   
-  // Close popup when clicking overlay
   document.getElementById('popupOverlay').addEventListener('click', (e) => {
     if (e.target === e.currentTarget) closePopup();
   });
   
-  // Close on Escape
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closePopup();
+    if (e.key === 'Escape') {
+      closePopup();
+      closeLightbox();
+    }
   });
   
-  // CAROUSEL
-  let currentSlide = 0;
-  const track = document.getElementById('swipeTrack');
-  const cards = document.querySelectorAll('.review-card-swipe');
-  const totalCards = 5;
+  // ===== PREMIUM CAROUSEL =====
+  let currentSlide = 2;
+  const track = document.getElementById('carouselTrack');
+  const viewport = document.getElementById('carouselViewport');
+  const cards = document.querySelectorAll('.review-card');
+  const totalCards = cards.length;
   const dotsContainer = document.getElementById('carouselDots');
   let autoPlayInterval;
-  let touchStartX = 0;
-  let touchEndX = 0;
-  let isDragging = false;
-  let startPos = 0;
-  let currentTranslate = 0;
+  let isMobile = window.innerWidth <= 768;
+  
+  // Review images for lightbox
+  const reviewImages = [
+    'https://raw.githubusercontent.com/AClassenglish/A_Class/main/1rewiew.png',
+    'https://raw.githubusercontent.com/AClassenglish/A_Class/main/2review.png',
+    'https://raw.githubusercontent.com/AClassenglish/A_Class/main/3review.png',
+    'https://raw.githubusercontent.com/AClassenglish/A_Class/main/6review.png',
+    'https://raw.githubusercontent.com/AClassenglish/A_Class/main/7review.png'
+  ];
   
   for (let i = 0; i < totalCards; i++) {
     const dot = document.createElement('div');
-    dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+    dot.className = 'carousel-dot' + (i === currentSlide ? ' active' : '');
     dot.onclick = () => goToSlide(i);
     dotsContainer.appendChild(dot);
   }
   const dots = document.querySelectorAll('.carousel-dot');
   
   function updateCarousel() {
-    const cardWidth = cards[0].offsetWidth + 24;
-    const offset = -(currentSlide * cardWidth);
+    isMobile = window.innerWidth <= 768;
+    
+    if (isMobile) {
+      // Mobile: use scroll-snap, just update dots and active class
+      const card = cards[currentSlide];
+      if (card) {
+        card.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      }
+      cards.forEach((card, index) => {
+        card.classList.toggle('active', index === currentSlide);
+      });
+      dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentSlide);
+      });
+      return;
+    }
+    
+    // Desktop: transform-based centered carousel
+    const viewportWidth = viewport.offsetWidth;
+    const card = cards[0];
+    const cardWidth = card.offsetWidth;
+    const gap = 24;
+    const offset = (viewportWidth / 2) - (cardWidth / 2) - (currentSlide * (cardWidth + gap));
     track.style.transform = `translateX(${offset}px)`;
+    
+    cards.forEach((card, index) => {
+      card.classList.toggle('active', index === currentSlide);
+    });
     
     dots.forEach((dot, index) => {
       dot.classList.toggle('active', index === currentSlide);
@@ -1325,84 +1574,255 @@
     }, 7000);
   }
   
-  track.addEventListener('touchstart', (e) => {
-    touchStartX = e.changedTouches[0].screenX;
+  // Click on card to center it (desktop)
+  cards.forEach((card, index) => {
+    card.addEventListener('click', (e) => {
+      // If it's a double-click or the card is already active, open lightbox
+      if (index === currentSlide && !isMobile) {
+        openLightbox(index);
+      } else if (isMobile) {
+        // On mobile, tap opens lightbox
+        openLightbox(index);
+      } else {
+        // On desktop, click centers the card
+        currentSlide = index;
+        updateCarousel();
+        resetAutoPlay();
+      }
+    });
+  });
+  
+  // Desktop drag
+  let dragStartX = 0;
+  let dragCurrentX = 0;
+  let isDragging = false;
+  
+  viewport.addEventListener('mousedown', (e) => {
+    if (isMobile) return;
     isDragging = true;
-    startPos = currentTranslate;
-    track.style.transition = 'none';
-    clearInterval(autoPlayInterval);
-  }, {passive: true});
-  
-  track.addEventListener('touchmove', (e) => {
-    if (!isDragging) return;
-    touchEndX = e.changedTouches[0].screenX;
-    currentTranslate = startPos + (touchEndX - touchStartX);
-    track.style.transform = `translateX(${currentTranslate}px)`;
-  }, {passive: true});
-  
-  track.addEventListener('touchend', (e) => {
-    isDragging = false;
-    track.style.transition = 'transform 0.7s cubic-bezier(0.4, 0, 0.2, 1)';
-    
-    const movedBy = touchEndX - touchStartX;
-    const threshold = 50;
-    
-    if (movedBy < -threshold) {
-      currentSlide = (currentSlide + 1) % totalCards;
-    } else if (movedBy > threshold) {
-      currentSlide = (currentSlide - 1 + totalCards) % totalCards;
-    }
-    
-    updateCarousel();
-    resetAutoPlay();
-  }, {passive: true});
-  
-  track.addEventListener('mousedown', (e) => {
-    isDragging = true;
-    startPos = currentTranslate;
-    touchStartX = e.pageX;
-    track.style.cursor = 'grabbing';
+    dragStartX = e.pageX;
+    dragCurrentX = e.pageX;
     track.style.transition = 'none';
     clearInterval(autoPlayInterval);
   });
   
-  track.addEventListener('mousemove', (e) => {
-    if (!isDragging) return;
-    touchEndX = e.pageX;
-    currentTranslate = startPos + (touchEndX - touchStartX);
-    track.style.transform = `translateX(${currentTranslate}px)`;
+  document.addEventListener('mousemove', (e) => {
+    if (!isDragging || isMobile) return;
+    dragCurrentX = e.pageX;
+    const diff = dragCurrentX - dragStartX;
+    const viewportWidth = viewport.offsetWidth;
+    const card = cards[0];
+    const cardWidth = card.offsetWidth;
+    const gap = 24;
+    const baseOffset = (viewportWidth / 2) - (cardWidth / 2) - (currentSlide * (cardWidth + gap));
+    track.style.transform = `translateX(${baseOffset + diff}px)`;
   });
   
-  track.addEventListener('mouseup', (e) => {
-    if (!isDragging) return;
+  document.addEventListener('mouseup', (e) => {
+    if (!isDragging || isMobile) return;
     isDragging = false;
-    track.style.cursor = 'grab';
-    track.style.transition = 'transform 0.7s cubic-bezier(0.4, 0, 0.2, 1)';
-    
-    const movedBy = touchEndX - touchStartX;
-    
-    if (movedBy < -100) {
-      currentSlide = (currentSlide + 1) % totalCards;
-    } else if (movedBy > 100) {
-      currentSlide = (currentSlide - 1 + totalCards) % totalCards;
+    track.style.transition = 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
+    const diff = dragCurrentX - dragStartX;
+    if (Math.abs(diff) > 80) {
+      if (diff < 0) currentSlide = (currentSlide + 1) % totalCards;
+      else currentSlide = (currentSlide - 1 + totalCards) % totalCards;
     }
-    
     updateCarousel();
     resetAutoPlay();
   });
   
-  track.addEventListener('mouseleave', (e) => {
-    if (!isDragging) return;
-    isDragging = false;
-    track.style.cursor = 'grab';
-    track.style.transition = 'transform 0.7s cubic-bezier(0.4, 0, 0.2, 1)';
-    updateCarousel();
-    resetAutoPlay();
-  });
+  // Mobile swipe detection for lightbox navigation
+  let mobileSwipeStartX = 0;
+  viewport.addEventListener('touchstart', (e) => {
+    if (!isMobile) return;
+    mobileSwipeStartX = e.touches[0].clientX;
+  }, { passive: true });
+  
+  viewport.addEventListener('touchend', (e) => {
+    if (!isMobile) return;
+    const diff = mobileSwipeStartX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) currentSlide = (currentSlide + 1) % totalCards;
+      else currentSlide = (currentSlide - 1 + totalCards) % totalCards;
+      updateCarousel();
+      resetAutoPlay();
+    }
+  }, { passive: true });
   
   updateCarousel();
   resetAutoPlay();
   window.addEventListener('resize', updateCarousel);
+  
+  // ===== LIGHTBOX =====
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImage = document.getElementById('lightboxImage');
+  const lightboxCounter = document.getElementById('lightboxCounter');
+  const lightboxWrapper = document.getElementById('lightboxWrapper');
+  let lightboxIndex = 0;
+  let lightboxScale = 1;
+  let lightboxTranslateX = 0;
+  let lightboxTranslateY = 0;
+  let lastTap = 0;
+  let lastTouchDistance = 0;
+  let isLightboxDragging = false;
+  let lightboxDragStartX = 0;
+  let lightboxDragStartY = 0;
+  
+  function openLightbox(index) {
+    lightboxIndex = index;
+    lightboxScale = 1;
+    lightboxTranslateX = 0;
+    lightboxTranslateY = 0;
+    updateLightboxImage();
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  
+  function closeLightbox() {
+    lightbox.classList.remove('active');
+    document.body.style.overflow = '';
+    setTimeout(() => {
+      lightboxScale = 1;
+      lightboxTranslateX = 0;
+      lightboxTranslateY = 0;
+      lightboxImage.style.transform = 'scale(1) translate(0, 0)';
+    }, 400);
+  }
+  
+  function updateLightboxImage() {
+    lightboxImage.src = reviewImages[lightboxIndex];
+    lightboxCounter.textContent = `${lightboxIndex + 1} / ${totalCards}`;
+    lightboxScale = 1;
+    lightboxTranslateX = 0;
+    lightboxTranslateY = 0;
+    lightboxImage.style.transform = 'scale(1) translate(0, 0)';
+  }
+  
+  function navigateLightbox(direction) {
+    lightboxIndex = (lightboxIndex + direction + totalCards) % totalCards;
+    updateLightboxImage();
+  }
+  
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) closeLightbox();
+  });
+  
+  // Double-tap to zoom
+  lightboxImage.addEventListener('touchend', (e) => {
+    const now = Date.now();
+    if (now - lastTap < 300) {
+      e.preventDefault();
+      if (lightboxScale > 1) {
+        lightboxScale = 1;
+        lightboxTranslateX = 0;
+        lightboxTranslateY = 0;
+      } else {
+        lightboxScale = 2.5;
+      }
+      applyLightboxTransform();
+    }
+    lastTap = now;
+  });
+  
+  // Pinch to zoom
+  lightboxWrapper.addEventListener('touchstart', (e) => {
+    if (e.touches.length === 2) {
+      e.preventDefault();
+      lastTouchDistance = Math.hypot(
+        e.touches[0].clientX - e.touches[1].clientX,
+        e.touches[0].clientY - e.touches[1].clientY
+      );
+    } else if (e.touches.length === 1 && lightboxScale > 1) {
+      isLightboxDragging = true;
+      lightboxDragStartX = e.touches[0].clientX - lightboxTranslateX;
+      lightboxDragStartY = e.touches[0].clientY - lightboxTranslateY;
+      lightboxImage.classList.add('dragging');
+    }
+  }, { passive: false });
+  
+  lightboxWrapper.addEventListener('touchmove', (e) => {
+    if (e.touches.length === 2) {
+      e.preventDefault();
+      const distance = Math.hypot(
+        e.touches[0].clientX - e.touches[1].clientX,
+        e.touches[0].clientY - e.touches[1].clientY
+      );
+      const newScale = (distance / lastTouchDistance) * lightboxScale;
+      lightboxScale = Math.max(1, Math.min(5, newScale));
+      applyLightboxTransform();
+      lastTouchDistance = distance;
+    } else if (isLightboxDragging && e.touches.length === 1) {
+      e.preventDefault();
+      lightboxTranslateX = e.touches[0].clientX - lightboxDragStartX;
+      lightboxTranslateY = e.touches[0].clientY - lightboxDragStartY;
+      applyLightboxTransform();
+    }
+  }, { passive: false });
+  
+  lightboxWrapper.addEventListener('touchend', (e) => {
+    if (e.touches.length < 2) {
+      lastTouchDistance = 0;
+    }
+    if (isLightboxDragging) {
+      isLightboxDragging = false;
+      lightboxImage.classList.remove('dragging');
+    }
+    // Swipe navigation when not zoomed
+    if (lightboxScale === 1 && e.changedTouches.length === 1) {
+      const diff = mobileSwipeStartX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 60) {
+        navigateLightbox(diff > 0 ? 1 : -1);
+      }
+    }
+  });
+  
+  // Mouse drag for desktop lightbox
+  lightboxImage.addEventListener('mousedown', (e) => {
+    if (lightboxScale > 1) {
+      isLightboxDragging = true;
+      lightboxDragStartX = e.clientX - lightboxTranslateX;
+      lightboxDragStartY = e.clientY - lightboxTranslateY;
+      lightboxImage.classList.add('dragging');
+      e.preventDefault();
+    }
+  });
+  
+  document.addEventListener('mousemove', (e) => {
+    if (!isLightboxDragging) return;
+    lightboxTranslateX = e.clientX - lightboxDragStartX;
+    lightboxTranslateY = e.clientY - lightboxDragStartY;
+    applyLightboxTransform();
+  });
+  
+  document.addEventListener('mouseup', () => {
+    if (isLightboxDragging) {
+      isLightboxDragging = false;
+      lightboxImage.classList.remove('dragging');
+    }
+  });
+  
+  // Mouse wheel zoom
+  lightboxWrapper.addEventListener('wheel', (e) => {
+    e.preventDefault();
+    const delta = e.deltaY > 0 ? -0.2 : 0.2;
+    lightboxScale = Math.max(1, Math.min(5, lightboxScale + delta));
+    if (lightboxScale === 1) {
+      lightboxTranslateX = 0;
+      lightboxTranslateY = 0;
+    }
+    applyLightboxTransform();
+  }, { passive: false });
+  
+  function applyLightboxTransform() {
+    lightboxImage.style.transform = `scale(${lightboxScale}) translate(${lightboxTranslateX / lightboxScale}px, ${lightboxTranslateY / lightboxScale}px)`;
+  }
+  
+  // Keyboard navigation for lightbox
+  document.addEventListener('keydown', (e) => {
+    if (!lightbox.classList.contains('active')) return;
+    if (e.key === 'ArrowLeft') navigateLightbox(-1);
+    if (e.key === 'ArrowRight') navigateLightbox(1);
+  });
 </script>
 </body>
 </html>
