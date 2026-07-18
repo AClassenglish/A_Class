@@ -1,1828 +1,647 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5">
+<meta name="description" content="AClass English School — Expert IELTS, SAT, and General English tutoring in Yerevan, Armenia. 15+ years of excellence, personalized learning, proven results.">
+<meta name="theme-color" content="#a766dc">
+<meta property="og:title" content="AClass English School — IELTS, SAT & General English">
+<meta property="og:description" content="Expert IELTS, SAT, and General English tutoring. 15+ years of excellence.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://raw.githubusercontent.com/AClassenglish/A_Class/main/Aclasslogo.jpeg">
+<meta name="twitter:card" content="summary_large_image">
 <title>AClass English School — IELTS, SAT & General English</title>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://raw.githubusercontent.com" crossorigin>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap">
+<link rel="preload" as="image" href="https://raw.githubusercontent.com/AClassenglish/A_Class/main/Aclasslogo.jpeg">
+<link rel="preload" as="image" href="https://raw.githubusercontent.com/AClassenglish/A_Class/main/1rewiew.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
 <style>
-  :root {
-    --primary: #a766dc;
-    --primary-dark: #8a4bbf;
-    --primary-light: #f5f0fa;
-    --secondary: #6366f1;
-    --gradient-start: #a766dc;
-    --gradient-end: #6366f1;
-    --gradient-accent: linear-gradient(135deg, #a766dc 0%, #8b5cf6 50%, #6366f1 100%);
-    --gradient-story: linear-gradient(45deg, #a766dc 0%, #8b5cf6 50%, #6366f1 100%);
-    --text-dark: #0f172a;
-    --text-gray: #475569;
-    --text-light: #94a3b8;
-    --white: #ffffff;
-    --bg-light: #fafbff;
-    --border: #eef0f6;
-    --whatsapp-green: #25D366;
-    --glass-bg: rgba(255, 255, 255, 0.9);
-    --glass-border: rgba(238, 240, 246, 0.8);
-  }
-  
-  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-  html { scroll-behavior: smooth; scroll-padding-top: 110px; }
-  
-  body {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    color: var(--text-dark);
-    line-height: 1.6;
-    background: var(--white);
-    overflow-x: hidden;
-    padding-bottom: 80px;
-  }
-
-  .custom-cursor {
-    position: fixed; top: 0; left: 0; width: 36px; height: 36px;
-    pointer-events: none; z-index: 9999;
-    transform: translate(-50%, -50%);
-    transition: transform 0.1s ease-out, opacity 0.3s;
-    opacity: 0;
-  }
-  .custom-cursor.active { opacity: 1; }
-  .custom-cursor-inner {
-    width: 100%; height: 100%;
-    background: var(--gradient-accent);
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    color: white; font-size: 1rem; font-weight: 800;
-    box-shadow: 0 4px 15px rgba(167, 102, 220, 0.4);
-    transition: transform 0.2s;
-  }
-  .custom-cursor.hovering .custom-cursor-inner { transform: scale(1.4); }
-  @media (max-width: 768px) { .custom-cursor { display: none; } }
-
-  .animated-bg {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
-    background: linear-gradient(135deg, #ffffff 0%, #fafbff 50%, #f8f5ff 100%);
-  }
-  .floating-shape {
-    position: absolute; border-radius: 50%;
-    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
-    opacity: 0.04; filter: blur(100px); animation: float 30s infinite ease-in-out;
-  }
-  .floating-shape:nth-child(1) { width: 500px; height: 500px; top: -150px; right: -150px; }
-  .floating-shape:nth-child(2) { width: 400px; height: 400px; bottom: -100px; left: -100px; animation-delay: 10s; }
-  @keyframes float {
-    0%, 100% { transform: translate(0, 0) scale(1); }
-    50% { transform: translate(30px, -40px) scale(1.05); }
-  }
-
-  .header-animations {
-    position: fixed; top: 0; left: 0; right: 0; height: 500px; z-index: -1; overflow: hidden; pointer-events: none;
-  }
-  .header-blob { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.15; }
-  .header-blob-1 { width: 300px; height: 300px; background: var(--primary); top: -100px; left: 10%; animation: blobMove1 12s ease-in-out infinite; }
-  .header-blob-2 { width: 250px; height: 250px; background: var(--secondary); top: -50px; right: 15%; animation: blobMove2 15s ease-in-out infinite; }
-  .header-blob-3 { width: 200px; height: 200px; background: var(--primary); top: 100px; left: 50%; animation: blobMove3 18s ease-in-out infinite; }
-  @keyframes blobMove1 { 0%, 100% { transform: translate(0, 0) scale(1); } 50% { transform: translate(50px, 30px) scale(1.1); } }
-  @keyframes blobMove2 { 0%, 100% { transform: translate(0, 0) scale(1); } 50% { transform: translate(-40px, 40px) scale(0.9); } }
-  @keyframes blobMove3 { 0%, 100% { transform: translate(0, 0) scale(1); } 50% { transform: translate(30px, -20px) scale(1.15); } }
-
-  .side-tracks {
-    position: fixed; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: 1; overflow: hidden;
-  }
-  .side-track {
-    position: absolute; top: 0; bottom: 0; width: 80px; overflow: hidden;
-    background: rgba(255, 255, 255, 0.6);
-    backdrop-filter: blur(5px);
-    border-left: 1px solid var(--border);
-    border-right: 1px solid var(--border);
-  }
-  .side-track.left { left: 0; }
-  .side-track.right { right: 0; }
-  .side-track-content { display: flex; flex-direction: column; gap: 3rem; padding: 4rem 0; }
-  .side-track.left .side-track-content { animation: scrollUp 35s linear infinite; }
-  .side-track.right .side-track-content { animation: scrollDown 35s linear infinite; }
-  @keyframes scrollUp { 0% { transform: translateY(0); } 100% { transform: translateY(-50%); } }
-  @keyframes scrollDown { 0% { transform: translateY(-50%); } 100% { transform: translateY(0); } }
-  
-  .track-label {
-    writing-mode: vertical-rl; text-orientation: mixed; transform: rotate(180deg);
-    font-size: 1.1rem; font-weight: 800; letter-spacing: 4px; text-transform: uppercase;
-    color: var(--primary); opacity: 0.5; padding: 1rem 0; white-space: nowrap;
-  }
-  .track-label-dot { width: 6px; height: 6px; background: var(--primary); border-radius: 50%; margin: 0 auto; opacity: 0.4; }
-
-  .mobile-header-track {
-    display: none;
-    position: fixed;
-    top: 70px;
-    left: 0; right: 0;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--border);
-    z-index: 997;
-    padding: 0.5rem 0;
-    overflow: hidden;
-  }
-  .track-row {
-    display: flex; gap: 1.5rem; white-space: nowrap;
-    font-size: 0.7rem; font-weight: 700; letter-spacing: 1px;
-    color: var(--primary);
-  }
-  .track-row-left { animation: scrollLeft 15s linear infinite; }
-  .track-row-right { animation: scrollRight 15s linear infinite; }
-  @keyframes scrollLeft { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-  @keyframes scrollRight { 0% { transform: translateX(-50%); } 100% { transform: translateX(0); } }
-  .track-row .track-dot { width: 3px; height: 3px; background: var(--primary); border-radius: 50%; opacity: 0.5; align-self: center; }
-
-  .navbar {
-    position: fixed; top: 0; left: 0; right: 0;
-    background: var(--glass-bg); backdrop-filter: blur(15px);
-    border-bottom: 1px solid var(--glass-border); z-index: 1000; padding: 1rem 0;
-    transition: all 0.3s ease;
-  }
-  .navbar.scrolled { padding: 0.75rem 0; box-shadow: 0 4px 20px rgba(167, 102, 220, 0.08); }
-  .nav-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 2rem; position: relative; z-index: 2; }
-  
-  .logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
-  .logo-img { width: 42px; height: 42px; border-radius: 50%; object-fit: cover; border: 2px solid var(--primary); }
-  .logo-text { font-size: 1.4rem; font-weight: 800; background: var(--gradient-accent); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; letter-spacing: 1.5px; }
-  
-  .nav-menu { display: flex; align-items: center; gap: 2rem; list-style: none; }
-  .nav-dropdown { position: relative; }
-  .nav-link {
-    text-decoration: none; color: var(--text-gray); font-weight: 500; font-size: 0.95rem;
-    transition: color 0.3s ease; position: relative; display: flex; align-items: center; gap: 0.35rem; cursor: pointer;
-  }
-  .nav-link:hover { color: var(--primary); }
-  
-  .dropdown-menu {
-    position: absolute; top: 150%; left: 50%; transform: translateX(-50%) translateY(8px);
-    background: white; border: 1px solid var(--border); border-radius: 12px;
-    padding: 0.5rem; min-width: 200px; box-shadow: 0 10px 30px rgba(167, 102, 220, 0.1);
-    opacity: 0; visibility: hidden; transition: all 0.25s ease; list-style: none; z-index: 1001;
-  }
-  .nav-dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
-  .dropdown-menu li a {
-    display: flex; align-items: center; gap: 0.7rem; padding: 0.75rem 1rem;
-    color: var(--text-gray); text-decoration: none; font-weight: 600; font-size: 0.9rem;
-    border-radius: 8px; transition: all 0.2s; justify-content: center;
-  }
-  .dropdown-menu li a:hover { background: var(--primary-light); color: var(--primary); }
-  .dropdown-menu li a i { color: var(--primary); font-size: 0.9rem; }
-
-  .nav-cta {
-    background: var(--gradient-accent); color: white !important; padding: 0.7rem 1.5rem;
-    border-radius: 50px; font-weight: 600; transition: all 0.3s;
-  }
-  .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(167, 102, 220, 0.3); }
-  
-  .menu-toggle {
-    display: none; background: none; border: none; font-size: 1.4rem; cursor: pointer;
-    color: var(--primary); width: 40px; height: 40px; align-items: center; justify-content: center; border-radius: 10px;
-  }
-
-  .popup-overlay {
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(15, 23, 42, 0.6);
-    backdrop-filter: blur(8px);
-    z-index: 2000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1.5rem;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.4s ease;
-  }
-  
-  .popup-overlay.active {
-    opacity: 1;
-    visibility: visible;
-  }
-  
-  .popup-modal {
-    background: white;
-    border-radius: 24px;
-    padding: 3rem 2.5rem;
-    max-width: 450px;
-    width: 100%;
-    text-align: center;
-    position: relative;
-    box-shadow: 0 25px 60px rgba(167, 102, 220, 0.3);
-    transform: scale(0.8) translateY(30px);
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    border: 2px solid var(--primary-light);
-  }
-  
-  .popup-overlay.active .popup-modal {
-    transform: scale(1) translateY(0);
-  }
-  
-  .popup-close {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    background: var(--bg-light);
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--text-gray);
-    font-size: 1rem;
-    transition: all 0.3s;
-  }
-  
-  .popup-close:hover {
-    background: var(--primary-light);
-    color: var(--primary);
-    transform: rotate(90deg);
-  }
-  
-  .popup-icon {
-    width: 80px;
-    height: 80px;
-    margin: 0 auto 1.5rem;
-    background: var(--gradient-accent);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 2rem;
-    box-shadow: 0 10px 30px rgba(167, 102, 220, 0.4);
-    animation: popupPulse 2s ease-in-out infinite;
-  }
-  
-  @keyframes popupPulse {
-    0%, 100% { transform: scale(1); box-shadow: 0 10px 30px rgba(167, 102, 220, 0.4); }
-    50% { transform: scale(1.05); box-shadow: 0 15px 40px rgba(167, 102, 220, 0.5); }
-  }
-  
-  .popup-tag {
-    display: inline-block;
-    background: var(--primary-light);
-    color: var(--primary-dark);
-    padding: 0.4rem 1rem;
-    border-radius: 50px;
-    font-size: 0.8rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    letter-spacing: 0.5px;
-  }
-  
-  .popup-modal h3 {
-    font-size: 1.75rem;
-    font-weight: 800;
-    color: var(--text-dark);
-    margin-bottom: 0.75rem;
-    letter-spacing: -0.5px;
-  }
-  
-  .popup-modal h3 span {
-    background: var(--gradient-accent);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-  
-  .popup-date {
-    font-size: 1.1rem;
-    color: var(--primary-dark);
-    font-weight: 700;
-    margin-bottom: 1rem;
-  }
-  
-  .popup-modal p {
-    color: var(--text-gray);
-    font-size: 0.95rem;
-    margin-bottom: 2rem;
-    line-height: 1.6;
-  }
-  
-  .popup-cta {
-    background: var(--gradient-accent);
-    color: white;
-    padding: 1rem 2rem;
-    border-radius: 50px;
-    font-weight: 700;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.75rem;
-    transition: all 0.3s;
-    box-shadow: 0 8px 25px rgba(167, 102, 220, 0.4);
-    border: none;
-    cursor: pointer;
-    font-size: 1rem;
-    font-family: inherit;
-  }
-  
-  .popup-cta:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 12px 35px rgba(167, 102, 220, 0.5);
-  }
-
-  .mobile-tab-bar {
-    display: none;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: var(--glass-bg);
-    backdrop-filter: blur(15px);
-    border-top: 1px solid var(--glass-border);
-    z-index: 1000;
-    padding: 0.5rem 0;
-    box-shadow: 0 -4px 20px rgba(167, 102, 220, 0.1);
-  }
-  
-  .tab-bar-container {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    max-width: 500px;
-    margin: 0 auto;
-  }
-  
-  .tab-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 0.5rem;
-    text-decoration: none;
-    color: var(--text-gray);
-    font-size: 0.7rem;
-    font-weight: 600;
-    transition: all 0.3s;
-    flex: 1;
-    gap: 0.25rem;
-  }
-  
-  .tab-item i {
-    font-size: 1.3rem;
-    margin-bottom: 0.2rem;
-  }
-  
-  .tab-item.active {
-    color: var(--primary);
-  }
-  
-  .tab-item.active i {
-    transform: translateY(-2px);
-  }
-
-  .hero {
-    min-height: 100vh; display: flex; align-items: center; justify-content: center;
-    padding: 10rem 2rem 6rem; position: relative;
-  }
-  .hero-container { max-width: 1000px; margin: 0 auto; text-align: center; position: relative; z-index: 2; }
-  .hero-badge {
-    display: inline-flex; align-items: center; gap: 0.5rem; background: var(--primary-light);
-    color: var(--primary-dark); padding: 0.5rem 1.2rem; border-radius: 50px; font-size: 0.85rem; font-weight: 600;
-    margin-bottom: 2rem; border: 1px solid rgba(167, 102, 220, 0.15);
-  }
-  .hero h1 {
-    font-size: 3.8rem; font-weight: 800; line-height: 1.1; margin-bottom: 1.5rem; letter-spacing: -1.5px; color: var(--text-dark);
-  }
-  .hero h1 span {
-    background: var(--gradient-accent); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-  }
-  .hero p { font-size: 1.15rem; margin-bottom: 2.5rem; color: var(--text-gray); max-width: 600px; margin-left: auto; margin-right: auto; }
-  
-  .hero-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 3.5rem; }
-  .btn {
-    padding: 0.95rem 2rem; border-radius: 50px; font-weight: 600; text-decoration: none;
-    display: inline-flex; align-items: center; gap: 0.7rem; transition: all 0.3s; cursor: pointer; border: none; font-size: 1rem; font-family: inherit;
-  }
-  .btn-primary { background: var(--gradient-accent); color: white; }
-  .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(167, 102, 220, 0.35); }
-  .btn-secondary { background: white; color: var(--primary); border: 1.5px solid var(--primary); }
-  .btn-secondary:hover { background: var(--primary-light); transform: translateY(-3px); }
-  
-  .hero-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; max-width: 800px; margin: 0 auto; }
-  .hero-stat { background: white; padding: 1.5rem; border-radius: 16px; border: 1px solid var(--border); transition: all 0.3s; }
-  .hero-stat:hover { transform: translateY(-4px); border-color: var(--primary); }
-  .hero-stat-number { font-size: 2rem; font-weight: 800; background: var(--gradient-accent); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 0.3rem; }
-  .hero-stat-label { font-size: 0.85rem; color: var(--text-gray); font-weight: 500; }
-
-  .about, .courses, .how-it-works, .packages, .contact, .reviews-section, .teachers-section { padding: 6rem 2rem; position: relative; z-index: 2; }
-  .about, .how-it-works, .contact, .reviews-section, .teachers-section { background: var(--bg-light); }
-  .courses, .packages { background: var(--white); }
-  .container { max-width: 1300px; margin: 0 auto; }
-  .section-header { text-align: center; margin-bottom: 3.5rem; }
-  .section-tag { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--primary-light); color: var(--primary-dark); padding: 0.5rem 1.25rem; border-radius: 50px; font-size: 0.85rem; font-weight: 600; margin-bottom: 1.25rem; border: 1px solid rgba(167, 102, 220, 0.15); }
-  .section-header h2 { font-size: 2.5rem; font-weight: 800; color: var(--text-dark); margin-bottom: 1rem; letter-spacing: -0.5px; }
-  .section-header p { color: var(--text-gray); max-width: 600px; margin: 0 auto; font-size: 1.05rem; }
-
-  /* ===== PREMIUM CAROUSEL ===== */
-  .reviews-header { text-align: center; margin-bottom: 3rem; }
-  .reviews-header h2 { font-size: 2.5rem; font-weight: 800; background: var(--gradient-accent); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 0.75rem; }
-  .reviews-header p { color: var(--text-gray); font-size: 1.05rem; }
-  
-  .reviews-carousel {
-    position: relative;
-    max-width: 1400px;
-    margin: 0 auto;
-    overflow: hidden;
-  }
-  
-  .carousel-viewport {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-    padding: 2rem 0;
-  }
-  
-  .carousel-track {
-    display: flex;
-    gap: 1.5rem;
-    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    will-change: transform;
-  }
-  
-  .review-card {
-    flex: 0 0 520px;
-    background: white;
-    border-radius: 24px;
-    overflow: hidden;
-    border: 1px solid var(--border);
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    opacity: 0.5;
-    filter: blur(3px);
-    transform: scale(0.92);
-    cursor: pointer;
-    position: relative;
-  }
-  
-  .review-card::after {
-    content: 'Tap to view';
-    position: absolute;
-    bottom: 1rem;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(15, 23, 42, 0.8);
-    color: white;
-    padding: 0.4rem 1rem;
-    border-radius: 50px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    opacity: 0;
-    transition: opacity 0.3s;
-    pointer-events: none;
-  }
-  
-  .review-card:hover::after {
-    opacity: 1;
-  }
-  
-  .review-card.active {
-    opacity: 1;
-    filter: blur(0);
-    transform: scale(1.05);
-    border-color: var(--primary);
-    box-shadow: 0 25px 60px rgba(167, 102, 220, 0.3);
-    z-index: 10;
-  }
-  
-  .review-card.active::after {
-    display: none;
-  }
-  
-  .review-card img {
-    width: 100%;
-    height: auto;
-    display: block;
-    pointer-events: none;
-    user-select: none;
-  }
-  
-  .carousel-controls { 
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-    gap: 1.5rem; 
-    margin-top: 2rem; 
-  }
-  .carousel-btn { 
-    width: 52px; 
-    height: 52px; 
-    border-radius: 50%; 
-    background: white; 
-    border: 1.5px solid var(--primary); 
-    box-shadow: 0 4px 15px rgba(167, 102, 220, 0.15); 
-    cursor: pointer; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    color: var(--primary); 
-    font-size: 1.2rem; 
-    transition: all 0.3s; 
-  }
-  .carousel-btn:hover { 
-    background: var(--gradient-accent); 
-    color: white; 
-    border-color: transparent; 
-    transform: scale(1.1); 
-  }
-  .carousel-dots { display: flex; gap: 0.6rem; }
-  .carousel-dot { 
-    width: 10px; 
-    height: 10px; 
-    border-radius: 50%; 
-    background: var(--border); 
-    cursor: pointer; 
-    transition: all 0.3s; 
-  }
-  .carousel-dot.active { 
-    background: var(--primary); 
-    width: 28px; 
-    border-radius: 5px; 
-  }
-
-  /* ===== LIGHTBOX ===== */
-  .lightbox {
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.96);
-    z-index: 3000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.4s ease, visibility 0.4s ease;
-    touch-action: none;
-  }
-  
-  .lightbox.active {
-    opacity: 1;
-    visibility: visible;
-  }
-  
-  .lightbox-close {
-    position: absolute;
-    top: 1.5rem;
-    right: 1.5rem;
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: white;
-    font-size: 1.2rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s;
-    z-index: 10;
-  }
-  
-  .lightbox-close:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: rotate(90deg);
-  }
-  
-  .lightbox-counter {
-    position: absolute;
-    top: 1.5rem;
-    left: 50%;
-    transform: translateX(-50%);
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 0.9rem;
-    font-weight: 600;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    padding: 0.5rem 1rem;
-    border-radius: 50px;
-    z-index: 10;
-  }
-  
-  .lightbox-image-wrapper {
-    max-width: 90vw;
-    max-height: 85vh;
-    overflow: hidden;
-    touch-action: none;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .lightbox-image {
-    max-width: 100%;
-    max-height: 85vh;
-    object-fit: contain;
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    transform-origin: center center;
-    user-select: none;
-    -webkit-user-drag: none;
-    cursor: grab;
-  }
-  
-  .lightbox-image.dragging {
-    cursor: grabbing;
-    transition: none;
-  }
-  
-  .lightbox-nav {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 52px;
-    height: 52px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: white;
-    font-size: 1.2rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s;
-    z-index: 10;
-  }
-  
-  .lightbox-nav:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: translateY(-50%) scale(1.1);
-  }
-  
-  .lightbox-nav.prev { left: 1.5rem; }
-  .lightbox-nav.next { right: 1.5rem; }
-  
-  .lightbox-hint {
-    position: absolute;
-    bottom: 1.5rem;
-    left: 50%;
-    transform: translateX(-50%);
-    color: rgba(255, 255, 255, 0.6);
-    font-size: 0.8rem;
-    font-weight: 500;
-    background: rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(10px);
-    padding: 0.5rem 1rem;
-    border-radius: 50px;
-    z-index: 10;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-  
-  .lightbox-hint i {
-    font-size: 0.7rem;
-  }
-
-  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
-  .about-text h3 { font-size: 2rem; color: var(--text-dark); margin-bottom: 1.25rem; font-weight: 700; }
-  .about-text p { color: var(--text-gray); margin-bottom: 1.25rem; font-size: 1rem; }
-  .about-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 2.5rem; }
-  .stat-card { background: white; padding: 1.75rem; border-radius: 16px; text-align: center; border: 1px solid var(--border); }
-  .stat-number { font-size: 2.5rem; font-weight: 800; background: var(--gradient-accent); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 0.4rem; }
-  .stat-label { font-size: 0.9rem; color: var(--text-gray); font-weight: 500; }
-
-  .courses-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; }
-  .course-card { background: white; border-radius: 20px; padding: 2.5rem; border: 1px solid var(--border); transition: all 0.4s; }
-  .course-card:hover { transform: translateY(-8px); border-color: var(--primary); box-shadow: 0 15px 40px rgba(167, 102, 220, 0.12); }
-  .course-icon { width: 65px; height: 65px; margin-bottom: 1.5rem; background: var(--primary-light); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; color: var(--primary); }
-  .course-card h3 { color: var(--text-dark); margin-bottom: 1rem; font-size: 1.4rem; font-weight: 700; }
-  .course-card p { color: var(--text-gray); font-size: 0.95rem; margin-bottom: 1.5rem; }
-  .course-features { list-style: none; }
-  .course-features li { padding: 0.6rem 0; color: var(--text-gray); display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.9rem; border-bottom: 1px solid var(--border); }
-  .course-features li:last-child { border-bottom: none; }
-  .course-features li::before { content: '✓'; color: var(--primary); font-weight: 700; font-size: 1.1rem; flex-shrink: 0; }
-
-  .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
-  .step-card { background: white; padding: 2.5rem; border-radius: 18px; position: relative; border: 1px solid var(--border); }
-  .step-number { position: absolute; top: -16px; left: 2rem; width: 45px; height: 45px; background: var(--gradient-accent); color: white; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.2rem; }
-  .step-card h4 { color: var(--text-dark); margin: 1.25rem 0 0.75rem; font-size: 1.2rem; font-weight: 700; }
-  .step-card p { color: var(--text-gray); font-size: 0.95rem; }
-
-  .packages-preview-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    max-width: 1100px;
-    margin: 0 auto 3rem;
-  }
-  .package-preview-card {
-    background: white;
-    border-radius: 20px;
-    padding: 2.5rem;
-    border: 1px solid var(--border);
-    text-align: center;
-    transition: all 0.4s;
-  }
-  .package-preview-card:hover {
-    transform: translateY(-8px);
-    border-color: var(--primary);
-    box-shadow: 0 15px 40px rgba(167, 102, 220, 0.2);
-  }
-  .package-preview-card.featured {
-    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
-    color: white;
-    border-color: transparent;
-  }
-  .package-preview-icon {
-    width: 70px;
-    height: 70px;
-    background: var(--primary-light);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--primary);
-    font-size: 2rem;
-    margin: 0 auto 1.5rem;
-  }
-  .package-preview-card.featured .package-preview-icon {
-    background: rgba(255,255,255,0.2);
-    color: white;
-  }
-  .package-preview-name {
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-bottom: 0.75rem;
-  }
-  .package-preview-price {
-    font-size: 1.1rem;
-    margin-bottom: 1.5rem;
-    opacity: 0.9;
-  }
-  .package-preview-card.featured .package-preview-price {
-    opacity: 1;
-  }
-  .package-preview-features {
-    list-style: none;
-    text-align: left;
-    margin-top: 1.5rem;
-  }
-  .package-preview-features li {
-    padding: 0.6rem 0;
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    font-size: 0.95rem;
-    color: var(--text-gray);
-    border-bottom: 1px solid var(--border);
-  }
-  .package-preview-card.featured .package-preview-features li {
-    color: rgba(255,255,255,0.9);
-    border-bottom-color: rgba(255,255,255,0.2);
-  }
-  .package-preview-features li:last-child {
-    border-bottom: none;
-  }
-  .package-preview-features li i {
-    color: var(--primary);
-    width: 20px;
-    text-align: center;
-  }
-  .package-preview-card.featured .package-preview-features li i {
-    color: #fde68a;
-  }
-
-  .explore-more-container { text-align: center; margin-top: 3rem; }
-  .btn-explore {
-    background: white; color: var(--primary); border: 1.5px solid var(--primary);
-    padding: 0.95rem 2rem; border-radius: 50px; font-weight: 600; font-size: 1rem;
-    text-decoration: none; display: inline-flex; align-items: center; gap: 0.6rem;
-    transition: all 0.3s;
-  }
-  .btn-explore:hover { background: var(--gradient-accent); color: white; border-color: transparent; transform: translateY(-3px); box-shadow: 0 10px 25px rgba(167, 102, 220, 0.3); }
-  .btn-explore i { transition: transform 0.3s; }
-  .btn-explore:hover i { transform: translateX(4px); }
-
-  .teachers-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 3rem;
-    max-width: 900px;
-    margin: 0 auto;
-  }
-  .teacher-card {
-    text-align: center;
-    padding: 2.5rem 2rem;
-    background: white;
-    border-radius: 24px;
-    border: 1px solid var(--border);
-    transition: all 0.4s;
-  }
-  .teacher-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 15px 40px rgba(167, 102, 220, 0.15);
-    border-color: var(--primary);
-  }
-  .teacher-image-wrapper {
-    width: 150px;
-    height: 150px;
-    margin: 0 auto 1.5rem;
-    border-radius: 50%;
-    overflow: hidden;
-    border: 4px solid var(--primary-light);
-    box-shadow: 0 8px 25px rgba(167, 102, 220, 0.2);
-  }
-  .teacher-image-wrapper img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  .teacher-card h3 {
-    font-size: 1.5rem;
-    font-weight: 800;
-    color: var(--text-dark);
-    margin-bottom: 0.5rem;
-  }
-  .teacher-title {
-    display: inline-block;
-    background: var(--gradient-accent);
-    color: white;
-    padding: 0.4rem 1rem;
-    border-radius: 50px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    margin-bottom: 1.25rem;
-  }
-  .teacher-card p {
-    color: var(--text-gray);
-    font-size: 0.95rem;
-    line-height: 1.7;
-    text-align: justify;
-    margin-bottom: 0.75rem;
-  }
-
-  .placement-cta { background: var(--gradient-accent); color: white; text-align: center; padding: 5rem 2rem; position: relative; overflow: hidden; z-index: 2; }
-  .placement-cta h2 { font-size: 2.5rem; margin-bottom: 1rem; font-weight: 800; }
-  .placement-cta p { font-size: 1.1rem; margin-bottom: 2.5rem; opacity: 0.95; max-width: 600px; margin-left: auto; margin-right: auto; }
-  .test-buttons { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; }
-  .btn-test { background: white; color: var(--primary); padding: 1rem 2rem; border-radius: 50px; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 0.75rem; transition: all 0.3s; font-size: 1rem; }
-  .btn-test:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,0.2); }
-
-  .contact-buttons { display: flex; gap: 1.25rem; justify-content: center; flex-wrap: wrap; max-width: 600px; margin: 0 auto; }
-  .contact-btn { display: inline-flex; align-items: center; gap: 0.75rem; padding: 1rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 1rem; transition: all 0.3s; }
-  .contact-btn.whatsapp { background: var(--whatsapp-green); color: white; }
-  .contact-btn.instagram { background: var(--gradient-story); color: white; }
-  .contact-btn:hover { transform: translateY(-4px); box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
-  .contact-btn i { font-size: 1.2rem; }
-  .contact-note { text-align: center; margin-top: 2.5rem; padding: 1.5rem; background: white; border-radius: 16px; color: var(--text-gray); font-size: 0.95rem; border: 1px solid var(--border); }
-
-  footer { background: var(--text-dark); color: var(--text-light); padding: 4rem 2rem 2rem; position: relative; z-index: 2; }
-  .footer-grid { max-width: 1300px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
-  .footer-col h4 { color: white; margin-bottom: 1.25rem; font-size: 1.1rem; font-weight: 700; }
-  .footer-col p { font-size: 0.95rem; line-height: 1.7; margin-bottom: 0.75rem; }
-  .footer-links { list-style: none; }
-  .footer-links a { color: var(--text-light); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem; transition: all 0.3s; font-size: 0.95rem; }
-  .footer-links a:hover { color: var(--primary); transform: translateX(6px); }
-  .social-links { display: flex; gap: 0.9rem; margin-top: 1.25rem; }
-  .social-links a { width: 42px; height: 42px; border-radius: 50%; background: rgba(167, 102, 220, 0.1); border: 1.5px solid var(--primary); display: flex; align-items: center; justify-content: center; color: var(--primary); font-size: 1.1rem; transition: all 0.3s; }
-  .social-links a:hover { background: var(--gradient-accent); color: white; border-color: transparent; transform: translateY(-4px); }
-  .footer-bottom { max-width: 1300px; margin: 0 auto; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); text-align: center; font-size: 0.9rem; color: var(--text-light); }
-
-  @media (max-width: 1024px) {
-    .hero h1 { font-size: 3rem; }
-    .hero-stats { grid-template-columns: repeat(2, 1fr); }
-    .about-grid { grid-template-columns: 1fr; gap: 3rem; }
-    .footer-grid { grid-template-columns: 1fr 1fr; }
-    .side-tracks { display: none; }
-    .review-card { flex: 0 0 420px; }
-  }
-  
-  @media (max-width: 768px) {
-    .mobile-header-track { display: block; }
-    .mobile-tab-bar { display: block; }
-    
-    .nav-menu { display: none; }
-    .menu-toggle { display: none; }
-    
-    .hero { padding: 11rem 1.5rem 4rem; }
-    .hero h1 { font-size: 2.2rem; }
-    .hero p { font-size: 1rem; }
-    .hero-stats { grid-template-columns: 1fr 1fr; gap: 1rem; }
-    .hero-stat { padding: 1.25rem; }
-    .hero-stat-number { font-size: 1.75rem; }
-    
-    .section-header h2, .reviews-header h2 { font-size: 2rem; }
-    .courses-grid { grid-template-columns: 1fr; }
-    .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
-    .test-buttons, .contact-buttons { flex-direction: column; align-items: stretch; }
-    .btn-test, .contact-btn { justify-content: center; }
-    
-    .packages-container { display: none; }
-    .packages-slider-mobile { display: flex; }
-    
-    /* Mobile carousel - native gallery feel */
-    .carousel-viewport {
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-      padding: 1rem 7.5%;
-      scroll-behavior: smooth;
-    }
-    .carousel-viewport::-webkit-scrollbar { display: none; }
-    .carousel-track {
-      gap: 1rem;
-      transition: none;
-    }
-    .review-card {
-      flex: 0 0 85%;
-      max-width: 340px;
-      scroll-snap-align: center;
-      opacity: 1 !important;
-      filter: none !important;
-      transform: none !important;
-      border-radius: 20px;
-    }
-    .review-card.active {
-      transform: none !important;
-      box-shadow: 0 10px 30px rgba(167, 102, 220, 0.15);
-    }
-    .review-card::after { display: none; }
-    
-    .carousel-controls { display: none; }
-    
-    .popup-modal { padding: 2.5rem 1.5rem; }
-    .popup-modal h3 { font-size: 1.5rem; }
-    .popup-icon { width: 70px; height: 70px; font-size: 1.75rem; }
-    
-    .lightbox-nav { width: 44px; height: 44px; font-size: 1rem; }
-    .lightbox-nav.prev { left: 0.75rem; }
-    .lightbox-nav.next { right: 0.75rem; }
-    .lightbox-close { top: 1rem; right: 1rem; width: 42px; height: 42px; }
-    .lightbox-counter { top: 1rem; }
-    .lightbox-hint { bottom: 1rem; font-size: 0.7rem; }
-  }
-  
-  @media (max-width: 480px) {
-    .hero h1 { font-size: 1.9rem; }
-    .section-header h2, .reviews-header h2 { font-size: 1.75rem; }
-    .about-stats { grid-template-columns: 1fr; }
-    .btn { padding: 0.9rem 1.75rem; font-size: 0.95rem; }
-    .review-card { flex: 0 0 88%; }
-  }
+:root{--primary:#a766dc;--primary-dark:#8a4bbf;--primary-light:#f5f0fa;--secondary:#6366f1;--gradient-start:#a766dc;--gradient-end:#6366f1;--gradient-accent:linear-gradient(135deg,#a766dc 0%,#8b5cf6 50%,#6366f1 100%);--gradient-story:linear-gradient(45deg,#a766dc 0%,#8b5cf6 50%,#6366f1 100%);--text-dark:#0f172a;--text-gray:#475569;--text-light:#94a3b8;--white:#fff;--bg-light:#fafbff;--border:#eef0f6;--whatsapp-green:#25D366;--glass-bg:rgba(255,255,255,.92);--glass-border:rgba(238,240,246,.8)}
+*,::before,::after{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth;scroll-padding-top:110px}
+body{font-family:'Plus Jakarta Sans',system-ui,-apple-system,BlinkMacSystemFont,sans-serif;color:var(--text-dark);line-height:1.6;background:var(--white);overflow-x:hidden;padding-bottom:80px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+img{max-width:100%;height:auto;display:block}
+button{font-family:inherit}
+a{color:inherit}
+.custom-cursor{position:fixed;top:0;left:0;width:36px;height:36px;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .1s ease-out,opacity .3s;opacity:0;will-change:transform,opacity}
+.custom-cursor.active{opacity:1}
+.custom-cursor-inner{width:100%;height:100%;background:var(--gradient-accent);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1rem;font-weight:800;box-shadow:0 4px 15px rgba(167,102,220,.4);transition:transform .2s}
+.custom-cursor.hovering .custom-cursor-inner{transform:scale(1.4)}
+.animated-bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;background:linear-gradient(135deg,#fff 0%,#fafbff 50%,#f8f5ff 100%)}
+.floating-shape{position:absolute;border-radius:50%;background:linear-gradient(135deg,var(--gradient-start),var(--gradient-end));opacity:.04;filter:blur(100px);animation:float 30s infinite ease-in-out;will-change:transform}
+.floating-shape:nth-child(1){width:500px;height:500px;top:-150px;right:-150px}
+.floating-shape:nth-child(2){width:400px;height:400px;bottom:-100px;left:-100px;animation-delay:10s}
+@keyframes float{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(30px,-40px) scale(1.05)}}
+.header-animations{position:fixed;top:0;left:0;right:0;height:500px;z-index:-1;overflow:hidden;pointer-events:none}
+.header-blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:.15;will-change:transform}
+.header-blob-1{width:300px;height:300px;background:var(--primary);top:-100px;left:10%;animation:blobMove1 12s ease-in-out infinite}
+.header-blob-2{width:250px;height:250px;background:var(--secondary);top:-50px;right:15%;animation:blobMove2 15s ease-in-out infinite}
+.header-blob-3{width:200px;height:200px;background:var(--primary);top:100px;left:50%;animation:blobMove3 18s ease-in-out infinite}
+@keyframes blobMove1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(50px,30px) scale(1.1)}}
+@keyframes blobMove2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-40px,40px) scale(.9)}}
+@keyframes blobMove3{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(30px,-20px) scale(1.15)}}
+.side-tracks{position:fixed;top:0;left:0;right:0;bottom:0;pointer-events:none;z-index:1;overflow:hidden}
+.side-track{position:absolute;top:0;bottom:0;width:80px;overflow:hidden;background:rgba(255,255,255,.6);backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);border-left:1px solid var(--border);border-right:1px solid var(--border)}
+.side-track.left{left:0}
+.side-track.right{right:0}
+.side-track-content{display:flex;flex-direction:column;gap:3rem;padding:4rem 0}
+.side-track.left .side-track-content{animation:scrollUp 35s linear infinite}
+.side-track.right .side-track-content{animation:scrollDown 35s linear infinite}
+@keyframes scrollUp{0%{transform:translateY(0)}100%{transform:translateY(-50%)}}
+@keyframes scrollDown{0%{transform:translateY(-50%)}100%{transform:translateY(0)}}
+.track-label{writing-mode:vertical-rl;text-orientation:mixed;transform:rotate(180deg);font-size:1.1rem;font-weight:800;letter-spacing:4px;text-transform:uppercase;color:var(--primary);opacity:.5;padding:1rem 0;white-space:nowrap}
+.track-label-dot{width:6px;height:6px;background:var(--primary);border-radius:50%;margin:0 auto;opacity:.4}
+.mobile-header-track{display:none;position:fixed;top:70px;left:0;right:0;background:rgba(255,255,255,.95);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--border);z-index:997;padding:.5rem 0;overflow:hidden}
+.track-row{display:flex;gap:1.5rem;white-space:nowrap;font-size:.7rem;font-weight:700;letter-spacing:1px;color:var(--primary)}
+.track-row-left{animation:scrollLeft 15s linear infinite}
+.track-row-right{animation:scrollRight 15s linear infinite}
+@keyframes scrollLeft{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+@keyframes scrollRight{0%{transform:translateX(-50%)}100%{transform:translateX(0)}}
+.track-row .track-dot{width:3px;height:3px;background:var(--primary);border-radius:50%;opacity:.5;align-self:center}
+.navbar{position:fixed;top:0;left:0;right:0;background:var(--glass-bg);backdrop-filter:blur(15px);-webkit-backdrop-filter:blur(15px);border-bottom:1px solid var(--glass-border);z-index:1000;padding:1rem 0;transition:padding .3s ease,box-shadow .3s ease}
+.navbar.scrolled{padding:.75rem 0;box-shadow:0 4px 20px rgba(167,102,220,.08)}
+.nav-container{max-width:1400px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;padding:0 2rem;position:relative;z-index:2}
+.logo{display:flex;align-items:center;gap:.75rem;text-decoration:none}
+.logo-img{width:42px;height:42px;border-radius:50%;object-fit:cover;border:2px solid var(--primary)}
+.logo-text{font-size:1.4rem;font-weight:800;background:var(--gradient-accent);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:1.5px}
+.nav-menu{display:flex;align-items:center;gap:2rem;list-style:none}
+.nav-dropdown{position:relative}
+.nav-link{text-decoration:none;color:var(--text-gray);font-weight:500;font-size:.95rem;transition:color .3s ease;position:relative;display:flex;align-items:center;gap:.35rem;cursor:pointer}
+.nav-link:hover{color:var(--primary)}
+.dropdown-menu{position:absolute;top:150%;left:50%;transform:translateX(-50%) translateY(8px);background:#fff;border:1px solid var(--border);border-radius:12px;padding:.5rem;min-width:200px;box-shadow:0 10px 30px rgba(167,102,220,.1);opacity:0;visibility:hidden;transition:opacity .25s ease,visibility .25s ease,transform .25s ease;list-style:none;z-index:1001}
+.nav-dropdown:hover .dropdown-menu{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
+.dropdown-menu li a{display:flex;align-items:center;gap:.7rem;padding:.75rem 1rem;color:var(--text-gray);text-decoration:none;font-weight:600;font-size:.9rem;border-radius:8px;transition:background .2s,color .2s;justify-content:center}
+.dropdown-menu li a:hover{background:var(--primary-light);color:var(--primary)}
+.dropdown-menu li a i{color:var(--primary);font-size:.9rem}
+.nav-cta{background:var(--gradient-accent);color:#fff!important;padding:.7rem 1.5rem;border-radius:50px;font-weight:600;transition:transform .3s,box-shadow .3s}
+.nav-cta:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(167,102,220,.3)}
+.menu-toggle{display:none;background:none;border:none;font-size:1.4rem;cursor:pointer;color:var(--primary);width:40px;height:40px;align-items:center;justify-content:center;border-radius:10px}
+.popup-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(15,23,42,.6);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);z-index:2000;display:flex;align-items:center;justify-content:center;padding:1.5rem;opacity:0;visibility:hidden;transition:opacity .4s ease,visibility .4s ease}
+.popup-overlay.active{opacity:1;visibility:visible}
+.popup-modal{background:#fff;border-radius:24px;padding:3rem 2.5rem;max-width:450px;width:100%;text-align:center;position:relative;box-shadow:0 25px 60px rgba(167,102,220,.3);transform:scale(.8) translateY(30px);transition:transform .4s cubic-bezier(.4,0,.2,1);border:2px solid var(--primary-light)}
+.popup-overlay.active .popup-modal{transform:scale(1) translateY(0)}
+.popup-close{position:absolute;top:1rem;right:1rem;width:36px;height:36px;border-radius:50%;background:var(--bg-light);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--text-gray);font-size:1rem;transition:background .3s,color .3s,transform .3s}
+.popup-close:hover{background:var(--primary-light);color:var(--primary);transform:rotate(90deg)}
+.popup-icon{width:80px;height:80px;margin:0 auto 1.5rem;background:var(--gradient-accent);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:2rem;box-shadow:0 10px 30px rgba(167,102,220,.4);animation:popupPulse 2s ease-in-out infinite}
+@keyframes popupPulse{0%,100%{transform:scale(1);box-shadow:0 10px 30px rgba(167,102,220,.4)}50%{transform:scale(1.05);box-shadow:0 15px 40px rgba(167,102,220,.5)}}
+.popup-tag{display:inline-block;background:var(--primary-light);color:var(--primary-dark);padding:.4rem 1rem;border-radius:50px;font-size:.8rem;font-weight:700;margin-bottom:1rem;letter-spacing:.5px}
+.popup-modal h3{font-size:1.75rem;font-weight:800;color:var(--text-dark);margin-bottom:.75rem;letter-spacing:-.5px}
+.popup-modal h3 span{background:var(--gradient-accent);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.popup-date{font-size:1.1rem;color:var(--primary-dark);font-weight:700;margin-bottom:1rem}
+.popup-modal p{color:var(--text-gray);font-size:.95rem;margin-bottom:2rem;line-height:1.6}
+.popup-cta{background:var(--gradient-accent);color:#fff;padding:1rem 2rem;border-radius:50px;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:.75rem;transition:transform .3s,box-shadow .3s;box-shadow:0 8px 25px rgba(167,102,220,.4);border:none;cursor:pointer;font-size:1rem;font-family:inherit}
+.popup-cta:hover{transform:translateY(-3px);box-shadow:0 12px 35px rgba(167,102,220,.5)}
+.mobile-tab-bar{display:none;position:fixed;bottom:0;left:0;right:0;background:var(--glass-bg);backdrop-filter:blur(15px);-webkit-backdrop-filter:blur(15px);border-top:1px solid var(--glass-border);z-index:1000;padding:.5rem 0;box-shadow:0 -4px 20px rgba(167,102,220,.1)}
+.tab-bar-container{display:flex;justify-content:space-around;align-items:center;max-width:500px;margin:0 auto}
+.tab-item{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:.5rem;text-decoration:none;color:var(--text-gray);font-size:.7rem;font-weight:600;transition:color .3s;flex:1;gap:.25rem}
+.tab-item i{font-size:1.3rem;margin-bottom:.2rem;transition:transform .3s}
+.tab-item.active{color:var(--primary)}
+.tab-item.active i{transform:translateY(-2px)}
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:10rem 2rem 6rem;position:relative}
+.hero-container{max-width:1000px;margin:0 auto;text-align:center;position:relative;z-index:2}
+.hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:var(--primary-light);color:var(--primary-dark);padding:.5rem 1.2rem;border-radius:50px;font-size:.85rem;font-weight:600;margin-bottom:2rem;border:1px solid rgba(167,102,220,.15)}
+.hero h1{font-size:3.8rem;font-weight:800;line-height:1.1;margin-bottom:1.5rem;letter-spacing:-1.5px;color:var(--text-dark)}
+.hero h1 span{background:var(--gradient-accent);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{font-size:1.15rem;margin-bottom:2.5rem;color:var(--text-gray);max-width:600px;margin-left:auto;margin-right:auto}
+.hero-buttons{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:3.5rem}
+.btn{padding:.95rem 2rem;border-radius:50px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:.7rem;transition:transform .3s,box-shadow .3s;cursor:pointer;border:none;font-size:1rem;font-family:inherit}
+.btn-primary{background:var(--gradient-accent);color:#fff}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(167,102,220,.35)}
+.btn-secondary{background:#fff;color:var(--primary);border:1.5px solid var(--primary)}
+.btn-secondary:hover{background:var(--primary-light);transform:translateY(-3px)}
+.hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;max-width:800px;margin:0 auto}
+.hero-stat{background:#fff;padding:1.5rem;border-radius:16px;border:1px solid var(--border);transition:transform .3s,border-color .3s}
+.hero-stat:hover{transform:translateY(-4px);border-color:var(--primary)}
+.hero-stat-number{font-size:2rem;font-weight:800;background:var(--gradient-accent);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:.3rem}
+.hero-stat-label{font-size:.85rem;color:var(--text-gray);font-weight:500}
+.about,.courses,.how-it-works,.packages,.contact,.reviews-section,.teachers-section{padding:6rem 2rem;position:relative;z-index:2}
+.about,.how-it-works,.contact,.reviews-section,.teachers-section{background:var(--bg-light)}
+.courses,.packages{background:var(--white)}
+.container{max-width:1300px;margin:0 auto}
+.section-header{text-align:center;margin-bottom:3.5rem}
+.section-tag{display:inline-flex;align-items:center;gap:.5rem;background:var(--primary-light);color:var(--primary-dark);padding:.5rem 1.25rem;border-radius:50px;font-size:.85rem;font-weight:600;margin-bottom:1.25rem;border:1px solid rgba(167,102,220,.15)}
+.section-header h2{font-size:2.5rem;font-weight:800;color:var(--text-dark);margin-bottom:1rem;letter-spacing:-.5px}
+.section-header p{color:var(--text-gray);max-width:600px;margin:0 auto;font-size:1.05rem}
+.reviews-header{text-align:center;margin-bottom:3rem}
+.reviews-header h2{font-size:2.5rem;font-weight:800;background:var(--gradient-accent);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:.75rem}
+.reviews-header p{color:var(--text-gray);font-size:1.05rem}
+.reviews-carousel{position:relative;max-width:100%;margin:0 auto;overflow:hidden}
+.carousel-viewport{position:relative;width:100%;overflow:hidden;padding:2rem 0}
+.carousel-track{display:flex;gap:48px;transition:transform .5s cubic-bezier(.4,0,.2,1);will-change:transform}
+.review-card{flex:0 0 60vw;max-width:700px;background:#fff;border-radius:24px;overflow:hidden;border:1px solid var(--border);transition:opacity .5s cubic-bezier(.4,0,.2,1),filter .5s cubic-bezier(.4,0,.2,1),transform .5s cubic-bezier(.4,0,.2,1),border-color .5s,box-shadow .5s;opacity:.5;filter:blur(2px);transform:scale(.92);cursor:pointer;position:relative;contain:layout style}
+.review-card::after{content:'Tap to view';position:absolute;bottom:1rem;left:50%;transform:translateX(-50%);background:rgba(15,23,42,.8);color:#fff;padding:.4rem 1rem;border-radius:50px;font-size:.75rem;font-weight:600;opacity:0;transition:opacity .3s;pointer-events:none}
+.review-card:hover::after{opacity:1}
+.review-card.active{opacity:1;filter:blur(0);transform:scale(1.02);border-color:var(--primary);box-shadow:0 25px 60px rgba(167,102,220,.3);z-index:10}
+.review-card.active::after{display:none}
+.review-card img{width:100%;height:auto;display:block;pointer-events:none;user-select:none;content-visibility:auto}
+.carousel-controls{display:flex;justify-content:center;align-items:center;gap:1.5rem;margin-top:2rem}
+.carousel-btn{width:52px;height:52px;border-radius:50%;background:#fff;border:1.5px solid var(--primary);box-shadow:0 4px 15px rgba(167,102,220,.15);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--primary);font-size:1.2rem;transition:transform .3s,background .3s,color .3s,border-color .3s}
+.carousel-btn:hover{background:var(--gradient-accent);color:#fff;border-color:transparent;transform:scale(1.1)}
+.carousel-dots{display:flex;gap:.6rem}
+.carousel-dot{width:10px;height:10px;border-radius:50%;background:var(--border);cursor:pointer;transition:background .3s,width .3s,border-radius .3s}
+.carousel-dot.active{background:var(--primary);width:28px;border-radius:5px}
+.lightbox{position:fixed;inset:0;background:rgba(15,23,42,.75);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);z-index:3000;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:opacity .4s ease,visibility .4s ease;touch-action:none}
+.lightbox.active{opacity:1;visibility:visible}
+.lightbox-close{position:absolute;top:1.5rem;right:1.5rem;width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,.15);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.25);color:#fff;font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .3s,transform .3s;z-index:10}
+.lightbox-close:hover{background:rgba(255,255,255,.25);transform:rotate(90deg)}
+.lightbox-counter{position:absolute;top:1.5rem;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.9);font-size:.9rem;font-weight:600;background:rgba(255,255,255,.12);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);padding:.5rem 1rem;border-radius:50px;z-index:10;white-space:nowrap}
+.lightbox-image-wrapper{max-width:90vw;max-height:85vh;overflow:hidden;touch-action:none;position:relative;display:flex;align-items:center;justify-content:center}
+.lightbox-image{max-width:100%;max-height:85vh;object-fit:contain;transition:transform .3s cubic-bezier(.4,0,.2,1);transform-origin:center center;user-select:none;-webkit-user-drag:none;cursor:grab;border-radius:8px}
+.lightbox-image.dragging{cursor:grabbing;transition:none}
+.lightbox-nav{position:absolute;top:50%;transform:translateY(-50%);width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,.15);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.25);color:#fff;font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .3s,transform .3s;z-index:10}
+.lightbox-nav:hover{background:rgba(255,255,255,.25);transform:translateY(-50%) scale(1.1)}
+.lightbox-nav.prev{left:1.5rem}
+.lightbox-nav.next{right:1.5rem}
+.lightbox-hint{position:absolute;bottom:1.5rem;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.7);font-size:.8rem;font-weight:500;background:rgba(255,255,255,.1);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);padding:.5rem 1rem;border-radius:50px;z-index:10;display:flex;align-items:center;gap:.5rem;white-space:nowrap}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.about-text h3{font-size:2rem;color:var(--text-dark);margin-bottom:1.25rem;font-weight:700}
+.about-text p{color:var(--text-gray);margin-bottom:1.25rem;font-size:1rem}
+.about-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-top:2.5rem}
+.stat-card{background:#fff;padding:1.75rem;border-radius:16px;text-align:center;border:1px solid var(--border)}
+.stat-number{font-size:2.5rem;font-weight:800;background:var(--gradient-accent);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:.4rem}
+.stat-label{font-size:.9rem;color:var(--text-gray);font-weight:500}
+.courses-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:2rem}
+.course-card{background:#fff;border-radius:20px;padding:2.5rem;border:1px solid var(--border);transition:transform .4s,border-color .4s,box-shadow .4s}
+.course-card:hover{transform:translateY(-8px);border-color:var(--primary);box-shadow:0 15px 40px rgba(167,102,220,.12)}
+.course-icon{width:65px;height:65px;margin-bottom:1.5rem;background:var(--primary-light);border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:1.8rem;color:var(--primary)}
+.course-card h3{color:var(--text-dark);margin-bottom:1rem;font-size:1.4rem;font-weight:700}
+.course-card p{color:var(--text-gray);font-size:.95rem;margin-bottom:1.5rem}
+.course-features{list-style:none}
+.course-features li{padding:.6rem 0;color:var(--text-gray);display:flex;align-items:flex-start;gap:.75rem;font-size:.9rem;border-bottom:1px solid var(--border)}
+.course-features li:last-child{border-bottom:none}
+.course-features li::before{content:'✓';color:var(--primary);font-weight:700;font-size:1.1rem;flex-shrink:0}
+.steps-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem}
+.step-card{background:#fff;padding:2.5rem;border-radius:18px;position:relative;border:1px solid var(--border)}
+.step-number{position:absolute;top:-16px;left:2rem;width:45px;height:45px;background:var(--gradient-accent);color:#fff;border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1.2rem}
+.step-card h4{color:var(--text-dark);margin:1.25rem 0 .75rem;font-size:1.2rem;font-weight:700}
+.step-card p{color:var(--text-gray);font-size:.95rem}
+.packages-preview-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem;max-width:1100px;margin:0 auto 3rem}
+.package-preview-card{background:#fff;border-radius:20px;padding:2.5rem;border:1px solid var(--border);text-align:center;transition:transform .4s,border-color .4s,box-shadow .4s}
+.package-preview-card:hover{transform:translateY(-8px);border-color:var(--primary);box-shadow:0 15px 40px rgba(167,102,220,.2)}
+.package-preview-card.featured{background:linear-gradient(135deg,var(--gradient-start),var(--gradient-end));color:#fff;border-color:transparent}
+.package-preview-icon{width:70px;height:70px;background:var(--primary-light);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--primary);font-size:2rem;margin:0 auto 1.5rem}
+.package-preview-card.featured .package-preview-icon{background:rgba(255,255,255,.2);color:#fff}
+.package-preview-name{font-size:1.5rem;font-weight:700;margin-bottom:.75rem}
+.package-preview-price{font-size:1.1rem;margin-bottom:1.5rem;opacity:.9}
+.package-preview-card.featured .package-preview-price{opacity:1}
+.package-preview-features{list-style:none;text-align:left;margin-top:1.5rem}
+.package-preview-features li{padding:.6rem 0;display:flex;align-items:center;gap:.75rem;font-size:.95rem;color:var(--text-gray);border-bottom:1px solid var(--border)}
+.package-preview-card.featured .package-preview-features li{color:rgba(255,255,255,.9);border-bottom-color:rgba(255,255,255,.2)}
+.package-preview-features li:last-child{border-bottom:none}
+.package-preview-features li i{color:var(--primary);width:20px;text-align:center}
+.package-preview-card.featured .package-preview-features li i{color:#fde68a}
+.explore-more-container{text-align:center;margin-top:3rem}
+.btn-explore{background:#fff;color:var(--primary);border:1.5px solid var(--primary);padding:.95rem 2rem;border-radius:50px;font-weight:600;font-size:1rem;text-decoration:none;display:inline-flex;align-items:center;gap:.6rem;transition:transform .3s,background .3s,color .3s,border-color .3s,box-shadow .3s}
+.btn-explore:hover{background:var(--gradient-accent);color:#fff;border-color:transparent;transform:translateY(-3px);box-shadow:0 10px 25px rgba(167,102,220,.3)}
+.btn-explore i{transition:transform .3s}
+.btn-explore:hover i{transform:translateX(4px)}
+.teachers-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(350px,1fr));gap:3rem;max-width:900px;margin:0 auto}
+.teacher-card{text-align:center;padding:2.5rem 2rem;background:#fff;border-radius:24px;border:1px solid var(--border);transition:transform .4s,box-shadow .4s,border-color .4s}
+.teacher-card:hover{transform:translateY(-8px);box-shadow:0 15px 40px rgba(167,102,220,.15);border-color:var(--primary)}
+.teacher-image-wrapper{width:150px;height:150px;margin:0 auto 1.5rem;border-radius:50%;overflow:hidden;border:4px solid var(--primary-light);box-shadow:0 8px 25px rgba(167,102,220,.2)}
+.teacher-image-wrapper img{width:100%;height:100%;object-fit:cover}
+.teacher-card h3{font-size:1.5rem;font-weight:800;color:var(--text-dark);margin-bottom:.5rem}
+.teacher-title{display:inline-block;background:var(--gradient-accent);color:#fff;padding:.4rem 1rem;border-radius:50px;font-size:.85rem;font-weight:600;margin-bottom:1.25rem}
+.teacher-card p{color:var(--text-gray);font-size:.95rem;line-height:1.7;text-align:justify;margin-bottom:.75rem}
+.placement-cta{background:var(--gradient-accent);color:#fff;text-align:center;padding:5rem 2rem;position:relative;overflow:hidden;z-index:2}
+.placement-cta h2{font-size:2.5rem;margin-bottom:1rem;font-weight:800}
+.placement-cta p{font-size:1.1rem;margin-bottom:2.5rem;opacity:.95;max-width:600px;margin-left:auto;margin-right:auto}
+.test-buttons{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap}
+.btn-test{background:#fff;color:var(--primary);padding:1rem 2rem;border-radius:50px;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:.75rem;transition:transform .3s,box-shadow .3s;font-size:1rem}
+.btn-test:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(0,0,0,.2)}
+.contact-buttons{display:flex;gap:1.25rem;justify-content:center;flex-wrap:wrap;max-width:600px;margin:0 auto}
+.contact-btn{display:inline-flex;align-items:center;gap:.75rem;padding:1rem 2rem;border-radius:50px;text-decoration:none;font-weight:600;font-size:1rem;transition:transform .3s,box-shadow .3s}
+.contact-btn.whatsapp{background:var(--whatsapp-green);color:#fff}
+.contact-btn.instagram{background:var(--gradient-story);color:#fff}
+.contact-btn:hover{transform:translateY(-4px);box-shadow:0 10px 25px rgba(0,0,0,.15)}
+.contact-btn i{font-size:1.2rem}
+.contact-note{text-align:center;margin-top:2.5rem;padding:1.5rem;background:#fff;border-radius:16px;color:var(--text-gray);font-size:.95rem;border:1px solid var(--border)}
+footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2rem;position:relative;z-index:2}
+.footer-grid{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem}
+.footer-col h4{color:#fff;margin-bottom:1.25rem;font-size:1.1rem;font-weight:700}
+.footer-col p{font-size:.95rem;line-height:1.7;margin-bottom:.75rem}
+.footer-links{list-style:none}
+.footer-links a{color:var(--text-light);text-decoration:none;display:flex;align-items:center;gap:.5rem;margin-bottom:.75rem;transition:color .3s,transform .3s;font-size:.95rem}
+.footer-links a:hover{color:var(--primary);transform:translateX(6px)}
+.social-links{display:flex;gap:.9rem;margin-top:1.25rem}
+.social-links a{width:42px;height:42px;border-radius:50%;background:rgba(167,102,220,.1);border:1.5px solid var(--primary);display:flex;align-items:center;justify-content:center;color:var(--primary);font-size:1.1rem;transition:background .3s,color .3s,border-color .3s,transform .3s}
+.social-links a:hover{background:var(--gradient-accent);color:#fff;border-color:transparent;transform:translateY(-4px)}
+.footer-bottom{max-width:1300px;margin:0 auto;padding-top:2rem;border-top:1px solid rgba(255,255,255,.1);text-align:center;font-size:.9rem;color:var(--text-light)}
+@media (max-width:1024px){.hero h1{font-size:3rem}.hero-stats{grid-template-columns:repeat(2,1fr)}.about-grid{grid-template-columns:1fr;gap:3rem}.footer-grid{grid-template-columns:1fr 1fr}.side-tracks{display:none}.review-card{flex:0 0 70vw}}
+@media (max-width:768px){.mobile-header-track{display:block}.mobile-tab-bar{display:block}.nav-menu{display:none}.menu-toggle{display:none}.hero{padding:11rem 1.5rem 4rem}.hero h1{font-size:2.2rem}.hero p{font-size:1rem}.hero-stats{grid-template-columns:1fr 1fr;gap:1rem}.hero-stat{padding:1.25rem}.hero-stat-number{font-size:1.75rem}.section-header h2,.reviews-header h2{font-size:2rem}.courses-grid{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr;gap:2rem}.test-buttons,.contact-buttons{flex-direction:column;align-items:stretch}.btn-test,.contact-btn{justify-content:center}.carousel-viewport{overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding:1rem 7.5%;scroll-behavior:smooth}
+.carousel-viewport::-webkit-scrollbar{display:none}.carousel-track{gap:16px;transition:none}.review-card{flex:0 0 85%;max-width:340px;scroll-snap-align:center;opacity:1!important;filter:none!important;transform:none!important;border-radius:20px}.review-card.active{transform:none!important;box-shadow:0 10px 30px rgba(167,102,220,.15)}.review-card::after{display:none}.carousel-controls{display:none}.popup-modal{padding:2.5rem 1.5rem}.popup-modal h3{font-size:1.5rem}.popup-icon{width:70px;height:70px;font-size:1.75rem}.lightbox-nav{width:44px;height:44px;font-size:1rem}.lightbox-nav.prev{left:.75rem}.lightbox-nav.next{right:.75rem}.lightbox-close{top:1rem;right:1rem;width:42px;height:42px}.lightbox-counter{top:1rem}.lightbox-hint{bottom:1rem;font-size:.7rem}}
+@media (max-width:480px){.hero h1{font-size:1.9rem}.section-header h2,.reviews-header h2{font-size:1.75rem}.about-stats{grid-template-columns:1fr}.btn{padding:.9rem 1.75rem;font-size:.95rem}.review-card{flex:0 0 88%}}
+@media (prefers-reduced-motion:reduce){*,::before,::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
 </style>
 </head>
 <body>
-
-<div class="animated-bg">
-  <div class="floating-shape"></div>
-  <div class="floating-shape"></div>
+<div class="animated-bg" aria-hidden="true"><div class="floating-shape"></div><div class="floating-shape"></div></div>
+<div class="custom-cursor" id="customCursor" aria-hidden="true"><div class="custom-cursor-inner">A</div></div>
+<div class="header-animations" aria-hidden="true"><div class="header-blob header-blob-1"></div><div class="header-blob header-blob-2"></div><div class="header-blob header-blob-3"></div></div>
+<div class="side-tracks" aria-hidden="true">
+<div class="side-track left"><div class="side-track-content"><div class="track-label">IELTS</div><div class="track-label-dot"></div><div class="track-label">SAT</div><div class="track-label-dot"></div><div class="track-label">ENGLISH</div><div class="track-label-dot"></div><div class="track-label">RESULTS</div><div class="track-label-dot"></div><div class="track-label">EXCELLENCE</div><div class="track-label-dot"></div><div class="track-label">ACLASS</div><div class="track-label-dot"></div><div class="track-label">IELTS</div><div class="track-label-dot"></div><div class="track-label">SAT</div><div class="track-label-dot"></div><div class="track-label">ENGLISH</div><div class="track-label-dot"></div><div class="track-label">RESULTS</div><div class="track-label-dot"></div><div class="track-label">EXCELLENCE</div><div class="track-label-dot"></div><div class="track-label">ACLASS</div><div class="track-label-dot"></div></div></div>
+<div class="side-track right"><div class="side-track-content"><div class="track-label">PREPARE</div><div class="track-label-dot"></div><div class="track-label">ACHIEVE</div><div class="track-label-dot"></div><div class="track-label">SUCCEED</div><div class="track-label-dot"></div><div class="track-label">LEARN</div><div class="track-label-dot"></div><div class="track-label">GROW</div><div class="track-label-dot"></div><div class="track-label">THRIVE</div><div class="track-label-dot"></div><div class="track-label">PREPARE</div><div class="track-label-dot"></div><div class="track-label">ACHIEVE</div><div class="track-label-dot"></div><div class="track-label">SUCCEED</div><div class="track-label-dot"></div><div class="track-label">LEARN</div><div class="track-label-dot"></div><div class="track-label">GROW</div><div class="track-label-dot"></div><div class="track-label">THRIVE</div><div class="track-label-dot"></div></div></div>
 </div>
-
-<div class="custom-cursor" id="customCursor">
-  <div class="custom-cursor-inner">A</div>
+<div class="mobile-header-track" aria-hidden="true">
+<div class="track-row track-row-left"><span> PRE-REGISTRATION OPENS JULY 25</span><span class="track-dot"></span><span>BE THE FIRST TO SECURE YOUR SPOT</span><span class="track-dot"></span><span> PRE-REGISTRATION OPENS JULY 25</span><span class="track-dot"></span><span>BE THE FIRST TO SECURE YOUR SPOT</span><span class="track-dot"></span></div>
+<div class="track-row track-row-right"><span>🎉 PRE-REGISTRATION OPENS JULY 25</span><span class="track-dot"></span><span>BE THE FIRST TO SECURE YOUR SPOT</span><span class="track-dot"></span><span>🎉 PRE-REGISTRATION OPENS JULY 25</span><span class="track-dot"></span><span>BE THE FIRST TO SECURE YOUR SPOT</span><span class="track-dot"></span></div>
 </div>
-
-<div class="header-animations">
-  <div class="header-blob header-blob-1"></div>
-  <div class="header-blob header-blob-2"></div>
-  <div class="header-blob header-blob-3"></div>
+<div class="popup-overlay" id="popupOverlay" role="dialog" aria-modal="true" aria-labelledby="popupTitle">
+<div class="popup-modal">
+<button class="popup-close" onclick="closePopup()" aria-label="Close notification"><i class="fas fa-times"></i></button>
+<div class="popup-icon" aria-hidden="true"><i class="fas fa-rocket"></i></div>
+<div class="popup-tag"> EXCITING NEWS</div>
+<h3 id="popupTitle">Pre-Registration <span>Opens Soon!</span></h3>
+<div class="popup-date">📅 July 25, 2026</div>
+<p>Be the first to secure your spot in our IELTS, SAT, and General English courses. Limited places available!</p>
+<a href="https://wa.me/37477347364?text=Hi!%20I'm%20interested%20in%20pre-registration%20for%20AClass%20courses." target="_blank" rel="noopener" class="popup-cta"><i class="fab fa-whatsapp" aria-hidden="true"></i> Notify Me</a>
 </div>
-
-<div class="side-tracks">
-  <div class="side-track left">
-    <div class="side-track-content">
-      <div class="track-label">IELTS</div><div class="track-label-dot"></div>
-      <div class="track-label">SAT</div><div class="track-label-dot"></div>
-      <div class="track-label">ENGLISH</div><div class="track-label-dot"></div>
-      <div class="track-label">RESULTS</div><div class="track-label-dot"></div>
-      <div class="track-label">EXCELLENCE</div><div class="track-label-dot"></div>
-      <div class="track-label">ACLASS</div><div class="track-label-dot"></div>
-      <div class="track-label">IELTS</div><div class="track-label-dot"></div>
-      <div class="track-label">SAT</div><div class="track-label-dot"></div>
-      <div class="track-label">ENGLISH</div><div class="track-label-dot"></div>
-      <div class="track-label">RESULTS</div><div class="track-label-dot"></div>
-      <div class="track-label">EXCELLENCE</div><div class="track-label-dot"></div>
-      <div class="track-label">ACLASS</div><div class="track-label-dot"></div>
-    </div>
-  </div>
-  <div class="side-track right">
-    <div class="side-track-content">
-      <div class="track-label">PREPARE</div><div class="track-label-dot"></div>
-      <div class="track-label">ACHIEVE</div><div class="track-label-dot"></div>
-      <div class="track-label">SUCCEED</div><div class="track-label-dot"></div>
-      <div class="track-label">LEARN</div><div class="track-label-dot"></div>
-      <div class="track-label">GROW</div><div class="track-label-dot"></div>
-      <div class="track-label">THRIVE</div><div class="track-label-dot"></div>
-      <div class="track-label">PREPARE</div><div class="track-label-dot"></div>
-      <div class="track-label">ACHIEVE</div><div class="track-label-dot"></div>
-      <div class="track-label">SUCCEED</div><div class="track-label-dot"></div>
-      <div class="track-label">LEARN</div><div class="track-label-dot"></div>
-      <div class="track-label">GROW</div><div class="track-label-dot"></div>
-      <div class="track-label">THRIVE</div><div class="track-label-dot"></div>
-    </div>
-  </div>
 </div>
-
-<div class="mobile-header-track">
-  <div class="track-row track-row-left">
-    <span>🎉 PRE-REGISTRATION OPENS JULY 25</span><span class="track-dot"></span><span>BE THE FIRST TO SECURE YOUR SPOT</span><span class="track-dot"></span><span>🎉 PRE-REGISTRATION OPENS JULY 25</span><span class="track-dot"></span><span>BE THE FIRST TO SECURE YOUR SPOT</span><span class="track-dot"></span>
-  </div>
-  <div class="track-row track-row-right">
-    <span> PRE-REGISTRATION OPENS JULY 25</span><span class="track-dot"></span><span>BE THE FIRST TO SECURE YOUR SPOT</span><span class="track-dot"></span><span>🎉 PRE-REGISTRATION OPENS JULY 25</span><span class="track-dot"></span><span>BE THE FIRST TO SECURE YOUR SPOT</span><span class="track-dot"></span>
-  </div>
+<nav class="navbar" role="navigation" aria-label="Main navigation">
+<div class="nav-container">
+<a href="#home" class="logo" aria-label="AClass Home">
+<img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/Aclasslogo.jpeg" alt="AClass Logo" class="logo-img" width="42" height="42">
+<span class="logo-text">ACLASS</span>
+</a>
+<button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle menu" aria-expanded="false"><i class="fas fa-bars" aria-hidden="true"></i></button>
+<ul class="nav-menu" id="navMenu">
+<li><a href="#home" class="nav-link" onclick="closeMenuOnLink()">Home</a></li>
+<li><a href="#about" class="nav-link" onclick="closeMenuOnLink()">About</a></li>
+<li><a href="#courses" class="nav-link" onclick="closeMenuOnLink()">Courses</a></li>
+<li><a href="#reviews" class="nav-link" onclick="closeMenuOnLink()">Reviews</a></li>
+<li class="nav-dropdown" id="packagesDropdown">
+<a class="nav-link" onclick="toggleDropdown(event)" role="button" aria-haspopup="true" aria-expanded="false">Packages <i class="fas fa-chevron-down" style="font-size:.65rem;margin-left:2px" aria-hidden="true"></i></a>
+<ul class="dropdown-menu">
+<li><a href="all-packages.html" onclick="closeMenuOnLink()"><i class="fas fa-compass" aria-hidden="true"></i> Explore &amp; Compare</a></li>
+</ul>
+</li>
+<li><a href="#contact" class="nav-cta" onclick="closeMenuOnLink()">Contact Us</a></li>
+</ul>
 </div>
-
-<div class="popup-overlay" id="popupOverlay">
-  <div class="popup-modal">
-    <button class="popup-close" onclick="closePopup()"><i class="fas fa-times"></i></button>
-    <div class="popup-icon"><i class="fas fa-rocket"></i></div>
-    <div class="popup-tag">🎉 EXCITING NEWS</div>
-    <h3>Pre-Registration <span>Opens Soon!</span></h3>
-    <div class="popup-date">📅 July 25, 2026</div>
-    <p>Be the first to secure your spot in our IELTS, SAT, and General English courses. Limited places available!</p>
-    <a href="https://wa.me/37477347364?text=Hi!%20I'm%20interested%20in%20pre-registration%20for%20AClass%20courses." target="_blank" class="popup-cta">
-      <i class="fab fa-whatsapp"></i> Notify Me
-    </a>
-  </div>
-</div>
-
-<nav class="navbar">
-  <div class="nav-container">
-    <a href="#home" class="logo">
-      <img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/Aclasslogo.jpeg" alt="AClass Logo" class="logo-img">
-      <span class="logo-text">ACLASS</span>
-    </a>
-    <button class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
-    <ul class="nav-menu" id="navMenu">
-      <li><a href="#home" class="nav-link" onclick="closeMenuOnLink()">Home</a></li>
-      <li><a href="#about" class="nav-link" onclick="closeMenuOnLink()">About</a></li>
-      <li><a href="#courses" class="nav-link" onclick="closeMenuOnLink()">Courses</a></li>
-      <li><a href="#reviews" class="nav-link" onclick="closeMenuOnLink()">Reviews</a></li>
-      
-      <li class="nav-dropdown" id="packagesDropdown">
-        <a class="nav-link" onclick="toggleDropdown(event)">Packages <i class="fas fa-chevron-down" style="font-size: 0.65rem; margin-left: 2px;"></i></a>
-        <ul class="dropdown-menu">
-          <li><a href="all-packages.html" onclick="closeMenuOnLink()"><i class="fas fa-compass"></i> Explore & Compare</a></li>
-        </ul>
-      </li>
-      
-      <li><a href="#contact" class="nav-cta" onclick="closeMenuOnLink()">Contact Us</a></li>
-    </ul>
-  </div>
 </nav>
-
-<div class="mobile-tab-bar">
-  <div class="tab-bar-container">
-    <a href="#courses" class="tab-item active" onclick="setActiveTab(this)">
-      <i class="fas fa-graduation-cap"></i>
-      <span>Courses</span>
-    </a>
-    <a href="#reviews" class="tab-item" onclick="setActiveTab(this)">
-      <i class="fas fa-star"></i>
-      <span>Reviews</span>
-    </a>
-    <a href="#packages" class="tab-item" onclick="setActiveTab(this)">
-      <i class="fas fa-tags"></i>
-      <span>Packages</span>
-    </a>
-    <a href="#contact" class="tab-item" onclick="setActiveTab(this)">
-      <i class="fas fa-envelope"></i>
-      <span>Contact</span>
-    </a>
-  </div>
+<div class="mobile-tab-bar" role="navigation" aria-label="Mobile navigation">
+<div class="tab-bar-container">
+<a href="#courses" class="tab-item active" onclick="setActiveTab(this)" aria-current="page"><i class="fas fa-graduation-cap" aria-hidden="true"></i><span>Courses</span></a>
+<a href="#reviews" class="tab-item" onclick="setActiveTab(this)"><i class="fas fa-star" aria-hidden="true"></i><span>Reviews</span></a>
+<a href="#packages" class="tab-item" onclick="setActiveTab(this)"><i class="fas fa-tags" aria-hidden="true"></i><span>Packages</span></a>
+<a href="#contact" class="tab-item" onclick="setActiveTab(this)"><i class="fas fa-envelope" aria-hidden="true"></i><span>Contact</span></a>
 </div>
-
+</div>
 <section id="home" class="hero">
-  <div class="hero-container">
-    <div class="hero-badge"><i class="fas fa-star"></i><span>15+ Years of Excellence</span></div>
-    <h1>Master English, <span>Achieve Your Dreams</span></h1>
-    <p>Specializing in IELTS, SAT, and General English. Join thousands of successful students with our proven methods.</p>
-    <div class="hero-buttons">
-      <a href="#contact" class="btn btn-primary"><i class="fab fa-whatsapp"></i>Start Learning</a>
-      <a href="#placement" class="btn btn-secondary"><i class="fas fa-clipboard-check"></i>Free Test</a>
-    </div>
-    <div class="hero-stats">
-      <div class="hero-stat"><div class="hero-stat-number">15+</div><div class="hero-stat-label">Years Experience</div></div>
-      <div class="hero-stat"><div class="hero-stat-number">5000+</div><div class="hero-stat-label">Students</div></div>
-      <div class="hero-stat"><div class="hero-stat-number">98%</div><div class="hero-stat-label">Success Rate</div></div>
-      <div class="hero-stat"><div class="hero-stat-number">3</div><div class="hero-stat-label">Programs</div></div>
-    </div>
-  </div>
-</section>
-
-<section id="reviews" class="reviews-section">
-  <div class="container">
-    <div class="reviews-header">
-      <h2>Student Success Stories</h2>
-      <p>Real results from our amazing students</p>
-    </div>
-    <div class="reviews-carousel">
-      <div class="carousel-viewport" id="carouselViewport">
-        <div class="carousel-track" id="carouselTrack">
-          <div class="review-card" data-index="0"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/1rewiew.png" alt="Review 1"></div>
-          <div class="review-card" data-index="1"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/2review.png" alt="Review 2"></div>
-          <div class="review-card" data-index="2"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/3review.png" alt="Review 3"></div>
-          <div class="review-card" data-index="3"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/6review.png" alt="Review 4"></div>
-          <div class="review-card" data-index="4"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/7review.png" alt="Review 5"></div>
-        </div>
-      </div>
-      <div class="carousel-controls">
-        <button class="carousel-btn" onclick="changeCarousel(-1)"><i class="fas fa-chevron-left"></i></button>
-        <div class="carousel-dots" id="carouselDots"></div>
-        <button class="carousel-btn" onclick="changeCarousel(1)"><i class="fas fa-chevron-right"></i></button>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- LIGHTBOX -->
-<div class="lightbox" id="lightbox">
-  <button class="lightbox-close" onclick="closeLightbox()"><i class="fas fa-times"></i></button>
-  <div class="lightbox-counter" id="lightboxCounter">1 / 5</div>
-  <div class="lightbox-image-wrapper" id="lightboxWrapper">
-    <img src="" alt="" class="lightbox-image" id="lightboxImage">
-  </div>
-  <button class="lightbox-nav prev" onclick="navigateLightbox(-1)"><i class="fas fa-chevron-left"></i></button>
-  <button class="lightbox-nav next" onclick="navigateLightbox(1)"><i class="fas fa-chevron-right"></i></button>
-  <div class="lightbox-hint"><i class="fas fa-hand-pointer"></i> Swipe to navigate • Double-tap to zoom</div>
+<div class="hero-container">
+<div class="hero-badge"><i class="fas fa-star" aria-hidden="true"></i><span>15+ Years of Excellence</span></div>
+<h1>Master English, <span>Achieve Your Dreams</span></h1>
+<p>Specializing in IELTS, SAT, and General English. Join thousands of successful students with our proven methods.</p>
+<div class="hero-buttons">
+<a href="#contact" class="btn btn-primary"><i class="fab fa-whatsapp" aria-hidden="true"></i>Start Learning</a>
+<a href="#placement" class="btn btn-secondary"><i class="fas fa-clipboard-check" aria-hidden="true"></i>Free Test</a>
 </div>
-
+<div class="hero-stats">
+<div class="hero-stat"><div class="hero-stat-number">15+</div><div class="hero-stat-label">Years Experience</div></div>
+<div class="hero-stat"><div class="hero-stat-number">5000+</div><div class="hero-stat-label">Students</div></div>
+<div class="hero-stat"><div class="hero-stat-number">98%</div><div class="hero-stat-label">Success Rate</div></div>
+<div class="hero-stat"><div class="hero-stat-number">3</div><div class="hero-stat-label">Programs</div></div>
+</div>
+</div>
+</section>
+<section id="reviews" class="reviews-section">
+<div class="container">
+<div class="reviews-header">
+<h2>Student Success Stories</h2>
+<p>Real results from our amazing students</p>
+</div>
+<div class="reviews-carousel">
+<div class="carousel-viewport" id="carouselViewport">
+<div class="carousel-track" id="carouselTrack" role="list"></div>
+</div>
+<div class="carousel-controls">
+<button class="carousel-btn" onclick="changeCarousel(-1)" aria-label="Previous testimonial"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
+<div class="carousel-dots" id="carouselDots" role="tablist" aria-label="Testimonial navigation"></div>
+<button class="carousel-btn" onclick="changeCarousel(1)" aria-label="Next testimonial"><i class="fas fa-chevron-right" aria-hidden="true"></i></button>
+</div>
+</div>
+</div>
+</section>
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+<button class="lightbox-close" onclick="closeLightbox()" aria-label="Close viewer"><i class="fas fa-times" aria-hidden="true"></i></button>
+<div class="lightbox-counter" id="lightboxCounter" aria-live="polite">1 / 5</div>
+<div class="lightbox-image-wrapper" id="lightboxWrapper">
+<img src="" alt="" class="lightbox-image" id="lightboxImage">
+</div>
+<button class="lightbox-nav prev" onclick="navigateLightbox(-1)" aria-label="Previous image"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
+<button class="lightbox-nav next" onclick="navigateLightbox(1)" aria-label="Next image"><i class="fas fa-chevron-right" aria-hidden="true"></i></button>
+<div class="lightbox-hint" aria-hidden="true"><i class="fas fa-hand-pointer"></i> Swipe to navigate • Double-tap to zoom</div>
+</div>
 <section id="about" class="about">
-  <div class="container">
-    <div class="section-header">
-      <span class="section-tag"><i class="fas fa-info-circle"></i> About Us</span>
-      <h2>Why Choose AClass?</h2>
-      <p>A modern education center with a structured, results-oriented approach</p>
-    </div>
-    <div class="about-grid">
-      <div class="about-text">
-        <h3>Your Partner in Academic Success</h3>
-        <p>With more than 15 years of experience in education, we have developed a structured and results-oriented approach that helps students improve their language skills and prepare confidently for international examinations.</p>
-        <p>Our courses combine experienced teachers, carefully selected materials, regular feedback, and continuous progress monitoring.</p>
-        <div class="about-stats">
-          <div class="stat-card"><div class="stat-number">15+</div><div class="stat-label">Years Experience</div></div>
-          <div class="stat-card"><div class="stat-number">3</div><div class="stat-label">Core Programs</div></div>
-          <div class="stat-card"><div class="stat-number">100%</div><div class="stat-label">Personalized</div></div>
-        </div>
-      </div>
-      <div class="about-visual">
-        <h3 style="text-align: center; margin-bottom: 1.5rem; font-size: 1.5rem; color: var(--text-dark);">What Makes Us Different</h3>
-        <ul style="list-style: none;">
-          <li style="padding: 1rem; background: white; margin-bottom: 0.75rem; border-radius: 12px; display: flex; align-items: center; gap: 0.85rem; border: 1px solid var(--border);">
-            <div style="width: 42px; height: 42px; background: var(--primary-light); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: var(--primary); font-size: 1.1rem;"><i class="fas fa-chalkboard-teacher"></i></div>
-            <span style="color: var(--text-gray); font-weight: 500; font-size: 0.95rem;">Experienced, dedicated teachers</span>
-          </li>
-          <li style="padding: 1rem; background: white; margin-bottom: 0.75rem; border-radius: 12px; display: flex; align-items: center; gap: 0.85rem; border: 1px solid var(--border);">
-            <div style="width: 42px; height: 42px; background: var(--primary-light); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: var(--primary); font-size: 1.1rem;"><i class="fas fa-book"></i></div>
-            <span style="color: var(--text-gray); font-weight: 500; font-size: 0.95rem;">Carefully selected materials</span>
-          </li>
-          <li style="padding: 1rem; background: white; margin-bottom: 0.75rem; border-radius: 12px; display: flex; align-items: center; gap: 0.85rem; border: 1px solid var(--border);">
-            <div style="width: 42px; height: 42px; background: var(--primary-light); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: var(--primary); font-size: 1.1rem;"><i class="fas fa-comments"></i></div>
-            <span style="color: var(--text-gray); font-weight: 500; font-size: 0.95rem;">Regular, detailed feedback</span>
-          </li>
-          <li style="padding: 1rem; background: white; margin-bottom: 0.75rem; border-radius: 12px; display: flex; align-items: center; gap: 0.85rem; border: 1px solid var(--border);">
-            <div style="width: 42px; height: 42px; background: var(--primary-light); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: var(--primary); font-size: 1.1rem;"><i class="fas fa-chart-line"></i></div>
-            <span style="color: var(--text-gray); font-weight: 500; font-size: 0.95rem;">Continuous progress monitoring</span>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
+<div class="container">
+<div class="section-header">
+<span class="section-tag"><i class="fas fa-info-circle" aria-hidden="true"></i> About Us</span>
+<h2>Why Choose AClass?</h2>
+<p>A modern education center with a structured, results-oriented approach</p>
+</div>
+<div class="about-grid">
+<div class="about-text">
+<h3>Your Partner in Academic Success</h3>
+<p>With more than 15 years of experience in education, we have developed a structured and results-oriented approach that helps students improve their language skills and prepare confidently for international examinations.</p>
+<p>Our courses combine experienced teachers, carefully selected materials, regular feedback, and continuous progress monitoring.</p>
+<div class="about-stats">
+<div class="stat-card"><div class="stat-number">15+</div><div class="stat-label">Years Experience</div></div>
+<div class="stat-card"><div class="stat-number">3</div><div class="stat-label">Core Programs</div></div>
+<div class="stat-card"><div class="stat-number">100%</div><div class="stat-label">Personalized</div></div>
+</div>
+</div>
+<div class="about-visual">
+<h3 style="text-align:center;margin-bottom:1.5rem;font-size:1.5rem;color:var(--text-dark)">What Makes Us Different</h3>
+<ul style="list-style:none">
+<li style="padding:1rem;background:#fff;margin-bottom:.75rem;border-radius:12px;display:flex;align-items:center;gap:.85rem;border:1px solid var(--border)"><div style="width:42px;height:42px;background:var(--primary-light);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--primary);font-size:1.1rem"><i class="fas fa-chalkboard-teacher" aria-hidden="true"></i></div><span style="color:var(--text-gray);font-weight:500;font-size:.95rem">Experienced, dedicated teachers</span></li>
+<li style="padding:1rem;background:#fff;margin-bottom:.75rem;border-radius:12px;display:flex;align-items:center;gap:.85rem;border:1px solid var(--border)"><div style="width:42px;height:42px;background:var(--primary-light);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--primary);font-size:1.1rem"><i class="fas fa-book" aria-hidden="true"></i></div><span style="color:var(--text-gray);font-weight:500;font-size:.95rem">Carefully selected materials</span></li>
+<li style="padding:1rem;background:#fff;margin-bottom:.75rem;border-radius:12px;display:flex;align-items:center;gap:.85rem;border:1px solid var(--border)"><div style="width:42px;height:42px;background:var(--primary-light);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--primary);font-size:1.1rem"><i class="fas fa-comments" aria-hidden="true"></i></div><span style="color:var(--text-gray);font-weight:500;font-size:.95rem">Regular, detailed feedback</span></li>
+<li style="padding:1rem;background:#fff;margin-bottom:.75rem;border-radius:12px;display:flex;align-items:center;gap:.85rem;border:1px solid var(--border)"><div style="width:42px;height:42px;background:var(--primary-light);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--primary);font-size:1.1rem"><i class="fas fa-chart-line" aria-hidden="true"></i></div><span style="color:var(--text-gray);font-weight:500;font-size:.95rem">Continuous progress monitoring</span></li>
+</ul>
+</div>
+</div>
+</div>
 </section>
-
 <section id="courses" class="courses">
-  <div class="container">
-    <div class="section-header">
-      <span class="section-tag"><i class="fas fa-graduation-cap"></i> Our Courses</span>
-      <h2>Tailored Programs for Every Goal</h2>
-      <p>From international exam preparation to everyday fluency</p>
-    </div>
-    <div class="courses-grid">
-      <div class="course-card">
-        <div class="course-icon"><i class="fas fa-graduation-cap"></i></div>
-        <h3>IELTS Preparation</h3>
-        <p>Learn effective exam strategies, improve academic vocabulary and grammar, and practice with IELTS-style tasks.</p>
-        <ul class="course-features">
-          <li>Special attention to Writing and Speaking</li>
-          <li>Personalized corrections & recommendations</li>
-          <li>Model answers and practical guidance</li>
-          <li>Proven strategies to improve band score</li>
-        </ul>
-      </div>
-      <div class="course-card">
-        <div class="course-icon"><i class="fas fa-book-open"></i></div>
-        <h3>SAT Preparation</h3>
-        <p>Develop the knowledge, accuracy, and time-management skills required for the Digital SAT.</p>
-        <ul class="course-features">
-          <li>Reading, Grammar, Math & Vocabulary</li>
-          <li>Problem-solving strategies</li>
-          <li>Time management techniques</li>
-          <li>Regular mock tests</li>
-        </ul>
-      </div>
-      <div class="course-card">
-        <div class="course-icon"><i class="fas fa-comments"></i></div>
-        <h3>General English</h3>
-        <p>Improve your overall English level for education, work, travel, or everyday communication.</p>
-        <ul class="course-features">
-          <li>Speaking confidence & Pronunciation</li>
-          <li>Listening & Reading skills</li>
-          <li>Grammar accuracy & Vocabulary</li>
-          <li>Real-life practice</li>
-        </ul>
-      </div>
-    </div>
-  </div>
+<div class="container">
+<div class="section-header">
+<span class="section-tag"><i class="fas fa-graduation-cap" aria-hidden="true"></i> Our Courses</span>
+<h2>Tailored Programs for Every Goal</h2>
+<p>From international exam preparation to everyday fluency</p>
+</div>
+<div class="courses-grid">
+<article class="course-card">
+<div class="course-icon"><i class="fas fa-graduation-cap" aria-hidden="true"></i></div>
+<h3>IELTS Preparation</h3>
+<p>Learn effective exam strategies, improve academic vocabulary and grammar, and practice with IELTS-style tasks.</p>
+<ul class="course-features">
+<li>Special attention to Writing and Speaking</li>
+<li>Personalized corrections &amp; recommendations</li>
+<li>Model answers and practical guidance</li>
+<li>Proven strategies to improve band score</li>
+</ul>
+</article>
+<article class="course-card">
+<div class="course-icon"><i class="fas fa-book-open" aria-hidden="true"></i></div>
+<h3>SAT Preparation</h3>
+<p>Develop the knowledge, accuracy, and time-management skills required for the Digital SAT.</p>
+<ul class="course-features">
+<li>Reading, Grammar, Math &amp; Vocabulary</li>
+<li>Problem-solving strategies</li>
+<li>Time management techniques</li>
+<li>Regular mock tests</li>
+</ul>
+</article>
+<article class="course-card">
+<div class="course-icon"><i class="fas fa-comments" aria-hidden="true"></i></div>
+<h3>General English</h3>
+<p>Improve your overall English level for education, work, travel, or everyday communication.</p>
+<ul class="course-features">
+<li>Speaking confidence &amp; Pronunciation</li>
+<li>Listening &amp; Reading skills</li>
+<li>Grammar accuracy &amp; Vocabulary</li>
+<li>Real-life practice</li>
+</ul>
+</article>
+</div>
+</div>
 </section>
-
 <section class="how-it-works">
-  <div class="container">
-    <div class="section-header">
-      <span class="section-tag"><i class="fas fa-cogs"></i> Methodology</span>
-      <h2>How Our Lessons Work</h2>
-      <p>Clear, structured, and proven 6-step learning process</p>
-    </div>
-    <div class="steps-grid">
-      <div class="step-card"><div class="step-number">1</div><h4>Initial Assessment</h4><p>Placement test to determine your level and recommend the best program.</p></div>
-      <div class="step-card"><div class="step-number">2</div><h4>Personalized Plan</h4><p>Custom study plan based on your level, goals, and target result.</p></div>
-      <div class="step-card"><div class="step-number">3</div><h4>Guided Practice</h4><p>Teacher introduces new material and demonstrates strategies.</p></div>
-      <div class="step-card"><div class="step-number">4</div><h4>Independent Practice</h4><p>Complete exercises to apply what you've learned.</p></div>
-      <div class="step-card"><div class="step-number">5</div><h4>Detailed Feedback</h4><p>Clear corrections on grammar, vocabulary, and technique.</p></div>
-      <div class="step-card"><div class="step-number">6</div><h4>Progress Monitoring</h4><p>Continuous monitoring through tests and mock exams.</p></div>
-    </div>
-  </div>
+<div class="container">
+<div class="section-header">
+<span class="section-tag"><i class="fas fa-cogs" aria-hidden="true"></i> Methodology</span>
+<h2>How Our Lessons Work</h2>
+<p>Clear, structured, and proven 6-step learning process</p>
+</div>
+<div class="steps-grid">
+<article class="step-card"><div class="step-number">1</div><h4>Initial Assessment</h4><p>Placement test to determine your level and recommend the best program.</p></article>
+<article class="step-card"><div class="step-number">2</div><h4>Personalized Plan</h4><p>Custom study plan based on your level, goals, and target result.</p></article>
+<article class="step-card"><div class="step-number">3</div><h4>Guided Practice</h4><p>Teacher introduces new material and demonstrates strategies.</p></article>
+<article class="step-card"><div class="step-number">4</div><h4>Independent Practice</h4><p>Complete exercises to apply what you've learned.</p></article>
+<article class="step-card"><div class="step-number">5</div><h4>Detailed Feedback</h4><p>Clear corrections on grammar, vocabulary, and technique.</p></article>
+<article class="step-card"><div class="step-number">6</div><h4>Progress Monitoring</h4><p>Continuous monitoring through tests and mock exams.</p></article>
+</div>
+</div>
 </section>
-
 <section id="packages" class="packages">
-  <div class="container">
-    <div class="section-header">
-      <span class="section-tag"><i class="fas fa-tags"></i> Pricing</span>
-      <h2>Choose Your Package</h2>
-      <p>Flexible lesson formats designed to fit your schedule</p>
-    </div>
-    
-    <div class="packages-preview-grid">
-      <div class="package-preview-card">
-        <div class="package-preview-icon"><i class="fas fa-users"></i></div>
-        <div class="package-preview-name">Standard Group</div>
-        <div class="package-preview-price">12 lessons/month • 3 lessons/week • 90 min</div>
-        <ul class="package-preview-features">
-          <li><i class="fas fa-check"></i> Teacher-led lessons</li>
-          <li><i class="fas fa-check"></i> Exam strategies</li>
-          <li><i class="fas fa-check"></i> Progress monitoring</li>
-        </ul>
-      </div>
-      
-      <div class="package-preview-card featured">
-        <div class="package-preview-icon"><i class="fas fa-bolt"></i></div>
-        <div class="package-preview-name">Intensive Group</div>
-        <div class="package-preview-price">20 lessons/month • 5 lessons/week • 90 min</div>
-        <ul class="package-preview-features">
-          <li><i class="fas fa-check"></i> Fastest progress</li>
-          <li><i class="fas fa-check"></i> Ideal for exams</li>
-          <li><i class="fas fa-check"></i> Priority support</li>
-        </ul>
-      </div>
-      
-      <div class="package-preview-card">
-        <div class="package-preview-icon"><i class="fas fa-user"></i></div>
-        <div class="package-preview-name">Individual</div>
-        <div class="package-preview-price">12 lessons/month • 3 lessons/week • 60 min</div>
-        <ul class="package-preview-features">
-          <li><i class="fas fa-check"></i> Fully personalized</li>
-          <li><i class="fas fa-check"></i> Flexible schedule</li>
-          <li><i class="fas fa-check"></i> One-on-one attention</li>
-        </ul>
-      </div>
-    </div>
-    
-    <div class="explore-more-container">
-      <a href="all-packages.html" class="btn-explore">
-        View All Packages <i class="fas fa-arrow-right"></i>
-      </a>
-    </div>
-  </div>
+<div class="container">
+<div class="section-header">
+<span class="section-tag"><i class="fas fa-tags" aria-hidden="true"></i> Pricing</span>
+<h2>Choose Your Package</h2>
+<p>Flexible lesson formats designed to fit your schedule</p>
+</div>
+<div class="packages-preview-grid">
+<article class="package-preview-card">
+<div class="package-preview-icon"><i class="fas fa-users" aria-hidden="true"></i></div>
+<div class="package-preview-name">Standard Group</div>
+<div class="package-preview-price">12 lessons/month • 3 lessons/week • 90 min</div>
+<ul class="package-preview-features">
+<li><i class="fas fa-check" aria-hidden="true"></i> Teacher-led lessons</li>
+<li><i class="fas fa-check" aria-hidden="true"></i> Exam strategies</li>
+<li><i class="fas fa-check" aria-hidden="true"></i> Progress monitoring</li>
+</ul>
+</article>
+<article class="package-preview-card featured">
+<div class="package-preview-icon"><i class="fas fa-bolt" aria-hidden="true"></i></div>
+<div class="package-preview-name">Intensive Group</div>
+<div class="package-preview-price">20 lessons/month • 5 lessons/week • 90 min</div>
+<ul class="package-preview-features">
+<li><i class="fas fa-check" aria-hidden="true"></i> Fastest progress</li>
+<li><i class="fas fa-check" aria-hidden="true"></i> Ideal for exams</li>
+<li><i class="fas fa-check" aria-hidden="true"></i> Priority support</li>
+</ul>
+</article>
+<article class="package-preview-card">
+<div class="package-preview-icon"><i class="fas fa-user" aria-hidden="true"></i></div>
+<div class="package-preview-name">Individual</div>
+<div class="package-preview-price">12 lessons/month • 3 lessons/week • 60 min</div>
+<ul class="package-preview-features">
+<li><i class="fas fa-check" aria-hidden="true"></i> Fully personalized</li>
+<li><i class="fas fa-check" aria-hidden="true"></i> Flexible schedule</li>
+<li><i class="fas fa-check" aria-hidden="true"></i> One-on-one attention</li>
+</ul>
+</article>
+</div>
+<div class="explore-more-container">
+<a href="all-packages.html" class="btn-explore">View All Packages <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+</div>
+</div>
 </section>
-
 <section class="teachers-section">
-  <div class="container">
-    <div class="section-header">
-      <span class="section-tag"><i class="fas fa-chalkboard-teacher"></i> Our Team</span>
-      <h2>Meet Our Expert Teachers</h2>
-      <p>Learn from experienced, dedicated professionals committed to your success</p>
-    </div>
-    <div class="teachers-grid">
-      <div class="teacher-card">
-        <div class="teacher-image-wrapper">
-          <img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/Aisa.jpeg" alt="Aisa">
-        </div>
-        <h3>Aisa</h3>
-        <div class="teacher-title">Senior IELTS Tutor</div>
-        <p>Aisa is an experienced English educator with 8 years of IELTS teaching experience and 10 years of experience teaching English overall. She holds an outstanding IELTS score of 8.5, including a perfect 9.0 in Speaking.</p>
-        <p>Aisa is currently pursuing a master's degree through the MA TEFL program, specializing in Teaching English as a Foreign Language, at an American University of Armenia.</p>
-      </div>
-      
-      <div class="teacher-card">
-        <div class="teacher-image-wrapper">
-          <img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/Ademi.jpeg" alt="Ademi">
-        </div>
-        <h3>Ademi</h3>
-        <div class="teacher-title">IELTS Tutor</div>
-        <p>Ademi is a dedicated IELTS tutor with 4.5 years of teaching experience. She graduated from the American University of Central Asia and achieved an impressive IELTS score of 8.0 with 8.0 for both Writing and Speaking.</p>
-      </div>
-    </div>
-  </div>
+<div class="container">
+<div class="section-header">
+<span class="section-tag"><i class="fas fa-chalkboard-teacher" aria-hidden="true"></i> Our Team</span>
+<h2>Meet Our Expert Teachers</h2>
+<p>Learn from experienced, dedicated professionals committed to your success</p>
+</div>
+<div class="teachers-grid">
+<article class="teacher-card">
+<div class="teacher-image-wrapper"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/Aisa.jpeg" alt="Aisa, Senior IELTS Tutor" loading="lazy" width="150" height="150"></div>
+<h3>Aisa</h3>
+<div class="teacher-title">Senior IELTS Tutor</div>
+<p>Aisa is an experienced English educator with 8 years of IELTS teaching experience and 10 years of experience teaching English overall. She holds an outstanding IELTS score of 8.5, including a perfect 9.0 in Speaking.</p>
+<p>Aisa is currently pursuing a master's degree through the MA TEFL program, specializing in Teaching English as a Foreign Language, at an American University of Armenia.</p>
+</article>
+<article class="teacher-card">
+<div class="teacher-image-wrapper"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/Ademi.jpeg" alt="Ademi, IELTS Tutor" loading="lazy" width="150" height="150"></div>
+<h3>Ademi</h3>
+<div class="teacher-title">IELTS Tutor</div>
+<p>Ademi is a dedicated IELTS tutor with 4.5 years of teaching experience. She graduated from the American University of Central Asia and achieved an impressive IELTS score of 8.0 with 8.0 for both Writing and Speaking.</p>
+</article>
+</div>
+</div>
 </section>
-
 <section id="placement" class="placement-cta">
-  <h2>Not Sure About Your Level?</h2>
-  <p>Take our free online assessments and we'll recommend the perfect course for you.</p>
-  <div class="test-buttons">
-    <a href="https://aclassenglish.github.io/A_Class/English%20Placement%20Test%20%20A%20Class.html" target="_blank" class="btn-test"><i class="fas fa-spell-check"></i>Grammar & Vocabulary Test</a>
-    <a href="https://aclassenglish.github.io/A_Class/English%20Reading%20Level%20Assessment%20%20A%20Class.html" target="_blank" class="btn-test"><i class="fas fa-book-reader"></i>Reading Assessment</a>
-  </div>
+<h2>Not Sure About Your Level?</h2>
+<p>Take our free online assessments and we'll recommend the perfect course for you.</p>
+<div class="test-buttons">
+<a href="https://aclassenglish.github.io/A_Class/English%20Placement%20Test%20%20A%20Class.html" target="_blank" rel="noopener" class="btn-test"><i class="fas fa-spell-check" aria-hidden="true"></i>Grammar &amp; Vocabulary Test</a>
+<a href="https://aclassenglish.github.io/A_Class/English%20Reading%20Level%20Assessment%20%20A%20Class.html" target="_blank" rel="noopener" class="btn-test"><i class="fas fa-book-reader" aria-hidden="true"></i>Reading Assessment</a>
+</div>
 </section>
-
 <section id="contact" class="contact">
-  <div class="container">
-    <div class="section-header">
-      <span class="section-tag"><i class="fas fa-envelope"></i> Contact Us</span>
-      <h2>Get in Touch</h2>
-      <p>Reach out to us directly via WhatsApp or Instagram</p>
-    </div>
-    <div class="contact-buttons">
-      <a href="https://wa.me/37477347364" target="_blank" class="contact-btn whatsapp"><i class="fab fa-whatsapp"></i><span>WhatsApp</span></a>
-      <a href="https://www.instagram.com/aclass.am" target="_blank" class="contact-btn instagram"><i class="fab fa-instagram"></i><span>Instagram</span></a>
-    </div>
-    <div class="contact-note"><i class="fas fa-clock"></i> We typically respond within 1-2 hours during business hours</div>
-  </div>
+<div class="container">
+<div class="section-header">
+<span class="section-tag"><i class="fas fa-envelope" aria-hidden="true"></i> Contact Us</span>
+<h2>Get in Touch</h2>
+<p>Reach out to us directly via WhatsApp or Instagram</p>
+</div>
+<div class="contact-buttons">
+<a href="https://wa.me/37477347364" target="_blank" rel="noopener" class="contact-btn whatsapp"><i class="fab fa-whatsapp" aria-hidden="true"></i><span>WhatsApp</span></a>
+<a href="https://www.instagram.com/aclass.am" target="_blank" rel="noopener" class="contact-btn instagram"><i class="fab fa-instagram" aria-hidden="true"></i><span>Instagram</span></a>
+</div>
+<div class="contact-note"><i class="fas fa-clock" aria-hidden="true"></i> We typically respond within 1-2 hours during business hours</div>
+</div>
 </section>
-
 <footer>
-  <div class="footer-grid">
-    <div class="footer-col">
-      <h4>AClass English School</h4>
-      <p>Empowering students to achieve English fluency and exam success for over 15 years.</p>
-      <div class="social-links">
-        <a href="https://www.instagram.com/aclass.am" target="_blank"><i class="fab fa-instagram"></i></a>
-        <a href="#"><i class="fab fa-facebook-f"></i></a>
-        <a href="#"><i class="fab fa-telegram-plane"></i></a>
-      </div>
-    </div>
-    <div class="footer-col">
-      <h4>Quick Links</h4>
-      <ul class="footer-links">
-        <li><a href="#home"><i class="fas fa-chevron-right"></i> Home</a></li>
-        <li><a href="#about"><i class="fas fa-chevron-right"></i> About Us</a></li>
-        <li><a href="#courses"><i class="fas fa-chevron-right"></i> Courses</a></li>
-        <li><a href="all-packages.html"><i class="fas fa-chevron-right"></i> All Packages</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Programs</h4>
-      <ul class="footer-links">
-        <li><a href="#courses"><i class="fas fa-chevron-right"></i> IELTS</a></li>
-        <li><a href="#courses"><i class="fas fa-chevron-right"></i> SAT</a></li>
-        <li><a href="#courses"><i class="fas fa-chevron-right"></i> General English</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Contact</h4>
-      <ul class="footer-links">
-        <li><a href="mailto:info@aclass.am"><i class="fas fa-envelope"></i> info@aclass.am</a></li>
-        <li><a href="https://wa.me/37477347364"><i class="fas fa-phone"></i> +374 77 347 364</a></li>
-        <li><a href="#"><i class="fas fa-map-marker-alt"></i> Yerevan, Armenia</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="footer-bottom">© 2026 AClass English School. All rights reserved.</div>
+<div class="footer-grid">
+<div class="footer-col">
+<h4>AClass English School</h4>
+<p>Empowering students to achieve English fluency and exam success for over 15 years.</p>
+<div class="social-links">
+<a href="https://www.instagram.com/aclass.am" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+<a href="#" aria-label="Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+<a href="#" aria-label="Telegram"><i class="fab fa-telegram-plane" aria-hidden="true"></i></a>
+</div>
+</div>
+<div class="footer-col">
+<h4>Quick Links</h4>
+<ul class="footer-links">
+<li><a href="#home"><i class="fas fa-chevron-right" aria-hidden="true"></i> Home</a></li>
+<li><a href="#about"><i class="fas fa-chevron-right" aria-hidden="true"></i> About Us</a></li>
+<li><a href="#courses"><i class="fas fa-chevron-right" aria-hidden="true"></i> Courses</a></li>
+<li><a href="all-packages.html"><i class="fas fa-chevron-right" aria-hidden="true"></i> All Packages</a></li>
+</ul>
+</div>
+<div class="footer-col">
+<h4>Programs</h4>
+<ul class="footer-links">
+<li><a href="#courses"><i class="fas fa-chevron-right" aria-hidden="true"></i> IELTS</a></li>
+<li><a href="#courses"><i class="fas fa-chevron-right" aria-hidden="true"></i> SAT</a></li>
+<li><a href="#courses"><i class="fas fa-chevron-right" aria-hidden="true"></i> General English</a></li>
+</ul>
+</div>
+<div class="footer-col">
+<h4>Contact</h4>
+<ul class="footer-links">
+<li><a href="mailto:info@aclass.am"><i class="fas fa-envelope" aria-hidden="true"></i> info@aclass.am</a></li>
+<li><a href="https://wa.me/37477347364"><i class="fas fa-phone" aria-hidden="true"></i> +374 77 347 364</a></li>
+<li><a href="#"><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Yerevan, Armenia</a></li>
+</ul>
+</div>
+</div>
+<div class="footer-bottom">© 2026 AClass English School. All rights reserved.</div>
 </footer>
-
 <script>
-  if (history.scrollRestoration) { history.scrollRestoration = 'manual'; }
-  window.addEventListener('load', () => { window.scrollTo({ top: 0, behavior: 'instant' }); });
-  window.addEventListener('beforeunload', () => { window.scrollTo(0, 0); });
-  
-  const cursor = document.getElementById('customCursor');
-  document.addEventListener('mousemove', (e) => {
-    cursor.style.left = e.clientX + 'px';
-    cursor.style.top = e.clientY + 'px';
-    cursor.classList.add('active');
-  });
-  document.addEventListener('mouseleave', () => cursor.classList.remove('active'));
-  document.querySelectorAll('a, button, .package-preview-card, .course-card, .step-card, .teacher-card').forEach(el => {
-    el.addEventListener('mouseenter', () => cursor.classList.add('hovering'));
-    el.addEventListener('mouseleave', () => cursor.classList.remove('hovering'));
-  });
-
-  function toggleMenu() { 
-    document.getElementById('navMenu').classList.toggle('active'); 
-    document.getElementById('packagesDropdown').classList.remove('open');
-  }
-  
-  function closeMenuOnLink() {
-    document.getElementById('navMenu').classList.remove('active');
-    document.getElementById('packagesDropdown').classList.remove('open');
-  }
-  
-  function toggleDropdown(event) {
-    if (window.innerWidth <= 768) {
-      event.preventDefault(); 
-      event.stopPropagation();
-      document.getElementById('packagesDropdown').classList.toggle('open');
-    }
-  }
-  
-  document.addEventListener('click', (e) => {
-    if (!e.target.closest('.nav-dropdown')) {
-      document.getElementById('packagesDropdown').classList.remove('open');
-    }
-  });
-  
-  let menuOpen = false;
-  const navMenu = document.getElementById('navMenu');
-  const menuObserver = new MutationObserver((mutations) => {
-    mutations.forEach((mutation) => {
-      if (mutation.attributeName === 'class') {
-        menuOpen = navMenu.classList.contains('active');
-      }
-    });
-  });
-  menuObserver.observe(navMenu, { attributes: true });
-  
-  window.addEventListener('scroll', () => {
-    const navbar = document.querySelector('.navbar');
-    if (window.scrollY > 50) { navbar.classList.add('scrolled'); } else { navbar.classList.remove('scrolled'); }
-    
-    if (menuOpen && window.innerWidth <= 768) {
-      closeMenuOnLink();
-    }
-  });
-  
-  function setActiveTab(element) {
-    document.querySelectorAll('.tab-item').forEach(tab => {
-      tab.classList.remove('active');
-    });
-    element.classList.add('active');
-  }
-  
-  function showPopup() { 
-    document.getElementById('popupOverlay').classList.add('active'); 
-  }
-  
-  function closePopup() { 
-    document.getElementById('popupOverlay').classList.remove('active'); 
-    try { sessionStorage.setItem('popupClosed', 'true'); } catch(e) {}
-  }
-  
-  let popupClosed = false; 
-  try { popupClosed = sessionStorage.getItem('popupClosed') === 'true'; } catch(e) {}
-  
-  if (!popupClosed) { 
-    setTimeout(showPopup, 1500); 
-  }
-  
-  document.getElementById('popupOverlay').addEventListener('click', (e) => {
-    if (e.target === e.currentTarget) closePopup();
-  });
-  
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      closePopup();
-      closeLightbox();
-    }
-  });
-  
-  // ===== PREMIUM CAROUSEL =====
-  let currentSlide = 2;
-  const track = document.getElementById('carouselTrack');
-  const viewport = document.getElementById('carouselViewport');
-  const cards = document.querySelectorAll('.review-card');
-  const totalCards = cards.length;
-  const dotsContainer = document.getElementById('carouselDots');
-  let autoPlayInterval;
-  let isMobile = window.innerWidth <= 768;
-  
-  // Review images for lightbox
-  const reviewImages = [
-    'https://raw.githubusercontent.com/AClassenglish/A_Class/main/1rewiew.png',
-    'https://raw.githubusercontent.com/AClassenglish/A_Class/main/2review.png',
-    'https://raw.githubusercontent.com/AClassenglish/A_Class/main/3review.png',
-    'https://raw.githubusercontent.com/AClassenglish/A_Class/main/6review.png',
-    'https://raw.githubusercontent.com/AClassenglish/A_Class/main/7review.png'
-  ];
-  
-  for (let i = 0; i < totalCards; i++) {
-    const dot = document.createElement('div');
-    dot.className = 'carousel-dot' + (i === currentSlide ? ' active' : '');
-    dot.onclick = () => goToSlide(i);
-    dotsContainer.appendChild(dot);
-  }
-  const dots = document.querySelectorAll('.carousel-dot');
-  
-  function updateCarousel() {
-    isMobile = window.innerWidth <= 768;
-    
-    if (isMobile) {
-      // Mobile: use scroll-snap, just update dots and active class
-      const card = cards[currentSlide];
-      if (card) {
-        card.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-      }
-      cards.forEach((card, index) => {
-        card.classList.toggle('active', index === currentSlide);
-      });
-      dots.forEach((dot, index) => {
-        dot.classList.toggle('active', index === currentSlide);
-      });
-      return;
-    }
-    
-    // Desktop: transform-based centered carousel
-    const viewportWidth = viewport.offsetWidth;
-    const card = cards[0];
-    const cardWidth = card.offsetWidth;
-    const gap = 24;
-    const offset = (viewportWidth / 2) - (cardWidth / 2) - (currentSlide * (cardWidth + gap));
-    track.style.transform = `translateX(${offset}px)`;
-    
-    cards.forEach((card, index) => {
-      card.classList.toggle('active', index === currentSlide);
-    });
-    
-    dots.forEach((dot, index) => {
-      dot.classList.toggle('active', index === currentSlide);
-    });
-  }
-  
-  function changeCarousel(direction) {
-    currentSlide = (currentSlide + direction + totalCards) % totalCards;
-    updateCarousel();
-    resetAutoPlay();
-  }
-  
-  function goToSlide(index) {
-    currentSlide = index;
-    updateCarousel();
-    resetAutoPlay();
-  }
-  
-  function resetAutoPlay() {
-    clearInterval(autoPlayInterval);
-    autoPlayInterval = setInterval(() => {
-      currentSlide = (currentSlide + 1) % totalCards;
-      updateCarousel();
-    }, 7000);
-  }
-  
-  // Click on card to center it (desktop)
-  cards.forEach((card, index) => {
-    card.addEventListener('click', (e) => {
-      // If it's a double-click or the card is already active, open lightbox
-      if (index === currentSlide && !isMobile) {
-        openLightbox(index);
-      } else if (isMobile) {
-        // On mobile, tap opens lightbox
-        openLightbox(index);
-      } else {
-        // On desktop, click centers the card
-        currentSlide = index;
-        updateCarousel();
-        resetAutoPlay();
-      }
-    });
-  });
-  
-  // Desktop drag
-  let dragStartX = 0;
-  let dragCurrentX = 0;
-  let isDragging = false;
-  
-  viewport.addEventListener('mousedown', (e) => {
-    if (isMobile) return;
-    isDragging = true;
-    dragStartX = e.pageX;
-    dragCurrentX = e.pageX;
-    track.style.transition = 'none';
-    clearInterval(autoPlayInterval);
-  });
-  
-  document.addEventListener('mousemove', (e) => {
-    if (!isDragging || isMobile) return;
-    dragCurrentX = e.pageX;
-    const diff = dragCurrentX - dragStartX;
-    const viewportWidth = viewport.offsetWidth;
-    const card = cards[0];
-    const cardWidth = card.offsetWidth;
-    const gap = 24;
-    const baseOffset = (viewportWidth / 2) - (cardWidth / 2) - (currentSlide * (cardWidth + gap));
-    track.style.transform = `translateX(${baseOffset + diff}px)`;
-  });
-  
-  document.addEventListener('mouseup', (e) => {
-    if (!isDragging || isMobile) return;
-    isDragging = false;
-    track.style.transition = 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
-    const diff = dragCurrentX - dragStartX;
-    if (Math.abs(diff) > 80) {
-      if (diff < 0) currentSlide = (currentSlide + 1) % totalCards;
-      else currentSlide = (currentSlide - 1 + totalCards) % totalCards;
-    }
-    updateCarousel();
-    resetAutoPlay();
-  });
-  
-  // Mobile swipe detection for lightbox navigation
-  let mobileSwipeStartX = 0;
-  viewport.addEventListener('touchstart', (e) => {
-    if (!isMobile) return;
-    mobileSwipeStartX = e.touches[0].clientX;
-  }, { passive: true });
-  
-  viewport.addEventListener('touchend', (e) => {
-    if (!isMobile) return;
-    const diff = mobileSwipeStartX - e.changedTouches[0].clientX;
-    if (Math.abs(diff) > 50) {
-      if (diff > 0) currentSlide = (currentSlide + 1) % totalCards;
-      else currentSlide = (currentSlide - 1 + totalCards) % totalCards;
-      updateCarousel();
-      resetAutoPlay();
-    }
-  }, { passive: true });
-  
-  updateCarousel();
-  resetAutoPlay();
-  window.addEventListener('resize', updateCarousel);
-  
-  // ===== LIGHTBOX =====
-  const lightbox = document.getElementById('lightbox');
-  const lightboxImage = document.getElementById('lightboxImage');
-  const lightboxCounter = document.getElementById('lightboxCounter');
-  const lightboxWrapper = document.getElementById('lightboxWrapper');
-  let lightboxIndex = 0;
-  let lightboxScale = 1;
-  let lightboxTranslateX = 0;
-  let lightboxTranslateY = 0;
-  let lastTap = 0;
-  let lastTouchDistance = 0;
-  let isLightboxDragging = false;
-  let lightboxDragStartX = 0;
-  let lightboxDragStartY = 0;
-  
-  function openLightbox(index) {
-    lightboxIndex = index;
-    lightboxScale = 1;
-    lightboxTranslateX = 0;
-    lightboxTranslateY = 0;
-    updateLightboxImage();
-    lightbox.classList.add('active');
-    document.body.style.overflow = 'hidden';
-  }
-  
-  function closeLightbox() {
-    lightbox.classList.remove('active');
-    document.body.style.overflow = '';
-    setTimeout(() => {
-      lightboxScale = 1;
-      lightboxTranslateX = 0;
-      lightboxTranslateY = 0;
-      lightboxImage.style.transform = 'scale(1) translate(0, 0)';
-    }, 400);
-  }
-  
-  function updateLightboxImage() {
-    lightboxImage.src = reviewImages[lightboxIndex];
-    lightboxCounter.textContent = `${lightboxIndex + 1} / ${totalCards}`;
-    lightboxScale = 1;
-    lightboxTranslateX = 0;
-    lightboxTranslateY = 0;
-    lightboxImage.style.transform = 'scale(1) translate(0, 0)';
-  }
-  
-  function navigateLightbox(direction) {
-    lightboxIndex = (lightboxIndex + direction + totalCards) % totalCards;
-    updateLightboxImage();
-  }
-  
-  lightbox.addEventListener('click', (e) => {
-    if (e.target === lightbox) closeLightbox();
-  });
-  
-  // Double-tap to zoom
-  lightboxImage.addEventListener('touchend', (e) => {
-    const now = Date.now();
-    if (now - lastTap < 300) {
-      e.preventDefault();
-      if (lightboxScale > 1) {
-        lightboxScale = 1;
-        lightboxTranslateX = 0;
-        lightboxTranslateY = 0;
-      } else {
-        lightboxScale = 2.5;
-      }
-      applyLightboxTransform();
-    }
-    lastTap = now;
-  });
-  
-  // Pinch to zoom
-  lightboxWrapper.addEventListener('touchstart', (e) => {
-    if (e.touches.length === 2) {
-      e.preventDefault();
-      lastTouchDistance = Math.hypot(
-        e.touches[0].clientX - e.touches[1].clientX,
-        e.touches[0].clientY - e.touches[1].clientY
-      );
-    } else if (e.touches.length === 1 && lightboxScale > 1) {
-      isLightboxDragging = true;
-      lightboxDragStartX = e.touches[0].clientX - lightboxTranslateX;
-      lightboxDragStartY = e.touches[0].clientY - lightboxTranslateY;
-      lightboxImage.classList.add('dragging');
-    }
-  }, { passive: false });
-  
-  lightboxWrapper.addEventListener('touchmove', (e) => {
-    if (e.touches.length === 2) {
-      e.preventDefault();
-      const distance = Math.hypot(
-        e.touches[0].clientX - e.touches[1].clientX,
-        e.touches[0].clientY - e.touches[1].clientY
-      );
-      const newScale = (distance / lastTouchDistance) * lightboxScale;
-      lightboxScale = Math.max(1, Math.min(5, newScale));
-      applyLightboxTransform();
-      lastTouchDistance = distance;
-    } else if (isLightboxDragging && e.touches.length === 1) {
-      e.preventDefault();
-      lightboxTranslateX = e.touches[0].clientX - lightboxDragStartX;
-      lightboxTranslateY = e.touches[0].clientY - lightboxDragStartY;
-      applyLightboxTransform();
-    }
-  }, { passive: false });
-  
-  lightboxWrapper.addEventListener('touchend', (e) => {
-    if (e.touches.length < 2) {
-      lastTouchDistance = 0;
-    }
-    if (isLightboxDragging) {
-      isLightboxDragging = false;
-      lightboxImage.classList.remove('dragging');
-    }
-    // Swipe navigation when not zoomed
-    if (lightboxScale === 1 && e.changedTouches.length === 1) {
-      const diff = mobileSwipeStartX - e.changedTouches[0].clientX;
-      if (Math.abs(diff) > 60) {
-        navigateLightbox(diff > 0 ? 1 : -1);
-      }
-    }
-  });
-  
-  // Mouse drag for desktop lightbox
-  lightboxImage.addEventListener('mousedown', (e) => {
-    if (lightboxScale > 1) {
-      isLightboxDragging = true;
-      lightboxDragStartX = e.clientX - lightboxTranslateX;
-      lightboxDragStartY = e.clientY - lightboxTranslateY;
-      lightboxImage.classList.add('dragging');
-      e.preventDefault();
-    }
-  });
-  
-  document.addEventListener('mousemove', (e) => {
-    if (!isLightboxDragging) return;
-    lightboxTranslateX = e.clientX - lightboxDragStartX;
-    lightboxTranslateY = e.clientY - lightboxDragStartY;
-    applyLightboxTransform();
-  });
-  
-  document.addEventListener('mouseup', () => {
-    if (isLightboxDragging) {
-      isLightboxDragging = false;
-      lightboxImage.classList.remove('dragging');
-    }
-  });
-  
-  // Mouse wheel zoom
-  lightboxWrapper.addEventListener('wheel', (e) => {
-    e.preventDefault();
-    const delta = e.deltaY > 0 ? -0.2 : 0.2;
-    lightboxScale = Math.max(1, Math.min(5, lightboxScale + delta));
-    if (lightboxScale === 1) {
-      lightboxTranslateX = 0;
-      lightboxTranslateY = 0;
-    }
-    applyLightboxTransform();
-  }, { passive: false });
-  
-  function applyLightboxTransform() {
-    lightboxImage.style.transform = `scale(${lightboxScale}) translate(${lightboxTranslateX / lightboxScale}px, ${lightboxTranslateY / lightboxScale}px)`;
-  }
-  
-  // Keyboard navigation for lightbox
-  document.addEventListener('keydown', (e) => {
-    if (!lightbox.classList.contains('active')) return;
-    if (e.key === 'ArrowLeft') navigateLightbox(-1);
-    if (e.key === 'ArrowRight') navigateLightbox(1);
-  });
+(function(){
+'use strict';
+if(history.scrollRestoration)history.scrollRestoration='manual';
+window.addEventListener('load',function(){window.scrollTo({top:0,behavior:'instant'})});
+window.addEventListener('beforeunload',function(){window.scrollTo(0,0)});
+var cursor=document.getElementById('customCursor');
+document.addEventListener('mousemove',function(e){cursor.style.left=e.clientX+'px';cursor.style.top=e.clientY+'px';cursor.classList.add('active')});
+document.addEventListener('mouseleave',function(){cursor.classList.remove('active')});
+document.querySelectorAll('a,button,.package-preview-card,.course-card,.step-card,.teacher-card').forEach(function(el){el.addEventListener('mouseenter',function(){cursor.classList.add('hovering')});el.addEventListener('mouseleave',function(){cursor.classList.remove('hovering')})});
+function toggleMenu(){document.getElementById('navMenu').classList.toggle('active');document.getElementById('packagesDropdown').classList.remove('open')}
+function closeMenuOnLink(){document.getElementById('navMenu').classList.remove('active');document.getElementById('packagesDropdown').classList.remove('open')}
+function toggleDropdown(e){if(window.innerWidth<=768){e.preventDefault();e.stopPropagation();document.getElementById('packagesDropdown').classList.toggle('open')}}
+document.addEventListener('click',function(e){if(!e.target.closest('.nav-dropdown'))document.getElementById('packagesDropdown').classList.remove('open')});
+var menuOpen=false;var navMenu=document.getElementById('navMenu');
+var menuObserver=new MutationObserver(function(mutations){mutations.forEach(function(m){if(m.attributeName==='class')menuOpen=navMenu.classList.contains('active')})});
+menuObserver.observe(navMenu,{attributes:true});
+window.addEventListener('scroll',function(){var navbar=document.querySelector('.navbar');if(window.scrollY>50)navbar.classList.add('scrolled');else navbar.classList.remove('scrolled');if(menuOpen&&window.innerWidth<=768)closeMenuOnLink()},{passive:true});
+function setActiveTab(el){document.querySelectorAll('.tab-item').forEach(function(t){t.classList.remove('active');t.removeAttribute('aria-current')});el.classList.add('active');el.setAttribute('aria-current','page')}
+function showPopup(){document.getElementById('popupOverlay').classList.add('active')}
+function closePopup(){document.getElementById('popupOverlay').classList.remove('active');try{sessionStorage.setItem('popupClosed','true')}catch(e){}}
+var popupClosed=false;try{popupClosed=sessionStorage.getItem('popupClosed')==='true'}catch(e){}
+if(!popupClosed)setTimeout(showPopup,1500);
+document.getElementById('popupOverlay').addEventListener('click',function(e){if(e.target===e.currentTarget)closePopup()});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){closePopup();closeLightbox()}});
+var reviewImages=['https://raw.githubusercontent.com/AClassenglish/A_Class/main/1rewiew.png','https://raw.githubusercontent.com/AClassenglish/A_Class/main/2review.png','https://raw.githubusercontent.com/AClassenglish/A_Class/main/3review.png','https://raw.githubusercontent.com/AClassenglish/A_Class/main/6review.png','https://raw.githubusercontent.com/AClassenglish/A_Class/main/7review.png'];
+var reviewAlts=['Student success story 1','Student success story 2','Student success story 3','Student success story 4','Student success story 5'];
+var TOTAL=5;
+var track=document.getElementById('carouselTrack');
+var viewport=document.getElementById('carouselViewport');
+var dotsContainer=document.getElementById('carouselDots');
+var isMobile=window.innerWidth<=768;
+var CLONES=2;
+var totalSlides=TOTAL+CLONES*2;
+var cards=[];
+var cardData=[];
+for(var i=0;i<CLONES;i++){var idx=(TOTAL-CLONES+i)%TOTAL;cardData.push({src:reviewImages[idx],alt:reviewAlts[idx],realIndex:idx})}
+for(var i=0;i<TOTAL;i++){cardData.push({src:reviewImages[i],alt:reviewAlts[i],realIndex:i})}
+for(var i=0;i<CLONES;i++){var idx=i%TOTAL;cardData.push({src:reviewImages[idx],alt:reviewAlts[idx],realIndex:idx})}
+for(var i=0;i<totalSlides;i++){var d=cardData[i];var card=document.createElement('div');card.className='review-card';card.setAttribute('role','listitem');card.setAttribute('data-real-index',d.realIndex);var img=document.createElement('img');img.src=d.src;img.alt=d.alt;img.loading=i<3?'eager':'lazy';img.width='700';img.height='500';card.appendChild(img);track.appendChild(card);cards.push(card)}
+var currentIndex=CLONES;
+for(var i=0;i<TOTAL;i++){var dot=document.createElement('button');dot.className='carousel-dot'+(i===0?' active':'');dot.setAttribute('role','tab');dot.setAttribute('aria-label','Go to testimonial '+(i+1));dot.setAttribute('aria-selected',i===0?'true':'false');dot.addEventListener('click',function(idx){return function(){goToRealSlide(idx)}}(i));dotsContainer.appendChild(dot)}
+var dots=document.querySelectorAll('.carousel-dot');
+function getCardWidth(){return cards[0]?cards[0].offsetWidth:0}
+function getGap(){return isMobile?16:48}
+function calculateOffset(index){var vw=viewport.offsetWidth;var cw=getCardWidth();var gap=getGap();return(vw/2)-(cw/2)-(index*(cw+gap))}
+function updateCarousel(animate){if(isMobile){var card=cards[currentIndex];if(card){viewport.scrollTo({left:Math.max(0,card.offsetLeft-viewport.offsetWidth/2+card.offsetWidth/2),behavior:animate?'smooth':'auto'})}cards.forEach(function(c,i){c.classList.toggle('active',i===currentIndex)});dots.forEach(function(d,i){var active=i===(currentIndex-CLONES+TOTAL)%TOTAL;d.classList.toggle('active',active);d.setAttribute('aria-selected',active?'true':'false')});return}
+if(animate!==false)track.style.transition='transform .5s cubic-bezier(.4,0,.2,1)';else track.style.transition='none';
+var offset=calculateOffset(currentIndex);track.style.transform='translateX('+offset+'px)';
+cards.forEach(function(c,i){c.classList.toggle('active',i===currentIndex)});
+var realIdx=(currentIndex-CLONES+TOTAL)%TOTAL;
+dots.forEach(function(d,i){var active=i===realIdx;d.classList.toggle('active',active);d.setAttribute('aria-selected',active?'true':'false')})}
+function goToRealSlide(realIndex){var target=CLONES+realIndex;currentIndex=target;updateCarousel();resetAutoPlay()}
+function changeCarousel(direction){var next=currentIndex+direction;if(next>=totalSlides-CLONES){currentIndex=CLONES;updateCarousel(false);requestAnimationFrame(function(){updateCarousel(true)})}else if(next<CLONES){currentIndex=totalSlides-CLONES-1;updateCarousel(false);requestAnimationFrame(function(){updateCarousel(true)})}else{currentIndex=next;updateCarousel()}resetAutoPlay()}
+function resetAutoPlay(){clearInterval(window._carouselInterval);window._carouselInterval=setInterval(function(){changeCarousel(1)},7000)}
+cards.forEach(function(card,i){card.addEventListener('click',function(){if(i===currentIndex){openLightbox(cardData[i].realIndex)}else{currentIndex=i;updateCarousel();resetAutoPlay()}})});
+var dragStartX=0;var dragCurrentX=0;var isDragging=false;
+viewport.addEventListener('mousedown',function(e){if(isMobile)return;isDragging=true;dragStartX=e.pageX;dragCurrentX=e.pageX;track.style.transition='none';clearInterval(window._carouselInterval)},{passive:true});
+document.addEventListener('mousemove',function(e){if(!isDragging||isMobile)return;dragCurrentX=e.pageX;var diff=dragCurrentX-dragStartX;var baseOffset=calculateOffset(currentIndex);track.style.transform='translateX('+(baseOffset+diff)+'px)'},{passive:true});
+document.addEventListener('mouseup',function(){if(!isDragging||isMobile)return;isDragging=false;var diff=dragCurrentX-dragStartX;if(Math.abs(diff)>80){if(diff<0)changeCarousel(1);else changeCarousel(-1)}else{updateCarousel()}resetAutoPlay()});
+var mobileSwipeStartX=0;
+viewport.addEventListener('touchstart',function(e){if(!isMobile)return;mobileSwipeStartX=e.touches[0].clientX},{passive:true});
+viewport.addEventListener('touchend',function(e){if(!isMobile)return;var diff=mobileSwipeStartX-e.changedTouches[0].clientX;if(Math.abs(diff)>50){if(diff>0)changeCarousel(1);else changeCarousel(-1)}},{passive:true});
+updateCarousel(false);resetAutoPlay();
+var resizeTimer;window.addEventListener('resize',function(){clearTimeout(resizeTimer);resizeTimer=setTimeout(function(){isMobile=window.innerWidth<=768;updateCarousel(false)},150)});
+var lightbox=document.getElementById('lightbox');var lightboxImage=document.getElementById('lightboxImage');var lightboxCounter=document.getElementById('lightboxCounter');var lightboxWrapper=document.getElementById('lightboxWrapper');
+var lightboxIndex=0;var lightboxScale=1;var lightboxTranslateX=0;var lightboxTranslateY=0;var lastTap=0;var lastTouchDistance=0;var isLightboxDragging=false;var lightboxDragStartX=0;var lightboxDragStartY=0;
+function openLightbox(index){lightboxIndex=index;lightboxScale=1;lightboxTranslateX=0;lightboxTranslateY=0;updateLightboxImage();lightbox.classList.add('active');document.body.style.overflow='hidden'}
+function closeLightbox(){lightbox.classList.remove('active');document.body.style.overflow='';setTimeout(function(){lightboxScale=1;lightboxTranslateX=0;lightboxTranslateY=0;lightboxImage.style.transform='scale(1) translate(0,0)'},400)}
+function updateLightboxImage(){lightboxImage.src=reviewImages[lightboxIndex];lightboxImage.alt=reviewAlts[lightboxIndex];lightboxCounter.textContent=(lightboxIndex+1)+' / '+TOTAL;lightboxScale=1;lightboxTranslateX=0;lightboxTranslateY=0;lightboxImage.style.transform='scale(1) translate(0,0)'}
+function navigateLightbox(direction){lightboxIndex=(lightboxIndex+direction+TOTAL)%TOTAL;updateLightboxImage()}
+window.closeLightbox=closeLightbox;window.navigateLightbox=navigateLightbox;
+lightbox.addEventListener('click',function(e){if(e.target===lightbox)closeLightbox()});
+lightboxImage.addEventListener('touchend',function(e){var now=Date.now();if(now-lastTap<300){e.preventDefault();if(lightboxScale>1){lightboxScale=1;lightboxTranslateX=0;lightboxTranslateY=0}else{lightboxScale=2.5}applyLightboxTransform()}lastTap=now});
+lightboxWrapper.addEventListener('touchstart',function(e){if(e.touches.length===2){e.preventDefault();lastTouchDistance=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY)}else if(e.touches.length===1&&lightboxScale>1){isLightboxDragging=true;lightboxDragStartX=e.touches[0].clientX-lightboxTranslateX;lightboxDragStartY=e.touches[0].clientY-lightboxTranslateY;lightboxImage.classList.add('dragging')}},{passive:false});
+lightboxWrapper.addEventListener('touchmove',function(e){if(e.touches.length===2){e.preventDefault();var distance=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY);var newScale=(distance/lastTouchDistance)*lightboxScale;lightboxScale=Math.max(1,Math.min(5,newScale));applyLightboxTransform();lastTouchDistance=distance}else if(isLightboxDragging&&e.touches.length===1){e.preventDefault();lightboxTranslateX=e.touches[0].clientX-lightboxDragStartX;lightboxTranslateY=e.touches[0].clientY-lightboxDragStartY;applyLightboxTransform()}},{passive:false});
+lightboxWrapper.addEventListener('touchend',function(e){if(e.touches.length<2)lastTouchDistance=0;if(isLightboxDragging){isLightboxDragging=false;lightboxImage.classList.remove('dragging')}if(lightboxScale===1&&e.changedTouches.length===1){var diff=mobileSwipeStartX-e.changedTouches[0].clientX;if(Math.abs(diff)>60)navigateLightbox(diff>0?1:-1)}});
+lightboxImage.addEventListener('mousedown',function(e){if(lightboxScale>1){isLightboxDragging=true;lightboxDragStartX=e.clientX-lightboxTranslateX;lightboxDragStartY=e.clientY-lightboxTranslateY;lightboxImage.classList.add('dragging');e.preventDefault()}});
+document.addEventListener('mousemove',function(e){if(!isLightboxDragging)return;lightboxTranslateX=e.clientX-lightboxDragStartX;lightboxTranslateY=e.clientY-lightboxDragStartY;applyLightboxTransform()});
+document.addEventListener('mouseup',function(){if(isLightboxDragging){isLightboxDragging=false;lightboxImage.classList.remove('dragging')}});
+lightboxWrapper.addEventListener('wheel',function(e){e.preventDefault();var delta=e.deltaY>0?-.2:.2;lightboxScale=Math.max(1,Math.min(5,lightboxScale+delta));if(lightboxScale===1){lightboxTranslateX=0;lightboxTranslateY=0}applyLightboxTransform()},{passive:false});
+function applyLightboxTransform(){lightboxImage.style.transform='scale('+lightboxScale+') translate('+(lightboxTranslateX/lightboxScale)+'px,'+(lightboxTranslateY/lightboxScale)+'px)'}
+document.addEventListener('keydown',function(e){if(!lightbox.classList.contains('active'))return;if(e.key==='ArrowLeft')navigateLightbox(-1);if(e.key==='ArrowRight')navigateLightbox(1)});
+})();
 </script>
 </body>
 </html>
