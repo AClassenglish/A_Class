@@ -207,7 +207,7 @@
     border-radius: 20px;
     margin-bottom: 1.5rem;
     border: 1px solid var(--border);
-    overflow: hidden;
+    overflow: visible; /* Changed from hidden to visible */
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: 0 4px 15px rgba(0,0,0,0.05);
   }
@@ -294,7 +294,7 @@
   }
   
   .package-accordion.active .package-content {
-    max-height: 800px;
+    max-height: 1000px; /* Increased from 800px */
   }
   
   .package-body {
@@ -378,6 +378,8 @@
     font-size: 1rem;
     font-family: inherit;
     transition: all 0.3s;
+    display: block; /* Ensure it's displayed as block */
+    margin-top: 1rem; /* Add some spacing */
   }
   
   .package-cta:hover {
@@ -693,11 +695,7 @@
       font-size: 1rem;
     }
     
-    .nav-menu .nav-cta {
-      margin-top: 0.5rem;
-      width: 100%;
-      text-align: center;
-    }
+    /* Contact Us button removed from mobile menu */
     
     .nav-dropdown {
       width: 100%;
@@ -714,14 +712,14 @@
       padding: 0.5rem; 
       margin-top: 0.5rem;
       max-height: 0; 
-      overflow: hidden; 
-      transition: max-height 0.3s ease;
+      overflow: visible; /* Changed to visible */
+      transition: max-height 0.4s ease;
       width: 100%;
       border-radius: 8px;
     }
     
     .nav-dropdown.open .dropdown-menu { 
-      max-height: 200px;
+      max-height: 300px; /* Increased height */
     }
     
     .dropdown-menu li {
@@ -741,8 +739,10 @@
       display: flex;
       align-items: center;
       gap: 0.75rem;
-      white-space: nowrap;
+      white-space: normal; /* Changed from nowrap to normal */
       box-sizing: border-box;
+      text-align: left;
+      line-height: 1.4;
     }
       
     .dropdown-menu li a i {
@@ -761,7 +761,10 @@
     
     .packages-container { padding: 3rem 1.5rem; }
     .package-header { padding: 1.5rem; }
-    .package-body { padding: 0 1.5rem 1.5rem; }
+    .package-body { 
+      padding: 0 1.5rem 1.5rem;
+      overflow: visible; /* Ensure content is visible */
+    }
     .package-details-grid { grid-template-columns: 1fr; }
     .package-features-list { grid-template-columns: 1fr; }
     .package-title { font-size: 1.2rem; }
@@ -772,6 +775,10 @@
       font-size: 0.95rem;
       white-space: normal;
       word-wrap: break-word;
+      display: block;
+      margin-top: 1rem;
+      position: relative;
+      z-index: 10;
     }
     
     .teachers-horizontal-grid {
@@ -818,7 +825,7 @@
   <div class="nav-container">
     <a href="index.html" class="logo">
       <img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/Aclasslogo.jpeg" alt="AClass Logo" class="logo-img">
-      <span class="logo-text">ACLASS</span>
+      <span class="logo-text">AClass</span>
     </a>
     <button class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
     <ul class="nav-menu" id="navMenu">
@@ -827,7 +834,7 @@
       <li><a href="index.html#courses" class="nav-link">Courses</a></li>
       <li><a href="index.html#reviews" class="nav-link">Reviews</a></li>
       <!-- Packages link removed from mobile menu since we're already on this page -->
-      <li><a href="index.html#contact" class="nav-cta">Contact Us</a></li>
+      <!-- Contact Us removed from menu -->
     </ul>
   </div>
 </nav>
