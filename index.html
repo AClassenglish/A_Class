@@ -15,12 +15,18 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://raw.githubusercontent.com" crossorigin>
 <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap">
 <link rel="preload" as="image" href="https://raw.githubusercontent.com/AClassenglish/A_Class/main/Aclasslogo.jpeg">
 <link rel="preload" as="image" href="https://raw.githubusercontent.com/AClassenglish/A_Class/main/1rewiew.png">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" media="print" onload="this.media='all'">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+<noscript>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+</noscript>
 <style>
 :root{--primary:#a766dc;--primary-dark:#8a4bbf;--primary-light:#f5f0fa;--secondary:#6366f1;--gradient-start:#a766dc;--gradient-end:#6366f1;--gradient-accent:linear-gradient(135deg,#a766dc 0%,#8b5cf6 50%,#6366f1 100%);--gradient-story:linear-gradient(45deg,#a766dc 0%,#8b5cf6 50%,#6366f1 100%);--text-dark:#0f172a;--text-gray:#475569;--text-light:#94a3b8;--white:#fff;--bg-light:#fafbff;--border:#eef0f6;--whatsapp-green:#25D366;--glass-bg:rgba(255,255,255,.92);--glass-border:rgba(238,240,246,.8)}
 *,::before,::after{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
@@ -120,45 +126,67 @@ a{color:inherit}
 .hero-stat:hover{transform:translateY(-4px);border-color:var(--primary)}
 .hero-stat-number{font-size:2rem;font-weight:800;background:var(--gradient-accent);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:.3rem}
 .hero-stat-label{font-size:.85rem;color:var(--text-gray);font-weight:500}
-.about,.courses,.how-it-works,.packages,.contact,.reviews-section,.teachers-section{padding:6rem 2rem;position:relative;z-index:2}
-.about,.how-it-works,.contact,.reviews-section,.teachers-section{background:var(--bg-light)}
+
+/* PREMIUM CAROUSEL SECTION */
+.reviews-section{padding: 5rem 2rem 6rem; position:relative; z-index:2} /* Added breathing room */
+.reviews-header{text-align:center;margin-bottom:2rem}
+.reviews-header h2{font-size:2.5rem;font-weight:800;background:var(--gradient-accent);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:.75rem}
+.reviews-header p{color:var(--text-gray);font-size:1.05rem}
+
+.reviews-swiper{padding: 2rem 0 3rem; overflow: visible !important;}
+.swiper-slide{
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0.5;
+  filter: blur(2px);
+  transform: scale(0.9);
+  border-radius: 24px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: #fff;
+  will-change: transform, opacity, filter;
+}
+.swiper-slide img{width:100%;height:auto;display:block;pointer-events:none;user-select:none}
+.swiper-slide-active{
+  opacity: 1;
+  filter: blur(0);
+  transform: scale(1);
+  box-shadow: 0 25px 60px rgba(167, 102, 220, 0.25);
+  z-index: 10;
+  border-color: var(--primary);
+}
+/* Custom Swiper Navigation */
+.swiper-button-prev, .swiper-button-next {
+  color: var(--primary);
+  background: #fff;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  box-shadow: 0 4px 15px rgba(167,102,220,.15);
+  border: 1.5px solid var(--primary);
+  transition: all 0.3s;
+}
+.swiper-button-prev::after, .swiper-button-next::after { font-size: 1.2rem; font-weight: 800; }
+.swiper-button-prev:hover, .swiper-button-next:hover {
+  background: var(--gradient-accent);
+  color: #fff;
+  border-color: transparent;
+  transform: scale(1.1);
+}
+.swiper-pagination-bullet {
+  width: 10px; height: 10px; background: var(--border); opacity: 1; transition: all 0.3s;
+}
+.swiper-pagination-bullet-active {
+  background: var(--primary); width: 28px; border-radius: 5px;
+}
+
+.about,.courses,.how-it-works,.packages,.contact,.teachers-section{padding:6rem 2rem;position:relative;z-index:2}
+.about,.how-it-works,.contact,.teachers-section{background:var(--bg-light)}
 .courses,.packages{background:var(--white)}
 .container{max-width:1300px;margin:0 auto}
 .section-header{text-align:center;margin-bottom:3.5rem}
 .section-tag{display:inline-flex;align-items:center;gap:.5rem;background:var(--primary-light);color:var(--primary-dark);padding:.5rem 1.25rem;border-radius:50px;font-size:.85rem;font-weight:600;margin-bottom:1.25rem;border:1px solid rgba(167,102,220,.15)}
 .section-header h2{font-size:2.5rem;font-weight:800;color:var(--text-dark);margin-bottom:1rem;letter-spacing:-.5px}
 .section-header p{color:var(--text-gray);max-width:600px;margin:0 auto;font-size:1.05rem}
-.reviews-header{text-align:center;margin-bottom:3rem}
-.reviews-header h2{font-size:2.5rem;font-weight:800;background:var(--gradient-accent);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:.75rem}
-.reviews-header p{color:var(--text-gray);font-size:1.05rem}
-.reviews-carousel{position:relative;max-width:100%;margin:0 auto;overflow:hidden}
-.carousel-viewport{position:relative;width:100%;overflow:hidden;padding:2rem 0}
-.carousel-track{display:flex;gap:48px;transition:transform .5s cubic-bezier(.4,0,.2,1);will-change:transform}
-.review-card{flex:0 0 60vw;max-width:700px;background:#fff;border-radius:24px;overflow:hidden;border:1px solid var(--border);transition:opacity .5s cubic-bezier(.4,0,.2,1),filter .5s cubic-bezier(.4,0,.2,1),transform .5s cubic-bezier(.4,0,.2,1),border-color .5s,box-shadow .5s;opacity:.5;filter:blur(2px);transform:scale(.92);cursor:pointer;position:relative;contain:layout style}
-.review-card::after{content:'Tap to view';position:absolute;bottom:1rem;left:50%;transform:translateX(-50%);background:rgba(15,23,42,.8);color:#fff;padding:.4rem 1rem;border-radius:50px;font-size:.75rem;font-weight:600;opacity:0;transition:opacity .3s;pointer-events:none}
-.review-card:hover::after{opacity:1}
-.review-card.active{opacity:1;filter:blur(0);transform:scale(1.02);border-color:var(--primary);box-shadow:0 25px 60px rgba(167,102,220,.3);z-index:10}
-.review-card.active::after{display:none}
-.review-card img{width:100%;height:auto;display:block;pointer-events:none;user-select:none;content-visibility:auto}
-.carousel-controls{display:flex;justify-content:center;align-items:center;gap:1.5rem;margin-top:2rem}
-.carousel-btn{width:52px;height:52px;border-radius:50%;background:#fff;border:1.5px solid var(--primary);box-shadow:0 4px 15px rgba(167,102,220,.15);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--primary);font-size:1.2rem;transition:transform .3s,background .3s,color .3s,border-color .3s}
-.carousel-btn:hover{background:var(--gradient-accent);color:#fff;border-color:transparent;transform:scale(1.1)}
-.carousel-dots{display:flex;gap:.6rem}
-.carousel-dot{width:10px;height:10px;border-radius:50%;background:var(--border);cursor:pointer;transition:background .3s,width .3s,border-radius .3s}
-.carousel-dot.active{background:var(--primary);width:28px;border-radius:5px}
-.lightbox{position:fixed;inset:0;background:rgba(15,23,42,.75);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);z-index:3000;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:opacity .4s ease,visibility .4s ease;touch-action:none}
-.lightbox.active{opacity:1;visibility:visible}
-.lightbox-close{position:absolute;top:1.5rem;right:1.5rem;width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,.15);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.25);color:#fff;font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .3s,transform .3s;z-index:10}
-.lightbox-close:hover{background:rgba(255,255,255,.25);transform:rotate(90deg)}
-.lightbox-counter{position:absolute;top:1.5rem;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.9);font-size:.9rem;font-weight:600;background:rgba(255,255,255,.12);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);padding:.5rem 1rem;border-radius:50px;z-index:10;white-space:nowrap}
-.lightbox-image-wrapper{max-width:90vw;max-height:85vh;overflow:hidden;touch-action:none;position:relative;display:flex;align-items:center;justify-content:center}
-.lightbox-image{max-width:100%;max-height:85vh;object-fit:contain;transition:transform .3s cubic-bezier(.4,0,.2,1);transform-origin:center center;user-select:none;-webkit-user-drag:none;cursor:grab;border-radius:8px}
-.lightbox-image.dragging{cursor:grabbing;transition:none}
-.lightbox-nav{position:absolute;top:50%;transform:translateY(-50%);width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,.15);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.25);color:#fff;font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .3s,transform .3s;z-index:10}
-.lightbox-nav:hover{background:rgba(255,255,255,.25);transform:translateY(-50%) scale(1.1)}
-.lightbox-nav.prev{left:1.5rem}
-.lightbox-nav.next{right:1.5rem}
-.lightbox-hint{position:absolute;bottom:1.5rem;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.7);font-size:.8rem;font-weight:500;background:rgba(255,255,255,.1);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);padding:.5rem 1rem;border-radius:50px;z-index:10;display:flex;align-items:center;gap:.5rem;white-space:nowrap}
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
 .about-text h3{font-size:2rem;color:var(--text-dark);margin-bottom:1.25rem;font-weight:700}
 .about-text p{color:var(--text-gray);margin-bottom:1.25rem;font-size:1rem}
@@ -233,10 +261,42 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
 .social-links a{width:42px;height:42px;border-radius:50%;background:rgba(167,102,220,.1);border:1.5px solid var(--primary);display:flex;align-items:center;justify-content:center;color:var(--primary);font-size:1.1rem;transition:background .3s,color .3s,border-color .3s,transform .3s}
 .social-links a:hover{background:var(--gradient-accent);color:#fff;border-color:transparent;transform:translateY(-4px)}
 .footer-bottom{max-width:1300px;margin:0 auto;padding-top:2rem;border-top:1px solid rgba(255,255,255,.1);text-align:center;font-size:.9rem;color:var(--text-light)}
-@media (max-width:1024px){.hero h1{font-size:3rem}.hero-stats{grid-template-columns:repeat(2,1fr)}.about-grid{grid-template-columns:1fr;gap:3rem}.footer-grid{grid-template-columns:1fr 1fr}.side-tracks{display:none}.review-card{flex:0 0 70vw}}
-@media (max-width:768px){.mobile-header-track{display:block}.mobile-tab-bar{display:block}.nav-menu{display:none}.menu-toggle{display:none}.hero{padding:11rem 1.5rem 4rem}.hero h1{font-size:2.2rem}.hero p{font-size:1rem}.hero-stats{grid-template-columns:1fr 1fr;gap:1rem}.hero-stat{padding:1.25rem}.hero-stat-number{font-size:1.75rem}.section-header h2,.reviews-header h2{font-size:2rem}.courses-grid{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr;gap:2rem}.test-buttons,.contact-buttons{flex-direction:column;align-items:stretch}.btn-test,.contact-btn{justify-content:center}.carousel-viewport{overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding:1rem 7.5%;scroll-behavior:smooth}
-.carousel-viewport::-webkit-scrollbar{display:none}.carousel-track{gap:16px;transition:none}.review-card{flex:0 0 85%;max-width:340px;scroll-snap-align:center;opacity:1!important;filter:none!important;transform:none!important;border-radius:20px}.review-card.active{transform:none!important;box-shadow:0 10px 30px rgba(167,102,220,.15)}.review-card::after{display:none}.carousel-controls{display:none}.popup-modal{padding:2.5rem 1.5rem}.popup-modal h3{font-size:1.5rem}.popup-icon{width:70px;height:70px;font-size:1.75rem}.lightbox-nav{width:44px;height:44px;font-size:1rem}.lightbox-nav.prev{left:.75rem}.lightbox-nav.next{right:.75rem}.lightbox-close{top:1rem;right:1rem;width:42px;height:42px}.lightbox-counter{top:1rem}.lightbox-hint{bottom:1rem;font-size:.7rem}}
-@media (max-width:480px){.hero h1{font-size:1.9rem}.section-header h2,.reviews-header h2{font-size:1.75rem}.about-stats{grid-template-columns:1fr}.btn{padding:.9rem 1.75rem;font-size:.95rem}.review-card{flex:0 0 88%}}
+
+@media (max-width:1024px){
+  .hero h1{font-size:3rem}
+  .hero-stats{grid-template-columns:repeat(2,1fr)}
+  .about-grid{grid-template-columns:1fr;gap:3rem}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .side-tracks{display:none}
+}
+@media (max-width:768px){
+  .mobile-header-track{display:block}
+  .mobile-tab-bar{display:block}
+  .nav-menu{display:none}
+  .menu-toggle{display:none}
+  .hero{padding:11rem 1.5rem 4rem}
+  .hero h1{font-size:2.2rem}
+  .hero p{font-size:1rem}
+  .hero-stats{grid-template-columns:1fr 1fr;gap:1rem}
+  .hero-stat{padding:1.25rem}
+  .hero-stat-number{font-size:1.75rem}
+  .section-header h2,.reviews-header h2{font-size:2rem}
+  .courses-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr;gap:2rem}
+  .test-buttons,.contact-buttons{flex-direction:column;align-items:stretch}
+  .btn-test,.contact-btn{justify-content:center}
+  .popup-modal{padding:2.5rem 1.5rem}
+  .popup-modal h3{font-size:1.5rem}
+  .popup-icon{width:70px;height:70px;font-size:1.75rem}
+  .reviews-swiper { padding: 1rem 0 2rem; }
+  .swiper-button-prev, .swiper-button-next { display: none; } /* Hide arrows on mobile, rely on swipe */
+}
+@media (max-width:480px){
+  .hero h1{font-size:1.9rem}
+  .section-header h2,.reviews-header h2{font-size:1.75rem}
+  .about-stats{grid-template-columns:1fr}
+  .btn{padding:.9rem 1.75rem;font-size:.95rem}
+}
 @media (prefers-reduced-motion:reduce){*,::before,::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
 </style>
 </head>
@@ -293,6 +353,7 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
 <a href="#contact" class="tab-item" onclick="setActiveTab(this)"><i class="fas fa-envelope" aria-hidden="true"></i><span>Contact</span></a>
 </div>
 </div>
+
 <section id="home" class="hero">
 <div class="hero-container">
 <div class="hero-badge"><i class="fas fa-star" aria-hidden="true"></i><span>15+ Years of Excellence</span></div>
@@ -310,34 +371,28 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
 </div>
 </div>
 </section>
+
 <section id="reviews" class="reviews-section">
 <div class="container">
 <div class="reviews-header">
 <h2>Student Success Stories</h2>
 <p>Real results from our amazing students</p>
 </div>
-<div class="reviews-carousel">
-<div class="carousel-viewport" id="carouselViewport">
-<div class="carousel-track" id="carouselTrack" role="list"></div>
-</div>
-<div class="carousel-controls">
-<button class="carousel-btn" onclick="changeCarousel(-1)" aria-label="Previous testimonial"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
-<div class="carousel-dots" id="carouselDots" role="tablist" aria-label="Testimonial navigation"></div>
-<button class="carousel-btn" onclick="changeCarousel(1)" aria-label="Next testimonial"><i class="fas fa-chevron-right" aria-hidden="true"></i></button>
-</div>
+<div class="swiper reviews-swiper">
+  <div class="swiper-wrapper">
+    <div class="swiper-slide"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/1rewiew.png" alt="Student success story 1" loading="eager"></div>
+    <div class="swiper-slide"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/2review.png" alt="Student success story 2" loading="eager"></div>
+    <div class="swiper-slide"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/3review.png" alt="Student success story 3" loading="eager"></div>
+    <div class="swiper-slide"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/6review.png" alt="Student success story 4" loading="lazy"></div>
+    <div class="swiper-slide"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/7review.png" alt="Student success story 5" loading="lazy"></div>
+  </div>
+  <div class="swiper-pagination"></div>
+  <div class="swiper-button-prev" aria-label="Previous testimonial"></div>
+  <div class="swiper-button-next" aria-label="Next testimonial"></div>
 </div>
 </div>
 </section>
-<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
-<button class="lightbox-close" onclick="closeLightbox()" aria-label="Close viewer"><i class="fas fa-times" aria-hidden="true"></i></button>
-<div class="lightbox-counter" id="lightboxCounter" aria-live="polite">1 / 5</div>
-<div class="lightbox-image-wrapper" id="lightboxWrapper">
-<img src="" alt="" class="lightbox-image" id="lightboxImage">
-</div>
-<button class="lightbox-nav prev" onclick="navigateLightbox(-1)" aria-label="Previous image"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
-<button class="lightbox-nav next" onclick="navigateLightbox(1)" aria-label="Next image"><i class="fas fa-chevron-right" aria-hidden="true"></i></button>
-<div class="lightbox-hint" aria-hidden="true"><i class="fas fa-hand-pointer"></i> Swipe to navigate • Double-tap to zoom</div>
-</div>
+
 <section id="about" class="about">
 <div class="container">
 <div class="section-header">
@@ -368,6 +423,7 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
 </div>
 </div>
 </section>
+
 <section id="courses" class="courses">
 <div class="container">
 <div class="section-header">
@@ -412,6 +468,7 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
 </div>
 </div>
 </section>
+
 <section class="how-it-works">
 <div class="container">
 <div class="section-header">
@@ -429,6 +486,7 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
 </div>
 </div>
 </section>
+
 <section id="packages" class="packages">
 <div class="container">
 <div class="section-header">
@@ -473,6 +531,7 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
 </div>
 </div>
 </section>
+
 <section class="teachers-section">
 <div class="container">
 <div class="section-header">
@@ -497,6 +556,7 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
 </div>
 </div>
 </section>
+
 <section id="placement" class="placement-cta">
 <h2>Not Sure About Your Level?</h2>
 <p>Take our free online assessments and we'll recommend the perfect course for you.</p>
@@ -505,6 +565,7 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
 <a href="https://aclassenglish.github.io/A_Class/English%20Reading%20Level%20Assessment%20%20A%20Class.html" target="_blank" rel="noopener" class="btn-test"><i class="fas fa-book-reader" aria-hidden="true"></i>Reading Assessment</a>
 </div>
 </section>
+
 <section id="contact" class="contact">
 <div class="container">
 <div class="section-header">
@@ -519,6 +580,7 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
 <div class="contact-note"><i class="fas fa-clock" aria-hidden="true"></i> We typically respond within 1-2 hours during business hours</div>
 </div>
 </section>
+
 <footer>
 <div class="footer-grid">
 <div class="footer-col">
@@ -558,89 +620,66 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
 </div>
 <div class="footer-bottom">© 2026 AClass English School. All rights reserved.</div>
 </footer>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
 (function(){
 'use strict';
 if(history.scrollRestoration)history.scrollRestoration='manual';
 window.addEventListener('load',function(){window.scrollTo({top:0,behavior:'instant'})});
 window.addEventListener('beforeunload',function(){window.scrollTo(0,0)});
+
 var cursor=document.getElementById('customCursor');
 document.addEventListener('mousemove',function(e){cursor.style.left=e.clientX+'px';cursor.style.top=e.clientY+'px';cursor.classList.add('active')});
 document.addEventListener('mouseleave',function(){cursor.classList.remove('active')});
 document.querySelectorAll('a,button,.package-preview-card,.course-card,.step-card,.teacher-card').forEach(function(el){el.addEventListener('mouseenter',function(){cursor.classList.add('hovering')});el.addEventListener('mouseleave',function(){cursor.classList.remove('hovering')})});
+
 function toggleMenu(){document.getElementById('navMenu').classList.toggle('active');document.getElementById('packagesDropdown').classList.remove('open')}
 function closeMenuOnLink(){document.getElementById('navMenu').classList.remove('active');document.getElementById('packagesDropdown').classList.remove('open')}
 function toggleDropdown(e){if(window.innerWidth<=768){e.preventDefault();e.stopPropagation();document.getElementById('packagesDropdown').classList.toggle('open')}}
 document.addEventListener('click',function(e){if(!e.target.closest('.nav-dropdown'))document.getElementById('packagesDropdown').classList.remove('open')});
+
 var menuOpen=false;var navMenu=document.getElementById('navMenu');
 var menuObserver=new MutationObserver(function(mutations){mutations.forEach(function(m){if(m.attributeName==='class')menuOpen=navMenu.classList.contains('active')})});
 menuObserver.observe(navMenu,{attributes:true});
 window.addEventListener('scroll',function(){var navbar=document.querySelector('.navbar');if(window.scrollY>50)navbar.classList.add('scrolled');else navbar.classList.remove('scrolled');if(menuOpen&&window.innerWidth<=768)closeMenuOnLink()},{passive:true});
+
 function setActiveTab(el){document.querySelectorAll('.tab-item').forEach(function(t){t.classList.remove('active');t.removeAttribute('aria-current')});el.classList.add('active');el.setAttribute('aria-current','page')}
+
 function showPopup(){document.getElementById('popupOverlay').classList.add('active')}
 function closePopup(){document.getElementById('popupOverlay').classList.remove('active');try{sessionStorage.setItem('popupClosed','true')}catch(e){}}
 var popupClosed=false;try{popupClosed=sessionStorage.getItem('popupClosed')==='true'}catch(e){}
 if(!popupClosed)setTimeout(showPopup,1500);
 document.getElementById('popupOverlay').addEventListener('click',function(e){if(e.target===e.currentTarget)closePopup()});
-document.addEventListener('keydown',function(e){if(e.key==='Escape'){closePopup();closeLightbox()}});
-var reviewImages=['https://raw.githubusercontent.com/AClassenglish/A_Class/main/1rewiew.png','https://raw.githubusercontent.com/AClassenglish/A_Class/main/2review.png','https://raw.githubusercontent.com/AClassenglish/A_Class/main/3review.png','https://raw.githubusercontent.com/AClassenglish/A_Class/main/6review.png','https://raw.githubusercontent.com/AClassenglish/A_Class/main/7review.png'];
-var reviewAlts=['Student success story 1','Student success story 2','Student success story 3','Student success story 4','Student success story 5'];
-var TOTAL=5;
-var track=document.getElementById('carouselTrack');
-var viewport=document.getElementById('carouselViewport');
-var dotsContainer=document.getElementById('carouselDots');
-var isMobile=window.innerWidth<=768;
-var CLONES=2;
-var totalSlides=TOTAL+CLONES*2;
-var cards=[];
-var cardData=[];
-for(var i=0;i<CLONES;i++){var idx=(TOTAL-CLONES+i)%TOTAL;cardData.push({src:reviewImages[idx],alt:reviewAlts[idx],realIndex:idx})}
-for(var i=0;i<TOTAL;i++){cardData.push({src:reviewImages[i],alt:reviewAlts[i],realIndex:i})}
-for(var i=0;i<CLONES;i++){var idx=i%TOTAL;cardData.push({src:reviewImages[idx],alt:reviewAlts[idx],realIndex:idx})}
-for(var i=0;i<totalSlides;i++){var d=cardData[i];var card=document.createElement('div');card.className='review-card';card.setAttribute('role','listitem');card.setAttribute('data-real-index',d.realIndex);var img=document.createElement('img');img.src=d.src;img.alt=d.alt;img.loading=i<3?'eager':'lazy';img.width='700';img.height='500';card.appendChild(img);track.appendChild(card);cards.push(card)}
-var currentIndex=CLONES;
-for(var i=0;i<TOTAL;i++){var dot=document.createElement('button');dot.className='carousel-dot'+(i===0?' active':'');dot.setAttribute('role','tab');dot.setAttribute('aria-label','Go to testimonial '+(i+1));dot.setAttribute('aria-selected',i===0?'true':'false');dot.addEventListener('click',function(idx){return function(){goToRealSlide(idx)}}(i));dotsContainer.appendChild(dot)}
-var dots=document.querySelectorAll('.carousel-dot');
-function getCardWidth(){return cards[0]?cards[0].offsetWidth:0}
-function getGap(){return isMobile?16:48}
-function calculateOffset(index){var vw=viewport.offsetWidth;var cw=getCardWidth();var gap=getGap();return(vw/2)-(cw/2)-(index*(cw+gap))}
-function updateCarousel(animate){if(isMobile){var card=cards[currentIndex];if(card){viewport.scrollTo({left:Math.max(0,card.offsetLeft-viewport.offsetWidth/2+card.offsetWidth/2),behavior:animate?'smooth':'auto'})}cards.forEach(function(c,i){c.classList.toggle('active',i===currentIndex)});dots.forEach(function(d,i){var active=i===(currentIndex-CLONES+TOTAL)%TOTAL;d.classList.toggle('active',active);d.setAttribute('aria-selected',active?'true':'false')});return}
-if(animate!==false)track.style.transition='transform .5s cubic-bezier(.4,0,.2,1)';else track.style.transition='none';
-var offset=calculateOffset(currentIndex);track.style.transform='translateX('+offset+'px)';
-cards.forEach(function(c,i){c.classList.toggle('active',i===currentIndex)});
-var realIdx=(currentIndex-CLONES+TOTAL)%TOTAL;
-dots.forEach(function(d,i){var active=i===realIdx;d.classList.toggle('active',active);d.setAttribute('aria-selected',active?'true':'false')})}
-function goToRealSlide(realIndex){var target=CLONES+realIndex;currentIndex=target;updateCarousel();resetAutoPlay()}
-function changeCarousel(direction){var next=currentIndex+direction;if(next>=totalSlides-CLONES){currentIndex=CLONES;updateCarousel(false);requestAnimationFrame(function(){updateCarousel(true)})}else if(next<CLONES){currentIndex=totalSlides-CLONES-1;updateCarousel(false);requestAnimationFrame(function(){updateCarousel(true)})}else{currentIndex=next;updateCarousel()}resetAutoPlay()}
-function resetAutoPlay(){clearInterval(window._carouselInterval);window._carouselInterval=setInterval(function(){changeCarousel(1)},7000)}
-cards.forEach(function(card,i){card.addEventListener('click',function(){if(i===currentIndex){openLightbox(cardData[i].realIndex)}else{currentIndex=i;updateCarousel();resetAutoPlay()}})});
-var dragStartX=0;var dragCurrentX=0;var isDragging=false;
-viewport.addEventListener('mousedown',function(e){if(isMobile)return;isDragging=true;dragStartX=e.pageX;dragCurrentX=e.pageX;track.style.transition='none';clearInterval(window._carouselInterval)},{passive:true});
-document.addEventListener('mousemove',function(e){if(!isDragging||isMobile)return;dragCurrentX=e.pageX;var diff=dragCurrentX-dragStartX;var baseOffset=calculateOffset(currentIndex);track.style.transform='translateX('+(baseOffset+diff)+'px)'},{passive:true});
-document.addEventListener('mouseup',function(){if(!isDragging||isMobile)return;isDragging=false;var diff=dragCurrentX-dragStartX;if(Math.abs(diff)>80){if(diff<0)changeCarousel(1);else changeCarousel(-1)}else{updateCarousel()}resetAutoPlay()});
-var mobileSwipeStartX=0;
-viewport.addEventListener('touchstart',function(e){if(!isMobile)return;mobileSwipeStartX=e.touches[0].clientX},{passive:true});
-viewport.addEventListener('touchend',function(e){if(!isMobile)return;var diff=mobileSwipeStartX-e.changedTouches[0].clientX;if(Math.abs(diff)>50){if(diff>0)changeCarousel(1);else changeCarousel(-1)}},{passive:true});
-updateCarousel(false);resetAutoPlay();
-var resizeTimer;window.addEventListener('resize',function(){clearTimeout(resizeTimer);resizeTimer=setTimeout(function(){isMobile=window.innerWidth<=768;updateCarousel(false)},150)});
-var lightbox=document.getElementById('lightbox');var lightboxImage=document.getElementById('lightboxImage');var lightboxCounter=document.getElementById('lightboxCounter');var lightboxWrapper=document.getElementById('lightboxWrapper');
-var lightboxIndex=0;var lightboxScale=1;var lightboxTranslateX=0;var lightboxTranslateY=0;var lastTap=0;var lastTouchDistance=0;var isLightboxDragging=false;var lightboxDragStartX=0;var lightboxDragStartY=0;
-function openLightbox(index){lightboxIndex=index;lightboxScale=1;lightboxTranslateX=0;lightboxTranslateY=0;updateLightboxImage();lightbox.classList.add('active');document.body.style.overflow='hidden'}
-function closeLightbox(){lightbox.classList.remove('active');document.body.style.overflow='';setTimeout(function(){lightboxScale=1;lightboxTranslateX=0;lightboxTranslateY=0;lightboxImage.style.transform='scale(1) translate(0,0)'},400)}
-function updateLightboxImage(){lightboxImage.src=reviewImages[lightboxIndex];lightboxImage.alt=reviewAlts[lightboxIndex];lightboxCounter.textContent=(lightboxIndex+1)+' / '+TOTAL;lightboxScale=1;lightboxTranslateX=0;lightboxTranslateY=0;lightboxImage.style.transform='scale(1) translate(0,0)'}
-function navigateLightbox(direction){lightboxIndex=(lightboxIndex+direction+TOTAL)%TOTAL;updateLightboxImage()}
-window.closeLightbox=closeLightbox;window.navigateLightbox=navigateLightbox;
-lightbox.addEventListener('click',function(e){if(e.target===lightbox)closeLightbox()});
-lightboxImage.addEventListener('touchend',function(e){var now=Date.now();if(now-lastTap<300){e.preventDefault();if(lightboxScale>1){lightboxScale=1;lightboxTranslateX=0;lightboxTranslateY=0}else{lightboxScale=2.5}applyLightboxTransform()}lastTap=now});
-lightboxWrapper.addEventListener('touchstart',function(e){if(e.touches.length===2){e.preventDefault();lastTouchDistance=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY)}else if(e.touches.length===1&&lightboxScale>1){isLightboxDragging=true;lightboxDragStartX=e.touches[0].clientX-lightboxTranslateX;lightboxDragStartY=e.touches[0].clientY-lightboxTranslateY;lightboxImage.classList.add('dragging')}},{passive:false});
-lightboxWrapper.addEventListener('touchmove',function(e){if(e.touches.length===2){e.preventDefault();var distance=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY);var newScale=(distance/lastTouchDistance)*lightboxScale;lightboxScale=Math.max(1,Math.min(5,newScale));applyLightboxTransform();lastTouchDistance=distance}else if(isLightboxDragging&&e.touches.length===1){e.preventDefault();lightboxTranslateX=e.touches[0].clientX-lightboxDragStartX;lightboxTranslateY=e.touches[0].clientY-lightboxDragStartY;applyLightboxTransform()}},{passive:false});
-lightboxWrapper.addEventListener('touchend',function(e){if(e.touches.length<2)lastTouchDistance=0;if(isLightboxDragging){isLightboxDragging=false;lightboxImage.classList.remove('dragging')}if(lightboxScale===1&&e.changedTouches.length===1){var diff=mobileSwipeStartX-e.changedTouches[0].clientX;if(Math.abs(diff)>60)navigateLightbox(diff>0?1:-1)}});
-lightboxImage.addEventListener('mousedown',function(e){if(lightboxScale>1){isLightboxDragging=true;lightboxDragStartX=e.clientX-lightboxTranslateX;lightboxDragStartY=e.clientY-lightboxTranslateY;lightboxImage.classList.add('dragging');e.preventDefault()}});
-document.addEventListener('mousemove',function(e){if(!isLightboxDragging)return;lightboxTranslateX=e.clientX-lightboxDragStartX;lightboxTranslateY=e.clientY-lightboxDragStartY;applyLightboxTransform()});
-document.addEventListener('mouseup',function(){if(isLightboxDragging){isLightboxDragging=false;lightboxImage.classList.remove('dragging')}});
-lightboxWrapper.addEventListener('wheel',function(e){e.preventDefault();var delta=e.deltaY>0?-.2:.2;lightboxScale=Math.max(1,Math.min(5,lightboxScale+delta));if(lightboxScale===1){lightboxTranslateX=0;lightboxTranslateY=0}applyLightboxTransform()},{passive:false});
-function applyLightboxTransform(){lightboxImage.style.transform='scale('+lightboxScale+') translate('+(lightboxTranslateX/lightboxScale)+'px,'+(lightboxTranslateY/lightboxScale)+'px)'}
-document.addEventListener('keydown',function(e){if(!lightbox.classList.contains('active'))return;if(e.key==='ArrowLeft')navigateLightbox(-1);if(e.key==='ArrowRight')navigateLightbox(1)});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closePopup()});
+
+// PREMIUM SWIPER CAROUSEL INITIALIZATION
+var reviewsSwiper = new Swiper('.reviews-swiper', {
+  loop: true,
+  centeredSlides: true,
+  speed: 600,
+  spaceBetween: 48,
+  slidesPerView: 1.7, // ~58% active, ~21% each side on desktop
+  pagination: {
+    el: '.swiper-pagination',
+    clickable: true,
+  },
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
+  },
+  breakpoints: {
+    320: {
+      slidesPerView: 1.15, // ~87% active, ~6.5% each side on mobile
+      spaceBetween: 16,
+    },
+    769: {
+      slidesPerView: 1.7,
+      spaceBetween: 48,
+    }
+  }
+});
+
 })();
 </script>
 </body>
