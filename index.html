@@ -602,7 +602,8 @@
       transition: transform 0.3s ease; 
       z-index: 9999;
       max-height: calc(100vh - 70px);
-      overflow-y: visible;
+      min-height: calc(100vh - 70px);
+      overflow-y: auto;
     }
     .nav-menu.active { transform: translateY(0); }
     .menu-toggle { display: flex; }
@@ -655,7 +656,7 @@
 }
 
 .nav-dropdown.open .dropdown-menu{
-    max-height:120px;
+     display: block;
 }
 
 .dropdown-menu li{
