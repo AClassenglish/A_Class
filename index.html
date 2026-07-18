@@ -36,10 +36,9 @@
     line-height: 1.6;
     background: var(--white);
     overflow-x: hidden;
-    padding-bottom: 80px; /* Space for tab bar */
+    padding-bottom: 80px;
   }
 
-  /* CUSTOM MOUSE CURSOR */
   .custom-cursor {
     position: fixed; top: 0; left: 0; width: 36px; height: 36px;
     pointer-events: none; z-index: 9999;
@@ -53,14 +52,13 @@
     background: var(--gradient-accent);
     border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
-    color: white; font-size: 0.85rem;
+    color: white; font-size: 1rem; font-weight: 800;
     box-shadow: 0 4px 15px rgba(167, 102, 220, 0.4);
     transition: transform 0.2s;
   }
   .custom-cursor.hovering .custom-cursor-inner { transform: scale(1.4); }
   @media (max-width: 768px) { .custom-cursor { display: none; } }
 
-  /* ANIMATED BACKGROUND */
   .animated-bg {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
     background: linear-gradient(135deg, #ffffff 0%, #fafbff 50%, #f8f5ff 100%);
@@ -77,7 +75,6 @@
     50% { transform: translate(30px, -40px) scale(1.05); }
   }
 
-  /* HEADER ANIMATIONS */
   .header-animations {
     position: fixed; top: 0; left: 0; right: 0; height: 500px; z-index: -1; overflow: hidden; pointer-events: none;
   }
@@ -89,7 +86,6 @@
   @keyframes blobMove2 { 0%, 100% { transform: translate(0, 0) scale(1); } 50% { transform: translate(-40px, 40px) scale(0.9); } }
   @keyframes blobMove3 { 0%, 100% { transform: translate(0, 0) scale(1); } 50% { transform: translate(30px, -20px) scale(1.15); } }
 
-  /* SIDE TRACKS - BIGGER (DESKTOP) */
   .side-tracks {
     position: fixed; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: 1; overflow: hidden;
   }
@@ -115,31 +111,29 @@
   }
   .track-label-dot { width: 6px; height: 6px; background: var(--primary); border-radius: 50%; margin: 0 auto; opacity: 0.4; }
 
-  /* MOBILE HEADER TRACK (SLIM) - DIRECTLY UNDER NAVBAR */
   .mobile-header-track {
     display: none;
     position: fixed;
-    top: 70px; /* Directly under navbar */
+    top: 70px;
     left: 0; right: 0;
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--border);
-    z-index: 997; /* Below navbar (1000) but above content */
-    padding: 0.35rem 0;
+    z-index: 997;
+    padding: 0.5rem 0;
     overflow: hidden;
   }
   .track-row {
     display: flex; gap: 1.5rem; white-space: nowrap;
-    font-size: 0.65rem; font-weight: 700; letter-spacing: 1.5px;
-    color: var(--primary); opacity: 0.5;
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 1px;
+    color: var(--primary);
   }
-  .track-row-left { animation: scrollLeft 12s linear infinite; }
-  .track-row-right { animation: scrollRight 12s linear infinite; }
+  .track-row-left { animation: scrollLeft 15s linear infinite; }
+  .track-row-right { animation: scrollRight 15s linear infinite; }
   @keyframes scrollLeft { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
   @keyframes scrollRight { 0% { transform: translateX(-50%); } 100% { transform: translateX(0); } }
   .track-row .track-dot { width: 3px; height: 3px; background: var(--primary); border-radius: 50%; opacity: 0.5; align-self: center; }
 
-  /* NAVBAR */
   .navbar {
     position: fixed; top: 0; left: 0; right: 0;
     background: var(--glass-bg); backdrop-filter: blur(15px);
@@ -151,7 +145,7 @@
   
   .logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
   .logo-img { width: 42px; height: 42px; border-radius: 50%; object-fit: cover; border: 2px solid var(--primary); }
-  .logo-text { font-size: 1.4rem; font-weight: 800; background: var(--gradient-accent); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .logo-text { font-size: 1.4rem; font-weight: 800; background: var(--gradient-accent); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; letter-spacing: 1.5px; }
   
   .nav-menu { display: flex; align-items: center; gap: 2rem; list-style: none; }
   .nav-dropdown { position: relative; }
@@ -185,6 +179,153 @@
   .menu-toggle {
     display: none; background: none; border: none; font-size: 1.4rem; cursor: pointer;
     color: var(--primary); width: 40px; height: 40px; align-items: center; justify-content: center; border-radius: 10px;
+  }
+
+  /* POPUP MODAL - CENTERED */
+  .popup-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(8px);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s ease;
+  }
+  
+  .popup-overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .popup-modal {
+    background: white;
+    border-radius: 24px;
+    padding: 3rem 2.5rem;
+    max-width: 450px;
+    width: 100%;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 25px 60px rgba(167, 102, 220, 0.3);
+    transform: scale(0.8) translateY(30px);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 2px solid var(--primary-light);
+  }
+  
+  .popup-overlay.active .popup-modal {
+    transform: scale(1) translateY(0);
+  }
+  
+  .popup-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--bg-light);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-gray);
+    font-size: 1rem;
+    transition: all 0.3s;
+  }
+  
+  .popup-close:hover {
+    background: var(--primary-light);
+    color: var(--primary);
+    transform: rotate(90deg);
+  }
+  
+  .popup-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1.5rem;
+    background: var(--gradient-accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 2rem;
+    box-shadow: 0 10px 30px rgba(167, 102, 220, 0.4);
+    animation: popupPulse 2s ease-in-out infinite;
+  }
+  
+  @keyframes popupPulse {
+    0%, 100% { transform: scale(1); box-shadow: 0 10px 30px rgba(167, 102, 220, 0.4); }
+    50% { transform: scale(1.05); box-shadow: 0 15px 40px rgba(167, 102, 220, 0.5); }
+  }
+  
+  .popup-tag {
+    display: inline-block;
+    background: var(--primary-light);
+    color: var(--primary-dark);
+    padding: 0.4rem 1rem;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    letter-spacing: 0.5px;
+  }
+  
+  .popup-modal h3 {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--text-dark);
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.5px;
+  }
+  
+  .popup-modal h3 span {
+    background: var(--gradient-accent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .popup-date {
+    font-size: 1.1rem;
+    color: var(--primary-dark);
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+  
+  .popup-modal p {
+    color: var(--text-gray);
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+  }
+  
+  .popup-cta {
+    background: var(--gradient-accent);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    font-weight: 700;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    transition: all 0.3s;
+    box-shadow: 0 8px 25px rgba(167, 102, 220, 0.4);
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    font-family: inherit;
+  }
+  
+  .popup-cta:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(167, 102, 220, 0.5);
   }
 
   /* MOBILE TAB BAR */
@@ -238,7 +379,6 @@
     transform: translateY(-2px);
   }
 
-  /* HERO */
   .hero {
     min-height: 100vh; display: flex; align-items: center; justify-content: center;
     padding: 10rem 2rem 6rem; position: relative;
@@ -273,7 +413,6 @@
   .hero-stat-number { font-size: 2rem; font-weight: 800; background: var(--gradient-accent); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 0.3rem; }
   .hero-stat-label { font-size: 0.85rem; color: var(--text-gray); font-weight: 500; }
 
-  /* SECTIONS */
   .about, .courses, .how-it-works, .packages, .contact, .reviews-section, .teachers-section { padding: 6rem 2rem; position: relative; z-index: 2; }
   .about, .how-it-works, .contact, .reviews-section, .teachers-section { background: var(--bg-light); }
   .courses, .packages { background: var(--white); }
@@ -283,7 +422,6 @@
   .section-header h2 { font-size: 2.5rem; font-weight: 800; color: var(--text-dark); margin-bottom: 1rem; letter-spacing: -0.5px; }
   .section-header p { color: var(--text-gray); max-width: 600px; margin: 0 auto; font-size: 1.05rem; }
 
-  /* INFINITE SWIPEABLE CAROUSEL */
   .reviews-header { text-align: center; margin-bottom: 3rem; }
   .reviews-header h2 { font-size: 2.5rem; font-weight: 800; background: var(--gradient-accent); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 0.75rem; }
   .reviews-header p { color: var(--text-gray); font-size: 1.05rem; }
@@ -365,7 +503,6 @@
     border-radius: 5px; 
   }
 
-  /* ABOUT */
   .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
   .about-text h3 { font-size: 2rem; color: var(--text-dark); margin-bottom: 1.25rem; font-weight: 700; }
   .about-text p { color: var(--text-gray); margin-bottom: 1.25rem; font-size: 1rem; }
@@ -374,7 +511,6 @@
   .stat-number { font-size: 2.5rem; font-weight: 800; background: var(--gradient-accent); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 0.4rem; }
   .stat-label { font-size: 0.9rem; color: var(--text-gray); font-weight: 500; }
 
-  /* COURSES */
   .courses-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; }
   .course-card { background: white; border-radius: 20px; padding: 2.5rem; border: 1px solid var(--border); transition: all 0.4s; }
   .course-card:hover { transform: translateY(-8px); border-color: var(--primary); box-shadow: 0 15px 40px rgba(167, 102, 220, 0.12); }
@@ -386,256 +522,94 @@
   .course-features li:last-child { border-bottom: none; }
   .course-features li::before { content: '✓'; color: var(--primary); font-weight: 700; font-size: 1.1rem; flex-shrink: 0; }
 
-  /* HOW IT WORKS */
   .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
   .step-card { background: white; padding: 2.5rem; border-radius: 18px; position: relative; border: 1px solid var(--border); }
   .step-number { position: absolute; top: -16px; left: 2rem; width: 45px; height: 45px; background: var(--gradient-accent); color: white; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.2rem; }
   .step-card h4 { color: var(--text-dark); margin: 1.25rem 0 0.75rem; font-size: 1.2rem; font-weight: 700; }
   .step-card p { color: var(--text-gray); font-size: 0.95rem; }
 
-  /* MODERN PACKAGES - ACCORDION STYLE */
-  .packages-container {
-    max-width: 900px;
-    margin: 0 auto;
+  .packages-preview-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1100px;
+    margin: 0 auto 3rem;
   }
-  
-  .package-accordion {
+  .package-preview-card {
     background: white;
     border-radius: 20px;
-    margin-bottom: 1.5rem;
+    padding: 2.5rem;
     border: 1px solid var(--border);
-    overflow: hidden;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    text-align: center;
+    transition: all 0.4s;
   }
-  
-  .package-accordion:hover {
-    box-shadow: 0 8px 30px rgba(167, 102, 220, 0.15);
-    transform: translateY(-2px);
+  .package-preview-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--primary);
+    box-shadow: 0 15px 40px rgba(167, 102, 220, 0.2);
   }
-  
-  .package-accordion.featured {
+  .package-preview-card.featured {
     background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
     color: white;
     border-color: transparent;
   }
-  
-  .package-header {
-    padding: 2rem 2.5rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1.5rem;
-    transition: all 0.3s;
-  }
-  
-  .package-header:hover {
-    background: rgba(167, 102, 220, 0.05);
-  }
-  
-  .package-accordion.featured .package-header:hover {
-    background: rgba(255,255,255,0.1);
-  }
-  
-  .package-header-left {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-    flex: 1;
-  }
-  
-  .package-icon {
-    width: 60px;
-    height: 60px;
-    background: var(--primary-light);
-    border-radius: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--primary);
-    font-size: 1.5rem;
-    flex-shrink: 0;
-    transition: all 0.3s;
-  }
-  
-  .package-accordion.featured .package-icon {
-    background: rgba(255,255,255,0.2);
-    color: white;
-  }
-  
-  .package-header-content {
-    flex: 1;
-  }
-  
-  .package-title {
-    font-size: 1.5rem;
-    font-weight: 800;
-    margin-bottom: 0.4rem;
-    color: var(--text-dark);
-  }
-  
-  .package-accordion.featured .package-title {
-    color: white;
-  }
-  
-  .package-subtitle {
-    font-size: 0.95rem;
-    color: var(--text-gray);
-    font-weight: 500;
-  }
-  
-  .package-accordion.featured .package-subtitle {
-    color: rgba(255,255,255,0.9);
-  }
-  
-  .package-toggle {
-    width: 50px;
-    height: 50px;
+  .package-preview-icon {
+    width: 70px;
+    height: 70px;
     background: var(--primary-light);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     color: var(--primary);
-    font-size: 1.2rem;
-    transition: all 0.3s;
-    flex-shrink: 0;
+    font-size: 2rem;
+    margin: 0 auto 1.5rem;
   }
-  
-  .package-accordion.featured .package-toggle {
+  .package-preview-card.featured .package-preview-icon {
     background: rgba(255,255,255,0.2);
     color: white;
   }
-  
-  .package-accordion.active .package-toggle {
-    transform: rotate(180deg);
-  }
-  
-  .package-content {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  
-  .package-accordion.active .package-content {
-    max-height: 800px;
-  }
-  
-  .package-body {
-    padding: 0 2.5rem 2.5rem;
-  }
-  
-  .package-description {
-    color: var(--text-gray);
-    font-size: 1rem;
-    line-height: 1.7;
-    margin-bottom: 2rem;
-  }
-  
-  .package-accordion.featured .package-description {
-    color: rgba(255,255,255,0.9);
-  }
-  
-  .package-details-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
-    margin-bottom: 2rem;
-  }
-  
-  .package-detail-card {
-    background: var(--primary-light);
-    padding: 1.5rem;
-    border-radius: 16px;
-    text-align: center;
-    transition: all 0.3s;
-  }
-  
-  .package-accordion.featured .package-detail-card {
-    background: rgba(255,255,255,0.15);
-  }
-  
-  .package-detail-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(167, 102, 220, 0.2);
-  }
-  
-  .package-detail-label {
-    font-size: 0.75rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: var(--text-gray);
-    margin-bottom: 0.5rem;
-  }
-  
-  .package-accordion.featured .package-detail-label {
-    color: rgba(255,255,255,0.8);
-  }
-  
-  .package-detail-value {
+  .package-preview-name {
     font-size: 1.5rem;
-    font-weight: 800;
-    color: var(--text-dark);
+    font-weight: 700;
+    margin-bottom: 0.75rem;
   }
-  
-  .package-accordion.featured .package-detail-value {
-    color: white;
+  .package-preview-price {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    opacity: 0.9;
   }
-  
-  .package-features-list {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.75rem;
-    margin-bottom: 2rem;
+  .package-preview-card.featured .package-preview-price {
+    opacity: 1;
   }
-  
-  .package-feature-item {
+  .package-preview-features {
+    list-style: none;
+    text-align: left;
+    margin-top: 1.5rem;
+  }
+  .package-preview-features li {
+    padding: 0.6rem 0;
     display: flex;
     align-items: center;
     gap: 0.75rem;
     font-size: 0.95rem;
     color: var(--text-gray);
+    border-bottom: 1px solid var(--border);
   }
-  
-  .package-accordion.featured .package-feature-item {
+  .package-preview-card.featured .package-preview-features li {
     color: rgba(255,255,255,0.9);
+    border-bottom-color: rgba(255,255,255,0.2);
   }
-  
-  .package-feature-item i {
+  .package-preview-features li:last-child {
+    border-bottom: none;
+  }
+  .package-preview-features li i {
     color: var(--primary);
-    font-size: 0.9rem;
     width: 20px;
     text-align: center;
   }
-  
-  .package-accordion.featured .package-feature-item i {
+  .package-preview-card.featured .package-preview-features li i {
     color: #fde68a;
-  }
-  
-  .package-cta {
-    width: 100%;
-    padding: 1.1rem;
-    background: var(--text-dark);
-    color: white;
-    border: none;
-    border-radius: 14px;
-    font-weight: 700;
-    cursor: pointer;
-    font-size: 1rem;
-    font-family: inherit;
-    transition: all 0.3s;
-  }
-  
-  .package-accordion.featured .package-cta {
-    background: white;
-    color: var(--primary);
-  }
-  
-  .package-cta:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
   }
 
   .explore-more-container { text-align: center; margin-top: 3rem; }
@@ -649,47 +623,6 @@
   .btn-explore i { transition: transform 0.3s; }
   .btn-explore:hover i { transform: translateX(4px); }
 
-  /* PACKAGE SLIDER (MOBILE) */
-  .packages-slider-mobile {
-    display: none;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    gap: 1.5rem;
-    padding: 1rem 0 2rem;
-    scrollbar-width: none;
-  }
-  .packages-slider-mobile::-webkit-scrollbar { display: none; }
-  
-  .package-slide {
-    flex: 0 0 85vw;
-    max-width: 340px;
-    scroll-snap-align: center;
-    background: white;
-    border-radius: 20px;
-    padding: 2.5rem 2rem;
-    border: 1px solid var(--border);
-    position: relative;
-  }
-  .package-slide.featured {
-    background: var(--gradient-accent);
-    color: white;
-    border-color: transparent;
-  }
-  .package-slide .package-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: #fde68a; color: var(--text-dark); padding: 0.4rem 1.2rem; border-radius: 20px; font-size: 0.75rem; font-weight: 700; }
-  .package-slide .package-name { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.75rem; text-align: center; }
-  .package-slide .package-price { text-align: center; margin: 1.25rem 0; padding: 1.25rem; background: rgba(167, 102, 220, 0.08); border-radius: 14px; }
-  .package-slide.featured .package-price { background: rgba(255,255,255,0.15); }
-  .package-slide .package-features { list-style: none; margin: 1.5rem 0; }
-  .package-slide .package-features li { padding: 0.6rem 0; display: flex; align-items: center; gap: 0.75rem; border-bottom: 1px solid var(--border); font-size: 0.9rem; }
-  .package-slide.featured .package-features li { border-bottom-color: rgba(255,255,255,0.2); }
-  .package-slide .package-features li:last-child { border-bottom: none; }
-  .package-slide .package-features li i { color: var(--primary); font-size: 0.9rem; }
-  .package-slide.featured .package-features li i { color: #fde68a; }
-  .package-slide .package-btn { width: 100%; padding: 0.9rem; background: var(--text-dark); color: white; border: none; border-radius: 14px; font-weight: 700; cursor: pointer; font-size: 0.95rem; font-family: inherit; }
-  .package-slide.featured .package-btn { background: white; color: var(--primary); }
-
-  /* TEACHERS SECTION */
   .teachers-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -748,7 +681,6 @@
     margin-bottom: 0.75rem;
   }
 
-  /* PLACEMENT TEST */
   .placement-cta { background: var(--gradient-accent); color: white; text-align: center; padding: 5rem 2rem; position: relative; overflow: hidden; z-index: 2; }
   .placement-cta h2 { font-size: 2.5rem; margin-bottom: 1rem; font-weight: 800; }
   .placement-cta p { font-size: 1.1rem; margin-bottom: 2.5rem; opacity: 0.95; max-width: 600px; margin-left: auto; margin-right: auto; }
@@ -756,7 +688,6 @@
   .btn-test { background: white; color: var(--primary); padding: 1rem 2rem; border-radius: 50px; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 0.75rem; transition: all 0.3s; font-size: 1rem; }
   .btn-test:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,0.2); }
 
-  /* CONTACT */
   .contact-buttons { display: flex; gap: 1.25rem; justify-content: center; flex-wrap: wrap; max-width: 600px; margin: 0 auto; }
   .contact-btn { display: inline-flex; align-items: center; gap: 0.75rem; padding: 1rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 1rem; transition: all 0.3s; }
   .contact-btn.whatsapp { background: var(--whatsapp-green); color: white; }
@@ -765,7 +696,6 @@
   .contact-btn i { font-size: 1.2rem; }
   .contact-note { text-align: center; margin-top: 2.5rem; padding: 1.5rem; background: white; border-radius: 16px; color: var(--text-gray); font-size: 0.95rem; border: 1px solid var(--border); }
 
-  /* FOOTER */
   footer { background: var(--text-dark); color: var(--text-light); padding: 4rem 2rem 2rem; position: relative; z-index: 2; }
   .footer-grid { max-width: 1300px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
   .footer-col h4 { color: white; margin-bottom: 1.25rem; font-size: 1.1rem; font-weight: 700; }
@@ -778,48 +708,6 @@
   .social-links a:hover { background: var(--gradient-accent); color: white; border-color: transparent; transform: translateY(-4px); }
   .footer-bottom { max-width: 1300px; margin: 0 auto; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); text-align: center; font-size: 0.9rem; color: var(--text-light); }
 
-     /* Updated Mobile Popup Styles */
-    .popup-notification {
-      width: calc(100% - 40px);
-      max-width: 400px;
-      padding: 0.75rem 1rem;
-      flex-direction: row; /* Keeps it horizontal and short */
-      text-align: left;
-      bottom: 80px; /* Sits just above the ~70px tab bar */
-      border-radius: 12px;
-    }
-    
-    .popup-notification.active {
-      bottom: 80px;
-    }
-    
-    .popup-notification-icon {
-      width: 36px;
-      height: 36px;
-      font-size: 1rem;
-      flex-shrink: 0;
-    }
-    
-    .popup-notification-title {
-      font-size: 0.85rem;
-      margin-bottom: 0.1rem;
-    }
-    
-    .popup-notification-text {
-      font-size: 0.75rem;
-    }
-    
-    /* Hide the large button on mobile to save space */
-    .popup-notification-cta {
-      display: none; 
-    }
-  
-  .popup-notification-cta:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(167, 102, 220, 0.4);
-  }
-
-  /* RESPONSIVE */
   @media (max-width: 1024px) {
     .hero h1 { font-size: 3rem; }
     .hero-stats { grid-template-columns: repeat(2, 1fr); }
@@ -830,14 +718,10 @@
   
   @media (max-width: 768px) {
     .mobile-header-track { display: block; }
+    .mobile-tab-bar { display: block; }
     
-    /* Show tab bar on mobile */
-    .mobile-tab-bar {
-      display: block;
-    }
-    
-    .nav-menu { display: none; } /* Hide desktop menu on mobile */
-    .menu-toggle { display: none; } /* Hide hamburger on mobile */
+    .nav-menu { display: none; }
+    .menu-toggle { display: none; }
     
     .hero { padding: 11rem 1.5rem 4rem; }
     .hero h1 { font-size: 2.2rem; }
@@ -852,55 +736,17 @@
     .test-buttons, .contact-buttons { flex-direction: column; align-items: stretch; }
     .btn-test, .contact-btn { justify-content: center; }
     
-    /* Packages: hide grid, show slider */
     .packages-container { display: none; }
     .packages-slider-mobile { display: flex; }
-    
-    /* Dropdown on mobile */
-    .dropdown-menu {
-      position: static; 
-      transform: none; 
-      opacity: 1; 
-      visibility: visible;
-      box-shadow: none; 
-      border: none; 
-      background: transparent; 
-      padding: 0; 
-      margin-top: 0.5rem;
-      max-height: 0; 
-      overflow: hidden; 
-      transition: max-height 0.3s ease;
-    }
-    .nav-dropdown.open .dropdown-menu { 
-      max-height: 200px;
-      margin-top: 0.5rem;
-    }
-    
-    .popup-modal { padding: 2.5rem 1.5rem; }
-    .popup-modal h3 { font-size: 1.5rem; }
-    .popup-icon { width: 70px; height: 70px; font-size: 1.75rem; }
     
     .review-card-swipe { flex: 0 0 260px; }
     
     .package-details-grid { grid-template-columns: 1fr; }
     .package-features-list { grid-template-columns: 1fr; }
     
-    /* Popup notification mobile */
-    .popup-notification {
-      width: 90%;
-      max-width: 350px;
-      padding: 1rem 1.5rem;
-      flex-direction: column;
-      text-align: center;
-    }
-    .popup-notification.active {
-      bottom: 100px; /* Above tab bar */
-    }
-    .popup-notification-cta {
-      width: 100%;
-      justify-content: center;
-      margin-top: 0.5rem;
-    }
+    .popup-modal { padding: 2.5rem 1.5rem; }
+    .popup-modal h3 { font-size: 1.5rem; }
+    .popup-icon { width: 70px; height: 70px; font-size: 1.75rem; }
   }
   
   @media (max-width: 480px) {
@@ -919,19 +765,16 @@
   <div class="floating-shape"></div>
 </div>
 
-<!-- CUSTOM MOUSE CURSOR -->
 <div class="custom-cursor" id="customCursor">
-  <div class="custom-cursor-inner"><i class="fas fa-star"></i></div>
+  <div class="custom-cursor-inner">A</div>
 </div>
 
-<!-- HEADER ANIMATIONS -->
 <div class="header-animations">
   <div class="header-blob header-blob-1"></div>
   <div class="header-blob header-blob-2"></div>
   <div class="header-blob header-blob-3"></div>
 </div>
 
-<!-- SIDE TRACKS (DESKTOP) -->
 <div class="side-tracks">
   <div class="side-track left">
     <div class="side-track-content">
@@ -940,13 +783,13 @@
       <div class="track-label">ENGLISH</div><div class="track-label-dot"></div>
       <div class="track-label">RESULTS</div><div class="track-label-dot"></div>
       <div class="track-label">EXCELLENCE</div><div class="track-label-dot"></div>
-      <div class="track-label">AClass</div><div class="track-label-dot"></div>
+      <div class="track-label">ACLASS</div><div class="track-label-dot"></div>
       <div class="track-label">IELTS</div><div class="track-label-dot"></div>
       <div class="track-label">SAT</div><div class="track-label-dot"></div>
       <div class="track-label">ENGLISH</div><div class="track-label-dot"></div>
       <div class="track-label">RESULTS</div><div class="track-label-dot"></div>
       <div class="track-label">EXCELLENCE</div><div class="track-label-dot"></div>
-      <div class="track-label">AClass</div><div class="track-label-dot"></div>
+      <div class="track-label">ACLASS</div><div class="track-label-dot"></div>
     </div>
   </div>
   <div class="side-track right">
@@ -967,36 +810,36 @@
   </div>
 </div>
 
-<!-- MOBILE HEADER TRACK (SLIM) -->
-<div class="mobile-header-track">
+<!-- MOBILE HEADER TRACK - Shows pre-registration after popup closes -->
+<div class="mobile-header-track" id="mobileTrack">
   <div class="track-row track-row-left">
-    <span>IELTS</span><span class="track-dot"></span><span>SAT</span><span class="track-dot"></span><span>ENGLISH</span><span class="track-dot"></span><span>RESULTS</span><span class="track-dot"></span><span>EXCELLENCE</span><span class="track-dot"></span>
-    <span>IELTS</span><span class="track-dot"></span><span>SAT</span><span class="track-dot"></span><span>ENGLISH</span><span class="track-dot"></span><span>RESULTS</span><span class="track-dot"></span><span>EXCELLENCE</span><span class="track-dot"></span>
+    <span>🎉 PRE-REGISTRATION OPENS JULY 25</span><span class="track-dot"></span><span>BE THE FIRST TO SECURE YOUR SPOT</span><span class="track-dot"></span><span>🎉 PRE-REGISTRATION OPENS JULY 25</span><span class="track-dot"></span><span>BE THE FIRST TO SECURE YOUR SPOT</span><span class="track-dot"></span>
   </div>
   <div class="track-row track-row-right">
-    <span>PREPARE</span><span class="track-dot"></span><span>ACHIEVE</span><span class="track-dot"></span><span>SUCCEED</span><span class="track-dot"></span><span>LEARN</span><span class="track-dot"></span><span>GROW</span><span class="track-dot"></span>
-    <span>PREPARE</span><span class="track-dot"></span><span>ACHIEVE</span><span class="track-dot"></span><span>SUCCEED</span><span class="track-dot"></span><span>LEARN</span><span class="track-dot"></span><span>GROW</span><span class="track-dot"></span>
+    <span> PRE-REGISTRATION OPENS JULY 25</span><span class="track-dot"></span><span>BE THE FIRST TO SECURE YOUR SPOT</span><span class="track-dot"></span><span>🎉 PRE-REGISTRATION OPENS JULY 25</span><span class="track-dot"></span><span>BE THE FIRST TO SECURE YOUR SPOT</span><span class="track-dot"></span>
   </div>
 </div>
 
-<!-- MINIMIZED POPUP NOTIFICATION -->
-<div class="popup-notification" id="popupNotification">
-  <div class="popup-notification-icon"><i class="fas fa-rocket"></i></div>
-  <div class="popup-notification-content">
-    <div class="popup-notification-title">Pre-Registration Opens July 25!</div>
-    <div class="popup-notification-text">Be the first to secure your spot</div>
+<!-- POPUP MODAL -->
+<div class="popup-overlay" id="popupOverlay">
+  <div class="popup-modal">
+    <button class="popup-close" onclick="closePopup()"><i class="fas fa-times"></i></button>
+    <div class="popup-icon"><i class="fas fa-rocket"></i></div>
+    <div class="popup-tag">🎉 EXCITING NEWS</div>
+    <h3>Pre-Registration <span>Opens Soon!</span></h3>
+    <div class="popup-date">📅 July 25, 2026</div>
+    <p>Be the first to secure your spot in our IELTS, SAT, and General English courses. Limited places available!</p>
+    <a href="https://wa.me/37477347364?text=Hi!%20I'm%20interested%20in%20pre-registration%20for%20AClass%20courses." target="_blank" class="popup-cta">
+      <i class="fab fa-whatsapp"></i> Notify Me
+    </a>
   </div>
-  <button class="popup-notification-close" onclick="closePopupNotification()"><i class="fas fa-times"></i></button>
-  <a href="https://wa.me/37477347364?text=Hi!%20I'm%20interested%20in%20pre-registration%20for%20AClass%20courses." target="_blank" class="popup-notification-cta">
-    <i class="fab fa-whatsapp"></i> Notify Me
-  </a>
 </div>
 
 <nav class="navbar">
   <div class="nav-container">
     <a href="#home" class="logo">
       <img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/Aclasslogo.jpeg" alt="AClass Logo" class="logo-img">
-      <span class="logo-text">AClass</span>
+      <span class="logo-text">ACLASS</span>
     </a>
     <button class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
     <ul class="nav-menu" id="navMenu">
@@ -1065,13 +908,11 @@
     </div>
     <div class="reviews-carousel">
       <div class="swipe-track" id="swipeTrack">
-        <!-- Original set -->
         <div class="review-card-swipe"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/1rewiew.png" alt="Review 1"></div>
         <div class="review-card-swipe"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/2review.png" alt="Review 2"></div>
         <div class="review-card-swipe"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/3review.png" alt="Review 3"></div>
         <div class="review-card-swipe"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/6review.png" alt="Review 4"></div>
         <div class="review-card-swipe"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/7review.png" alt="Review 5"></div>
-        <!-- Duplicated set for infinite loop -->
         <div class="review-card-swipe"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/1rewiew.png" alt="Review 1"></div>
         <div class="review-card-swipe"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/2review.png" alt="Review 2"></div>
         <div class="review-card-swipe"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/3review.png" alt="Review 3"></div>
@@ -1201,226 +1042,49 @@
       <p>Flexible lesson formats designed to fit your schedule</p>
     </div>
     
-    <!-- Desktop Accordion Packages -->
-    <div class="packages-container">
-      
-      <!-- Standard Group -->
-      <div class="package-accordion" onclick="togglePackage(this)">
-        <div class="package-header">
-          <div class="package-header-left">
-            <div class="package-icon"><i class="fas fa-users"></i></div>
-            <div class="package-header-content">
-              <div class="package-title">IELTS/SAT Standard Group</div>
-              <div class="package-subtitle">Balanced preparation for students with enough time</div>
-            </div>
-          </div>
-          <div class="package-toggle"><i class="fas fa-chevron-down"></i></div>
-        </div>
-        <div class="package-content">
-          <div class="package-body">
-            <p class="package-description">The Standard package provides consistent and structured preparation. It is suitable for students who have sufficient time before their examination and prefer a balanced study schedule.</p>
-            <div class="package-details-grid">
-              <div class="package-detail-card">
-                <div class="package-detail-label">Lessons/Month</div>
-                <div class="package-detail-value">12</div>
-              </div>
-              <div class="package-detail-card">
-                <div class="package-detail-label">Lessons/Week</div>
-                <div class="package-detail-value">3</div>
-              </div>
-              <div class="package-detail-card">
-                <div class="package-detail-label">Duration</div>
-                <div class="package-detail-value">90 min</div>
-              </div>
-            </div>
-            <div class="package-features-list">
-              <div class="package-feature-item"><i class="fas fa-check"></i> Teacher-led lessons</div>
-              <div class="package-feature-item"><i class="fas fa-check"></i> Exam strategies</div>
-              <div class="package-feature-item"><i class="fas fa-check"></i> Practice exercises</div>
-              <div class="package-feature-item"><i class="fas fa-check"></i> Homework & feedback</div>
-              <div class="package-feature-item"><i class="fas fa-check"></i> Progress monitoring</div>
-              <div class="package-feature-item"><i class="fas fa-check"></i> Mock-test practice</div>
-            </div>
-            <button class="package-cta" onclick="event.stopPropagation(); document.getElementById('contact').scrollIntoView()">Enroll Now</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Intensive Group -->
-      <div class="package-accordion featured" onclick="togglePackage(this)">
-        <div class="package-header">
-          <div class="package-header-left">
-            <div class="package-icon"><i class="fas fa-bolt"></i></div>
-            <div class="package-header-content">
-              <div class="package-title">IELTS/SAT Intensive Group</div>
-              <div class="package-subtitle">Fast-track progress for students with limited time</div>
-            </div>
-          </div>
-          <div class="package-toggle"><i class="fas fa-chevron-down"></i></div>
-        </div>
-        <div class="package-content">
-          <div class="package-body">
-            <p class="package-description">The Intensive package is designed for students who need faster progress or have a limited amount of time before their examination. Students study more frequently and complete a larger amount of guided and independent practice.</p>
-            <div class="package-details-grid">
-              <div class="package-detail-card">
-                <div class="package-detail-label">Lessons/Month</div>
-                <div class="package-detail-value">20</div>
-              </div>
-              <div class="package-detail-card">
-                <div class="package-detail-label">Lessons/Week</div>
-                <div class="package-detail-value">5</div>
-              </div>
-              <div class="package-detail-card">
-                <div class="package-detail-label">Duration</div>
-                <div class="package-detail-value">90 min</div>
-              </div>
-            </div>
-            <div class="package-features-list">
-              <div class="package-feature-item"><i class="fas fa-check"></i> High-frequency lessons</div>
-              <div class="package-feature-item"><i class="fas fa-check"></i> Ideal for upcoming exams</div>
-              <div class="package-feature-item"><i class="fas fa-check"></i> High practice volume</div>
-              <div class="package-feature-item"><i class="fas fa-check"></i> Intensive mock tests</div>
-              <div class="package-feature-item"><i class="fas fa-check"></i> Priority teacher support</div>
-              <div class="package-feature-item"><i class="fas fa-check"></i> Rapid progress tracking</div>
-            </div>
-            <button class="package-cta" onclick="event.stopPropagation(); document.getElementById('contact').scrollIntoView()">Enroll Now</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Individual -->
-      <div class="package-accordion" onclick="togglePackage(this)">
-        <div class="package-header">
-          <div class="package-header-left">
-            <div class="package-icon"><i class="fas fa-user"></i></div>
-            <div class="package-header-content">
-              <div class="package-title">IELTS/SAT Individual</div>
-              <div class="package-subtitle">100% personalized one-on-one attention</div>
-            </div>
-          </div>
-          <div class="package-toggle"><i class="fas fa-chevron-down"></i></div>
-        </div>
-        <div class="package-content">
-          <div class="package-body">
-            <p class="package-description">Individual lessons provide the highest level of personalisation. The teacher can focus entirely on the student's specific weaknesses, goals, and learning pace. Ideal for students with a specific target score or limited preparation time.</p>
-            <div class="package-details-grid">
-              <div class="package-detail-card">
-                <div class="package-detail-label">Lessons/Month</div>
-                <div class="package-detail-value">12</div>
-              </div>
-              <div class="package-detail-card">
-                <div class="package-detail-label">Lessons/Week</div>
-                <div class="package-detail-value">3</div>
-              </div>
-              <div class="package-detail-card">
-                <div class="package-detail-label">Duration</div>
-                <div class="package-detail-value">60 min</div>
-              </div>
-            </div>
-            <div class="package-features-list">
-              <div class="package-feature-item"><i class="fas fa-check"></i> Fully personalized plan</div>
-              <div class="package-feature-item"><i class="fas fa-check"></i> Focus on weaknesses</div>
-              <div class="package-feature-item"><i class="fas fa-check"></i> Flexible schedule</div>
-              <div class="package-feature-item"><i class="fas fa-check"></i> One-on-one attention</div>
-              <div class="package-feature-item"><i class="fas fa-check"></i> Custom learning pace</div>
-              <div class="package-feature-item"><i class="fas fa-check"></i> Targeted skill work</div>
-            </div>
-            <button class="package-cta" onclick="event.stopPropagation(); document.getElementById('contact').scrollIntoView()">Enroll Now</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Pair Package -->
-      <div class="package-accordion" onclick="togglePackage(this)">
-        <div class="package-header">
-          <div class="package-header-left">
-            <div class="package-icon"><i class="fas fa-user-friends"></i></div>
-            <div class="package-header-content">
-              <div class="package-title">IELTS/SAT Pair Package</div>
-              <div class="package-subtitle">Collaborative learning with a partner</div>
-            </div>
-          </div>
-          <div class="package-toggle"><i class="fas fa-chevron-down"></i></div>
-        </div>
-        <div class="package-content">
-          <div class="package-body">
-            <p class="package-description">Study with a partner in a small, focused class of two students. This format combines the benefits of personalized attention with the motivation of collaborative learning. Perfect for friends or classmates with similar goals.</p>
-            <div class="package-details-grid">
-              <div class="package-detail-card">
-                <div class="package-detail-label">Lessons/Month</div>
-                <div class="package-detail-value">12</div>
-              </div>
-              <div class="package-detail-card">
-                <div class="package-detail-label">Lessons/Week</div>
-                <div class="package-detail-value">3</div>
-              </div>
-              <div class="package-detail-card">
-                <div class="package-detail-label">Class Size</div>
-                <div class="package-detail-value">2 students</div>
-              </div>
-            </div>
-            <div class="package-features-list">
-              <div class="package-feature-item"><i class="fas fa-check"></i> Two students per class</div>
-              <div class="package-feature-item"><i class="fas fa-check"></i> Collaborative learning</div>
-              <div class="package-feature-item"><i class="fas fa-check"></i> Cost-effective</div>
-              <div class="package-feature-item"><i class="fas fa-check"></i> Shared motivation</div>
-              <div class="package-feature-item"><i class="fas fa-check"></i> Tailored pair exercises</div>
-              <div class="package-feature-item"><i class="fas fa-check"></i> Personalized attention</div>
-            </div>
-            <button class="package-cta" onclick="event.stopPropagation(); document.getElementById('contact').scrollIntoView()">Enroll Now</button>
-          </div>
-        </div>
-      </div>
-
-    </div>
-    
-    <!-- Mobile Slider -->
-    <div class="packages-slider-mobile">
-      <div class="package-slide">
-        <div class="package-name">Standard Group</div>
-        <div class="package-price"><strong>12 lessons/month</strong><br><small>3 lessons/week • 90 min</small></div>
-        <ul class="package-features">
+    <div class="packages-preview-grid">
+      <div class="package-preview-card">
+        <div class="package-preview-icon"><i class="fas fa-users"></i></div>
+        <div class="package-preview-name">Standard Group</div>
+        <div class="package-preview-price">12 lessons/month • 3 lessons/week • 90 min</div>
+        <ul class="package-preview-features">
           <li><i class="fas fa-check"></i> Teacher-led lessons</li>
           <li><i class="fas fa-check"></i> Exam strategies</li>
-          <li><i class="fas fa-check"></i> Practice exercises</li>
-          <li><i class="fas fa-check"></i> Homework & feedback</li>
+          <li><i class="fas fa-check"></i> Progress monitoring</li>
         </ul>
-        <button class="package-btn" onclick="document.getElementById('contact').scrollIntoView()">Enroll Now</button>
       </div>
-      <div class="package-slide featured">
-        <div class="package-badge">⭐ MOST POPULAR</div>
-        <div class="package-name">Intensive Group</div>
-        <div class="package-price"><strong>20 lessons/month</strong><br><small>5 lessons/week • 90 min</small></div>
-        <ul class="package-features">
+      
+      <div class="package-preview-card featured">
+        <div class="package-preview-icon"><i class="fas fa-bolt"></i></div>
+        <div class="package-preview-name">Intensive Group</div>
+        <div class="package-preview-price">20 lessons/month • 5 lessons/week • 90 min</div>
+        <ul class="package-preview-features">
           <li><i class="fas fa-check"></i> Fastest progress</li>
           <li><i class="fas fa-check"></i> Ideal for exams</li>
-          <li><i class="fas fa-check"></i> High practice volume</li>
           <li><i class="fas fa-check"></i> Priority support</li>
         </ul>
-        <button class="package-btn" onclick="document.getElementById('contact').scrollIntoView()">Enroll Now</button>
       </div>
-      <div class="package-slide">
-        <div class="package-name">Individual</div>
-        <div class="package-price"><strong>12 lessons/month</strong><br><small>3 lessons/week • 60 min</small></div>
-        <ul class="package-features">
+      
+      <div class="package-preview-card">
+        <div class="package-preview-icon"><i class="fas fa-user"></i></div>
+        <div class="package-preview-name">Individual</div>
+        <div class="package-preview-price">12 lessons/month • 3 lessons/week • 60 min</div>
+        <ul class="package-preview-features">
           <li><i class="fas fa-check"></i> Fully personalized</li>
-          <li><i class="fas fa-check"></i> Focus on weaknesses</li>
           <li><i class="fas fa-check"></i> Flexible schedule</li>
           <li><i class="fas fa-check"></i> One-on-one attention</li>
         </ul>
-        <button class="package-btn" onclick="document.getElementById('contact').scrollIntoView()">Enroll Now</button>
       </div>
     </div>
     
     <div class="explore-more-container">
       <a href="all-packages.html" class="btn-explore">
-        Explore & Compare All Packages <i class="fas fa-arrow-right"></i>
+        View All Packages <i class="fas fa-arrow-right"></i>
       </a>
     </div>
   </div>
 </section>
 
-<!-- TEACHERS SECTION -->
 <section class="teachers-section">
   <div class="container">
     <div class="section-header">
@@ -1429,7 +1093,6 @@
       <p>Learn from experienced, dedicated professionals committed to your success</p>
     </div>
     <div class="teachers-grid">
-      <!-- Aisa -->
       <div class="teacher-card">
         <div class="teacher-image-wrapper">
           <img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/Aisa.jpeg" alt="Aisa">
@@ -1440,7 +1103,6 @@
         <p>Aisa is currently pursuing a master's degree through the MA TEFL program, specializing in Teaching English as a Foreign Language, at an American University of Armenia.</p>
       </div>
       
-      <!-- Ademi -->
       <div class="teacher-card">
         <div class="teacher-image-wrapper">
           <img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/Ademi.jpeg" alt="Ademi">
@@ -1518,12 +1180,10 @@
 </footer>
 
 <script>
-  // Force scroll to top
   if (history.scrollRestoration) { history.scrollRestoration = 'manual'; }
   window.addEventListener('load', () => { window.scrollTo({ top: 0, behavior: 'instant' }); });
   window.addEventListener('beforeunload', () => { window.scrollTo(0, 0); });
   
-  // CUSTOM CURSOR
   const cursor = document.getElementById('customCursor');
   document.addEventListener('mousemove', (e) => {
     cursor.style.left = e.clientX + 'px';
@@ -1531,27 +1191,11 @@
     cursor.classList.add('active');
   });
   document.addEventListener('mouseleave', () => cursor.classList.remove('active'));
-  document.querySelectorAll('a, button, .package-card, .course-card, .step-card, .package-accordion').forEach(el => {
+  document.querySelectorAll('a, button, .package-preview-card, .course-card, .step-card, .teacher-card').forEach(el => {
     el.addEventListener('mouseenter', () => cursor.classList.add('hovering'));
     el.addEventListener('mouseleave', () => cursor.classList.remove('hovering'));
   });
 
-  // PACKAGE ACCORDION
-  function togglePackage(element) {
-    const isActive = element.classList.contains('active');
-    
-    // Close all packages
-    document.querySelectorAll('.package-accordion').forEach(acc => {
-      acc.classList.remove('active');
-    });
-    
-    // Open clicked one if it wasn't active
-    if (!isActive) {
-      element.classList.add('active');
-    }
-  }
-
-  // MENU & DROPDOWN
   function toggleMenu() { 
     document.getElementById('navMenu').classList.toggle('active'); 
     document.getElementById('packagesDropdown').classList.remove('open');
@@ -1576,7 +1220,6 @@
     }
   });
   
-  // Auto-close menu on scroll
   let menuOpen = false;
   const navMenu = document.getElementById('navMenu');
   const menuObserver = new MutationObserver((mutations) => {
@@ -1592,13 +1235,11 @@
     const navbar = document.querySelector('.navbar');
     if (window.scrollY > 50) { navbar.classList.add('scrolled'); } else { navbar.classList.remove('scrolled'); }
     
-    // Close menu when scrolling
     if (menuOpen && window.innerWidth <= 768) {
       closeMenuOnLink();
     }
   });
   
-  // TAB BAR ACTIVE STATE
   function setActiveTab(element) {
     document.querySelectorAll('.tab-item').forEach(tab => {
       tab.classList.remove('active');
@@ -1606,13 +1247,13 @@
     element.classList.add('active');
   }
   
-  // POPUP NOTIFICATION
-  function showPopupNotification() { 
-    document.getElementById('popupNotification').classList.add('active'); 
+  // POPUP - Show on load, then move text to track bar
+  function showPopup() { 
+    document.getElementById('popupOverlay').classList.add('active'); 
   }
   
-  function closePopupNotification() { 
-    document.getElementById('popupNotification').classList.remove('active'); 
+  function closePopup() { 
+    document.getElementById('popupOverlay').classList.remove('active'); 
     try { sessionStorage.setItem('popupClosed', 'true'); } catch(e) {}
   }
   
@@ -1620,19 +1261,24 @@
   try { popupClosed = sessionStorage.getItem('popupClosed') === 'true'; } catch(e) {}
   
   if (!popupClosed) { 
-    setTimeout(showPopupNotification, 2000); 
-    
-    // Auto-close the popup after 6 seconds
-    setTimeout(() => {
-      closePopupNotification();
-    }, 8000); // 2000ms delay + 6000ms visible = 8000ms total
+    setTimeout(showPopup, 1500); 
   }
   
-  // SWIPEABLE CAROUSEL
+  // Close popup when clicking overlay
+  document.getElementById('popupOverlay').addEventListener('click', (e) => {
+    if (e.target === e.currentTarget) closePopup();
+  });
+  
+  // Close on Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closePopup();
+  });
+  
+  // CAROUSEL
   let currentSlide = 0;
   const track = document.getElementById('swipeTrack');
   const cards = document.querySelectorAll('.review-card-swipe');
-  const totalCards = 5; // Original 5 cards
+  const totalCards = 5;
   const dotsContainer = document.getElementById('carouselDots');
   let autoPlayInterval;
   let touchStartX = 0;
@@ -1640,9 +1286,7 @@
   let isDragging = false;
   let startPos = 0;
   let currentTranslate = 0;
-  let prevTranslate = 0;
   
-  // Create dots
   for (let i = 0; i < totalCards; i++) {
     const dot = document.createElement('div');
     dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
@@ -1652,11 +1296,10 @@
   const dots = document.querySelectorAll('.carousel-dot');
   
   function updateCarousel() {
-    const cardWidth = cards[0].offsetWidth + 24; // width + gap
+    const cardWidth = cards[0].offsetWidth + 24;
     const offset = -(currentSlide * cardWidth);
     track.style.transform = `translateX(${offset}px)`;
     
-    // Update dots
     dots.forEach((dot, index) => {
       dot.classList.toggle('active', index === currentSlide);
     });
@@ -1679,15 +1322,15 @@
     autoPlayInterval = setInterval(() => {
       currentSlide = (currentSlide + 1) % totalCards;
       updateCarousel();
-    }, 5000);
+    }, 7000);
   }
   
-  // Touch events for swipe
   track.addEventListener('touchstart', (e) => {
     touchStartX = e.changedTouches[0].screenX;
     isDragging = true;
     startPos = currentTranslate;
     track.style.transition = 'none';
+    clearInterval(autoPlayInterval);
   }, {passive: true});
   
   track.addEventListener('touchmove', (e) => {
@@ -1699,15 +1342,14 @@
   
   track.addEventListener('touchend', (e) => {
     isDragging = false;
-    track.style.transition = 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
+    track.style.transition = 'transform 0.7s cubic-bezier(0.4, 0, 0.2, 1)';
     
     const movedBy = touchEndX - touchStartX;
+    const threshold = 50;
     
-    if (movedBy < -100) {
-      // Swipe left - next slide
+    if (movedBy < -threshold) {
       currentSlide = (currentSlide + 1) % totalCards;
-    } else if (movedBy > 100) {
-      // Swipe right - previous slide
+    } else if (movedBy > threshold) {
       currentSlide = (currentSlide - 1 + totalCards) % totalCards;
     }
     
@@ -1715,13 +1357,13 @@
     resetAutoPlay();
   }, {passive: true});
   
-  // Mouse events for desktop drag
   track.addEventListener('mousedown', (e) => {
     isDragging = true;
     startPos = currentTranslate;
     touchStartX = e.pageX;
     track.style.cursor = 'grabbing';
     track.style.transition = 'none';
+    clearInterval(autoPlayInterval);
   });
   
   track.addEventListener('mousemove', (e) => {
@@ -1735,7 +1377,7 @@
     if (!isDragging) return;
     isDragging = false;
     track.style.cursor = 'grab';
-    track.style.transition = 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
+    track.style.transition = 'transform 0.7s cubic-bezier(0.4, 0, 0.2, 1)';
     
     const movedBy = touchEndX - touchStartX;
     
@@ -1753,11 +1395,11 @@
     if (!isDragging) return;
     isDragging = false;
     track.style.cursor = 'grab';
-    track.style.transition = 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
+    track.style.transition = 'transform 0.7s cubic-bezier(0.4, 0, 0.2, 1)';
     updateCarousel();
+    resetAutoPlay();
   });
   
-  // Initialize
   updateCarousel();
   resetAutoPlay();
   window.addEventListener('resize', updateCarousel);
