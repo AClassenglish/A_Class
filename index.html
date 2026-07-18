@@ -143,7 +143,7 @@
   
   .logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
   .logo-img { width: 42px; height: 42px; border-radius: 50%; object-fit: cover; border: 2px solid var(--primary); }
-  .logo-text { font-size: 1.4rem; font-weight: 800; background: var(--gradient-accent); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .logo-text { font-size: 1.4rem; font-weight: 800; background: var(--gradient-accent); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; letter-spacing: 1px; }
   
   .nav-menu { display: flex; align-items: center; gap: 2rem; list-style: none; }
   .nav-dropdown { position: relative; }
@@ -236,7 +236,7 @@
   .swipe-track {
     display: flex;
     gap: 1.5rem;
-    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1); /* Smoother, slightly slower */
     cursor: grab;
     padding: 2rem 0;
   }
@@ -249,7 +249,7 @@
     border-radius: 20px;
     overflow: hidden;
     border: 1px solid var(--border);
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
     filter: blur(3px);
     opacity: 0.6;
     transform: scale(0.85);
@@ -623,7 +623,7 @@
       text-align: center;
     }
     
-    /* === THIS IS THE FIXED MOBILE DROPDOWN SECTION === */
+    /* === PERFECTLY FIXED MOBILE DROPDOWN === */
     .nav-dropdown {
       width: 100%;
     }
@@ -640,7 +640,7 @@
       margin-top: 0.5rem;
       max-height: 0; 
       overflow: hidden; 
-      transition: max-height 0.3s ease;
+      transition: max-height 0.4s ease;
       width: 100%;
       border-radius: 8px;
     }
@@ -660,19 +660,20 @@
     
     .dropdown-menu li a {
       width: 100%;
-      justify-content: center;
+      justify-content: flex-start; /* Left-aligned so it doesn't clip */
       padding: 0.75rem 1rem;
       font-size: 0.95rem;
       display: flex;
       align-items: center;
-      gap: 0.75rem; /* Increased gap */
-      white-space: nowrap; /* Prevent text wrapping */
-      box-sizing: border-box; /* Include padding in*/
+      gap: 0.75rem;
+      white-space: nowrap;
+      box-sizing: border-box;
+      text-align: left;
     }
       
     .dropdown-menu li a i {
-      flex-shrink: 0; /* Prevent icon from shrinking */
-      width: 20px; /* Fixed width for icon */
+      flex-shrink: 0;
+      width: 20px;
       text-align: center;
     }
     
@@ -766,13 +767,13 @@
       <div class="track-label">ENGLISH</div><div class="track-label-dot"></div>
       <div class="track-label">RESULTS</div><div class="track-label-dot"></div>
       <div class="track-label">EXCELLENCE</div><div class="track-label-dot"></div>
-      <div class="track-label">AClass</div><div class="track-label-dot"></div>
+      <div class="track-label">ACLASS</div><div class="track-label-dot"></div>
       <div class="track-label">IELTS</div><div class="track-label-dot"></div>
       <div class="track-label">SAT</div><div class="track-label-dot"></div>
       <div class="track-label">ENGLISH</div><div class="track-label-dot"></div>
       <div class="track-label">RESULTS</div><div class="track-label-dot"></div>
       <div class="track-label">EXCELLENCE</div><div class="track-label-dot"></div>
-      <div class="track-label">AClass</div><div class="track-label-dot"></div>
+      <div class="track-label">ACLASS</div><div class="track-label-dot"></div>
     </div>
   </div>
   <div class="side-track right">
@@ -797,7 +798,7 @@
   <div class="nav-container">
     <a href="#home" class="logo">
       <img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/Aclasslogo.jpeg" alt="AClass Logo" class="logo-img">
-      <span class="logo-text">AClass</span>
+      <span class="logo-text">ACLASS</span>
     </a>
     <button class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
     <ul class="nav-menu" id="navMenu">
@@ -1040,15 +1041,7 @@
       <p>Learn from experienced, dedicated professionals committed to your success</p>
     </div>
     <div class="teachers-grid">
-      <div class="teacher-card">
-        <div class="teacher-image-wrapper">
-          <img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/Ademi.jpeg" alt="Ademi">
-        </div>
-        <h3>Ademi</h3>
-        <div class="teacher-title">IELTS Tutor</div>
-        <p>Ademi is a dedicated IELTS tutor with 4.5 years of teaching experience. She graduated from the American University of Central Asia and achieved an impressive IELTS score of 8.0 with 8.0 for both Writing and Speaking.</p>
-      </div>
-      
+      <!-- AISA FIRST -->
       <div class="teacher-card">
         <div class="teacher-image-wrapper">
           <img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/Aisa.jpeg" alt="Aisa">
@@ -1057,6 +1050,16 @@
         <div class="teacher-title">Senior IELTS Tutor</div>
         <p>Aisa is an experienced English educator with 8 years of IELTS teaching experience and 10 years of experience teaching English overall. She holds an outstanding IELTS score of 8.5, including a perfect 9.0 in Speaking.</p>
         <p>Aisa is currently pursuing a master's degree through the MA TEFL program, specializing in Teaching English as a Foreign Language, at an American University of Armenia.</p>
+      </div>
+      
+      <!-- ADEMI SECOND -->
+      <div class="teacher-card">
+        <div class="teacher-image-wrapper">
+          <img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/Ademi.jpeg" alt="Ademi">
+        </div>
+        <h3>Ademi</h3>
+        <div class="teacher-title">IELTS Tutor</div>
+        <p>Ademi is a dedicated IELTS tutor with 4.5 years of teaching experience. She graduated from the American University of Central Asia and achieved an impressive IELTS score of 8.0 with 8.0 for both Writing and Speaking.</p>
       </div>
     </div>
   </div>
@@ -1263,18 +1266,21 @@
   
   function resetAutoPlay() {
     clearInterval(autoPlayInterval);
+    // Increased to 7 seconds for a slower, more relaxed pace
     autoPlayInterval = setInterval(() => {
       currentSlide = (currentSlide + 1) % totalCards;
       updateCarousel();
-    }, 5000);
+    }, 7000); 
   }
   
+  // Touch events for swipe - IMPROVED FOR MOBILE (Pauses auto-play while touching)
   track.addEventListener('touchstart', (e) => {
     touchStartX = e.changedTouches[0].screenX;
     isDragging = true;
     startPos = currentTranslate;
     track.style.transition = 'none';
     track.style.cursor = 'grabbing';
+    clearInterval(autoPlayInterval); // Pause auto-play while swiping
   }, {passive: true});
   
   track.addEventListener('touchmove', (e) => {
@@ -1286,7 +1292,7 @@
   
   track.addEventListener('touchend', (e) => {
     isDragging = false;
-    track.style.transition = 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
+    track.style.transition = 'transform 0.7s cubic-bezier(0.4, 0, 0.2, 1)'; // Smoother transition
     track.style.cursor = 'grab';
     
     const movedBy = touchEndX - touchStartX;
@@ -1299,15 +1305,17 @@
     }
     
     updateCarousel();
-    resetAutoPlay();
+    resetAutoPlay(); // Resume auto-play after swipe
   }, {passive: true});
   
+  // Mouse events for desktop drag
   track.addEventListener('mousedown', (e) => {
     isDragging = true;
     startPos = currentTranslate;
     touchStartX = e.pageX;
     track.style.cursor = 'grabbing';
     track.style.transition = 'none';
+    clearInterval(autoPlayInterval);
   });
   
   track.addEventListener('mousemove', (e) => {
@@ -1321,7 +1329,7 @@
     if (!isDragging) return;
     isDragging = false;
     track.style.cursor = 'grab';
-    track.style.transition = 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
+    track.style.transition = 'transform 0.7s cubic-bezier(0.4, 0, 0.2, 1)';
     
     const movedBy = touchEndX - touchStartX;
     
@@ -1339,8 +1347,9 @@
     if (!isDragging) return;
     isDragging = false;
     track.style.cursor = 'grab';
-    track.style.transition = 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
+    track.style.transition = 'transform 0.7s cubic-bezier(0.4, 0, 0.2, 1)';
     updateCarousel();
+    resetAutoPlay();
   });
   
   updateCarousel();
