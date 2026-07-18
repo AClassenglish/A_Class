@@ -404,10 +404,11 @@
     100% { transform: translateX(-50%); }
   }
 
-  /* REVIEWS GRID */
+  /* REVIEWS CAROUSEL */
   .reviews-section {
     padding: 8rem 2rem;
     background: var(--white);
+    overflow: hidden;
   }
   
   .reviews-header {
@@ -431,33 +432,94 @@
     font-size: 1.2rem;
   }
   
-  .reviews-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2.5rem;
-    max-width: 1400px;
+  .reviews-carousel {
+    position: relative;
+    max-width: 1200px;
     margin: 0 auto;
   }
   
+  .carousel-track {
+    display: flex;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    gap: 2rem;
+    padding: 2rem 0;
+  }
+  
   .review-card {
+    flex: 0 0 calc(33.333% - 1.33rem);
     background: white;
     border-radius: 28px;
     overflow: hidden;
-    box-shadow: var(--shadow-xl);
+    box-shadow: var(--shadow-lg);
     border: 2px solid var(--border);
-    transition: all 0.5s;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: scale(0.85);
+    opacity: 0.6;
+    filter: blur(3px);
   }
   
-  .review-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 30px 70px rgba(167, 102, 220, 0.3);
+  .review-card.active {
+    transform: scale(1);
+    opacity: 1;
+    filter: blur(0);
+    box-shadow: 0 30px 70px rgba(167, 102, 220, 0.35);
     border-color: var(--primary);
+    z-index: 10;
   }
   
   .review-card img {
     width: 100%;
     height: auto;
     display: block;
+  }
+  
+  .carousel-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+  
+  .carousel-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--gradient-accent);
+    border: none;
+    box-shadow: 0 8px 25px rgba(167, 102, 220, 0.4);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5rem;
+    transition: all 0.3s;
+  }
+  
+  .carousel-btn:hover {
+    transform: scale(1.15);
+    box-shadow: 0 12px 35px rgba(167, 102, 220, 0.5);
+  }
+  
+  .carousel-dots {
+    display: flex;
+    gap: 0.75rem;
+  }
+  
+  .carousel-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--border);
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  
+  .carousel-dot.active {
+    background: var(--primary);
+    width: 35px;
+    border-radius: 6px;
   }
 
   /* SECTIONS */
@@ -903,7 +965,7 @@
     box-shadow: var(--shadow-lg);
   }
 
-  /* FOOTER */
+  /* FOOTER WITH BRANDED SOCIAL ICONS */
   footer {
     background: var(--text-dark);
     color: var(--text-light);
@@ -962,18 +1024,22 @@
     width: 52px;
     height: 52px;
     border-radius: 50%;
-    background: rgba(255,255,255,0.1);
+    background: rgba(167, 102, 220, 0.2);
+    border: 2px solid var(--primary);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
+    color: var(--primary);
     font-size: 1.4rem;
     transition: all 0.3s;
   }
   
   .social-links a:hover {
-    background: var(--primary);
+    background: var(--gradient-accent);
+    color: white;
+    border-color: transparent;
     transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(167, 102, 220, 0.4);
   }
   
   .footer-bottom {
@@ -992,6 +1058,10 @@
     .hero-stats { grid-template-columns: repeat(2, 1fr); }
     .about-grid { grid-template-columns: 1fr; gap: 4.5rem; }
     .footer-grid { grid-template-columns: 1fr 1fr; }
+    
+    .review-card {
+      flex: 0 0 calc(50% - 1rem);
+    }
   }
   
   @media (max-width: 768px) {
@@ -1028,6 +1098,17 @@
     .btn-test { justify-content: center; }
     
     .contact-buttons { flex-direction: column; align-items: stretch; }
+    
+    /* Mobile carousel - one card at a time */
+    .review-card {
+      flex: 0 0 100%;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    
+    .carousel-track {
+      justify-content: center;
+    }
   }
   
   @media (max-width: 480px) {
@@ -1035,6 +1116,10 @@
     .section-header h2, .reviews-header h2 { font-size: 2rem; }
     .about-stats { grid-template-columns: 1fr; }
     .btn { padding: 1.1rem 2.25rem; font-size: 1rem; }
+    
+    .review-card {
+      flex: 0 0 90%;
+    }
   }
 </style>
 </head>
@@ -1128,28 +1213,40 @@
   </div>
 </div>
 
-<!-- REVIEWS GRID -->
+<!-- REVIEWS CAROUSEL -->
 <section id="reviews" class="reviews-section">
   <div class="reviews-header">
     <h2>Student Success Stories</h2>
     <p>Real results from our amazing students</p>
   </div>
   
-  <div class="reviews-grid">
-    <div class="review-card">
-      <img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/1rewiew.png" alt="Student Review 1">
+  <div class="reviews-carousel">
+    <div class="carousel-track" id="carouselTrack">
+      <div class="review-card active">
+        <img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/1rewiew.png" alt="Student Review 1">
+      </div>
+      <div class="review-card">
+        <img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/2review.png" alt="Student Review 2">
+      </div>
+      <div class="review-card">
+        <img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/3review.png" alt="Student Review 3">
+      </div>
+      <div class="review-card">
+        <img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/6review.png" alt="Student Review 4">
+      </div>
+      <div class="review-card">
+        <img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/7review.png" alt="Student Review 5">
+      </div>
     </div>
-    <div class="review-card">
-      <img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/2review.png" alt="Student Review 2">
-    </div>
-    <div class="review-card">
-      <img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/3review.png" alt="Student Review 3">
-    </div>
-    <div class="review-card">
-      <img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/6review.png" alt="Student Review 4">
-    </div>
-    <div class="review-card">
-      <img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/7review.png" alt="Student Review 5">
+    
+    <div class="carousel-controls">
+      <button class="carousel-btn" onclick="changeCarousel(-1)">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+      <div class="carousel-dots" id="carouselDots"></div>
+      <button class="carousel-btn" onclick="changeCarousel(1)">
+        <i class="fas fa-chevron-right"></i>
+      </button>
     </div>
   </div>
 </section>
@@ -1467,6 +1564,86 @@
       navbar.classList.remove('scrolled');
     }
   });
+  
+  // CAROUSEL FUNCTIONALITY
+  let currentSlide = 0;
+  const track = document.getElementById('carouselTrack');
+  const cards = document.querySelectorAll('.review-card');
+  const totalCards = cards.length;
+  const dotsContainer = document.getElementById('carouselDots');
+  let autoPlayInterval;
+  
+  // Create dots
+  cards.forEach((_, index) => {
+    const dot = document.createElement('div');
+    dot.className = 'carousel-dot' + (index === 0 ? ' active' : '');
+    dot.onclick = () => goToSlide(index);
+    dotsContainer.appendChild(dot);
+  });
+  
+  const dots = document.querySelectorAll('.carousel-dot');
+  
+  function updateCarousel() {
+    // Update cards
+    cards.forEach((card, index) => {
+      card.classList.remove('active');
+      if (index === currentSlide) {
+        card.classList.add('active');
+      }
+    });
+    
+    // Update dots
+    dots.forEach((dot, index) => {
+      dot.classList.toggle('active', index === currentSlide);
+    });
+    
+    // Move track
+    const cardWidth = cards[0].offsetWidth + 32; // width + gap
+    const offset = -(currentSlide * cardWidth);
+    track.style.transform = `translateX(${offset}px)`;
+  }
+  
+  function changeCarousel(direction) {
+    currentSlide = (currentSlide + direction + totalCards) % totalCards;
+    updateCarousel();
+    resetAutoPlay();
+  }
+  
+  function goToSlide(index) {
+    currentSlide = index;
+    updateCarousel();
+    resetAutoPlay();
+  }
+  
+  function resetAutoPlay() {
+    clearInterval(autoPlayInterval);
+    autoPlayInterval = setInterval(() => {
+      currentSlide = (currentSlide + 1) % totalCards;
+      updateCarousel();
+    }, 5000);
+  }
+  
+  // Touch support for mobile
+  let touchStartX = 0;
+  let touchEndX = 0;
+  
+  track.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+  }, {passive: true});
+  
+  track.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    const diff = touchStartX - touchEndX;
+    if (Math.abs(diff) > 50) {
+      diff > 0 ? changeCarousel(1) : changeCarousel(-1);
+    }
+  }, {passive: true});
+  
+  // Start autoplay
+  resetAutoPlay();
+  
+  // Handle resize
+  window.addEventListener('resize', updateCarousel);
 </script>
 
 </body>
