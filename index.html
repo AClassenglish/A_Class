@@ -623,64 +623,53 @@
       text-align: center;
     }
     
-    /* === PERFECTLY FIXED MOBILE DROPDOWN === */
-    .nav-dropdown {
-      width: 100%;
-    }
-    
-    .dropdown-menu {
-      position: static; 
-      transform: none; 
-      opacity: 1; 
-      visibility: visible;
-      box-shadow: none; 
-      border: none; 
-      background: var(--bg-light); 
-      padding: 0.5rem; 
-      margin-top: 0.5rem;
-      max-height: 0; 
-      overflow: hidden; 
-      transition: max-height 0.4s ease;
-      width: 100%;
-      border-radius: 8px;
-    }
-    
-    .nav-dropdown.open .dropdown-menu { 
-      max-height: 200px;
-    }
-    
-    .dropdown-menu li {
-      width: 100%;
-      margin-bottom: 0.25rem;
-    }
-    
-    .dropdown-menu li:last-child {
-      margin-bottom: 0;
-    }
-    
-    .dropdown-menu li a {
-      width: 100%;
-      justify-content: flex-start; /* Left-aligned so it doesn't clip */
-      padding: 0.75rem 1rem;
-      font-size: 0.95rem;
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      white-space: nowrap;
-      box-sizing: border-box;
-      text-align: left;
-    }
-      
-    .dropdown-menu li a i {
-      flex-shrink: 0;
-      width: 20px;
-      text-align: center;
-    }
-    
-    .nav-dropdown.open .nav-link i {
-      transform: rotate(180deg);
-    }
-    /* === END OF FIXED SECTION === */
+/* MOBILE DROPDOWN */
+
+.nav-dropdown{
+    width:100%;
+}
+
+.nav-dropdown > .nav-link{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    width:100%;
+    padding:16px 20px;
+    text-align:left;
+}
+
+.dropdown-menu{
+    position:static;
+    width:100%;
+    margin:0;
+    margin-top:8px;
+    padding:0;
+    background:#f8f8ff;
+    border:none;
+    border-radius:10px;
+    box-shadow:none;
+
+    max-height:0;
+    overflow:hidden;
+    transition:max-height .35s ease;
+}
+
+.nav-dropdown.open .dropdown-menu{
+    max-height:120px;
+}
+
+.dropdown-menu li{
+    width:100%;
+}
+
+.dropdown-menu li a{
+    display:flex;
+    align-items:center;
+    justify-content:flex-start;
+    width:100%;
+    padding:14px 20px 14px 36px;
+    text-align:left;
+}
     
     .hero { padding: 10rem 1.5rem 4rem; }
     .hero h1 { font-size: 2.2rem; }
