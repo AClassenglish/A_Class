@@ -231,29 +231,31 @@
   .section-header h2 { font-size: 2.5rem; font-weight: 800; color: var(--text-dark); margin-bottom: 1rem; letter-spacing: -0.5px; }
   .section-header p { color: var(--text-gray); max-width: 600px; margin: 0 auto; font-size: 1.05rem; }
 
-  /* INFINITE CAROUSEL */
+  /* INFINITE SWIPEABLE CAROUSEL */
   .reviews-header { text-align: center; margin-bottom: 3rem; }
   .reviews-header h2 { font-size: 2.5rem; font-weight: 800; background: var(--gradient-accent); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 0.75rem; }
   .reviews-header p { color: var(--text-gray); font-size: 1.05rem; }
-  .reviews-carousel { position: relative; max-width: 100%; margin: 0 auto; overflow: hidden; }
+  .reviews-carousel { 
+    position: relative; 
+    max-width: 100%; 
+    margin: 0 auto; 
+    overflow: hidden;
+    touch-action: pan-y;
+  }
   
-  .infinite-track {
+  .swipe-track {
     display: flex;
     gap: 1.5rem;
-    animation: infiniteScroll 40s linear infinite;
-    width: max-content;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: grab;
+    padding: 2rem 0;
   }
   
-  .infinite-track:hover {
-    animation-play-state: paused;
+  .swipe-track:active {
+    cursor: grabbing;
   }
   
-  @keyframes infiniteScroll {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-  }
-  
-  .review-card-infinite {
+  .review-card-swipe {
     flex: 0 0 280px;
     background: white;
     border-radius: 20px;
@@ -262,13 +264,56 @@
     transition: all 0.3s ease;
   }
   
-  .review-card-infinite:hover {
+  .review-card-swipe:hover {
     transform: scale(1.05);
     border-color: var(--primary);
     box-shadow: 0 15px 40px rgba(167, 102, 220, 0.2);
   }
   
-  .review-card-infinite img { width: 100%; height: auto; display: block; }
+  .review-card-swipe img { width: 100%; height: auto; display: block; }
+  
+  .carousel-controls { 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    gap: 1.5rem; 
+    margin-top: 1.5rem; 
+  }
+  .carousel-btn { 
+    width: 48px; 
+    height: 48px; 
+    border-radius: 50%; 
+    background: white; 
+    border: 1.5px solid var(--primary); 
+    box-shadow: 0 4px 15px rgba(167, 102, 220, 0.15); 
+    cursor: pointer; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    color: var(--primary); 
+    font-size: 1.2rem; 
+    transition: all 0.3s; 
+  }
+  .carousel-btn:hover { 
+    background: var(--gradient-accent); 
+    color: white; 
+    border-color: transparent; 
+    transform: scale(1.1); 
+  }
+  .carousel-dots { display: flex; gap: 0.6rem; }
+  .carousel-dot { 
+    width: 10px; 
+    height: 10px; 
+    border-radius: 50%; 
+    background: var(--border); 
+    cursor: pointer; 
+    transition: all 0.3s; 
+  }
+  .carousel-dot.active { 
+    background: var(--primary); 
+    width: 28px; 
+    border-radius: 5px; 
+  }
 
   /* ABOUT */
   .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
@@ -298,24 +343,261 @@
   .step-card h4 { color: var(--text-dark); margin: 1.25rem 0 0.75rem; font-size: 1.2rem; font-weight: 700; }
   .step-card p { color: var(--text-gray); font-size: 0.95rem; }
 
-  /* PACKAGES */
-  .packages-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; max-width: 1100px; margin: 0 auto; }
-  .package-card { background: white; border-radius: 20px; padding: 2.5rem; border: 1px solid var(--border); position: relative; transition: all 0.4s; }
-  .package-card:hover { transform: translateY(-8px); border-color: var(--primary); }
-  .package-card.featured { background: var(--gradient-accent); color: white; border-color: transparent; }
-  .package-badge { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: #fde68a; color: var(--text-dark); padding: 0.5rem 1.5rem; border-radius: 20px; font-size: 0.8rem; font-weight: 700; }
-  .package-name { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.75rem; text-align: center; }
-  .package-price { text-align: center; margin: 1.5rem 0; padding: 1.5rem; background: rgba(167, 102, 220, 0.08); border-radius: 14px; }
-  .package-card.featured .package-price { background: rgba(255,255,255,0.15); }
-  .package-features { list-style: none; margin: 2rem 0; }
-  .package-features li { padding: 0.75rem 0; display: flex; align-items: center; gap: 0.75rem; border-bottom: 1px solid var(--border); font-size: 0.95rem; }
-  .package-card.featured .package-features li { border-bottom-color: rgba(255,255,255,0.2); }
-  .package-features li:last-child { border-bottom: none; }
-  .package-features li i { color: var(--primary); font-size: 0.95rem; }
-  .package-card.featured .package-features li i { color: #fde68a; }
-  .package-btn { width: 100%; padding: 1rem; background: var(--text-dark); color: white; border: none; border-radius: 14px; font-weight: 700; cursor: pointer; transition: all 0.3s; font-size: 1rem; font-family: inherit; }
-  .package-card.featured .package-btn { background: white; color: var(--primary); }
-  .package-btn:hover { transform: translateY(-3px); }
+  /* MODERN PACKAGES - ACCORDION STYLE */
+  .packages-container {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  
+  .package-accordion {
+    background: white;
+    border-radius: 20px;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  }
+  
+  .package-accordion:hover {
+    box-shadow: 0 8px 30px rgba(167, 102, 220, 0.15);
+    transform: translateY(-2px);
+  }
+  
+  .package-accordion.featured {
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    color: white;
+    border-color: transparent;
+  }
+  
+  .package-header {
+    padding: 2rem 2.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    transition: all 0.3s;
+  }
+  
+  .package-header:hover {
+    background: rgba(167, 102, 220, 0.05);
+  }
+  
+  .package-accordion.featured .package-header:hover {
+    background: rgba(255,255,255,0.1);
+  }
+  
+  .package-header-left {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex: 1;
+  }
+  
+  .package-icon {
+    width: 60px;
+    height: 60px;
+    background: var(--primary-light);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    transition: all 0.3s;
+  }
+  
+  .package-accordion.featured .package-icon {
+    background: rgba(255,255,255,0.2);
+    color: white;
+  }
+  
+  .package-header-content {
+    flex: 1;
+  }
+  
+  .package-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-bottom: 0.4rem;
+    color: var(--text-dark);
+  }
+  
+  .package-accordion.featured .package-title {
+    color: white;
+  }
+  
+  .package-subtitle {
+    font-size: 0.95rem;
+    color: var(--text-gray);
+    font-weight: 500;
+  }
+  
+  .package-accordion.featured .package-subtitle {
+    color: rgba(255,255,255,0.9);
+  }
+  
+  .package-toggle {
+    width: 50px;
+    height: 50px;
+    background: var(--primary-light);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+    font-size: 1.2rem;
+    transition: all 0.3s;
+    flex-shrink: 0;
+  }
+  
+  .package-accordion.featured .package-toggle {
+    background: rgba(255,255,255,0.2);
+    color: white;
+  }
+  
+  .package-accordion.active .package-toggle {
+    transform: rotate(180deg);
+  }
+  
+  .package-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .package-accordion.active .package-content {
+    max-height: 800px;
+  }
+  
+  .package-body {
+    padding: 0 2.5rem 2.5rem;
+  }
+  
+  .package-description {
+    color: var(--text-gray);
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+  }
+  
+  .package-accordion.featured .package-description {
+    color: rgba(255,255,255,0.9);
+  }
+  
+  .package-details-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .package-detail-card {
+    background: var(--primary-light);
+    padding: 1.5rem;
+    border-radius: 16px;
+    text-align: center;
+    transition: all 0.3s;
+  }
+  
+  .package-accordion.featured .package-detail-card {
+    background: rgba(255,255,255,0.15);
+  }
+  
+  .package-detail-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(167, 102, 220, 0.2);
+  }
+  
+  .package-detail-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-gray);
+    margin-bottom: 0.5rem;
+  }
+  
+  .package-accordion.featured .package-detail-label {
+    color: rgba(255,255,255,0.8);
+  }
+  
+  .package-detail-value {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--text-dark);
+  }
+  
+  .package-accordion.featured .package-detail-value {
+    color: white;
+  }
+  
+  .package-features-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+  }
+  
+  .package-feature-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.95rem;
+    color: var(--text-gray);
+  }
+  
+  .package-accordion.featured .package-feature-item {
+    color: rgba(255,255,255,0.9);
+  }
+  
+  .package-feature-item i {
+    color: var(--primary);
+    font-size: 0.9rem;
+    width: 20px;
+    text-align: center;
+  }
+  
+  .package-accordion.featured .package-feature-item i {
+    color: #fde68a;
+  }
+  
+  .package-cta {
+    width: 100%;
+    padding: 1.1rem;
+    background: var(--text-dark);
+    color: white;
+    border: none;
+    border-radius: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: all 0.3s;
+  }
+  
+  .package-accordion.featured .package-cta {
+    background: white;
+    color: var(--primary);
+  }
+  
+  .package-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+  }
+
+  .explore-more-container { text-align: center; margin-top: 3rem; }
+  .btn-explore {
+    background: white; color: var(--primary); border: 1.5px solid var(--primary);
+    padding: 0.95rem 2rem; border-radius: 50px; font-weight: 600; font-size: 1rem;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 0.6rem;
+    transition: all 0.3s;
+  }
+  .btn-explore:hover { background: var(--gradient-accent); color: white; border-color: transparent; transform: translateY(-3px); box-shadow: 0 10px 25px rgba(167, 102, 220, 0.3); }
+  .btn-explore i { transition: transform 0.3s; }
+  .btn-explore:hover i { transform: translateX(4px); }
 
   /* PACKAGE SLIDER (MOBILE) */
   .packages-slider-mobile {
@@ -357,17 +639,6 @@
   .package-slide .package-btn { width: 100%; padding: 0.9rem; background: var(--text-dark); color: white; border: none; border-radius: 14px; font-weight: 700; cursor: pointer; font-size: 0.95rem; font-family: inherit; }
   .package-slide.featured .package-btn { background: white; color: var(--primary); }
 
-  .explore-more-container { text-align: center; margin-top: 3rem; }
-  .btn-explore {
-    background: white; color: var(--primary); border: 1.5px solid var(--primary);
-    padding: 0.95rem 2rem; border-radius: 50px; font-weight: 600; font-size: 1rem;
-    text-decoration: none; display: inline-flex; align-items: center; gap: 0.6rem;
-    transition: all 0.3s;
-  }
-  .btn-explore:hover { background: var(--gradient-accent); color: white; border-color: transparent; transform: translateY(-3px); box-shadow: 0 10px 25px rgba(167, 102, 220, 0.3); }
-  .btn-explore i { transition: transform 0.3s; }
-  .btn-explore:hover i { transform: translateX(4px); }
-
   /* PLACEMENT TEST */
   .placement-cta { background: var(--gradient-accent); color: white; text-align: center; padding: 5rem 2rem; position: relative; overflow: hidden; z-index: 2; }
   .placement-cta h2 { font-size: 2.5rem; margin-bottom: 1rem; font-weight: 800; }
@@ -398,44 +669,93 @@
   .social-links a:hover { background: var(--gradient-accent); color: white; border-color: transparent; transform: translateY(-4px); }
   .footer-bottom { max-width: 1300px; margin: 0 auto; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); text-align: center; font-size: 0.9rem; color: var(--text-light); }
 
-  /* POPUP MODAL */
-  .popup-overlay {
-    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(8px);
-    z-index: 2000; display: flex; align-items: center; justify-content: center; padding: 1.5rem;
-    opacity: 0; visibility: hidden; transition: all 0.4s ease;
-  }
-  .popup-overlay.active { opacity: 1; visibility: visible; }
-  .popup-modal {
-    background: white; border-radius: 24px; padding: 3rem 2.5rem; max-width: 480px; width: 100%; text-align: center;
-    position: relative; box-shadow: 0 25px 60px rgba(167, 102, 220, 0.3);
-    transform: scale(0.9) translateY(20px); transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  /* MINIMIZED POPUP NOTIFICATION */
+  .popup-notification {
+    position: fixed;
+    bottom: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: white;
+    border-radius: 16px;
+    padding: 1.25rem 2rem;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    max-width: 90%;
+    width: 400px;
+    transition: bottom 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     border: 2px solid var(--primary-light);
   }
-  .popup-overlay.active .popup-modal { transform: scale(1) translateY(0); }
-  .popup-close {
-    position: absolute; top: 1rem; right: 1rem; width: 36px; height: 36px; border-radius: 50%;
-    background: var(--bg-light); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center;
-    color: var(--text-gray); font-size: 1rem; transition: all 0.3s;
+  
+  .popup-notification.active {
+    bottom: 20px;
   }
-  .popup-close:hover { background: var(--primary-light); color: var(--primary); transform: rotate(90deg); }
-  .popup-icon {
-    width: 80px; height: 80px; margin: 0 auto 1.5rem; background: var(--gradient-accent); border-radius: 50%;
-    display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem;
-    box-shadow: 0 10px 30px rgba(167, 102, 220, 0.4); animation: popupPulse 2s ease-in-out infinite;
+  
+  .popup-notification-icon {
+    width: 50px;
+    height: 50px;
+    background: var(--gradient-accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5rem;
+    flex-shrink: 0;
   }
-  @keyframes popupPulse { 0%, 100% { transform: scale(1); box-shadow: 0 10px 30px rgba(167, 102, 220, 0.4); } 50% { transform: scale(1.05); box-shadow: 0 15px 40px rgba(167, 102, 220, 0.5); } }
-  .popup-tag { display: inline-block; background: var(--primary-light); color: var(--primary-dark); padding: 0.4rem 1rem; border-radius: 50px; font-size: 0.8rem; font-weight: 700; margin-bottom: 1rem; letter-spacing: 0.5px; }
-  .popup-modal h3 { font-size: 1.75rem; font-weight: 800; color: var(--text-dark); margin-bottom: 0.75rem; letter-spacing: -0.5px; }
-  .popup-modal h3 span { background: var(--gradient-accent); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-  .popup-date { font-size: 1.1rem; color: var(--primary-dark); font-weight: 700; margin-bottom: 1rem; }
-  .popup-modal p { color: var(--text-gray); font-size: 0.95rem; margin-bottom: 2rem; line-height: 1.6; }
-  .popup-cta {
-    background: var(--gradient-accent); color: white; padding: 1rem 2rem; border-radius: 50px; font-weight: 700; text-decoration: none;
-    display: inline-flex; align-items: center; gap: 0.75rem; transition: all 0.3s; box-shadow: 0 8px 25px rgba(167, 102, 220, 0.4);
-    border: none; cursor: pointer; font-size: 1rem; font-family: inherit;
+  
+  .popup-notification-content {
+    flex: 1;
   }
-  .popup-cta:hover { transform: translateY(-3px); box-shadow: 0 12px 35px rgba(167, 102, 220, 0.5); }
+  
+  .popup-notification-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 0.25rem;
+  }
+  
+  .popup-notification-text {
+    font-size: 0.85rem;
+    color: var(--text-gray);
+  }
+  
+  .popup-notification-close {
+    background: none;
+    border: none;
+    color: var(--text-light);
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: all 0.3s;
+  }
+  
+  .popup-notification-close:hover {
+    color: var(--primary);
+    transform: rotate(90deg);
+  }
+  
+  .popup-notification-cta {
+    background: var(--gradient-accent);
+    color: white;
+    padding: 0.6rem 1.25rem;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s;
+    white-space: nowrap;
+  }
+  
+  .popup-notification-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(167, 102, 220, 0.4);
+  }
 
   /* RESPONSIVE */
   @media (max-width: 1024px) {
@@ -481,22 +801,51 @@
     .btn-test, .contact-btn { justify-content: center; }
     
     /* Packages: hide grid, show slider */
-    .packages-grid { display: none; }
+    .packages-container { display: none; }
     .packages-slider-mobile { display: flex; }
     
     /* Dropdown on mobile */
     .dropdown-menu {
-      position: static; transform: none; opacity: 1; visibility: visible;
-      box-shadow: none; border: none; background: transparent; padding: 0; margin-top: 0.5rem;
-      max-height: 0; overflow: hidden; transition: max-height 0.3s ease;
+      position: static; 
+      transform: none; 
+      opacity: 1; 
+      visibility: visible;
+      box-shadow: none; 
+      border: none; 
+      background: transparent; 
+      padding: 0; 
+      margin-top: 0.5rem;
+      max-height: 0; 
+      overflow: hidden; 
+      transition: max-height 0.3s ease;
     }
-    .nav-dropdown.open .dropdown-menu { max-height: 200px; }
+    .nav-dropdown.open .dropdown-menu { 
+      max-height: 200px;
+      margin-top: 0.5rem;
+    }
     
     .popup-modal { padding: 2.5rem 1.5rem; }
     .popup-modal h3 { font-size: 1.5rem; }
     .popup-icon { width: 70px; height: 70px; font-size: 1.75rem; }
     
-    .review-card-infinite { flex: 0 0 260px; }
+    .review-card-swipe { flex: 0 0 260px; }
+    
+    .package-details-grid { grid-template-columns: 1fr; }
+    .package-features-list { grid-template-columns: 1fr; }
+    
+    /* Popup notification mobile */
+    .popup-notification {
+      width: 90%;
+      max-width: 350px;
+      padding: 1rem 1.5rem;
+      flex-direction: column;
+      text-align: center;
+    }
+    .popup-notification-cta {
+      width: 100%;
+      justify-content: center;
+      margin-top: 0.5rem;
+    }
   }
   
   @media (max-width: 480px) {
@@ -504,7 +853,7 @@
     .section-header h2, .reviews-header h2 { font-size: 1.75rem; }
     .about-stats { grid-template-columns: 1fr; }
     .btn { padding: 0.9rem 1.75rem; font-size: 0.95rem; }
-    .review-card-infinite { flex: 0 0 240px; }
+    .review-card-swipe { flex: 0 0 240px; }
   }
 </style>
 </head>
@@ -575,19 +924,17 @@
   </div>
 </div>
 
-<!-- POPUP MODAL -->
-<div class="popup-overlay" id="popupOverlay">
-  <div class="popup-modal">
-    <button class="popup-close" onclick="closePopup()" aria-label="Close"><i class="fas fa-times"></i></button>
-    <div class="popup-icon"><i class="fas fa-rocket"></i></div>
-    <div class="popup-tag"> EXCITING NEWS</div>
-    <h3>Pre-Registration <span>Opens Soon!</span></h3>
-    <div class="popup-date">📅 July 25, 2026</div>
-    <p>Be the first to secure your spot in our IELTS, SAT, and General English courses. Limited places available!</p>
-    <a href="https://wa.me/37477347364?text=Hi!%20I'm%20interested%20in%20pre-registration%20for%20AClass%20courses." target="_blank" class="popup-cta">
-      <i class="fab fa-whatsapp"></i> Notify Me
-    </a>
+<!-- MINIMIZED POPUP NOTIFICATION -->
+<div class="popup-notification" id="popupNotification">
+  <div class="popup-notification-icon"><i class="fas fa-rocket"></i></div>
+  <div class="popup-notification-content">
+    <div class="popup-notification-title">Pre-Registration Opens July 25!</div>
+    <div class="popup-notification-text">Be the first to secure your spot</div>
   </div>
+  <button class="popup-notification-close" onclick="closePopupNotification()"><i class="fas fa-times"></i></button>
+  <a href="https://wa.me/37477347364?text=Hi!%20I'm%20interested%20in%20pre-registration%20for%20AClass%20courses." target="_blank" class="popup-notification-cta">
+    <i class="fab fa-whatsapp"></i> Notify Me
+  </a>
 </div>
 
 <nav class="navbar">
@@ -640,19 +987,24 @@
       <p>Real results from our amazing students</p>
     </div>
     <div class="reviews-carousel">
-      <div class="infinite-track" id="infiniteTrack">
+      <div class="swipe-track" id="swipeTrack">
         <!-- Original set -->
-        <div class="review-card-infinite"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/1rewiew.png" alt="Review 1"></div>
-        <div class="review-card-infinite"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/2review.png" alt="Review 2"></div>
-        <div class="review-card-infinite"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/3review.png" alt="Review 3"></div>
-        <div class="review-card-infinite"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/6review.png" alt="Review 4"></div>
-        <div class="review-card-infinite"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/7review.png" alt="Review 5"></div>
+        <div class="review-card-swipe"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/1rewiew.png" alt="Review 1"></div>
+        <div class="review-card-swipe"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/2review.png" alt="Review 2"></div>
+        <div class="review-card-swipe"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/3review.png" alt="Review 3"></div>
+        <div class="review-card-swipe"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/6review.png" alt="Review 4"></div>
+        <div class="review-card-swipe"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/7review.png" alt="Review 5"></div>
         <!-- Duplicated set for infinite loop -->
-        <div class="review-card-infinite"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/1rewiew.png" alt="Review 1"></div>
-        <div class="review-card-infinite"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/2review.png" alt="Review 2"></div>
-        <div class="review-card-infinite"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/3review.png" alt="Review 3"></div>
-        <div class="review-card-infinite"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/6review.png" alt="Review 4"></div>
-        <div class="review-card-infinite"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/7review.png" alt="Review 5"></div>
+        <div class="review-card-swipe"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/1rewiew.png" alt="Review 1"></div>
+        <div class="review-card-swipe"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/2review.png" alt="Review 2"></div>
+        <div class="review-card-swipe"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/3review.png" alt="Review 3"></div>
+        <div class="review-card-swipe"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/6review.png" alt="Review 4"></div>
+        <div class="review-card-swipe"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/7review.png" alt="Review 5"></div>
+      </div>
+      <div class="carousel-controls">
+        <button class="carousel-btn" onclick="changeCarousel(-1)"><i class="fas fa-chevron-left"></i></button>
+        <div class="carousel-dots" id="carouselDots"></div>
+        <button class="carousel-btn" onclick="changeCarousel(1)"><i class="fas fa-chevron-right"></i></button>
       </div>
     </div>
   </div>
@@ -772,42 +1124,177 @@
       <p>Flexible lesson formats designed to fit your schedule</p>
     </div>
     
-    <!-- Desktop Grid -->
-    <div class="packages-grid">
-      <div class="package-card">
-        <div class="package-name">Standard Group</div>
-        <div class="package-price"><strong>12 lessons/month</strong><br><small>3 lessons/week • 90 min</small></div>
-        <ul class="package-features">
-          <li><i class="fas fa-check"></i> Teacher-led lessons</li>
-          <li><i class="fas fa-check"></i> Exam strategies</li>
-          <li><i class="fas fa-check"></i> Practice exercises</li>
-          <li><i class="fas fa-check"></i> Homework & feedback</li>
-        </ul>
-        <button class="package-btn" onclick="document.getElementById('contact').scrollIntoView()">Enroll Now</button>
+    <!-- Desktop Accordion Packages -->
+    <div class="packages-container">
+      
+      <!-- Standard Group -->
+      <div class="package-accordion" onclick="togglePackage(this)">
+        <div class="package-header">
+          <div class="package-header-left">
+            <div class="package-icon"><i class="fas fa-users"></i></div>
+            <div class="package-header-content">
+              <div class="package-title">IELTS/SAT Standard Group</div>
+              <div class="package-subtitle">Balanced preparation for students with enough time</div>
+            </div>
+          </div>
+          <div class="package-toggle"><i class="fas fa-chevron-down"></i></div>
+        </div>
+        <div class="package-content">
+          <div class="package-body">
+            <p class="package-description">The Standard package provides consistent and structured preparation. It is suitable for students who have sufficient time before their examination and prefer a balanced study schedule.</p>
+            <div class="package-details-grid">
+              <div class="package-detail-card">
+                <div class="package-detail-label">Lessons/Month</div>
+                <div class="package-detail-value">12</div>
+              </div>
+              <div class="package-detail-card">
+                <div class="package-detail-label">Lessons/Week</div>
+                <div class="package-detail-value">3</div>
+              </div>
+              <div class="package-detail-card">
+                <div class="package-detail-label">Duration</div>
+                <div class="package-detail-value">90 min</div>
+              </div>
+            </div>
+            <div class="package-features-list">
+              <div class="package-feature-item"><i class="fas fa-check"></i> Teacher-led lessons</div>
+              <div class="package-feature-item"><i class="fas fa-check"></i> Exam strategies</div>
+              <div class="package-feature-item"><i class="fas fa-check"></i> Practice exercises</div>
+              <div class="package-feature-item"><i class="fas fa-check"></i> Homework & feedback</div>
+              <div class="package-feature-item"><i class="fas fa-check"></i> Progress monitoring</div>
+              <div class="package-feature-item"><i class="fas fa-check"></i> Mock-test practice</div>
+            </div>
+            <button class="package-cta" onclick="event.stopPropagation(); document.getElementById('contact').scrollIntoView()">Enroll Now</button>
+          </div>
+        </div>
       </div>
-      <div class="package-card featured">
-        <div class="package-badge">⭐ MOST POPULAR</div>
-        <div class="package-name">Intensive Group</div>
-        <div class="package-price"><strong>20 lessons/month</strong><br><small>5 lessons/week • 90 min</small></div>
-        <ul class="package-features">
-          <li><i class="fas fa-check"></i> Fastest progress</li>
-          <li><i class="fas fa-check"></i> Ideal for exams</li>
-          <li><i class="fas fa-check"></i> High practice volume</li>
-          <li><i class="fas fa-check"></i> Priority support</li>
-        </ul>
-        <button class="package-btn" onclick="document.getElementById('contact').scrollIntoView()">Enroll Now</button>
+
+      <!-- Intensive Group -->
+      <div class="package-accordion featured" onclick="togglePackage(this)">
+        <div class="package-header">
+          <div class="package-header-left">
+            <div class="package-icon"><i class="fas fa-bolt"></i></div>
+            <div class="package-header-content">
+              <div class="package-title">IELTS/SAT Intensive Group</div>
+              <div class="package-subtitle">Fast-track progress for students with limited time</div>
+            </div>
+          </div>
+          <div class="package-toggle"><i class="fas fa-chevron-down"></i></div>
+        </div>
+        <div class="package-content">
+          <div class="package-body">
+            <p class="package-description">The Intensive package is designed for students who need faster progress or have a limited amount of time before their examination. Students study more frequently and complete a larger amount of guided and independent practice.</p>
+            <div class="package-details-grid">
+              <div class="package-detail-card">
+                <div class="package-detail-label">Lessons/Month</div>
+                <div class="package-detail-value">20</div>
+              </div>
+              <div class="package-detail-card">
+                <div class="package-detail-label">Lessons/Week</div>
+                <div class="package-detail-value">5</div>
+              </div>
+              <div class="package-detail-card">
+                <div class="package-detail-label">Duration</div>
+                <div class="package-detail-value">90 min</div>
+              </div>
+            </div>
+            <div class="package-features-list">
+              <div class="package-feature-item"><i class="fas fa-check"></i> High-frequency lessons</div>
+              <div class="package-feature-item"><i class="fas fa-check"></i> Ideal for upcoming exams</div>
+              <div class="package-feature-item"><i class="fas fa-check"></i> High practice volume</div>
+              <div class="package-feature-item"><i class="fas fa-check"></i> Intensive mock tests</div>
+              <div class="package-feature-item"><i class="fas fa-check"></i> Priority teacher support</div>
+              <div class="package-feature-item"><i class="fas fa-check"></i> Rapid progress tracking</div>
+            </div>
+            <button class="package-cta" onclick="event.stopPropagation(); document.getElementById('contact').scrollIntoView()">Enroll Now</button>
+          </div>
+        </div>
       </div>
-      <div class="package-card">
-        <div class="package-name">Individual</div>
-        <div class="package-price"><strong>12 lessons/month</strong><br><small>3 lessons/week • 60 min</small></div>
-        <ul class="package-features">
-          <li><i class="fas fa-check"></i> Fully personalized</li>
-          <li><i class="fas fa-check"></i> Focus on weaknesses</li>
-          <li><i class="fas fa-check"></i> Flexible schedule</li>
-          <li><i class="fas fa-check"></i> One-on-one attention</li>
-        </ul>
-        <button class="package-btn" onclick="document.getElementById('contact').scrollIntoView()">Enroll Now</button>
+
+      <!-- Individual -->
+      <div class="package-accordion" onclick="togglePackage(this)">
+        <div class="package-header">
+          <div class="package-header-left">
+            <div class="package-icon"><i class="fas fa-user"></i></div>
+            <div class="package-header-content">
+              <div class="package-title">IELTS/SAT Individual</div>
+              <div class="package-subtitle">100% personalized one-on-one attention</div>
+            </div>
+          </div>
+          <div class="package-toggle"><i class="fas fa-chevron-down"></i></div>
+        </div>
+        <div class="package-content">
+          <div class="package-body">
+            <p class="package-description">Individual lessons provide the highest level of personalisation. The teacher can focus entirely on the student's specific weaknesses, goals, and learning pace. Ideal for students with a specific target score or limited preparation time.</p>
+            <div class="package-details-grid">
+              <div class="package-detail-card">
+                <div class="package-detail-label">Lessons/Month</div>
+                <div class="package-detail-value">12</div>
+              </div>
+              <div class="package-detail-card">
+                <div class="package-detail-label">Lessons/Week</div>
+                <div class="package-detail-value">3</div>
+              </div>
+              <div class="package-detail-card">
+                <div class="package-detail-label">Duration</div>
+                <div class="package-detail-value">60 min</div>
+              </div>
+            </div>
+            <div class="package-features-list">
+              <div class="package-feature-item"><i class="fas fa-check"></i> Fully personalized plan</div>
+              <div class="package-feature-item"><i class="fas fa-check"></i> Focus on weaknesses</div>
+              <div class="package-feature-item"><i class="fas fa-check"></i> Flexible schedule</div>
+              <div class="package-feature-item"><i class="fas fa-check"></i> One-on-one attention</div>
+              <div class="package-feature-item"><i class="fas fa-check"></i> Custom learning pace</div>
+              <div class="package-feature-item"><i class="fas fa-check"></i> Targeted skill work</div>
+            </div>
+            <button class="package-cta" onclick="event.stopPropagation(); document.getElementById('contact').scrollIntoView()">Enroll Now</button>
+          </div>
+        </div>
       </div>
+
+      <!-- Pair Package -->
+      <div class="package-accordion" onclick="togglePackage(this)">
+        <div class="package-header">
+          <div class="package-header-left">
+            <div class="package-icon"><i class="fas fa-user-friends"></i></div>
+            <div class="package-header-content">
+              <div class="package-title">IELTS/SAT Pair Package</div>
+              <div class="package-subtitle">Collaborative learning with a partner</div>
+            </div>
+          </div>
+          <div class="package-toggle"><i class="fas fa-chevron-down"></i></div>
+        </div>
+        <div class="package-content">
+          <div class="package-body">
+            <p class="package-description">Study with a partner in a small, focused class of two students. This format combines the benefits of personalized attention with the motivation of collaborative learning. Perfect for friends or classmates with similar goals.</p>
+            <div class="package-details-grid">
+              <div class="package-detail-card">
+                <div class="package-detail-label">Lessons/Month</div>
+                <div class="package-detail-value">12</div>
+              </div>
+              <div class="package-detail-card">
+                <div class="package-detail-label">Lessons/Week</div>
+                <div class="package-detail-value">3</div>
+              </div>
+              <div class="package-detail-card">
+                <div class="package-detail-label">Class Size</div>
+                <div class="package-detail-value">2 students</div>
+              </div>
+            </div>
+            <div class="package-features-list">
+              <div class="package-feature-item"><i class="fas fa-check"></i> Two students per class</div>
+              <div class="package-feature-item"><i class="fas fa-check"></i> Collaborative learning</div>
+              <div class="package-feature-item"><i class="fas fa-check"></i> Cost-effective</div>
+              <div class="package-feature-item"><i class="fas fa-check"></i> Shared motivation</div>
+              <div class="package-feature-item"><i class="fas fa-check"></i> Tailored pair exercises</div>
+              <div class="package-feature-item"><i class="fas fa-check"></i> Personalized attention</div>
+            </div>
+            <button class="package-cta" onclick="event.stopPropagation(); document.getElementById('contact').scrollIntoView()">Enroll Now</button>
+          </div>
+        </div>
+      </div>
+
     </div>
     
     <!-- Mobile Slider -->
@@ -934,10 +1421,25 @@
     cursor.classList.add('active');
   });
   document.addEventListener('mouseleave', () => cursor.classList.remove('active'));
-  document.querySelectorAll('a, button, .package-card, .course-card, .step-card').forEach(el => {
+  document.querySelectorAll('a, button, .package-card, .course-card, .step-card, .package-accordion').forEach(el => {
     el.addEventListener('mouseenter', () => cursor.classList.add('hovering'));
     el.addEventListener('mouseleave', () => cursor.classList.remove('hovering'));
   });
+
+  // PACKAGE ACCORDION
+  function togglePackage(element) {
+    const isActive = element.classList.contains('active');
+    
+    // Close all packages
+    document.querySelectorAll('.package-accordion').forEach(acc => {
+      acc.classList.remove('active');
+    });
+    
+    // Open clicked one if it wasn't active
+    if (!isActive) {
+      element.classList.add('active');
+    }
+  }
 
   // MENU & DROPDOWN
   function toggleMenu() { 
@@ -986,13 +1488,156 @@
     }
   });
   
-  // POPUP
-  function showPopup() { document.getElementById('popupOverlay').classList.add('active'); document.body.style.overflow = 'hidden'; }
-  function closePopup() { document.getElementById('popupOverlay').classList.remove('active'); document.body.style.overflow = ''; try { sessionStorage.setItem('popupClosed', 'true'); } catch(e) {} }
-  let popupClosed = false; try { popupClosed = sessionStorage.getItem('popupClosed') === 'true'; } catch(e) {}
-  if (!popupClosed) { setTimeout(showPopup, 1500); }
-  document.getElementById('popupOverlay').addEventListener('click', (e) => { if (e.target === e.currentTarget) closePopup(); });
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closePopup(); });
+  // POPUP NOTIFICATION
+  function showPopupNotification() { 
+    document.getElementById('popupNotification').classList.add('active'); 
+  }
+  
+  function closePopupNotification() { 
+    document.getElementById('popupNotification').classList.remove('active'); 
+    try { sessionStorage.setItem('popupClosed', 'true'); } catch(e) {}
+  }
+  
+  let popupClosed = false; 
+  try { popupClosed = sessionStorage.getItem('popupClosed') === 'true'; } catch(e) {}
+  
+  if (!popupClosed) { 
+    setTimeout(showPopupNotification, 2000); 
+  }
+  
+  // SWIPEABLE CAROUSEL
+  let currentSlide = 0;
+  const track = document.getElementById('swipeTrack');
+  const cards = document.querySelectorAll('.review-card-swipe');
+  const totalCards = 5; // Original 5 cards
+  const dotsContainer = document.getElementById('carouselDots');
+  let autoPlayInterval;
+  let touchStartX = 0;
+  let touchEndX = 0;
+  let isDragging = false;
+  let startPos = 0;
+  let currentTranslate = 0;
+  let prevTranslate = 0;
+  
+  // Create dots
+  for (let i = 0; i < totalCards; i++) {
+    const dot = document.createElement('div');
+    dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+    dot.onclick = () => goToSlide(i);
+    dotsContainer.appendChild(dot);
+  }
+  const dots = document.querySelectorAll('.carousel-dot');
+  
+  function updateCarousel() {
+    const cardWidth = cards[0].offsetWidth + 24; // width + gap
+    const offset = -(currentSlide * cardWidth);
+    track.style.transform = `translateX(${offset}px)`;
+    
+    // Update dots
+    dots.forEach((dot, index) => {
+      dot.classList.toggle('active', index === currentSlide);
+    });
+  }
+  
+  function changeCarousel(direction) {
+    currentSlide = (currentSlide + direction + totalCards) % totalCards;
+    updateCarousel();
+    resetAutoPlay();
+  }
+  
+  function goToSlide(index) {
+    currentSlide = index;
+    updateCarousel();
+    resetAutoPlay();
+  }
+  
+  function resetAutoPlay() {
+    clearInterval(autoPlayInterval);
+    autoPlayInterval = setInterval(() => {
+      currentSlide = (currentSlide + 1) % totalCards;
+      updateCarousel();
+    }, 5000);
+  }
+  
+  // Touch events for swipe
+  track.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+    isDragging = true;
+    startPos = currentTranslate;
+    track.style.transition = 'none';
+  }, {passive: true});
+  
+  track.addEventListener('touchmove', (e) => {
+    if (!isDragging) return;
+    touchEndX = e.changedTouches[0].screenX;
+    currentTranslate = startPos + (touchEndX - touchStartX);
+    track.style.transform = `translateX(${currentTranslate}px)`;
+  }, {passive: true});
+  
+  track.addEventListener('touchend', (e) => {
+    isDragging = false;
+    track.style.transition = 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
+    
+    const movedBy = touchEndX - touchStartX;
+    
+    if (movedBy < -100) {
+      // Swipe left - next slide
+      currentSlide = (currentSlide + 1) % totalCards;
+    } else if (movedBy > 100) {
+      // Swipe right - previous slide
+      currentSlide = (currentSlide - 1 + totalCards) % totalCards;
+    }
+    
+    updateCarousel();
+    resetAutoPlay();
+  }, {passive: true});
+  
+  // Mouse events for desktop drag
+  track.addEventListener('mousedown', (e) => {
+    isDragging = true;
+    startPos = currentTranslate;
+    touchStartX = e.pageX;
+    track.style.cursor = 'grabbing';
+    track.style.transition = 'none';
+  });
+  
+  track.addEventListener('mousemove', (e) => {
+    if (!isDragging) return;
+    touchEndX = e.pageX;
+    currentTranslate = startPos + (touchEndX - touchStartX);
+    track.style.transform = `translateX(${currentTranslate}px)`;
+  });
+  
+  track.addEventListener('mouseup', (e) => {
+    if (!isDragging) return;
+    isDragging = false;
+    track.style.cursor = 'grab';
+    track.style.transition = 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
+    
+    const movedBy = touchEndX - touchStartX;
+    
+    if (movedBy < -100) {
+      currentSlide = (currentSlide + 1) % totalCards;
+    } else if (movedBy > 100) {
+      currentSlide = (currentSlide - 1 + totalCards) % totalCards;
+    }
+    
+    updateCarousel();
+    resetAutoPlay();
+  });
+  
+  track.addEventListener('mouseleave', (e) => {
+    if (!isDragging) return;
+    isDragging = false;
+    track.style.cursor = 'grab';
+    track.style.transition = 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
+    updateCarousel();
+  });
+  
+  // Initialize
+  updateCarousel();
+  resetAutoPlay();
+  window.addEventListener('resize', updateCarousel);
 </script>
 </body>
 </html>
