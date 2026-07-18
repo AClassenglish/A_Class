@@ -533,7 +533,7 @@
   .social-links a:hover { background: var(--gradient-accent); color: white; border-color: transparent; transform: translateY(-4px); }
   .footer-bottom { max-width: 1300px; margin: 0 auto; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); text-align: center; font-size: 0.9rem; color: var(--text-light); }
 
-  /* MINIMIZED POPUP - LEFT CORNER */
+  /* MINIMIZED POPUP - BOTTOM LEFT */
   .popup-notification {
     position: fixed;
     bottom: 20px;
@@ -1133,7 +1133,7 @@
   <div class="footer-bottom">© 2026 AClass English School. All rights reserved.</div>
 </footer>
 
-<!-- MINIMIZED POPUP - LEFT CORNER -->
+<!-- MINIMIZED POPUP - BOTTOM LEFT -->
 <div class="popup-notification" id="popupNotification">
   <div class="popup-notification-icon"><i class="fas fa-rocket"></i></div>
   <div class="popup-notification-content">
@@ -1209,22 +1209,22 @@
     }
   });
   
-  // POPUP NOTIFICATION - LEFT CORNER
+  // POPUP NOTIFICATION - SHOW FOR EVERYONE, MINIMIZE AFTER CLOSE
   function showPopupNotification() { 
     document.getElementById('popupNotification').classList.add('active'); 
   }
   
   function closePopupNotification() { 
-    document.getElementById('popupNotification').classList.remove('active'); 
-    try { sessionStorage.setItem('popupClosed', 'true'); } catch(e) {}
+    // Don't hide completely - just minimize to notification
+    // Keep it visible as a small notification at the bottom
+    document.getElementById('popupNotification').style.opacity = '0.7';
+    setTimeout(() => {
+      document.getElementById('popupNotification').style.opacity = '1';
+    }, 3000);
   }
   
-  let popupClosed = false; 
-  try { popupClosed = sessionStorage.getItem('popupClosed') === 'true'; } catch(e) {}
-  
-  if (!popupClosed) { 
-    setTimeout(showPopupNotification, 2000); 
-  }
+  // Show popup for everyone on page load
+  setTimeout(showPopupNotification, 2000);
   
   // SWIPEABLE CAROUSEL
   let currentSlide = 2; // Start at middle
