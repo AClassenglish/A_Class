@@ -35,7 +35,6 @@
     background: var(--white);
   }
 
-  /* ANIMATED BACKGROUND */
   .animated-bg {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
     background: linear-gradient(135deg, #ffffff 0%, #fafbff 50%, #f8f5ff 100%);
@@ -52,7 +51,6 @@
     50% { transform: translate(30px, -40px) scale(1.05); }
   }
 
-  /* NAVBAR */
   .navbar {
     position: fixed; top: 0; left: 0; right: 0;
     background: var(--glass-bg); backdrop-filter: blur(15px);
@@ -67,12 +65,28 @@
   .logo-text { font-size: 1.4rem; font-weight: 800; background: var(--gradient-accent); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
   
   .nav-menu { display: flex; align-items: center; gap: 2rem; list-style: none; }
+  .nav-dropdown { position: relative; }
   .nav-link {
     text-decoration: none; color: var(--text-gray); font-weight: 500; font-size: 0.95rem;
-    transition: color 0.3s ease;
+    transition: color 0.3s ease; position: relative; display: flex; align-items: center; gap: 0.35rem; cursor: pointer;
   }
   .nav-link:hover { color: var(--primary); }
   
+  .dropdown-menu {
+    position: absolute; top: 150%; left: 50%; transform: translateX(-50%) translateY(8px);
+    background: white; border: 1px solid var(--border); border-radius: 12px;
+    padding: 0.5rem; min-width: 200px; box-shadow: 0 10px 30px rgba(167, 102, 220, 0.1);
+    opacity: 0; visibility: hidden; transition: all 0.25s ease; list-style: none; z-index: 1001;
+  }
+  .nav-dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+  .dropdown-menu li a {
+    display: flex; align-items: center; gap: 0.7rem; padding: 0.75rem 1rem;
+    color: var(--text-gray); text-decoration: none; font-weight: 600; font-size: 0.9rem;
+    border-radius: 8px; transition: all 0.2s; justify-content: center;
+  }
+  .dropdown-menu li a:hover { background: var(--primary-light); color: var(--primary); }
+  .dropdown-menu li a i { color: var(--primary); font-size: 0.9rem; }
+
   .nav-cta {
     background: var(--gradient-accent); color: white !important; padding: 0.7rem 1.5rem;
     border-radius: 50px; font-weight: 600; transition: all 0.3s;
@@ -84,7 +98,6 @@
     color: var(--primary); width: 40px; height: 40px; align-items: center; justify-content: center; border-radius: 10px;
   }
 
-  /* PAGE HEADER - CENTERED WITH ANIMATIONS */
   .page-header {
     padding: 12rem 2rem 5rem;
     text-align: center;
@@ -165,7 +178,6 @@
     }
   }
 
-  /* PACKAGES CONTAINER */
   .packages-container {
     max-width: 1000px;
     margin: 0 auto;
@@ -373,7 +385,85 @@
     box-shadow: 0 8px 25px rgba(0,0,0,0.2);
   }
 
-  /* COMPARISON TABLES */
+  /* TEACHERS SECTION - HORIZONTAL CARDS */
+  .teachers-section-packages {
+    background: var(--bg-light);
+    padding: 6rem 2rem;
+  }
+  
+  .teachers-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .teachers-horizontal-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2.5rem;
+    margin-top: 3rem;
+  }
+  
+  .teacher-horizontal-card {
+    background: white;
+    border-radius: 24px;
+    padding: 2.5rem;
+    border: 1px solid var(--border);
+    transition: all 0.4s;
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+  }
+  
+  .teacher-horizontal-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(167, 102, 220, 0.15);
+    border-color: var(--primary);
+  }
+  
+  .teacher-horizontal-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid var(--primary-light);
+    flex-shrink: 0;
+  }
+  
+  .teacher-horizontal-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .teacher-horizontal-content {
+    flex: 1;
+  }
+  
+  .teacher-horizontal-name {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--text-dark);
+    margin-bottom: 0.5rem;
+  }
+  
+  .teacher-horizontal-title {
+    display: inline-block;
+    background: var(--gradient-accent);
+    color: white;
+    padding: 0.4rem 1rem;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 1.25rem;
+  }
+  
+  .teacher-horizontal-desc {
+    color: var(--text-gray);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin-bottom: 0.75rem;
+  }
+
   .comparison-section {
     background: var(--bg-light);
     padding: 6rem 2rem;
@@ -477,7 +567,6 @@
     font-size: 1rem;
   }
 
-  /* CTA SECTION */
   .cta-section {
     background: var(--gradient-accent);
     color: white;
@@ -558,7 +647,6 @@
     transform: translateY(-4px);
   }
 
-  /* FOOTER */
   footer { background: var(--text-dark); color: var(--text-light); padding: 4rem 2rem 2rem; }
   .footer-grid { max-width: 1300px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
   .footer-col h4 { color: white; margin-bottom: 1.25rem; font-size: 1.1rem; font-weight: 700; }
@@ -571,7 +659,11 @@
   .social-links a:hover { background: var(--gradient-accent); color: white; border-color: transparent; transform: translateY(-4px); }
   .footer-bottom { max-width: 1300px; margin: 0 auto; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); text-align: center; font-size: 0.9rem; color: var(--text-light); }
 
-  /* RESPONSIVE */
+  @media (max-width: 1024px) {
+    .page-header h1 { font-size: 2.8rem; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+  }
+  
   @media (max-width: 768px) {
     .nav-menu { 
       position: fixed; 
@@ -579,15 +671,89 @@
       left: 0; right: 0; 
       background: white; 
       flex-direction: column; 
-      padding: 1.5rem; 
-      gap: 1.25rem; 
+      padding: 1rem; 
+      gap: 0.75rem; 
       border-bottom: 1px solid var(--border); 
       transform: translateY(-150%); 
       transition: transform 0.3s ease; 
       z-index: 998;
+      max-height: calc(100vh - 70px);
+      overflow-y: auto;
     }
     .nav-menu.active { transform: translateY(0); }
     .menu-toggle { display: flex; }
+    
+    .nav-menu li {
+      width: 100%;
+    }
+    
+    .nav-menu .nav-link {
+      justify-content: center;
+      padding: 0.75rem;
+      font-size: 1rem;
+    }
+    
+    .nav-menu .nav-cta {
+      margin-top: 0.5rem;
+      width: 100%;
+      text-align: center;
+    }
+    
+    .nav-dropdown {
+      width: 100%;
+    }
+    
+    .dropdown-menu {
+      position: static; 
+      transform: none; 
+      opacity: 1; 
+      visibility: visible;
+      box-shadow: none; 
+      border: none; 
+      background: var(--bg-light); 
+      padding: 0.5rem; 
+      margin-top: 0.5rem;
+      max-height: 0; 
+      overflow: hidden; 
+      transition: max-height 0.3s ease;
+      width: 100%;
+      border-radius: 8px;
+    }
+    
+    .nav-dropdown.open .dropdown-menu { 
+      max-height: 200px;
+    }
+    
+    .dropdown-menu li {
+      width: 100%;
+      margin-bottom: 0.25rem;
+    }
+    
+    .dropdown-menu li:last-child {
+      margin-bottom: 0;
+    }
+    
+    .dropdown-menu li a {
+      width: 100%;
+      justify-content: flex-start;
+      padding: 0.75rem 1rem;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      white-space: nowrap;
+      box-sizing: border-box;
+    }
+      
+    .dropdown-menu li a i {
+      flex-shrink: 0;
+      width: 20px;
+      text-align: center;
+    }
+    
+    .nav-dropdown.open .nav-link i {
+      transform: rotate(180deg);
+    }
     
     .page-header { padding: 10rem 1.5rem 4rem; }
     .page-header h1 { font-size: 2.2rem; }
@@ -599,6 +765,31 @@
     .package-details-grid { grid-template-columns: 1fr; }
     .package-features-list { grid-template-columns: 1fr; }
     .package-title { font-size: 1.2rem; }
+    
+    /* FIX: Ensure button is visible on mobile */
+    .package-cta {
+      padding: 1rem;
+      font-size: 0.95rem;
+      white-space: normal;
+      word-wrap: break-word;
+    }
+    
+    .teachers-horizontal-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    
+    .teacher-horizontal-card {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 2rem 1.5rem;
+    }
+    
+    .teacher-horizontal-image {
+      width: 100px;
+      height: 100px;
+    }
     
     .comparison-block { margin-bottom: 3rem; }
     .comparison-header h2 { font-size: 1.8rem; }
@@ -635,7 +826,7 @@
       <li><a href="index.html#about" class="nav-link">About</a></li>
       <li><a href="index.html#courses" class="nav-link">Courses</a></li>
       <li><a href="index.html#reviews" class="nav-link">Reviews</a></li>
-      <li><a href="packages.html" class="nav-link">Packages</a></li>
+      <!-- Packages link removed from mobile menu since we're already on this page -->
       <li><a href="index.html#contact" class="nav-cta">Contact Us</a></li>
     </ul>
   </div>
@@ -922,6 +1113,42 @@
 
 </div>
 
+<!-- TEACHERS SECTION -->
+<section class="teachers-section-packages">
+  <div class="teachers-container">
+    <div class="packages-section-title">
+      <h2>Meet Our Expert Teachers</h2>
+      <p>Learn from experienced, dedicated professionals committed to your success</p>
+    </div>
+    <div class="teachers-horizontal-grid">
+      <!-- Aisa -->
+      <div class="teacher-horizontal-card">
+        <div class="teacher-horizontal-image">
+          <img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/Aisa.jpeg" alt="Aisa">
+        </div>
+        <div class="teacher-horizontal-content">
+          <h3 class="teacher-horizontal-name">Aisa</h3>
+          <div class="teacher-horizontal-title">Senior IELTS Tutor</div>
+          <p class="teacher-horizontal-desc">Aisa is an experienced English educator with 8 years of IELTS teaching experience and 10 years of experience teaching English overall. She holds an outstanding IELTS score of 8.5, including a perfect 9.0 in Speaking.</p>
+          <p class="teacher-horizontal-desc">Aisa is currently pursuing a master's degree through the MA TEFL program, specializing in Teaching English as a Foreign Language, at an American University of Armenia.</p>
+        </div>
+      </div>
+      
+      <!-- Ademi -->
+      <div class="teacher-horizontal-card">
+        <div class="teacher-horizontal-image">
+          <img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/Ademi.jpeg" alt="Ademi">
+        </div>
+        <div class="teacher-horizontal-content">
+          <h3 class="teacher-horizontal-name">Ademi</h3>
+          <div class="teacher-horizontal-title">IELTS Tutor</div>
+          <p class="teacher-horizontal-desc">Ademi is a dedicated IELTS tutor with 4.5 years of teaching experience. She graduated from the American University of Central Asia and achieved an impressive IELTS score of 8.0 with 8.0 for both Writing and Speaking.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- COMPARISON TABLES -->
 <section class="comparison-section">
   <div class="comparison-container">
@@ -1172,11 +1399,9 @@
 </footer>
 
 <script>
-  // Force scroll to top
   if (history.scrollRestoration) { history.scrollRestoration = 'manual'; }
   window.addEventListener('load', () => { window.scrollTo({ top: 0, behavior: 'instant' }); });
   
-  // MENU
   function toggleMenu() { 
     document.getElementById('navMenu').classList.toggle('active'); 
   }
@@ -1186,16 +1411,13 @@
     if (window.scrollY > 50) { navbar.classList.add('scrolled'); } else { navbar.classList.remove('scrolled'); }
   });
   
-  // PACKAGE ACCORDION
   function togglePackage(element) {
     const isActive = element.classList.contains('active');
     
-    // Close all packages
     document.querySelectorAll('.package-accordion').forEach(acc => {
       acc.classList.remove('active');
     });
     
-    // Open clicked one if it wasn't active
     if (!isActive) {
       element.classList.add('active');
     }
