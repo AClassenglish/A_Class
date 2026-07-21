@@ -33,6 +33,7 @@
     color: var(--text-dark);
     line-height: 1.6;
     background: var(--white);
+    padding-bottom: 80px; /* Space for mobile tab bar */
   }
 
   .animated-bg {
@@ -65,34 +66,12 @@
   .logo-text { font-size: 1.4rem; font-weight: 800; background: var(--gradient-accent); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
   
   .nav-menu { display: flex; align-items: center; gap: 2rem; list-style: none; }
-  .nav-dropdown { position: relative; }
   .nav-link {
     text-decoration: none; color: var(--text-gray); font-weight: 500; font-size: 0.95rem;
-    transition: color 0.3s ease; position: relative; display: flex; align-items: center; gap: 0.35rem; cursor: pointer;
+    transition: color 0.3s ease;
   }
   .nav-link:hover { color: var(--primary); }
-  
-  .dropdown-menu {
-    position: absolute; top: 150%; left: 50%; transform: translateX(-50%) translateY(8px);
-    background: white; border: 1px solid var(--border); border-radius: 12px;
-    padding: 0.5rem; min-width: 200px; box-shadow: 0 10px 30px rgba(167, 102, 220, 0.1);
-    opacity: 0; visibility: hidden; transition: all 0.25s ease; list-style: none; z-index: 1001;
-  }
-  .nav-dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
-  .dropdown-menu li a {
-    display: flex; align-items: center; gap: 0.7rem; padding: 0.75rem 1rem;
-    color: var(--text-gray); text-decoration: none; font-weight: 600; font-size: 0.9rem;
-    border-radius: 8px; transition: all 0.2s; justify-content: center;
-  }
-  .dropdown-menu li a:hover { background: var(--primary-light); color: var(--primary); }
-  .dropdown-menu li a i { color: var(--primary); font-size: 0.9rem; }
 
-  .nav-cta {
-    background: var(--gradient-accent); color: white !important; padding: 0.7rem 1.5rem;
-    border-radius: 50px; font-weight: 600; transition: all 0.3s;
-  }
-  .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(167, 102, 220, 0.3); }
-  
   .menu-toggle {
     display: none; background: none; border: none; font-size: 1.4rem; cursor: pointer;
     color: var(--primary); width: 40px; height: 40px; align-items: center; justify-content: center; border-radius: 10px;
@@ -114,29 +93,9 @@
     animation: headerFloat 8s ease-in-out infinite;
   }
   
-  .header-animation-1 {
-    width: 300px;
-    height: 300px;
-    top: -100px;
-    left: 10%;
-    animation-delay: 0s;
-  }
-  
-  .header-animation-2 {
-    width: 250px;
-    height: 250px;
-    bottom: -80px;
-    right: 15%;
-    animation-delay: 2s;
-  }
-  
-  .header-animation-3 {
-    width: 200px;
-    height: 200px;
-    top: 50%;
-    left: 50%;
-    animation-delay: 4s;
-  }
+  .header-animation-1 { width: 300px; height: 300px; top: -100px; left: 10%; animation-delay: 0s; }
+  .header-animation-2 { width: 250px; height: 250px; bottom: -80px; right: 15%; animation-delay: 2s; }
+  .header-animation-3 { width: 200px; height: 200px; top: 50%; left: 50%; animation-delay: 4s; }
   
   @keyframes headerFloat {
     0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.3; }
@@ -168,14 +127,8 @@
   }
   
   @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 
   .packages-container {
@@ -207,7 +160,7 @@
     border-radius: 20px;
     margin-bottom: 1.5rem;
     border: 1px solid var(--border);
-    overflow: visible; /* Changed from hidden to visible */
+    overflow: visible;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: 0 4px 15px rgba(0,0,0,0.05);
   }
@@ -252,9 +205,7 @@
     transition: all 0.3s;
   }
   
-  .package-header-content {
-    flex: 1;
-  }
+  .package-header-content { flex: 1; }
   
   .package-title {
     font-size: 1.4rem;
@@ -294,11 +245,12 @@
   }
   
   .package-accordion.active .package-content {
-    max-height: 1000px; /* Increased from 800px */
+    max-height: 1000px;
   }
   
   .package-body {
     padding: 0 2.5rem 2.5rem;
+    overflow: visible;
   }
   
   .package-description {
@@ -378,8 +330,8 @@
     font-size: 1rem;
     font-family: inherit;
     transition: all 0.3s;
-    display: block; /* Ensure it's displayed as block */
-    margin-top: 1rem; /* Add some spacing */
+    display: block;
+    margin-top: 1rem;
   }
   
   .package-cta:hover {
@@ -387,7 +339,7 @@
     box-shadow: 0 8px 25px rgba(0,0,0,0.2);
   }
 
-  /* TEACHERS SECTION - HORIZONTAL CARDS */
+  /* TEACHERS SECTION */
   .teachers-section-packages {
     background: var(--bg-light);
     padding: 6rem 2rem;
@@ -437,9 +389,7 @@
     object-fit: cover;
   }
   
-  .teacher-horizontal-content {
-    flex: 1;
-  }
+  .teacher-horizontal-content { flex: 1; }
   
   .teacher-horizontal-name {
     font-size: 1.5rem;
@@ -466,6 +416,7 @@
     margin-bottom: 0.75rem;
   }
 
+  /* COMPARISON TABLES */
   .comparison-section {
     background: var(--bg-light);
     padding: 6rem 2rem;
@@ -569,6 +520,7 @@
     font-size: 1rem;
   }
 
+  /* CTA SECTION */
   .cta-section {
     background: var(--gradient-accent);
     color: white;
@@ -649,6 +601,7 @@
     transform: translateY(-4px);
   }
 
+  /* FOOTER */
   footer { background: var(--text-dark); color: var(--text-light); padding: 4rem 2rem 2rem; }
   .footer-grid { max-width: 1300px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
   .footer-col h4 { color: white; margin-bottom: 1.25rem; font-size: 1.1rem; font-weight: 700; }
@@ -661,99 +614,70 @@
   .social-links a:hover { background: var(--gradient-accent); color: white; border-color: transparent; transform: translateY(-4px); }
   .footer-bottom { max-width: 1300px; margin: 0 auto; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); text-align: center; font-size: 0.9rem; color: var(--text-light); }
 
+  /* MOBILE TAB BAR */
+  .mobile-tab-bar {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-top: 1px solid var(--glass-border);
+    z-index: 1000;
+    padding: 0.5rem 0;
+    box-shadow: 0 -4px 20px rgba(167, 102, 220, 0.1);
+  }
+  
+  .tab-bar-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  .tab-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    text-decoration: none;
+    color: var(--text-gray);
+    font-size: 0.7rem;
+    font-weight: 600;
+    transition: color 0.3s;
+    flex: 1;
+    gap: 0.25rem;
+  }
+  
+  .tab-item i {
+    font-size: 1.3rem;
+    margin-bottom: 0.2rem;
+    transition: transform 0.3s;
+  }
+  
+  .tab-item.active {
+    color: var(--primary);
+  }
+  
+  .tab-item.active i {
+    transform: translateY(-2px);
+  }
+
+  /* RESPONSIVE BREAKPOINTS */
   @media (max-width: 1024px) {
     .page-header h1 { font-size: 2.8rem; }
     .footer-grid { grid-template-columns: 1fr 1fr; }
   }
   
   @media (max-width: 768px) {
-    .nav-menu { 
-      position: fixed; 
-      top: 70px;
-      left: 0; right: 0; 
-      background: white; 
-      flex-direction: column; 
-      padding: 1rem; 
-      gap: 0.75rem; 
-      border-bottom: 1px solid var(--border); 
-      transform: translateY(-150%); 
-      transition: transform 0.3s ease; 
-      z-index: 998;
-      max-height: calc(100vh - 70px);
-      overflow-y: auto;
-    }
-    .nav-menu.active { transform: translateY(0); }
-    .menu-toggle { display: flex; }
-    
-    .nav-menu li {
-      width: 100%;
-    }
-    
-    .nav-menu .nav-link {
-      justify-content: center;
-      padding: 0.75rem;
-      font-size: 1rem;
-    }
-    
-    /* Contact Us button removed from mobile menu */
-    
-    .nav-dropdown {
-      width: 100%;
-    }
-    
-    .dropdown-menu {
-      position: static; 
-      transform: none; 
-      opacity: 1; 
-      visibility: visible;
-      box-shadow: none; 
-      border: none; 
-      background: var(--bg-light); 
-      padding: 0.5rem; 
-      margin-top: 0.5rem;
-      max-height: 0; 
-      overflow: visible; /* Changed to visible */
-      transition: max-height 0.4s ease;
-      width: 100%;
-      border-radius: 8px;
-    }
-    
-    .nav-dropdown.open .dropdown-menu { 
-      max-height: 300px; /* Increased height */
-    }
-    
-    .dropdown-menu li {
-      width: 100%;
-      margin-bottom: 0.25rem;
-    }
-    
-    .dropdown-menu li:last-child {
-      margin-bottom: 0;
-    }
-    
-    .dropdown-menu li a {
-      width: 100%;
-      justify-content: flex-start;
-      padding: 0.75rem 1rem;
-      font-size: 0.95rem;
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      white-space: normal; /* Changed from nowrap to normal */
-      box-sizing: border-box;
-      text-align: left;
-      line-height: 1.4;
-    }
-      
-    .dropdown-menu li a i {
-      flex-shrink: 0;
-      width: 20px;
-      text-align: center;
-    }
-    
-    .nav-dropdown.open .nav-link i {
-      transform: rotate(180deg);
-    }
+    /* Hide desktop menu and hamburger, show mobile tab bar */
+    .nav-menu { display: none; }
+    .menu-toggle { display: none; }
+    .mobile-tab-bar { display: block; }
     
     .page-header { padding: 10rem 1.5rem 4rem; }
     .page-header h1 { font-size: 2.2rem; }
@@ -761,15 +685,11 @@
     
     .packages-container { padding: 3rem 1.5rem; }
     .package-header { padding: 1.5rem; }
-    .package-body { 
-      padding: 0 1.5rem 1.5rem;
-      overflow: visible; /* Ensure content is visible */
-    }
+    .package-body { padding: 0 1.5rem 1.5rem; }
     .package-details-grid { grid-template-columns: 1fr; }
     .package-features-list { grid-template-columns: 1fr; }
     .package-title { font-size: 1.2rem; }
     
-    /* FIX: Ensure button is visible on mobile */
     .package-cta {
       padding: 1rem;
       font-size: 0.95rem;
@@ -821,20 +741,18 @@
   <div class="floating-shape"></div>
 </div>
 
+<!-- Desktop Navigation -->
 <nav class="navbar">
   <div class="nav-container">
     <a href="index.html" class="logo">
       <img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/Aclasslogo.jpeg" alt="AClass Logo" class="logo-img">
       <span class="logo-text">ACLASS</span>
     </a>
-    <button class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
-    <ul class="nav-menu" id="navMenu">
+    <ul class="nav-menu">
       <li><a href="index.html#home" class="nav-link">Home</a></li>
       <li><a href="index.html#about" class="nav-link">About</a></li>
       <li><a href="index.html#courses" class="nav-link">Courses</a></li>
       <li><a href="index.html#reviews" class="nav-link">Reviews</a></li>
-      <!-- Packages link removed from mobile menu since we're already on this page -->
-      <!-- Contact Us removed from menu -->
     </ul>
   </div>
 </nav>
@@ -850,7 +768,6 @@
 </section>
 
 <div class="packages-container">
-  
   <div class="packages-section-title">
     <h2>IELTS & SAT Packages</h2>
     <p>Structured preparation for international examinations</p>
@@ -872,18 +789,9 @@
       <div class="package-body">
         <p class="package-description">The Standard package provides consistent and structured preparation. It is suitable for students who have sufficient time before their examination and prefer a balanced study schedule.</p>
         <div class="package-details-grid">
-          <div class="package-detail-card">
-            <div class="package-detail-label">Lessons/Month</div>
-            <div class="package-detail-value">12</div>
-          </div>
-          <div class="package-detail-card">
-            <div class="package-detail-label">Lessons/Week</div>
-            <div class="package-detail-value">3</div>
-          </div>
-          <div class="package-detail-card">
-            <div class="package-detail-label">Duration</div>
-            <div class="package-detail-value">90 min</div>
-          </div>
+          <div class="package-detail-card"><div class="package-detail-label">Lessons/Month</div><div class="package-detail-value">12</div></div>
+          <div class="package-detail-card"><div class="package-detail-label">Lessons/Week</div><div class="package-detail-value">3</div></div>
+          <div class="package-detail-card"><div class="package-detail-label">Duration</div><div class="package-detail-value">90 min</div></div>
         </div>
         <div class="package-features-list">
           <div class="package-feature-item"><i class="fas fa-check"></i> Teacher-led lessons</div>
@@ -914,18 +822,9 @@
       <div class="package-body">
         <p class="package-description">The Intensive package is designed for students who need faster progress or have a limited amount of time before their examination. Students study more frequently and complete a larger amount of guided and independent practice.</p>
         <div class="package-details-grid">
-          <div class="package-detail-card">
-            <div class="package-detail-label">Lessons/Month</div>
-            <div class="package-detail-value">20</div>
-          </div>
-          <div class="package-detail-card">
-            <div class="package-detail-label">Lessons/Week</div>
-            <div class="package-detail-value">5</div>
-          </div>
-          <div class="package-detail-card">
-            <div class="package-detail-label">Duration</div>
-            <div class="package-detail-value">90 min</div>
-          </div>
+          <div class="package-detail-card"><div class="package-detail-label">Lessons/Month</div><div class="package-detail-value">20</div></div>
+          <div class="package-detail-card"><div class="package-detail-label">Lessons/Week</div><div class="package-detail-value">5</div></div>
+          <div class="package-detail-card"><div class="package-detail-label">Duration</div><div class="package-detail-value">90 min</div></div>
         </div>
         <div class="package-features-list">
           <div class="package-feature-item"><i class="fas fa-check"></i> High-frequency lessons</div>
@@ -956,18 +855,9 @@
       <div class="package-body">
         <p class="package-description">Individual lessons provide the highest level of personalisation. The teacher can focus entirely on the student's specific weaknesses, goals, and learning pace. Ideal for students with a specific target score or limited preparation time.</p>
         <div class="package-details-grid">
-          <div class="package-detail-card">
-            <div class="package-detail-label">Lessons/Month</div>
-            <div class="package-detail-value">12</div>
-          </div>
-          <div class="package-detail-card">
-            <div class="package-detail-label">Lessons/Week</div>
-            <div class="package-detail-value">3</div>
-          </div>
-          <div class="package-detail-card">
-            <div class="package-detail-label">Duration</div>
-            <div class="package-detail-value">60 min</div>
-          </div>
+          <div class="package-detail-card"><div class="package-detail-label">Lessons/Month</div><div class="package-detail-value">12</div></div>
+          <div class="package-detail-card"><div class="package-detail-label">Lessons/Week</div><div class="package-detail-value">3</div></div>
+          <div class="package-detail-card"><div class="package-detail-label">Duration</div><div class="package-detail-value">60 min</div></div>
         </div>
         <div class="package-features-list">
           <div class="package-feature-item"><i class="fas fa-check"></i> Fully personalized plan</div>
@@ -998,18 +888,9 @@
       <div class="package-body">
         <p class="package-description">Study with a partner in a small, focused class of two students. This format combines the benefits of personalized attention with the motivation of collaborative learning. Perfect for friends or classmates with similar goals.</p>
         <div class="package-details-grid">
-          <div class="package-detail-card">
-            <div class="package-detail-label">Lessons/Month</div>
-            <div class="package-detail-value">12</div>
-          </div>
-          <div class="package-detail-card">
-            <div class="package-detail-label">Lessons/Week</div>
-            <div class="package-detail-value">3</div>
-          </div>
-          <div class="package-detail-card">
-            <div class="package-detail-label">Class Size</div>
-            <div class="package-detail-value">2 students</div>
-          </div>
+          <div class="package-detail-card"><div class="package-detail-label">Lessons/Month</div><div class="package-detail-value">12</div></div>
+          <div class="package-detail-card"><div class="package-detail-label">Lessons/Week</div><div class="package-detail-value">3</div></div>
+          <div class="package-detail-card"><div class="package-detail-label">Class Size</div><div class="package-detail-value">2 students</div></div>
         </div>
         <div class="package-features-list">
           <div class="package-feature-item"><i class="fas fa-check"></i> Two students per class</div>
@@ -1046,18 +927,9 @@
       <div class="package-body">
         <p class="package-description">Our General English programme is designed for students who want to improve their overall English level for education, work, travel, or everyday communication. Lessons are interactive and communication-focused, helping students use English naturally in real-life situations.</p>
         <div class="package-details-grid">
-          <div class="package-detail-card">
-            <div class="package-detail-label">Lessons/Month</div>
-            <div class="package-detail-value">12</div>
-          </div>
-          <div class="package-detail-card">
-            <div class="package-detail-label">Lessons/Week</div>
-            <div class="package-detail-value">3</div>
-          </div>
-          <div class="package-detail-card">
-            <div class="package-detail-label">Duration</div>
-            <div class="package-detail-value">60 or 90 min</div>
-          </div>
+          <div class="package-detail-card"><div class="package-detail-label">Lessons/Month</div><div class="package-detail-value">12</div></div>
+          <div class="package-detail-card"><div class="package-detail-label">Lessons/Week</div><div class="package-detail-value">3</div></div>
+          <div class="package-detail-card"><div class="package-detail-label">Duration</div><div class="package-detail-value">60 or 90 min</div></div>
         </div>
         <div class="package-features-list">
           <div class="package-feature-item"><i class="fas fa-check"></i> Speaking confidence</div>
@@ -1090,18 +962,9 @@
       <div class="package-body">
         <p class="package-description">Personalized General English lessons tailored entirely to your goals, pace, and interests. Whether you want to improve for work, travel, or personal growth, your teacher will create a custom plan focused on your specific needs.</p>
         <div class="package-details-grid">
-          <div class="package-detail-card">
-            <div class="package-detail-label">Lessons/Month</div>
-            <div class="package-detail-value">12</div>
-          </div>
-          <div class="package-detail-card">
-            <div class="package-detail-label">Lessons/Week</div>
-            <div class="package-detail-value">3</div>
-          </div>
-          <div class="package-detail-card">
-            <div class="package-detail-label">Duration</div>
-            <div class="package-detail-value">60 min</div>
-          </div>
+          <div class="package-detail-card"><div class="package-detail-label">Lessons/Month</div><div class="package-detail-value">12</div></div>
+          <div class="package-detail-card"><div class="package-detail-label">Lessons/Week</div><div class="package-detail-value">3</div></div>
+          <div class="package-detail-card"><div class="package-detail-label">Duration</div><div class="package-detail-value">60 min</div></div>
         </div>
         <div class="package-features-list">
           <div class="package-feature-item"><i class="fas fa-check"></i> Customized curriculum</div>
@@ -1117,7 +980,6 @@
       </div>
     </div>
   </div>
-
 </div>
 
 <!-- TEACHERS SECTION -->
@@ -1128,7 +990,6 @@
       <p>Learn from experienced, dedicated professionals committed to your success</p>
     </div>
     <div class="teachers-horizontal-grid">
-      <!-- Aisa -->
       <div class="teacher-horizontal-card">
         <div class="teacher-horizontal-image">
           <img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/Aisa.jpeg" alt="Aisa">
@@ -1141,7 +1002,6 @@
         </div>
       </div>
       
-      <!-- Ademi -->
       <div class="teacher-horizontal-card">
         <div class="teacher-horizontal-image">
           <img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/Ademi.jpeg" alt="Ademi">
@@ -1159,14 +1019,11 @@
 <!-- COMPARISON TABLES -->
 <section class="comparison-section">
   <div class="comparison-container">
-    
-    <!-- IELTS/SAT Comparison -->
     <div class="comparison-block">
       <div class="comparison-header">
         <h2>IELTS & SAT Packages Comparison</h2>
         <p>Compare all our exam preparation formats side by side</p>
       </div>
-      
       <div class="comparison-table-wrapper">
         <table class="comparison-table">
           <thead>
@@ -1179,88 +1036,26 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Lessons per month</td>
-              <td>12</td>
-              <td>20</td>
-              <td>12</td>
-              <td>12</td>
-            </tr>
-            <tr>
-              <td>Lessons per week</td>
-              <td>3</td>
-              <td>5</td>
-              <td>3</td>
-              <td>3</td>
-            </tr>
-            <tr>
-              <td>Lesson duration</td>
-              <td>90 min</td>
-              <td>90 min</td>
-              <td>60 min</td>
-              <td>60–90 min</td>
-            </tr>
-            <tr>
-              <td>Class format</td>
-              <td>Group</td>
-              <td>Group</td>
-              <td>1-on-1</td>
-              <td>2 students</td>
-            </tr>
-            <tr>
-              <td>Personalized attention</td>
-              <td><i class="fas fa-minus"></i></td>
-              <td><i class="fas fa-minus"></i></td>
-              <td><i class="fas fa-check"></i></td>
-              <td><i class="fas fa-check"></i></td>
-            </tr>
-            <tr>
-              <td>Exam strategies</td>
-              <td><i class="fas fa-check"></i></td>
-              <td><i class="fas fa-check"></i></td>
-              <td><i class="fas fa-check"></i></td>
-              <td><i class="fas fa-check"></i></td>
-            </tr>
-            <tr>
-              <td>Mock test practice</td>
-              <td><i class="fas fa-check"></i></td>
-              <td><i class="fas fa-check"></i></td>
-              <td><i class="fas fa-check"></i></td>
-              <td><i class="fas fa-check"></i></td>
-            </tr>
-            <tr>
-              <td>Homework & feedback</td>
-              <td><i class="fas fa-check"></i></td>
-              <td><i class="fas fa-check"></i></td>
-              <td><i class="fas fa-check"></i></td>
-              <td><i class="fas fa-check"></i></td>
-            </tr>
-            <tr>
-              <td>Progress monitoring</td>
-              <td><i class="fas fa-check"></i></td>
-              <td><i class="fas fa-check"></i></td>
-              <td><i class="fas fa-check"></i></td>
-              <td><i class="fas fa-check"></i></td>
-            </tr>
-            <tr>
-              <td>Best for</td>
-              <td>Balanced prep</td>
-              <td>Fast results</td>
-              <td>Specific goals</td>
-              <td>Study partners</td>
-            </tr>
+            <tr><td>Lessons per month</td><td>12</td><td>20</td><td>12</td><td>12</td></tr>
+            <tr><td>Lessons per week</td><td>3</td><td>5</td><td>3</td><td>3</td></tr>
+            <tr><td>Lesson duration</td><td>90 min</td><td>90 min</td><td>60 min</td><td>60–90 min</td></tr>
+            <tr><td>Class format</td><td>Group</td><td>Group</td><td>1-on-1</td><td>2 students</td></tr>
+            <tr><td>Personalized attention</td><td><i class="fas fa-minus"></i></td><td><i class="fas fa-minus"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td></tr>
+            <tr><td>Exam strategies</td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td></tr>
+            <tr><td>Mock test practice</td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td></tr>
+            <tr><td>Homework & feedback</td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td></tr>
+            <tr><td>Progress monitoring</td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td></tr>
+            <tr><td>Best for</td><td>Balanced prep</td><td>Fast results</td><td>Specific goals</td><td>Study partners</td></tr>
           </tbody>
         </table>
       </div>
     </div>
 
-    <!-- General English Comparison -->
     <div class="comparison-block">
       <div class="comparison-header">
         <h2>General English Packages Comparison</h2>
         <p>Choose between group interaction or personalized one-on-one lessons</p>
       </div>
-      
       <div class="comparison-table-wrapper">
         <table class="comparison-table">
           <thead>
@@ -1271,81 +1066,24 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Lessons per month</td>
-              <td>12</td>
-              <td>12</td>
-            </tr>
-            <tr>
-              <td>Lessons per week</td>
-              <td>3</td>
-              <td>3</td>
-            </tr>
-            <tr>
-              <td>Lesson duration</td>
-              <td>60 or 90 min</td>
-              <td>60 min</td>
-            </tr>
-            <tr>
-              <td>Class format</td>
-              <td>Group</td>
-              <td>1-on-1</td>
-            </tr>
-            <tr>
-              <td>Personalized attention</td>
-              <td><i class="fas fa-minus"></i></td>
-              <td><i class="fas fa-check"></i></td>
-            </tr>
-            <tr>
-              <td>Speaking practice</td>
-              <td><i class="fas fa-check"></i></td>
-              <td><i class="fas fa-check"></i></td>
-            </tr>
-            <tr>
-              <td>Listening skills</td>
-              <td><i class="fas fa-check"></i></td>
-              <td><i class="fas fa-check"></i></td>
-            </tr>
-            <tr>
-              <td>Grammar & vocabulary</td>
-              <td><i class="fas fa-check"></i></td>
-              <td><i class="fas fa-check"></i></td>
-            </tr>
-            <tr>
-              <td>Reading & writing</td>
-              <td><i class="fas fa-check"></i></td>
-              <td><i class="fas fa-check"></i></td>
-            </tr>
-            <tr>
-              <td>Pronunciation coaching</td>
-              <td><i class="fas fa-check"></i></td>
-              <td><i class="fas fa-check"></i></td>
-            </tr>
-            <tr>
-              <td>Customized topics</td>
-              <td><i class="fas fa-minus"></i></td>
-              <td><i class="fas fa-check"></i></td>
-            </tr>
-            <tr>
-              <td>Flexible schedule</td>
-              <td><i class="fas fa-minus"></i></td>
-              <td><i class="fas fa-check"></i></td>
-            </tr>
-            <tr>
-              <td>Peer interaction</td>
-              <td><i class="fas fa-check"></i></td>
-              <td><i class="fas fa-minus"></i></td>
-            </tr>
-            <tr>
-              <td>Best for</td>
-              <td>Social learners</td>
-              <td>Personal goals</td>
-            </tr>
+            <tr><td>Lessons per month</td><td>12</td><td>12</td></tr>
+            <tr><td>Lessons per week</td><td>3</td><td>3</td></tr>
+            <tr><td>Lesson duration</td><td>60 or 90 min</td><td>60 min</td></tr>
+            <tr><td>Class format</td><td>Group</td><td>1-on-1</td></tr>
+            <tr><td>Personalized attention</td><td><i class="fas fa-minus"></i></td><td><i class="fas fa-check"></i></td></tr>
+            <tr><td>Speaking practice</td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td></tr>
+            <tr><td>Listening skills</td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td></tr>
+            <tr><td>Grammar & vocabulary</td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td></tr>
+            <tr><td>Reading & writing</td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td></tr>
+            <tr><td>Pronunciation coaching</td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td></tr>
+            <tr><td>Customized topics</td><td><i class="fas fa-minus"></i></td><td><i class="fas fa-check"></i></td></tr>
+            <tr><td>Flexible schedule</td><td><i class="fas fa-minus"></i></td><td><i class="fas fa-check"></i></td></tr>
+            <tr><td>Peer interaction</td><td><i class="fas fa-check"></i></td><td><i class="fas fa-minus"></i></td></tr>
+            <tr><td>Best for</td><td>Social learners</td><td>Personal goals</td></tr>
           </tbody>
         </table>
       </div>
     </div>
-    
   </div>
 </section>
 
@@ -1364,6 +1102,32 @@
     </div>
   </div>
 </section>
+
+<!-- MOBILE TAB BAR -->
+<div class="mobile-tab-bar">
+  <div class="tab-bar-container">
+    <a href="index.html#home" class="tab-item">
+      <i class="fas fa-home"></i>
+      <span>Home</span>
+    </a>
+    <a href="index.html#about" class="tab-item">
+      <i class="fas fa-info-circle"></i>
+      <span>About</span>
+    </a>
+    <a href="index.html#courses" class="tab-item">
+      <i class="fas fa-graduation-cap"></i>
+      <span>Courses</span>
+    </a>
+    <a href="index.html#reviews" class="tab-item">
+      <i class="fas fa-star"></i>
+      <span>Reviews</span>
+    </a>
+    <a href="packages.html" class="tab-item active">
+      <i class="fas fa-tags"></i>
+      <span>Packages</span>
+    </a>
+  </div>
+</div>
 
 <footer>
   <div class="footer-grid">
@@ -1409,10 +1173,6 @@
   if (history.scrollRestoration) { history.scrollRestoration = 'manual'; }
   window.addEventListener('load', () => { window.scrollTo({ top: 0, behavior: 'instant' }); });
   
-  function toggleMenu() { 
-    document.getElementById('navMenu').classList.toggle('active'); 
-  }
-  
   window.addEventListener('scroll', () => {
     const navbar = document.querySelector('.navbar');
     if (window.scrollY > 50) { navbar.classList.add('scrolled'); } else { navbar.classList.remove('scrolled'); }
@@ -1420,14 +1180,8 @@
   
   function togglePackage(element) {
     const isActive = element.classList.contains('active');
-    
-    document.querySelectorAll('.package-accordion').forEach(acc => {
-      acc.classList.remove('active');
-    });
-    
-    if (!isActive) {
-      element.classList.add('active');
-    }
+    document.querySelectorAll('.package-accordion').forEach(acc => { acc.classList.remove('active'); });
+    if (!isActive) { element.classList.add('active'); }
   }
 </script>
 </body>
