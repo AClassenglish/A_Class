@@ -38,18 +38,27 @@ a{color:inherit}
 .nav-link:hover{color:var(--primary)}
 .menu-toggle{display:none;background:none;border:none;font-size:1.4rem;cursor:pointer;color:var(--primary);width:40px;height:40px;align-items:center;justify-content:center;border-radius:10px}
 
-/* Page Header */
-.page-header{padding:10rem 2rem 4rem;background:linear-gradient(135deg,var(--gradient-start),var(--gradient-end));color:#fff;position:relative;overflow:hidden;width:100%}
+/* Page Header with Animations */
+.page-header{padding:12rem 2rem 5rem;background:linear-gradient(135deg,var(--gradient-start),var(--gradient-end));color:#fff;position:relative;overflow:hidden;width:100%}
+.header-animation{position:absolute;border-radius:50%;background:rgba(255,255,255,.1);animation:headerFloat 8s ease-in-out infinite}
+.header-animation-1{width:300px;height:300px;top:-100px;left:10%;animation-delay:0s}
+.header-animation-2{width:250px;height:250px;bottom:-80px;right:15%;animation-delay:2s}
+.header-animation-3{width:200px;height:200px;top:50%;left:50%;animation-delay:4s}
+@keyframes headerFloat{0%,100%{transform:translate(0,0) scale(1);opacity:.3}50%{transform:translate(30px,-30px) scale(1.1);opacity:.5}}
 .page-header-content{max-width:800px;margin:0 auto;text-align:center;position:relative;z-index:1}
-.page-header h1{font-size:3rem;font-weight:800;margin-bottom:1rem;letter-spacing:-.5px;animation:fadeInUp .8s ease}
-.page-header p{font-size:1.15rem;opacity:.95;max-width:600px;margin:0 auto;line-height:1.7;animation:fadeInUp .8s ease .2s both}
+.page-header h1{font-size:3.5rem;font-weight:800;margin-bottom:1.5rem;letter-spacing:-1px;animation:fadeInUp .8s ease}
+.page-header p{font-size:1.25rem;opacity:.95;max-width:600px;margin:0 auto;line-height:1.7;animation:fadeInUp .8s ease .2s both}
 @keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
 
 /* Video Gallery Section */
 .video-gallery{padding:4rem 2rem;background:var(--bg-light);width:100%}
 .video-gallery-container{max-width:1400px;margin:0 auto}
-.video-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2rem;margin-top:3rem}
-.video-item{position:relative;border-radius:20px;overflow:hidden;box-shadow:0 10px 40px rgba(0,0,0,.15);aspect-ratio:16/9;background:#000}
+.video-intro{text-align:center;max-width:800px;margin:0 auto 3rem}
+.video-intro p{color:var(--text-gray);font-size:1.1rem;line-height:1.8}
+.video-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:3rem}
+.video-item{position:relative;border-radius:20px;overflow:hidden;box-shadow:0 10px 40px rgba(0,0,0,.15);aspect-ratio:9/16;background:#000;transition:transform .4s cubic-bezier(.4,0,.2,1)}
+.video-item:hover{transform:scale(1.02)}
+.video-item.video-vertical-3frame{grid-column:span 1}
 .video-item video{width:100%;height:100%;object-fit:cover;display:block}
 
 /* Footer */
@@ -75,20 +84,22 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
 
 /* Responsive */
 @media (max-width:1024px){
-  .page-header h1{font-size:2.5rem}
+  .page-header h1{font-size:2.8rem}
   .footer-grid{grid-template-columns:1fr 1fr}
-  .video-grid{grid-template-columns:1fr;gap:1rem}
-  .video-item{aspect-ratio:16/9}
+  .video-grid{grid-template-columns:repeat(2,1fr);gap:1rem}
+  .video-item.video-vertical-3frame{grid-column:span 1}
 }
 
 @media (max-width:768px){
   .nav-menu{display:none}
   .menu-toggle{display:flex}
   .mobile-tab-bar{display:block}
-  .page-header{padding:8rem 1.5rem 3rem}
-  .page-header h1{font-size:2rem}
+  .page-header{padding:10rem 1.5rem 4rem}
+  .page-header h1{font-size:2.2rem}
   .page-header p{font-size:1rem}
   .video-gallery{padding:3rem 1rem}
+  .video-grid{grid-template-columns:1fr;gap:.8rem}
+  .video-item.video-vertical-3frame{grid-column:span 1}
   .footer-grid{grid-template-columns:1fr;gap:2rem}
 }
 
@@ -118,6 +129,9 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
 
   <!-- Page Header -->
   <section class="page-header">
+    <div class="header-animation header-animation-1"></div>
+    <div class="header-animation header-animation-2"></div>
+    <div class="header-animation header-animation-3"></div>
     <div class="page-header-content">
       <h1>Life at AClass</h1>
       <p>Experience our vibrant learning community</p>
@@ -127,28 +141,28 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
   <!-- Video Gallery -->
   <section class="video-gallery">
     <div class="video-gallery-container">
-      <div style="text-align:center;max-width:800px;margin:0 auto 2rem">
-        <p style="color:var(--text-gray);font-size:1.1rem;line-height:1.8">Learning goes beyond textbooks. Take a look inside our classrooms, student activities, speaking practice, celebrations, and the moments that make learning English enjoyable. Every photo and video reflects the supportive, engaging environment we create for our students.</p>
+      <div class="video-intro">
+        <p>Learning goes beyond textbooks. Take a look inside our classrooms, student activities, speaking practice, celebrations, and the moments that make learning English enjoyable. Every photo and video reflects the supportive, engaging environment we create for our students.</p>
       </div>
       <div class="video-grid">
         <div class="video-item">
           <video autoplay muted loop playsinline controls>
-            <source src="https://github.com/AClassenglish/A_Class/raw/580c41f65c5d7482a002b57d8ad0646122cfba7a/IMG_0629.MOV" type="video/mp4">
+            <source src="https://github.com/AClassenglish/A_Class/raw/1fcc1f6281bbc539ab3e55a4b955483c7aef54b6/IMG_0629.MOV" type="video/mp4">
           </video>
         </div>
         <div class="video-item">
           <video autoplay muted loop playsinline controls>
-            <source src="https://github.com/AClassenglish/A_Class/raw/580c41f65c5d7482a002b57d8ad0646122cfba7a/IMG_2948.MOV" type="video/mp4">
+            <source src="https://github.com/AClassenglish/A_Class/raw/1fcc1f6281bbc539ab3e55a4b955483c7aef54b6/IMG_2948.MOV" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-item video-vertical-3frame">
+          <video autoplay muted loop playsinline controls>
+            <source src="https://github.com/AClassenglish/A_Class/raw/1fcc1f6281bbc539ab3e55a4b955483c7aef54b6/IMG_3018.MOV" type="video/mp4">
           </video>
         </div>
         <div class="video-item">
           <video autoplay muted loop playsinline controls>
-            <source src="https://github.com/AClassenglish/A_Class/raw/580c41f65c5d7482a002b57d8ad0646122cfba7a/IMG_3018.MOV" type="video/mp4">
-          </video>
-        </div>
-        <div class="video-item">
-          <video autoplay muted loop playsinline controls>
-            <source src="https://github.com/AClassenglish/A_Class/raw/580c41f65c5d7482a002b57d8ad0646122cfba7a/IMG_8786.MOV" type="video/mp4">
+            <source src="https://github.com/AClassenglish/A_Class/raw/1fcc1f6281bbc539ab3e55a4b955483c7aef54b6/IMG_8786.MOV" type="video/mp4">
           </video>
         </div>
       </div>
