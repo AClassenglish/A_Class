@@ -53,7 +53,7 @@ a{color:inherit}
 @keyframes blobMove2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-40px,40px) scale(.9)}}
 @keyframes blobMove3{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(30px,-20px) scale(1.15)}}
 .side-tracks{position:fixed;top:0;left:0;right:0;bottom:0;pointer-events:none;z-index:1;overflow:hidden}
-.side-track{position:absolute;top:0;bottom:0;width:80px;overflow:hidden;background:rgba(255,255,255,.6);backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);border-left:1px solid var(--border);border-right:1px solid var(--border)}
+.side-track{position:absolute;top:0;bottom:0;width:50px;overflow:hidden;background:rgba(255,255,255,.6);backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);border-left:1px solid var(--border);border-right:1px solid var(--border)}
 .side-track.left{left:0}
 .side-track.right{right:0}
 .side-track-content{display:flex;flex-direction:column;gap:3rem;padding:4rem 0}
@@ -61,7 +61,7 @@ a{color:inherit}
 .side-track.right .side-track-content{animation:scrollDown 35s linear infinite}
 @keyframes scrollUp{0%{transform:translateY(0)}100%{transform:translateY(-50%)}}
 @keyframes scrollDown{0%{transform:translateY(-50%)}100%{transform:translateY(0)}}
-.track-label{writing-mode:vertical-rl;text-orientation:mixed;transform:rotate(180deg);font-size:1.1rem;font-weight:800;letter-spacing:4px;text-transform:uppercase;color:var(--primary);opacity:.5;padding:1rem 0;white-space:nowrap}
+.track-label{writing-mode:vertical-rl;text-orientation:mixed;transform:rotate(180deg);font-size:.9rem;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--primary);opacity:.5;padding:1rem 0;white-space:nowrap}
 .track-label-dot{width:6px;height:6px;background:var(--primary);border-radius:50%;margin:0 auto;opacity:.4}
 .mobile-header-track{display:none;position:fixed;top:70px;left:0;right:0;background:rgba(255,255,255,.95);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--border);z-index:997;padding:.5rem 0;overflow:hidden}
 .track-row{display:flex;gap:1.5rem;white-space:nowrap;font-size:.7rem;font-weight:700;letter-spacing:1px;color:var(--primary)}
@@ -110,7 +110,7 @@ a{color:inherit}
 .tab-item.active{color:var(--primary)}
 .tab-item.active i{transform:translateY(-2px)}
 
-/* Hero Section with Video Collage */
+/* Hero Section */
 .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:10rem 0 6rem;position:relative;width:100%}
 .hero-container{max-width:100%;margin:0 auto;text-align:center;position:relative;z-index:2;padding:0 2rem;width:100%}
 .hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:var(--primary-light);color:var(--primary-dark);padding:.5rem 1.2rem;border-radius:50px;font-size:.85rem;font-weight:600;margin-bottom:2rem;border:1px solid rgba(167,102,220,.15)}
@@ -129,40 +129,38 @@ a{color:inherit}
 .hero-stat-number{font-size:2rem;font-weight:800;background:var(--gradient-accent);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:.3rem}
 .hero-stat-label{font-size:.85rem;color:var(--text-gray);font-weight:500}
 
-/* Video Collage Section - Integrated into Hero */
-.hero-video-collage{position:relative;width:100%;max-width:1200px;margin:3rem auto 0;cursor:pointer;transition:all .6s cubic-bezier(.4,0,.2,1)}
-.hero-video-collage.expanded{max-width:1400px;margin-top:4rem}
-.video-collage-heading{text-align:center;margin-bottom:2.5rem;animation:fadeInUp .8s ease}
+/* Reviews Section - Smaller & Centered */
+.reviews-section{padding:5rem 2rem 6rem;position:relative;z-index:2;width:100%}
+.reviews-header{text-align:center;margin-bottom:3rem}
+.reviews-header h2{font-size:2.5rem;font-weight:800;background:var(--gradient-accent);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:.75rem}
+.reviews-header p{color:var(--text-gray);font-size:1.05rem}
+.reviews-swiper{padding:2rem 0 3rem;overflow:visible!important;width:100%;max-width:900px;margin:0 auto}
+.swiper-slide{transition:all .6s cubic-bezier(.4,0,.2,1);opacity:.4;filter:blur(3px);transform:scale(.85);border-radius:16px;overflow:hidden;border:1px solid var(--border);background:#fff;will-change:transform,opacity,filter}
+.swiper-slide img{width:100%;height:auto;display:block;pointer-events:none;user-select:none}
+.swiper-slide-active{opacity:1;filter:blur(0);transform:scale(1);box-shadow:0 25px 60px rgba(167,102,220,.25);z-index:10;border-color:var(--primary)}
+.swiper-button-prev,.swiper-button-next{color:var(--primary);background:#fff;width:45px;height:45px;border-radius:50%;box-shadow:0 4px 15px rgba(167,102,220,.15);border:1.5px solid var(--primary);transition:all .3s}
+.swiper-button-prev::after,.swiper-button-next::after{font-size:1rem;font-weight:800}
+.swiper-button-prev:hover,.swiper-button-next:hover{background:var(--gradient-accent);color:#fff;border-color:transparent;transform:scale(1.1)}
+.swiper-pagination-bullet{width:10px;height:10px;background:var(--border);opacity:1;transition:all .3s}
+.swiper-pagination-bullet-active{background:var(--primary);width:28px;border-radius:5px}
+
+/* Video Collage Section - After Reviews */
+.video-collage-section{padding:4rem 2rem;background:var(--bg-light);width:100%;position:relative}
+.video-collage-container{max-width:1200px;margin:0 auto}
+.video-collage-heading{text-align:center;margin-bottom:3rem}
 .video-collage-heading h2{font-size:2.5rem;font-weight:800;background:var(--gradient-accent);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:.75rem;letter-spacing:-.5px}
 .video-collage-heading p{color:var(--text-gray);font-size:1.05rem}
-.video-collage-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;position:relative;transition:all .6s cubic-bezier(.4,0,.2,1)}
-.hero-video-collage.expanded .video-collage-grid{gap:1.5rem}
+.video-collage-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;position:relative;cursor:pointer}
 .video-collage-item{position:relative;border-radius:16px;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,.12);transition:all .5s cubic-bezier(.4,0,.2,1);aspect-ratio:9/16}
-.video-collage-item.video-vertical-3frame{grid-column:span 1;aspect-ratio:9/16}
 .video-collage-item video{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
-.hero-video-collage:hover .video-collage-item video{transform:scale(1.05)}
+.video-collage-grid:hover .video-collage-item video{transform:scale(1.05)}
 .video-collage-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(167,102,220,.4) 0%,rgba(99,102,241,.4) 100%);opacity:0;transition:opacity .4s ease;display:flex;align-items:center;justify-content:center}
-.hero-video-collage:hover .video-collage-overlay{opacity:1}
+.video-collage-grid:hover .video-collage-overlay{opacity:1}
 .video-collage-play{width:70px;height:70px;background:rgba(255,255,255,.95);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 30px rgba(0,0,0,.2);transition:transform .3s}
 .video-collage-overlay:hover .video-collage-play{transform:scale(1.1)}
 .video-collage-play i{font-size:1.8rem;color:var(--primary);margin-left:5px}
 .video-collage-text{position:absolute;bottom:1.5rem;left:50%;transform:translateX(-50%);background:rgba(255,255,255,.95);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);padding:.8rem 2rem;border-radius:50px;font-weight:700;color:var(--primary);font-size:1rem;box-shadow:0 4px 20px rgba(0,0,0,.15);white-space:nowrap;opacity:0;transition:opacity .4s}
-.hero-video-collage:hover .video-collage-text{opacity:1}
-
-/* Reviews Section */
-.reviews-section{padding:5rem 2rem 6rem;position:relative;z-index:2;width:100%}
-.reviews-header{text-align:center;margin-bottom:2rem}
-.reviews-header h2{font-size:2.5rem;font-weight:800;background:var(--gradient-accent);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:.75rem}
-.reviews-header p{color:var(--text-gray);font-size:1.05rem}
-.reviews-swiper{padding:2rem 0 3rem;overflow:visible!important;width:100%}
-.swiper-slide{transition:all .6s cubic-bezier(.4,0,.2,1);opacity:.5;filter:blur(2px);transform:scale(.9);border-radius:24px;overflow:hidden;border:1px solid var(--border);background:#fff;will-change:transform,opacity,filter}
-.swiper-slide img{width:100%;height:auto;display:block;pointer-events:none;user-select:none}
-.swiper-slide-active{opacity:1;filter:blur(0);transform:scale(1);box-shadow:0 25px 60px rgba(167,102,220,.25);z-index:10;border-color:var(--primary)}
-.swiper-button-prev,.swiper-button-next{color:var(--primary);background:#fff;width:52px;height:52px;border-radius:50%;box-shadow:0 4px 15px rgba(167,102,220,.15);border:1.5px solid var(--primary);transition:all .3s}
-.swiper-button-prev::after,.swiper-button-next::after{font-size:1.2rem;font-weight:800}
-.swiper-button-prev:hover,.swiper-button-next:hover{background:var(--gradient-accent);color:#fff;border-color:transparent;transform:scale(1.1)}
-.swiper-pagination-bullet{width:10px;height:10px;background:var(--border);opacity:1;transition:all .3s}
-.swiper-pagination-bullet-active{background:var(--primary);width:28px;border-radius:5px}
+.video-collage-grid:hover .video-collage-text{opacity:1}
 
 /* About Section */
 .about,.courses,.how-it-works,.packages,.contact,.teachers-section{padding:6rem 2rem;position:relative;z-index:2;width:100%}
@@ -269,8 +267,6 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
   .side-tracks{display:none}
   .custom-cursor{display:none!important}
   .video-collage-grid{grid-template-columns:repeat(2,1fr);gap:.8rem}
-  .hero-video-collage.expanded .video-collage-grid{gap:1rem}
-  .video-collage-item.video-vertical-3frame{grid-column:span 1}
 }
 
 @media (max-width:768px){
@@ -300,8 +296,6 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
   .video-collage-play i{font-size:1.5rem}
   .video-collage-text{font-size:.9rem;padding:.6rem 1.5rem}
   .video-collage-grid{grid-template-columns:1fr;gap:.6rem}
-  .hero-video-collage.expanded .video-collage-grid{gap:.8rem}
-  .video-collage-item.video-vertical-3frame{grid-column:span 1}
 }
 
 @media (max-width:480px){
@@ -336,7 +330,7 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
     <div class="header-blob header-blob-3"></div>
   </div>
 
-  <!-- Side Tracks -->
+  <!-- Side Tracks (Narrower) -->
   <div class="side-tracks" aria-hidden="true">
     <div class="side-track left">
       <div class="side-track-content">
@@ -451,7 +445,7 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
     </div>
   </div>
 
-  <!-- Hero Section with Video Collage -->
+  <!-- Hero Section -->
   <section id="home" class="hero">
     <div class="hero-container">
       <div class="hero-badge">
@@ -470,45 +464,9 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
         <div class="hero-stat"><div class="hero-stat-number">3</div><div class="hero-stat-label">Programs</div></div>
       </div>
     </div>
-    
-    <!-- Video Collage Section -->
-    <div class="hero-video-collage" id="videoCollage" onclick="toggleVideoCollage()">
-      <div class="video-collage-heading">
-        <h2>Life at AClass</h2>
-        <p>Experience our vibrant learning community</p>
-      </div>
-      <div class="video-collage-grid">
-        <div class="video-collage-item">
-          <video muted loop playsinline preload="metadata">
-            <source src="https://github.com/AClassenglish/A_Class/raw/1fcc1f6281bbc539ab3e55a4b955483c7aef54b6/IMG_0629.MOV" type="video/mp4">
-          </video>
-        </div>
-        <div class="video-collage-item">
-          <video muted loop playsinline preload="metadata">
-            <source src="https://github.com/AClassenglish/A_Class/raw/1fcc1f6281bbc539ab3e55a4b955483c7aef54b6/IMG_2948.MOV" type="video/mp4">
-          </video>
-        </div>
-        <div class="video-collage-item video-vertical-3frame">
-          <video muted loop playsinline preload="metadata">
-            <source src="https://github.com/AClassenglish/A_Class/raw/1fcc1f6281bbc539ab3e55a4b955483c7aef54b6/IMG_3018.MOV" type="video/mp4">
-          </video>
-        </div>
-        <div class="video-collage-item">
-          <video muted loop playsinline preload="metadata">
-            <source src="https://github.com/AClassenglish/A_Class/raw/1fcc1f6281bbc539ab3e55a4b955483c7aef54b6/IMG_8786.MOV" type="video/mp4">
-          </video>
-        </div>
-        <div class="video-collage-overlay">
-          <div class="video-collage-play">
-            <i class="fas fa-play"></i>
-          </div>
-        </div>
-        <div class="video-collage-text">Click to explore our classroom atmosphere</div>
-      </div>
-    </div>
   </section>
 
-  <!-- Reviews Section (Swiper) -->
+  <!-- Reviews Section - Smaller & Centered -->
   <section id="reviews" class="reviews-section">
     <div class="container">
       <div class="reviews-header">
@@ -537,6 +495,44 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
         <div class="swiper-pagination"></div>
         <div class="swiper-button-prev" aria-label="Previous testimonial"></div>
         <div class="swiper-button-next" aria-label="Next testimonial"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Video Collage Section - After Reviews -->
+  <section class="video-collage-section" onclick="window.location.href='life-at-aclass.html'">
+    <div class="video-collage-container">
+      <div class="video-collage-heading">
+        <h2>Life at AClass</h2>
+        <p>Experience our vibrant learning community</p>
+      </div>
+      <div class="video-collage-grid">
+        <div class="video-collage-item">
+          <video autoplay muted loop playsinline>
+            <source src="https://github.com/AClassenglish/A_Class/raw/1fcc1f6281bbc539ab3e55a4b955483c7aef54b6/IMG_0629.MOV" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-collage-item">
+          <video autoplay muted loop playsinline>
+            <source src="https://github.com/AClassenglish/A_Class/raw/1fcc1f6281bbc539ab3e55a4b955483c7aef54b6/IMG_2948.MOV" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-collage-item">
+          <video autoplay muted loop playsinline>
+            <source src="https://github.com/AClassenglish/A_Class/raw/1fcc1f6281bbc539ab3e55a4b955483c7aef54b6/IMG_3018.MOV" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-collage-item">
+          <video autoplay muted loop playsinline>
+            <source src="https://github.com/AClassenglish/A_Class/raw/1fcc1f6281bbc539ab3e55a4b955483c7aef54b6/IMG_8786.MOV" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-collage-overlay">
+          <div class="video-collage-play">
+            <i class="fas fa-play"></i>
+          </div>
+        </div>
+        <div class="video-collage-text">Click to explore our classroom atmosphere</div>
       </div>
     </div>
   </section>
@@ -930,32 +926,6 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
       });
 
       /* ==========================================
-         Video Collage Toggle
-         ========================================== */
-      var videoCollageExpanded = false;
-      var videos = document.querySelectorAll('.video-collage-item video');
-      
-      function toggleVideoCollage() {
-        var collage = document.getElementById('videoCollage');
-        videoCollageExpanded = !videoCollageExpanded;
-        
-        if (videoCollageExpanded) {
-          collage.classList.add('expanded');
-          // Play all videos
-          videos.forEach(function(video) {
-            video.play();
-          });
-        } else {
-          collage.classList.remove('expanded');
-          // Pause all videos
-          videos.forEach(function(video) {
-            video.pause();
-            video.currentTime = 0;
-          });
-        }
-      }
-
-      /* ==========================================
          Reviews Carousel (Swiper)
          ========================================== */
       var reviewsSwiper = new Swiper('.reviews-swiper', {
@@ -963,7 +933,7 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
         centeredSlides: true,
         speed: 600,
         spaceBetween: 48,
-        slidesPerView: 1.7,
+        slidesPerView: 1.5,
         pagination: {
           el: '.swiper-pagination',
           clickable: true,
@@ -974,11 +944,11 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
         },
         breakpoints: {
           320: {
-            slidesPerView: 1.15,
+            slidesPerView: 1.1,
             spaceBetween: 16,
           },
           769: {
-            slidesPerView: 1.7,
+            slidesPerView: 1.5,
             spaceBetween: 48,
           }
         }
