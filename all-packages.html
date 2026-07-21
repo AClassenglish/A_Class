@@ -320,7 +320,7 @@
     .teacher-horizontal-desc { color: var(--text-gray); font-size: 0.95rem; line-height: 1.7; margin-bottom: 0.75rem; }
 
     /* ==========================================
-       Comparison Tables
+       Comparison Tables - Responsive Design
        ========================================== */
     .comparison-section { background: var(--bg-light); padding: 6rem 2rem; }
     .comparison-container { max-width: 1200px; margin: 0 auto; }
@@ -329,22 +329,178 @@
     .comparison-header { text-align: center; margin-bottom: 3rem; }
     .comparison-header h2 { font-size: 2.2rem; font-weight: 800; color: var(--text-dark); margin-bottom: 0.75rem; letter-spacing: -0.5px; }
     .comparison-header p { color: var(--text-gray); font-size: 1.05rem; }
+    
+    /* Responsive Table Design - Mobile First */
     .comparison-table-wrapper {
-      background: white; border-radius: 24px; box-shadow: 0 10px 40px rgba(0,0,0,0.08);
-      overflow: hidden; border: 1px solid var(--border); overflow-x: auto;
+      overflow: hidden;
+      border-radius: 24px;
+      background: white;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+      border: 1px solid var(--border);
+      margin: 0 auto;
     }
-    .comparison-table { width: 100%; border-collapse: collapse; min-width: 700px; }
-    .comparison-table thead { background: var(--gradient-accent); color: white; }
-    .comparison-table thead th { padding: 1.5rem 1.25rem; font-weight: 700; font-size: 1rem; text-align: center; }
-    .comparison-table thead th:first-child { text-align: left; width: 25%; position: sticky; left: 0; background: var(--gradient-accent); z-index: 10; }
-    .comparison-table tbody tr { border-bottom: 1px solid var(--border); transition: background 0.2s; }
-    .comparison-table tbody tr:last-child { border-bottom: none; }
-    .comparison-table tbody tr:hover { background: var(--primary-light); }
-    .comparison-table td { padding: 1.25rem; text-align: center; font-size: 0.95rem; color: var(--text-gray); font-weight: 500; }
-    .comparison-table td:first-child { text-align: left; font-weight: 700; color: var(--text-dark); position: sticky; left: 0; background: white; z-index: 5; }
-    .comparison-table tbody tr:hover td:first-child { background: var(--primary-light); }
-    .comparison-table td i.fa-check { color: var(--primary); font-size: 1.1rem; }
-    .comparison-table td i.fa-minus { color: var(--text-light); font-size: 1rem; }
+    
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 700px;
+      display: block;
+      overflow-x: auto;
+    }
+    
+    /* Desktop Table */
+    .comparison-table thead {
+      background: var(--gradient-accent);
+      color: white;
+      display: table-header-group;
+    }
+    
+    .comparison-table thead th {
+      padding: 1.5rem 1.25rem;
+      font-weight: 700;
+      font-size: 1rem;
+      text-align: center;
+    }
+    
+    .comparison-table thead th:first-child {
+      text-align: left;
+      width: 25%;
+      position: sticky;
+      left: 0;
+      background: var(--gradient-accent);
+      z-index: 10;
+    }
+    
+    .comparison-table tbody {
+      display: table-row-group;
+    }
+    
+    .comparison-table tbody tr {
+      border-bottom: 1px solid var(--border);
+      transition: background 0.2s;
+      display: table-row;
+    }
+    
+    .comparison-table tbody tr:last-child {
+      border-bottom: none;
+    }
+    
+    .comparison-table tbody tr:hover {
+      background: var(--primary-light);
+    }
+    
+    .comparison-table td {
+      padding: 1.25rem;
+      text-align: center;
+      font-size: 0.95rem;
+      color: var(--text-gray);
+      font-weight: 500;
+      display: table-cell;
+    }
+    
+    .comparison-table td:first-child {
+      text-align: left;
+      font-weight: 700;
+      color: var(--text-dark);
+      position: sticky;
+      left: 0;
+      background: white;
+      z-index: 5;
+      display: table-cell;
+    }
+    
+    .comparison-table tbody tr:hover td:first-child {
+      background: var(--primary-light);
+    }
+    
+    .comparison-table td i.fa-check {
+      color: var(--primary);
+      font-size: 1.1rem;
+    }
+    
+    .comparison-table td i.fa-minus {
+      color: var(--text-light);
+      font-size: 1rem;
+    }
+    
+    /* Mobile Card Layout - For small screens */
+    @media (max-width: 768px) {
+      .comparison-table {
+        display: block;
+        width: 100%;
+      }
+      
+      .comparison-table thead {
+        display: none;
+      }
+      
+      .comparison-table tbody {
+        display: block;
+      }
+      
+      .comparison-table tr {
+        display: block;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        margin: 0.8rem 0;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      }
+      
+      .comparison-table th,
+      .comparison-table td {
+        display: block;
+        text-align: left;
+        padding: 0.8rem 1rem;
+        border-bottom: 1px solid var(--border);
+      }
+      
+      .comparison-table td:first-child {
+        font-weight: 700;
+        color: var(--text-dark);
+        border-bottom: 1px solid var(--border);
+        position: relative;
+        background: var(--bg-light);
+      }
+      
+      .comparison-table td:last-child {
+        border-bottom: none;
+      }
+      
+      .comparison-table tr:nth-child(odd) {
+        background: var(--bg-light);
+      }
+      
+      /* Add a visual indicator for mobile */
+      .comparison-table tr::before {
+        content: "";
+        display: block;
+        height: 4px;
+        background: var(--gradient-accent);
+        margin-bottom: 0.5rem;
+      }
+      
+      /* Package column headers */
+      .comparison-table tr td:first-child {
+        font-weight: 700;
+        color: var(--text-dark);
+        background: var(--bg-light);
+        padding-top: 1rem;
+      }
+      
+      /* Feature column */
+      .comparison-table tr td:first-child + td {
+        font-weight: 600;
+        color: var(--text-gray);
+        padding: 0.5rem 1rem;
+        background: white;
+      }
+      
+      /* Hide the feature column header on mobile */
+      .comparison-table tr td:first-child + td:first-child {
+        display: none;
+      }
+    }
 
     /* ==========================================
        CTA Section
@@ -433,15 +589,65 @@
       .comparison-table tbody td { padding: 0.6rem 0.5rem; font-size: 0.8rem; line-height: 1.3; }
       .comparison-table td i { font-size: 0.85rem; }
       .comparison-table td:first-child { font-size: 0.8rem; font-weight: 600; }
-
-      .cta-buttons { flex-direction: column; align-items: stretch; }
-      .cta-section h2 { font-size: 2rem; }
-      .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+      
+      /* For the mobile card layout */
+      .comparison-table thead {
+        display: none;
+      }
+      
+      .comparison-table tbody tr {
+        display: block;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        margin: 0.8rem 0;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      }
+      
+      .comparison-table th,
+      .comparison-table td {
+        display: block;
+        text-align: left;
+        padding: 0.8rem 1rem;
+        border-bottom: 1px solid var(--border);
+      }
+      
+      .comparison-table td:first-child {
+        font-weight: 700;
+        color: var(--text-dark);
+        border-bottom: 1px solid var(--border);
+        position: relative;
+        background: var(--bg-light);
+      }
+      
+      .comparison-table td:last-child {
+        border-bottom: none;
+      }
+      
+      .comparison-table tr:nth-child(odd) {
+        background: var(--bg-light);
+      }
     }
 
     @media (max-width: 480px) {
       .segmented-tab { padding: 8px 12px; font-size: 0.85rem; }
       .segmented-tab i { font-size: 0.9rem; }
+      
+      /* Further optimize mobile comparison table */
+      .comparison-table tbody tr {
+        margin: 0.6rem 0;
+      }
+      
+      .comparison-table th,
+      .comparison-table td {
+        padding: 0.6rem 0.8rem;
+        font-size: 0.75rem;
+      }
+      
+      .comparison-table td:first-child {
+        font-weight: 700;
+        font-size: 0.85rem;
+      }
     }
   </style>
 </head>
