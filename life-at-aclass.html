@@ -58,7 +58,6 @@ a{color:inherit}
 .video-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:3rem}
 .video-item{position:relative;border-radius:20px;overflow:hidden;box-shadow:0 10px 40px rgba(0,0,0,.15);aspect-ratio:9/16;background:#000;transition:transform .4s cubic-bezier(.4,0,.2,1)}
 .video-item:hover{transform:scale(1.02)}
-.video-item.video-vertical-3frame{grid-column:span 1}
 .video-item video{width:100%;height:100%;object-fit:cover;display:block}
 
 /* Footer */
@@ -87,7 +86,6 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
   .page-header h1{font-size:2.8rem}
   .footer-grid{grid-template-columns:1fr 1fr}
   .video-grid{grid-template-columns:repeat(2,1fr);gap:1rem}
-  .video-item.video-vertical-3frame{grid-column:span 1}
 }
 
 @media (max-width:768px){
@@ -99,7 +97,6 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
   .page-header p{font-size:1rem}
   .video-gallery{padding:3rem 1rem}
   .video-grid{grid-template-columns:1fr;gap:.8rem}
-  .video-item.video-vertical-3frame{grid-column:span 1}
   .footer-grid{grid-template-columns:1fr;gap:2rem}
 }
 
@@ -146,22 +143,23 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
       </div>
       <div class="video-grid">
         <div class="video-item">
-          <video autoplay muted loop playsinline controls>
+          <!-- Removed autoplay so it only plays when clicked -->
+          <video muted loop playsinline controls>
             <source src="https://github.com/AClassenglish/A_Class/raw/1fcc1f6281bbc539ab3e55a4b955483c7aef54b6/IMG_0629.MOV" type="video/mp4">
           </video>
         </div>
         <div class="video-item">
-          <video autoplay muted loop playsinline controls>
+          <video muted loop playsinline controls>
             <source src="https://github.com/AClassenglish/A_Class/raw/1fcc1f6281bbc539ab3e55a4b955483c7aef54b6/IMG_2948.MOV" type="video/mp4">
           </video>
         </div>
-        <div class="video-item video-vertical-3frame">
-          <video autoplay muted loop playsinline controls>
+        <div class="video-item">
+          <video muted loop playsinline controls>
             <source src="https://github.com/AClassenglish/A_Class/raw/1fcc1f6281bbc539ab3e55a4b955483c7aef54b6/IMG_3018.MOV" type="video/mp4">
           </video>
         </div>
         <div class="video-item">
-          <video autoplay muted loop playsinline controls>
+          <video muted loop playsinline controls>
             <source src="https://github.com/AClassenglish/A_Class/raw/1fcc1f6281bbc539ab3e55a4b955483c7aef54b6/IMG_8786.MOV" type="video/mp4">
           </video>
         </div>
@@ -233,6 +231,7 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
   </footer>
 
   <script>
+    // Menu toggle logic
     function toggleMenu() {
       document.getElementById('navMenu').classList.toggle('active');
     }
@@ -244,6 +243,24 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
       } else {
         navbar.classList.remove('scrolled');
       }
+    });
+
+    // ==========================================
+    // VIDEO PLAYBACK FIX
+    // ==========================================
+    document.addEventListener('DOMContentLoaded', function() {
+      const allVideos = document.querySelectorAll('video');
+      
+      allVideos.forEach(video => {
+        // When any video starts playing, pause all other videos
+        video.addEventListener('play', function() {
+          allVideos.forEach(otherVideo => {
+            if (otherVideo !== video) {
+              otherVideo.pause();
+            }
+          });
+        });
+      });
     });
   </script>
 </body>
