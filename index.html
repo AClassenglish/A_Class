@@ -109,8 +109,6 @@ a{color:inherit}
 .tab-item i{font-size:1.3rem;margin-bottom:.2rem;transition:transform .3s}
 .tab-item.active{color:var(--primary)}
 .tab-item.active i{transform:translateY(-2px)}
-
-/* Hero Section */
 .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:10rem 0 6rem;position:relative;width:100%}
 .hero-container{max-width:100%;margin:0 auto;text-align:center;position:relative;z-index:2;padding:0 2rem;width:100%}
 .hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:var(--primary-light);color:var(--primary-dark);padding:.5rem 1.2rem;border-radius:50px;font-size:.85rem;font-weight:600;margin-bottom:2rem;border:1px solid rgba(167,102,220,.15)}
@@ -128,13 +126,11 @@ a{color:inherit}
 .hero-stat:hover{transform:translateY(-4px);border-color:var(--primary)}
 .hero-stat-number{font-size:2rem;font-weight:800;background:var(--gradient-accent);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:.3rem}
 .hero-stat-label{font-size:.85rem;color:var(--text-gray);font-weight:500}
-
-/* Reviews Section - Smaller & Centered */
 .reviews-section{padding:5rem 2rem 6rem;position:relative;z-index:2;width:100%}
 .reviews-header{text-align:center;margin-bottom:3rem}
 .reviews-header h2{font-size:2.5rem;font-weight:800;background:var(--gradient-accent);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:.75rem}
 .reviews-header p{color:var(--text-gray);font-size:1.05rem}
-.reviews-swiper{padding:2rem 0 3rem;overflow:visible!important;width:100%;max-width:600px;margin:0 auto}
+.reviews-swiper{padding:2rem 0 3rem;overflow:visible!important;width:100%;max-width:900px;margin:0 auto}
 .swiper-slide{transition:all .6s cubic-bezier(.4,0,.2,1);opacity:.4;filter:blur(3px);transform:scale(.85);border-radius:16px;overflow:hidden;border:1px solid var(--border);background:#fff;will-change:transform,opacity,filter}
 .swiper-slide img{width:100%;height:auto;display:block;pointer-events:none;user-select:none}
 .swiper-slide-active{opacity:1;filter:blur(0);transform:scale(1);box-shadow:0 25px 60px rgba(167,102,220,.25);z-index:10;border-color:var(--primary)}
@@ -143,8 +139,6 @@ a{color:inherit}
 .swiper-button-prev:hover,.swiper-button-next:hover{background:var(--gradient-accent);color:#fff;border-color:transparent;transform:scale(1.1)}
 .swiper-pagination-bullet{width:10px;height:10px;background:var(--border);opacity:1;transition:all .3s}
 .swiper-pagination-bullet-active{background:var(--primary);width:28px;border-radius:5px}
-
-/* Video Collage Section - After Reviews */
 .video-collage-section{padding:4rem 2rem;background:var(--bg-light);width:100%;position:relative}
 .video-collage-container{max-width:1200px;margin:0 auto}
 .video-collage-heading{text-align:center;margin-bottom:3rem}
@@ -161,8 +155,6 @@ a{color:inherit}
 .video-collage-play i{font-size:1.8rem;color:var(--primary);margin-left:5px}
 .video-collage-text{position:absolute;bottom:1.5rem;left:50%;transform:translateX(-50%);background:rgba(255,255,255,.95);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);padding:.8rem 2rem;border-radius:50px;font-weight:700;color:var(--primary);font-size:1rem;box-shadow:0 4px 20px rgba(0,0,0,.15);white-space:nowrap;opacity:0;transition:opacity .4s}
 .video-collage-grid:hover .video-collage-text{opacity:1}
-
-/* About Section */
 .about,.courses,.how-it-works,.packages,.contact,.teachers-section{padding:6rem 2rem;position:relative;z-index:2;width:100%}
 .about,.how-it-works,.contact,.teachers-section{background:var(--bg-light)}
 .courses,.packages{background:var(--white)}
@@ -178,8 +170,6 @@ a{color:inherit}
 .stat-card{background:#fff;padding:1.75rem;border-radius:16px;text-align:center;border:1px solid var(--border)}
 .stat-number{font-size:2.5rem;font-weight:800;background:var(--gradient-accent);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:.4rem}
 .stat-label{font-size:.9rem;color:var(--text-gray);font-weight:500}
-
-/* Courses Section */
 .courses-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:2rem}
 .course-card{background:#fff;border-radius:20px;padding:2.5rem;border:1px solid var(--border);transition:transform .4s,border-color .4s,box-shadow .4s}
 .course-card:hover{transform:translateY(-8px);border-color:var(--primary);box-shadow:0 15px 40px rgba(167,102,220,.12)}
@@ -190,15 +180,11 @@ a{color:inherit}
 .course-features li{padding:.6rem 0;color:var(--text-gray);display:flex;align-items:flex-start;gap:.75rem;font-size:.9rem;border-bottom:1px solid var(--border)}
 .course-features li:last-child{border-bottom:none}
 .course-features li::before{content:'✓';color:var(--primary);font-weight:700;font-size:1.1rem;flex-shrink:0}
-
-/* How It Works Section */
 .steps-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem}
 .step-card{background:#fff;padding:2.5rem;border-radius:18px;position:relative;border:1px solid var(--border)}
 .step-number{position:absolute;top:-16px;left:2rem;width:45px;height:45px;background:var(--gradient-accent);color:#fff;border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1.2rem}
 .step-card h4{color:var(--text-dark);margin:1.25rem 0 .75rem;font-size:1.2rem;font-weight:700}
 .step-card p{color:var(--text-gray);font-size:.95rem}
-
-/* Packages Section */
 .packages-preview-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem;max-width:1100px;margin:0 auto 3rem}
 .package-preview-card{background:#fff;border-radius:20px;padding:2.5rem;border:1px solid var(--border);text-align:center;transition:transform .4s,border-color .4s,box-shadow .4s}
 .package-preview-card:hover{transform:translateY(-8px);border-color:var(--primary);box-shadow:0 15px 40px rgba(167,102,220,.2)}
@@ -219,8 +205,6 @@ a{color:inherit}
 .btn-explore:hover{background:var(--gradient-accent);color:#fff;border-color:transparent;transform:translateY(-3px);box-shadow:0 10px 25px rgba(167,102,220,.3)}
 .btn-explore i{transition:transform .3s}
 .btn-explore:hover i{transform:translateX(4px)}
-
-/* Teachers Section */
 .teachers-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(350px,1fr));gap:3rem;max-width:900px;margin:0 auto}
 .teacher-card{text-align:center;padding:2.5rem 2rem;background:#fff;border-radius:24px;border:1px solid var(--border);transition:transform .4s,box-shadow .4s,border-color .4s}
 .teacher-card:hover{transform:translateY(-8px);box-shadow:0 15px 40px rgba(167,102,220,.15);border-color:var(--primary)}
@@ -229,8 +213,6 @@ a{color:inherit}
 .teacher-card h3{font-size:1.5rem;font-weight:800;color:var(--text-dark);margin-bottom:.5rem}
 .teacher-title{display:inline-block;background:var(--gradient-accent);color:#fff;padding:.4rem 1rem;border-radius:50px;font-size:.85rem;font-weight:600;margin-bottom:1.25rem}
 .teacher-card p{color:var(--text-gray);font-size:.95rem;line-height:1.7;text-align:justify;margin-bottom:.75rem}
-
-/* Placement & Contact Sections */
 .placement-cta{background:var(--gradient-accent);color:#fff;text-align:center;padding:5rem 2rem;position:relative;overflow:hidden;z-index:2}
 .placement-cta h2{font-size:2.5rem;margin-bottom:1rem;font-weight:800}
 .placement-cta p{font-size:1.1rem;margin-bottom:2.5rem;opacity:.95;max-width:600px;margin-left:auto;margin-right:auto}
@@ -244,8 +226,6 @@ a{color:inherit}
 .contact-btn:hover{transform:translateY(-4px);box-shadow:0 10px 25px rgba(0,0,0,.15)}
 .contact-btn i{font-size:1.2rem}
 .contact-note{text-align:center;margin-top:2.5rem;padding:1.5rem;background:#fff;border-radius:16px;color:var(--text-gray);font-size:.95rem;border:1px solid var(--border)}
-
-/* Footer */
 footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2rem;position:relative;z-index:2;width:100%}
 .footer-grid{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem}
 .footer-col h4{color:#fff;margin-bottom:1.25rem;font-size:1.1rem;font-weight:700}
@@ -257,8 +237,6 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
 .social-links a{width:42px;height:42px;border-radius:50%;background:rgba(167,102,220,.1);border:1.5px solid var(--primary);display:flex;align-items:center;justify-content:center;color:var(--primary);font-size:1.1rem;transition:background .3s,color .3s,border-color .3s,transform .3s}
 .social-links a:hover{background:var(--gradient-accent);color:#fff;border-color:transparent;transform:translateY(-4px)}
 .footer-bottom{max-width:1300px;margin:0 auto;padding-top:2rem;border-top:1px solid rgba(255,255,255,.1);text-align:center;font-size:.9rem;color:var(--text-light)}
-
-/* Responsive Breakpoints */
 @media (max-width:1024px){
   .hero h1{font-size:3rem}
   .hero-stats{grid-template-columns:repeat(2,1fr)}
@@ -268,7 +246,6 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
   .custom-cursor{display:none!important}
   .video-collage-grid{grid-template-columns:repeat(2,1fr);gap:.8rem}
 }
-
 @media (max-width:768px){
   .mobile-header-track{display:block}
   .mobile-tab-bar{display:block}
@@ -297,7 +274,6 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
   .video-collage-text{font-size:.9rem;padding:.6rem 1.5rem}
   .video-collage-grid{grid-template-columns:1fr;gap:.6rem}
 }
-
 @media (max-width:480px){
   .hero h1{font-size:1.9rem}
   .section-header h2,.reviews-header h2{font-size:1.75rem}
@@ -305,32 +281,24 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
   .btn{padding:.9rem 1.75rem;font-size:.95rem}
   .video-collage-heading h2{font-size:1.8rem}
 }
-
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
 }
 </style>
 </head>
 <body>
-  <!-- Background Elements -->
   <div class="animated-bg" aria-hidden="true">
     <div class="floating-shape"></div>
     <div class="floating-shape"></div>
   </div>
-
-  <!-- Custom Cursor (Desktop Only) -->
   <div class="custom-cursor" id="customCursor" aria-hidden="true">
     <div class="custom-cursor-inner">A</div>
   </div>
-
-  <!-- Header Animations -->
   <div class="header-animations" aria-hidden="true">
     <div class="header-blob header-blob-1"></div>
     <div class="header-blob header-blob-2"></div>
     <div class="header-blob header-blob-3"></div>
   </div>
-
-  <!-- Side Tracks (Narrower) -->
   <div class="side-tracks" aria-hidden="true">
     <div class="side-track left">
       <div class="side-track-content">
@@ -365,8 +333,6 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
       </div>
     </div>
   </div>
-
-  <!-- Mobile Header Track -->
   <div class="mobile-header-track" aria-hidden="true">
     <div class="track-row track-row-left">
       <span> PRE-REGISTRATION OPENS JULY 25</span><span class="track-dot"></span>
@@ -381,8 +347,6 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
       <span>BE THE FIRST TO SECURE YOUR SPOT</span><span class="track-dot"></span>
     </div>
   </div>
-
-  <!-- Popup Notification -->
   <div class="popup-overlay" id="popupOverlay" role="dialog" aria-modal="true" aria-labelledby="popupTitle">
     <div class="popup-modal">
       <button class="popup-close" onclick="closePopup()" aria-label="Close notification">
@@ -398,8 +362,6 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
       </a>
     </div>
   </div>
-
-  <!-- Navigation -->
   <nav class="navbar" role="navigation" aria-label="Main navigation">
     <div class="nav-container">
       <a href="#home" class="logo" aria-label="AClass Home">
@@ -426,8 +388,6 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
       </ul>
     </div>
   </nav>
-
-  <!-- Mobile Tab Bar -->
   <div class="mobile-tab-bar" role="navigation" aria-label="Mobile navigation">
     <div class="tab-bar-container">
       <a href="#courses" class="tab-item active" onclick="setActiveTab(this)" aria-current="page">
@@ -444,8 +404,6 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
       </a>
     </div>
   </div>
-
-  <!-- Hero Section -->
   <section id="home" class="hero">
     <div class="hero-container">
       <div class="hero-badge">
@@ -465,15 +423,12 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
       </div>
     </div>
   </section>
-
-  <!-- Reviews Section - Smaller & Centered -->
   <section id="reviews" class="reviews-section">
     <div class="container">
       <div class="reviews-header">
         <h2>Student Success Stories</h2>
         <p>Real results from our amazing students</p>
       </div>
-      
       <div class="swiper reviews-swiper">
         <div class="swiper-wrapper">
           <div class="swiper-slide">
@@ -498,8 +453,6 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
       </div>
     </div>
   </section>
-
-  <!-- Video Collage Section - After Reviews -->
   <section class="video-collage-section" onclick="window.location.href='life-at-aclass.html'">
     <div class="video-collage-container">
       <div class="video-collage-heading">
@@ -536,8 +489,6 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
       </div>
     </div>
   </section>
-
-  <!-- About Section -->
   <section id="about" class="about">
     <div class="container">
       <div class="section-header">
@@ -580,8 +531,6 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
       </div>
     </div>
   </section>
-
-  <!-- Courses Section -->
   <section id="courses" class="courses">
     <div class="container">
       <div class="section-header">
@@ -626,8 +575,6 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
       </div>
     </div>
   </section>
-
-  <!-- How It Works Section -->
   <section class="how-it-works">
     <div class="container">
       <div class="section-header">
@@ -645,8 +592,6 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
       </div>
     </div>
   </section>
-
-  <!-- Packages Section -->
   <section id="packages" class="packages">
     <div class="container">
       <div class="section-header">
@@ -691,8 +636,6 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
       </div>
     </div>
   </section>
-
-  <!-- Teachers Section -->
   <section class="teachers-section">
     <div class="container">
       <div class="section-header">
@@ -721,8 +664,6 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
       </div>
     </div>
   </section>
-
-  <!-- Placement CTA Section -->
   <section id="placement" class="placement-cta">
     <h2>Not Sure About Your Level?</h2>
     <p>Take our free online assessments and we'll recommend the perfect course for you.</p>
@@ -735,8 +676,6 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
       </a>
     </div>
   </section>
-
-  <!-- Contact Section -->
   <section id="contact" class="contact">
     <div class="container">
       <div class="section-header">
@@ -757,8 +696,6 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
       </div>
     </div>
   </section>
-
-  <!-- Footer -->
   <footer>
     <div class="footer-grid">
       <div class="footer-col">
@@ -798,61 +735,38 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
     </div>
     <div class="footer-bottom">© 2026 AClass English School. All rights reserved.</div>
   </footer>
-
-  <!-- Swiper JS -->
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
-  <!-- Main JavaScript -->
   <script>
     (function() {
       'use strict';
-
-      /* ==========================================
-         Utility Functions
-         ========================================== */
       if (history.scrollRestoration) history.scrollRestoration = 'manual';
-      
       window.addEventListener('load', function() {
         window.scrollTo({ top: 0, behavior: 'instant' });
       });
-      
       window.addEventListener('beforeunload', function() {
         window.scrollTo(0, 0);
       });
-
-      /* ==========================================
-         Custom Cursor Logic
-         ========================================== */
       var cursor = document.getElementById('customCursor');
-      
       document.addEventListener('mousemove', function(e) {
         cursor.style.left = e.clientX + 'px';
         cursor.style.top = e.clientY + 'px';
         cursor.classList.add('active');
       });
-      
       document.addEventListener('mouseleave', function() {
         cursor.classList.remove('active');
       });
-      
       document.querySelectorAll('a, button, .package-preview-card, .course-card, .step-card, .teacher-card').forEach(function(el) {
         el.addEventListener('mouseenter', function() { cursor.classList.add('hovering'); });
         el.addEventListener('mouseleave', function() { cursor.classList.remove('hovering'); });
       });
-
-      /* ==========================================
-         Navigation & Mobile Menu
-         ========================================== */
       function toggleMenu() {
         document.getElementById('navMenu').classList.toggle('active');
         document.getElementById('packagesDropdown').classList.remove('open');
       }
-      
       function closeMenuOnLink() {
         document.getElementById('navMenu').classList.remove('active');
         document.getElementById('packagesDropdown').classList.remove('open');
       }
-      
       function toggleDropdown(e) {
         if (window.innerWidth <= 768) {
           e.preventDefault();
@@ -860,26 +774,19 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
           document.getElementById('packagesDropdown').classList.toggle('open');
         }
       }
-      
       document.addEventListener('click', function(e) {
         if (!e.target.closest('.nav-dropdown')) {
           document.getElementById('packagesDropdown').classList.remove('open');
         }
       });
-
       var menuOpen = false;
       var navMenu = document.getElementById('navMenu');
-      
       var menuObserver = new MutationObserver(function(mutations) {
         mutations.forEach(function(m) {
           if (m.attributeName === 'class') menuOpen = navMenu.classList.contains('active');
         });
       });
       menuObserver.observe(navMenu, { attributes: true });
-
-      /* ==========================================
-         Scroll Effects
-         ========================================== */
       window.addEventListener('scroll', function() {
         var navbar = document.querySelector('.navbar');
         if (window.scrollY > 50) {
@@ -887,10 +794,8 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
         } else {
           navbar.classList.remove('scrolled');
         }
-        
         if (menuOpen && window.innerWidth <= 768) closeMenuOnLink();
       }, { passive: true });
-
       function setActiveTab(el) {
         document.querySelectorAll('.tab-item').forEach(function(t) {
           t.classList.remove('active');
@@ -899,35 +804,19 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
         el.classList.add('active');
         el.setAttribute('aria-current', 'page');
       }
-
-      /* ==========================================
-         Popup Notification
-         ========================================== */
       function showPopup() {
         document.getElementById('popupOverlay').classList.add('active');
       }
-      
       function closePopup() {
         document.getElementById('popupOverlay').classList.remove('active');
         try { sessionStorage.setItem('popupClosed', 'true'); } catch(e) {}
       }
-      
       var popupClosed = false;
       try { popupClosed = sessionStorage.getItem('popupClosed') === 'true'; } catch(e) {}
-      
       if (!popupClosed) setTimeout(showPopup, 1500);
-      
-      document.getElementById('popupOverlay').addEventListener('click', function(e) {
-        if (e.target === e.currentTarget) closePopup();
-      });
-      
       document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') closePopup();
       });
-
-      /* ==========================================
-         Reviews Carousel (Swiper)
-         ========================================== */
       var reviewsSwiper = new Swiper('.reviews-swiper', {
         loop: true,
         centeredSlides: true,
@@ -953,7 +842,6 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
           }
         }
       });
-
     })();
   </script>
 </body>
