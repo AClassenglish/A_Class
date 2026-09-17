@@ -88,22 +88,6 @@ a{color:inherit;text-decoration:none}
 .nav-cta:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(167,102,220,.3)}
 .menu-toggle{display:none;background:none;border:none;font-size:1.4rem;cursor:pointer;color:var(--primary);width:40px;height:40px;align-items:center;justify-content:center;border-radius:10px}
 
-/* Popup */
-.popup-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(15,23,42,.6);backdrop-filter:blur(8px);z-index:2000;display:flex;align-items:center;justify-content:center;padding:1.5rem;opacity:0;visibility:hidden;transition:all .4s ease}
-.popup-overlay.active{opacity:1;visibility:visible}
-.popup-modal{background:#fff;border-radius:24px;padding:3rem 2.5rem;max-width:450px;width:100%;text-align:center;position:relative;box-shadow:0 25px 60px rgba(167,102,220,.3);transform:scale(.8) translateY(30px);transition:transform .4s cubic-bezier(.4,0,.2,1);border:2px solid var(--primary-light)}
-.popup-overlay.active .popup-modal{transform:scale(1) translateY(0)}
-.popup-close{position:absolute;top:1rem;right:1rem;width:36px;height:36px;border-radius:50%;background:var(--bg-light);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--text-gray);font-size:1rem;transition:all .3s}
-.popup-close:hover{background:var(--primary-light);color:var(--primary);transform:rotate(90deg)}
-.popup-icon{width:80px;height:80px;margin:0 auto 1.5rem;background:var(--gradient-accent);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:2rem;box-shadow:0 10px 30px rgba(167,102,220,.4);animation:popupPulse 2s ease-in-out infinite}
-@keyframes popupPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
-.popup-tag{display:inline-block;background:var(--primary-light);color:var(--primary-dark);padding:.4rem 1rem;border-radius:50px;font-size:.8rem;font-weight:700;margin-bottom:1rem}
-.popup-modal h3{font-size:1.75rem;font-weight:800;color:var(--text-dark);margin-bottom:.75rem}
-.popup-modal h3 span{background:var(--gradient-accent);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.popup-date{font-size:1.1rem;color:var(--primary-dark);font-weight:700;margin-bottom:1rem}
-.popup-modal p{color:var(--text-gray);font-size:.95rem;margin-bottom:2rem;line-height:1.6}
-.popup-cta{background:var(--gradient-accent);color:#fff;padding:1rem 2rem;border-radius:50px;font-weight:700;display:inline-flex;align-items:center;gap:.75rem;transition:all .3s;box-shadow:0 8px 25px rgba(167,102,220,.4);border:none;cursor:pointer;font-size:1rem;font-family:inherit}
-.popup-cta:hover{transform:translateY(-3px);box-shadow:0 12px 35px rgba(167,102,220,.5)}
 
 /* Mobile Tab Bar */
 .mobile-tab-bar{display:none;position:fixed;bottom:0;left:0;right:0;background:var(--glass-bg);backdrop-filter:blur(15px);border-top:1px solid var(--glass-border);z-index:1000;padding:.5rem 0;box-shadow:0 -4px 20px rgba(167,102,220,.1);width:100%}
@@ -215,6 +199,191 @@ a{color:inherit;text-decoration:none}
 .btn-explore{background:#fff;color:var(--primary);border:1.5px solid var(--primary);padding:.95rem 2rem;border-radius:50px;font-weight:600;font-size:1rem;display:inline-flex;align-items:center;gap:.6rem;transition:all .3s}
 .btn-explore:hover{background:var(--gradient-accent);color:#fff;border-color:transparent;transform:translateY(-3px);box-shadow:0 10px 25px rgba(167,102,220,.3)}
 
+/* Detailed Packages */
+.package-accordion {
+    background: white;
+    border-radius: 20px;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--border);
+    overflow: visible;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  }
+  
+  .package-accordion:hover {
+    box-shadow: 0 8px 30px rgba(167, 102, 220, 0.15);
+    transform: translateY(-2px);
+  }
+  
+  .package-header {
+    padding: 2rem 2.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    transition: all 0.3s;
+  }
+  
+  .package-header:hover {
+    background: rgba(167, 102, 220, 0.03);
+  }
+  
+  .package-header-left {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex: 1;
+  }
+  
+  .package-icon {
+    width: 60px;
+    height: 60px;
+    background: var(--primary-light);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    transition: all 0.3s;
+  }
+  
+  .package-header-content { flex: 1; }
+  
+  .package-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    color: var(--text-dark);
+  }
+  
+  .package-subtitle {
+    font-size: 0.9rem;
+    color: var(--text-gray);
+    font-weight: 500;
+  }
+  
+  .package-toggle {
+    width: 50px;
+    height: 50px;
+    background: var(--primary-light);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+    font-size: 1.2rem;
+    transition: all 0.3s;
+    flex-shrink: 0;
+  }
+  
+  .package-accordion.active .package-toggle {
+    transform: rotate(180deg);
+  }
+  
+  .package-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .package-accordion.active .package-content {
+    max-height: 1000px;
+  }
+  
+  .package-body {
+    padding: 0 2.5rem 2.5rem;
+    overflow: visible;
+  }
+  
+  .package-description {
+    color: var(--text-gray);
+    font-size: 1rem;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+    text-align: left;
+  }
+  
+  .package-details-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .package-detail-card {
+    background: var(--primary-light);
+    padding: 1.5rem;
+    border-radius: 16px;
+    text-align: center;
+    transition: all 0.3s;
+  }
+  
+  .package-detail-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(167, 102, 220, 0.2);
+  }
+  
+  .package-detail-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-gray);
+    margin-bottom: 0.5rem;
+  }
+  
+  .package-detail-value {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--text-dark);
+  }
+  
+  .package-features-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+  }
+  
+  .package-feature-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.95rem;
+    color: var(--text-gray);
+  }
+  
+  .package-feature-item i {
+    color: var(--primary);
+    font-size: 0.9rem;
+    width: 20px;
+    text-align: center;
+  }
+  
+  .package-cta {
+    width: 100%;
+    padding: 1.1rem;
+    background: var(--text-dark);
+    color: white;
+    border: none;
+    border-radius: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: all 0.3s;
+    display: block;
+    margin-top: 1rem;
+  }
+  
+  .package-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+  }
+
 /* Teachers */
 .teachers-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(350px,1fr));gap:3rem;max-width:900px;margin:0 auto}
 .teacher-card{text-align:center;padding:2.5rem 2rem;background:#fff;border-radius:24px;border:1px solid var(--border);transition:all .4s}
@@ -278,9 +447,6 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
   .footer-grid{grid-template-columns:1fr;gap:2rem}
   .test-buttons,.contact-buttons{flex-direction:column;align-items:stretch}
   .btn-test,.contact-btn{justify-content:center}
-  .popup-modal{padding:2.5rem 1.5rem}
-  .popup-modal h3{font-size:1.5rem}
-  .popup-icon{width:70px;height:70px;font-size:1.75rem}
   .reviews-swiper{padding:1rem 0 2rem}
   .swiper-button-prev,.swiper-button-next{display:none}
   .video-collage-heading h2{font-size:2rem}
@@ -356,6 +522,19 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
   }
 }
 
+
+/* Homepage detailed packages */
+.homepage-packages-container{max-width:1000px;margin:0 auto}
+.homepage-packages-container .packages-section-title{margin-top:0}
+.homepage-packages-container .packages-section-title:first-child{margin-top:0}
+.homepage-packages-container .package-accordion{margin-bottom:1.25rem}
+.homepage-packages-container .package-cta{font-family:inherit}
+@media (max-width:768px){
+  .homepage-packages-container{width:100%}
+  .homepage-packages-container .package-header{padding:1.25rem}
+  .homepage-packages-container .package-body{padding:0 1.25rem 1.5rem}
+}
+
 </style>
 </head>
 <body>
@@ -373,18 +552,6 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
     <div class="track-row track-row-right"><span>🎉 PRE-REGISTRATION OPENS JULY 25</span><span class="track-dot"></span><span>BE THE FIRST TO SECURE YOUR SPOT</span><span class="track-dot"></span><span> PRE-REGISTRATION OPENS JULY 25</span><span class="track-dot"></span><span>BE THE FIRST TO SECURE YOUR SPOT</span><span class="track-dot"></span></div>
   </div>
 
-  <div class="popup-overlay" id="popupOverlay">
-    <div class="popup-modal">
-      <button class="popup-close" id="popupCloseBtn"><i class="fas fa-times"></i></button>
-      <div class="popup-icon"><i class="fas fa-rocket"></i></div>
-      <div class="popup-tag"> EXCITING NEWS</div>
-      <h3>Pre-Registration <span>Opens Soon!</span></h3>
-      <div class="popup-date"> July 25, 2026</div>
-      <p>Be the first to secure your spot in our IELTS, SAT, and General English courses. Limited places available!</p>
-      <a href="https://wa.me/37477347364?text=Hi!%20I'm%20interested%20in%20pre-registration%20for%20AClass%20courses." target="_blank" class="popup-cta"><i class="fab fa-whatsapp"></i> Notify Me</a>
-    </div>
-  </div>
-
   <nav class="navbar">
     <div class="nav-container">
       <a href="#home" class="logo"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/Aclasslogo.jpeg" alt="AClass Logo" class="logo-img" width="42" height="42"><span class="logo-text">ACLASS</span></a>
@@ -394,10 +561,7 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
         <li><a href="#about" class="nav-link">About</a></li>
         <li><a href="#courses" class="nav-link">Courses</a></li>
         <li><a href="#reviews" class="nav-link">Reviews</a></li>
-        <li class="nav-dropdown" id="packagesDropdown">
-          <a class="nav-link">Packages <i class="fas fa-chevron-down" style="font-size:.65rem;margin-left:2px"></i></a>
-          <ul class="dropdown-menu"><li><a href="all-packages.html"><i class="fas fa-compass"></i> Explore & Compare</a></li></ul>
-        </li>
+        <li><a href="#packages" class="nav-link">Packages</a></li>
         <li><a href="#contact" class="nav-cta">Contact Us</a></li>
         <li class="language-nav-item">
           <div class="language-switcher" aria-label="Language selection">
@@ -525,15 +689,224 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
     </div>
   </section>
 
+
   <section id="packages" class="packages">
     <div class="container">
-      <div class="section-header"><span class="section-tag"><i class="fas fa-tags"></i> Pricing</span><h2>Choose Your Package</h2><p>Flexible lesson formats designed to fit your schedule</p></div>
-      <div class="packages-preview-grid">
-        <article class="package-preview-card"><div class="package-preview-icon"><i class="fas fa-users"></i></div><div class="package-preview-name">Standard Group</div><div class="package-preview-price">12 lessons/month • 3 lessons/week • 90 min</div><ul class="package-preview-features"><li><i class="fas fa-check"></i> Teacher-led lessons</li><li><i class="fas fa-check"></i> Exam strategies</li><li><i class="fas fa-check"></i> Progress monitoring</li></ul></article>
-        <article class="package-preview-card featured"><div class="package-preview-icon"><i class="fas fa-bolt"></i></div><div class="package-preview-name">Intensive Group</div><div class="package-preview-price">20 lessons/month • 5 lessons/week • 90 min</div><ul class="package-preview-features"><li><i class="fas fa-check"></i> Fastest progress</li><li><i class="fas fa-check"></i> Ideal for exams</li><li><i class="fas fa-check"></i> Priority support</li></ul></article>
-        <article class="package-preview-card"><div class="package-preview-icon"><i class="fas fa-user"></i></div><div class="package-preview-name">Individual</div><div class="package-preview-price">12 lessons/month • 3 lessons/week • 60 min</div><ul class="package-preview-features"><li><i class="fas fa-check"></i> Fully personalized</li><li><i class="fas fa-check"></i> Flexible schedule</li><li><i class="fas fa-check"></i> One-on-one attention</li></ul></article>
+      <div class="section-header">
+        <span class="section-tag"><i class="fas fa-tags"></i> Pricing</span>
+        <h2>Choose Your Package</h2>
+        <p>Flexible lesson formats designed to fit your schedule and learning goals</p>
       </div>
-      <div class="explore-more-container"><a href="all-packages.html" class="btn-explore">View All Packages <i class="fas fa-arrow-right"></i></a></div>
+
+      <div class="homepage-packages-container">
+        <!-- IELTS & SAT Packages -->
+  <div class="packages-section-title" id="ielts-sat">
+    <h2>IELTS & SAT Packages</h2>
+    <p>Structured preparation for international examinations</p>
+  </div>
+
+  <div class="package-accordion">
+    <div class="package-header">
+      <div class="package-header-left">
+        <div class="package-icon"><i class="fas fa-users"></i></div>
+        <div class="package-header-content">
+          <div class="package-title">IELTS/SAT Standard Group</div>
+          <div class="package-subtitle">12 lessons/month • 3 lessons/week • 90 min</div>
+        </div>
+      </div>
+      <div class="package-toggle"><i class="fas fa-chevron-down"></i></div>
+    </div>
+    <div class="package-content">
+      <div class="package-body">
+        <p class="package-description">The Standard package provides consistent and structured preparation. It is suitable for students who have sufficient time before their examination and prefer a balanced study schedule.</p>
+        <div class="package-details-grid">
+          <div class="package-detail-card"><div class="package-detail-label">Lessons/Month</div><div class="package-detail-value">12</div></div>
+          <div class="package-detail-card"><div class="package-detail-label">Lessons/Week</div><div class="package-detail-value">3</div></div>
+          <div class="package-detail-card"><div class="package-detail-label">Duration</div><div class="package-detail-value">90 min</div></div>
+        </div>
+        <div class="package-features-list">
+          <div class="package-feature-item"><i class="fas fa-check"></i> Teacher-led lessons</div>
+          <div class="package-feature-item"><i class="fas fa-check"></i> Exam strategies</div>
+          <div class="package-feature-item"><i class="fas fa-check"></i> Practice exercises</div>
+          <div class="package-feature-item"><i class="fas fa-check"></i> Homework & feedback</div>
+          <div class="package-feature-item"><i class="fas fa-check"></i> Progress monitoring</div>
+          <div class="package-feature-item"><i class="fas fa-check"></i> Mock-test practice</div>
+        </div>
+        <button class="package-cta" onclick="event.stopPropagation(); window.location.href='#contact'">Enroll Now</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="package-accordion">
+    <div class="package-header">
+      <div class="package-header-left">
+        <div class="package-icon"><i class="fas fa-bolt"></i></div>
+        <div class="package-header-content">
+          <div class="package-title">IELTS/SAT Intensive Group</div>
+          <div class="package-subtitle">20 lessons/month • 5 lessons/week • 90 min</div>
+        </div>
+      </div>
+      <div class="package-toggle"><i class="fas fa-chevron-down"></i></div>
+    </div>
+    <div class="package-content">
+      <div class="package-body">
+        <p class="package-description">The Intensive package is designed for students who need faster progress or have a limited amount of time before their examination. Students study more frequently and complete a larger amount of guided and independent practice.</p>
+        <div class="package-details-grid">
+          <div class="package-detail-card"><div class="package-detail-label">Lessons/Month</div><div class="package-detail-value">20</div></div>
+          <div class="package-detail-card"><div class="package-detail-label">Lessons/Week</div><div class="package-detail-value">5</div></div>
+          <div class="package-detail-card"><div class="package-detail-label">Duration</div><div class="package-detail-value">90 min</div></div>
+        </div>
+        <div class="package-features-list">
+          <div class="package-feature-item"><i class="fas fa-check"></i> High-frequency lessons</div>
+          <div class="package-feature-item"><i class="fas fa-check"></i> Ideal for upcoming exams</div>
+          <div class="package-feature-item"><i class="fas fa-check"></i> High practice volume</div>
+          <div class="package-feature-item"><i class="fas fa-check"></i> Intensive mock tests</div>
+          <div class="package-feature-item"><i class="fas fa-check"></i> Priority teacher support</div>
+          <div class="package-feature-item"><i class="fas fa-check"></i> Rapid progress tracking</div>
+        </div>
+        <button class="package-cta" onclick="event.stopPropagation(); window.location.href='#contact'">Enroll Now</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="package-accordion">
+    <div class="package-header">
+      <div class="package-header-left">
+        <div class="package-icon"><i class="fas fa-user"></i></div>
+        <div class="package-header-content">
+          <div class="package-title">IELTS/SAT Individual</div>
+          <div class="package-subtitle">12 lessons/month • 3 lessons/week • 60 min</div>
+        </div>
+      </div>
+      <div class="package-toggle"><i class="fas fa-chevron-down"></i></div>
+    </div>
+    <div class="package-content">
+      <div class="package-body">
+        <p class="package-description">Individual lessons provide the highest level of personalisation. The teacher can focus entirely on the student's specific weaknesses, goals, and learning pace. Ideal for students with a specific target score or limited preparation time.</p>
+        <div class="package-details-grid">
+          <div class="package-detail-card"><div class="package-detail-label">Lessons/Month</div><div class="package-detail-value">12</div></div>
+          <div class="package-detail-card"><div class="package-detail-label">Lessons/Week</div><div class="package-detail-value">3</div></div>
+          <div class="package-detail-card"><div class="package-detail-label">Duration</div><div class="package-detail-value">60 min</div></div>
+        </div>
+        <div class="package-features-list">
+          <div class="package-feature-item"><i class="fas fa-check"></i> Fully personalized plan</div>
+          <div class="package-feature-item"><i class="fas fa-check"></i> Focus on weaknesses</div>
+          <div class="package-feature-item"><i class="fas fa-check"></i> Flexible schedule</div>
+          <div class="package-feature-item"><i class="fas fa-check"></i> One-on-one attention</div>
+          <div class="package-feature-item"><i class="fas fa-check"></i> Custom learning pace</div>
+          <div class="package-feature-item"><i class="fas fa-check"></i> Targeted skill work</div>
+        </div>
+        <button class="package-cta" onclick="event.stopPropagation(); window.location.href='#contact'">Enroll Now</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="package-accordion">
+    <div class="package-header">
+      <div class="package-header-left">
+        <div class="package-icon"><i class="fas fa-user-friends"></i></div>
+        <div class="package-header-content">
+          <div class="package-title">IELTS/SAT Pair Package</div>
+          <div class="package-subtitle">12 lessons/month • Two students per class</div>
+        </div>
+      </div>
+      <div class="package-toggle"><i class="fas fa-chevron-down"></i></div>
+    </div>
+    <div class="package-content">
+      <div class="package-body">
+        <p class="package-description">Study with a partner in a small, focused class of two students. This format combines the benefits of personalized attention with the motivation of collaborative learning. Perfect for friends or classmates with similar goals.</p>
+        <div class="package-details-grid">
+          <div class="package-detail-card"><div class="package-detail-label">Lessons/Month</div><div class="package-detail-value">12</div></div>
+          <div class="package-detail-card"><div class="package-detail-label">Lessons/Week</div><div class="package-detail-value">3</div></div>
+          <div class="package-detail-card"><div class="package-detail-label">Class Size</div><div class="package-detail-value">2 students</div></div>
+        </div>
+        <div class="package-features-list">
+          <div class="package-feature-item"><i class="fas fa-check"></i> Two students per class</div>
+          <div class="package-feature-item"><i class="fas fa-check"></i> Collaborative learning</div>
+          <div class="package-feature-item"><i class="fas fa-check"></i> Cost-effective</div>
+          <div class="package-feature-item"><i class="fas fa-check"></i> Shared motivation</div>
+          <div class="package-feature-item"><i class="fas fa-check"></i> Tailored pair exercises</div>
+          <div class="package-feature-item"><i class="fas fa-check"></i> Personalized attention</div>
+        </div>
+        <button class="package-cta" onclick="event.stopPropagation(); window.location.href='#contact'">Enroll Now</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- General English Packages -->
+  <div class="packages-section-title" id="general-english" style="margin-top: 4rem;">
+    <h2>General English Packages</h2>
+    <p>Improve your overall English level for everyday communication</p>
+  </div>
+
+  <div class="package-accordion">
+    <div class="package-header">
+      <div class="package-header-left">
+        <div class="package-icon"><i class="fas fa-comments"></i></div>
+        <div class="package-header-content">
+          <div class="package-title">General English Group</div>
+          <div class="package-subtitle">12 lessons/month • 3 lessons/week • 60 or 90 min</div>
+        </div>
+      </div>
+      <div class="package-toggle"><i class="fas fa-chevron-down"></i></div>
+    </div>
+    <div class="package-content">
+      <div class="package-body">
+        <p class="package-description">Our General English programme is designed for students who want to improve their overall English level for education, work, travel, or everyday communication. Lessons are interactive and communication-focused, helping students use English naturally in real-life situations.</p>
+        <div class="package-details-grid">
+          <div class="package-detail-card"><div class="package-detail-label">Lessons/Month</div><div class="package-detail-value">12</div></div>
+          <div class="package-detail-card"><div class="package-detail-label">Lessons/Week</div><div class="package-detail-value">3</div></div>
+          <div class="package-detail-card"><div class="package-detail-label">Duration</div><div class="package-detail-value">60 or 90 min</div></div>
+        </div>
+        <div class="package-features-list">
+          <div class="package-feature-item"><i class="fas fa-check"></i> Speaking confidence</div>
+          <div class="package-feature-item"><i class="fas fa-check"></i> Listening comprehension</div>
+          <div class="package-feature-item"><i class="fas fa-check"></i> Grammar accuracy</div>
+          <div class="package-feature-item"><i class="fas fa-check"></i> Vocabulary range</div>
+          <div class="package-feature-item"><i class="fas fa-check"></i> Reading skills</div>
+          <div class="package-feature-item"><i class="fas fa-check"></i> Writing skills</div>
+          <div class="package-feature-item"><i class="fas fa-check"></i> Pronunciation</div>
+          <div class="package-feature-item"><i class="fas fa-check"></i> Real-life practice</div>
+        </div>
+        <button class="package-cta" onclick="event.stopPropagation(); window.location.href='#contact'">Enroll Now</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="package-accordion">
+    <div class="package-header">
+      <div class="package-header-left">
+        <div class="package-icon"><i class="fas fa-user-graduate"></i></div>
+        <div class="package-header-content">
+          <div class="package-title">General English Individual</div>
+          <div class="package-subtitle">12 lessons/month • 3 lessons/week • 60 min</div>
+        </div>
+      </div>
+      <div class="package-toggle"><i class="fas fa-chevron-down"></i></div>
+    </div>
+    <div class="package-content">
+      <div class="package-body">
+        <p class="package-description">Personalized General English lessons tailored entirely to your goals, pace, and interests. Whether you want to improve for work, travel, or personal growth, your teacher will create a custom plan focused on your specific needs.</p>
+        <div class="package-details-grid">
+          <div class="package-detail-card"><div class="package-detail-label">Lessons/Month</div><div class="package-detail-value">12</div></div>
+          <div class="package-detail-card"><div class="package-detail-label">Lessons/Week</div><div class="package-detail-value">3</div></div>
+          <div class="package-detail-card"><div class="package-detail-label">Duration</div><div class="package-detail-value">60 min</div></div>
+        </div>
+        <div class="package-features-list">
+          <div class="package-feature-item"><i class="fas fa-check"></i> Customized curriculum</div>
+          <div class="package-feature-item"><i class="fas fa-check"></i> Focus on your goals</div>
+          <div class="package-feature-item"><i class="fas fa-check"></i> Pronunciation coaching</div>
+          <div class="package-feature-item"><i class="fas fa-check"></i> Flexible topics</div>
+          <div class="package-feature-item"><i class="fas fa-check"></i> One-on-one attention</div>
+          <div class="package-feature-item"><i class="fas fa-check"></i> Personal pace</div>
+          <div class="package-feature-item"><i class="fas fa-check"></i> Regular feedback</div>
+          <div class="package-feature-item"><i class="fas fa-check"></i> Progress tracking</div>
+        </div>
+        <button class="package-cta" onclick="event.stopPropagation(); window.location.href='#contact'">Enroll Now</button>
+      </div>
+    </div>
+  </div>
+      </div>
     </div>
   </section>
 
@@ -570,7 +943,7 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
   <footer>
     <div class="footer-grid">
       <div class="footer-col"><h4>AClass English School</h4><p>Empowering students to achieve English fluency and exam success for over 15 years.</p><div class="social-links"><a href="https://www.instagram.com/aclass.am" target="_blank"><i class="fab fa-instagram"></i></a><a href="https://wa.me/37477347364" target="_blank"><i class="fab fa-whatsapp"></i></a></div></div>
-      <div class="footer-col"><h4>Quick Links</h4><ul class="footer-links"><li><a href="#home"><i class="fas fa-chevron-right"></i> Home</a></li><li><a href="#about"><i class="fas fa-chevron-right"></i> About Us</a></li><li><a href="#courses"><i class="fas fa-chevron-right"></i> Courses</a></li><li><a href="all-packages.html"><i class="fas fa-chevron-right"></i> All Packages</a></li><li><a href="life-at-aclass.html"><i class="fas fa-chevron-right"></i> Life at AClass</a></li></ul></div>
+      <div class="footer-col"><h4>Quick Links</h4><ul class="footer-links"><li><a href="#home"><i class="fas fa-chevron-right"></i> Home</a></li><li><a href="#about"><i class="fas fa-chevron-right"></i> About Us</a></li><li><a href="#courses"><i class="fas fa-chevron-right"></i> Courses</a></li><li><a href="#packages"><i class="fas fa-chevron-right"></i> All Packages</a></li><li><a href="life-at-aclass.html"><i class="fas fa-chevron-right"></i> Life at AClass</a></li></ul></div>
       <div class="footer-col"><h4>Programs</h4><ul class="footer-links"><li><a href="#courses"><i class="fas fa-chevron-right"></i> IELTS</a></li><li><a href="#courses"><i class="fas fa-chevron-right"></i> SAT</a></li><li><a href="#courses"><i class="fas fa-chevron-right"></i> General English</a></li></ul></div>
       <div class="footer-col"><h4>Contact</h4><ul class="footer-links"><li><a href="mailto:info@aclass.am"><i class="fas fa-envelope"></i> info@aclass.am</a></li><li><a href="https://wa.me/37477347364"><i class="fas fa-phone"></i> +374 77 347 364</a></li><li><a href="#"><i class="fas fa-map-marker-alt"></i> Yerevan, Armenia</a></li></ul></div>
     </div>
@@ -615,25 +988,7 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
           this.classList.add('active');
         });
       });
-
-      // Popup - FIXED: Only closes with X button
-      const popupOverlay = document.getElementById('popupOverlay');
-      const popupCloseBtn = document.getElementById('popupCloseBtn');
-      
-      function showPopup() { popupOverlay.classList.add('active'); }
-      function closePopup() { 
-        popupOverlay.classList.remove('active'); 
-        try { sessionStorage.setItem('popupClosed', 'true'); } catch(e) {} 
-      }
-      
-      // Attach close function to the X button specifically
-      popupCloseBtn.addEventListener('click', closePopup);
-      
-      let popupClosed = false;
-      try { popupClosed = sessionStorage.getItem('popupClosed') === 'true'; } catch(e) {}
-      if (!popupClosed) setTimeout(showPopup, 1500);
-
-      // Swiper
+// Swiper
       new Swiper('.reviews-swiper', {
         loop: true,
         centeredSlides: true,
