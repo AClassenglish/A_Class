@@ -10,7 +10,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 <noscript>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap">
@@ -77,18 +78,11 @@ a{color:inherit;text-decoration:none}
 .logo-img{width:42px;height:42px;border-radius:50%;object-fit:cover;border:2px solid var(--primary)}
 .logo-text{font-size:1.4rem;font-weight:800;background:var(--gradient-accent);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:1.5px}
 .nav-menu{display:flex;align-items:center;gap:2rem;list-style:none}
-.nav-dropdown{position:relative}
 .nav-link{color:var(--text-gray);font-weight:500;font-size:.95rem;transition:color .3s ease;position:relative;display:flex;align-items:center;gap:.35rem;cursor:pointer}
 .nav-link:hover{color:var(--primary)}
-.dropdown-menu{position:absolute;top:150%;left:50%;transform:translateX(-50%) translateY(8px);background:#fff;border:1px solid var(--border);border-radius:12px;padding:.5rem;min-width:200px;box-shadow:0 10px 30px rgba(167,102,220,.1);opacity:0;visibility:hidden;transition:all .25s ease;list-style:none;z-index:1001}
-.nav-dropdown:hover .dropdown-menu{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
-.dropdown-menu li a{display:flex;align-items:center;gap:.7rem;padding:.75rem 1rem;color:var(--text-gray);font-weight:600;font-size:.9rem;border-radius:8px;transition:all .2s;justify-content:center}
-.dropdown-menu li a:hover{background:var(--primary-light);color:var(--primary)}
 .nav-cta{background:var(--gradient-accent);color:#fff!important;padding:.7rem 1.5rem;border-radius:50px;font-weight:600;transition:all .3s}
 .nav-cta:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(167,102,220,.3)}
 .menu-toggle{display:none;background:none;border:none;font-size:1.4rem;cursor:pointer;color:var(--primary);width:40px;height:40px;align-items:center;justify-content:center;border-radius:10px}
-
-
 /* Mobile Tab Bar */
 .mobile-tab-bar{display:none;position:fixed;bottom:0;left:0;right:0;background:var(--glass-bg);backdrop-filter:blur(15px);border-top:1px solid var(--glass-border);z-index:1000;padding:.5rem 0;box-shadow:0 -4px 20px rgba(167,102,220,.1);width:100%}
 .tab-bar-container{display:flex;justify-content:space-around;align-items:center;max-width:500px;margin:0 auto}
@@ -199,191 +193,6 @@ a{color:inherit;text-decoration:none}
 .btn-explore{background:#fff;color:var(--primary);border:1.5px solid var(--primary);padding:.95rem 2rem;border-radius:50px;font-weight:600;font-size:1rem;display:inline-flex;align-items:center;gap:.6rem;transition:all .3s}
 .btn-explore:hover{background:var(--gradient-accent);color:#fff;border-color:transparent;transform:translateY(-3px);box-shadow:0 10px 25px rgba(167,102,220,.3)}
 
-/* Detailed Packages */
-.package-accordion {
-    background: white;
-    border-radius: 20px;
-    margin-bottom: 1.5rem;
-    border: 1px solid var(--border);
-    overflow: visible;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-  }
-  
-  .package-accordion:hover {
-    box-shadow: 0 8px 30px rgba(167, 102, 220, 0.15);
-    transform: translateY(-2px);
-  }
-  
-  .package-header {
-    padding: 2rem 2.5rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1.5rem;
-    transition: all 0.3s;
-  }
-  
-  .package-header:hover {
-    background: rgba(167, 102, 220, 0.03);
-  }
-  
-  .package-header-left {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-    flex: 1;
-  }
-  
-  .package-icon {
-    width: 60px;
-    height: 60px;
-    background: var(--primary-light);
-    border-radius: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--primary);
-    font-size: 1.5rem;
-    flex-shrink: 0;
-    transition: all 0.3s;
-  }
-  
-  .package-header-content { flex: 1; }
-  
-  .package-title {
-    font-size: 1.4rem;
-    font-weight: 700;
-    margin-bottom: 0.4rem;
-    color: var(--text-dark);
-  }
-  
-  .package-subtitle {
-    font-size: 0.9rem;
-    color: var(--text-gray);
-    font-weight: 500;
-  }
-  
-  .package-toggle {
-    width: 50px;
-    height: 50px;
-    background: var(--primary-light);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--primary);
-    font-size: 1.2rem;
-    transition: all 0.3s;
-    flex-shrink: 0;
-  }
-  
-  .package-accordion.active .package-toggle {
-    transform: rotate(180deg);
-  }
-  
-  .package-content {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  
-  .package-accordion.active .package-content {
-    max-height: 1000px;
-  }
-  
-  .package-body {
-    padding: 0 2.5rem 2.5rem;
-    overflow: visible;
-  }
-  
-  .package-description {
-    color: var(--text-gray);
-    font-size: 1rem;
-    line-height: 1.8;
-    margin-bottom: 2rem;
-    text-align: left;
-  }
-  
-  .package-details-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
-    margin-bottom: 2rem;
-  }
-  
-  .package-detail-card {
-    background: var(--primary-light);
-    padding: 1.5rem;
-    border-radius: 16px;
-    text-align: center;
-    transition: all 0.3s;
-  }
-  
-  .package-detail-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(167, 102, 220, 0.2);
-  }
-  
-  .package-detail-label {
-    font-size: 0.75rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: var(--text-gray);
-    margin-bottom: 0.5rem;
-  }
-  
-  .package-detail-value {
-    font-size: 1.5rem;
-    font-weight: 800;
-    color: var(--text-dark);
-  }
-  
-  .package-features-list {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.75rem;
-    margin-bottom: 2rem;
-  }
-  
-  .package-feature-item {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    font-size: 0.95rem;
-    color: var(--text-gray);
-  }
-  
-  .package-feature-item i {
-    color: var(--primary);
-    font-size: 0.9rem;
-    width: 20px;
-    text-align: center;
-  }
-  
-  .package-cta {
-    width: 100%;
-    padding: 1.1rem;
-    background: var(--text-dark);
-    color: white;
-    border: none;
-    border-radius: 14px;
-    font-weight: 700;
-    cursor: pointer;
-    font-size: 1rem;
-    font-family: inherit;
-    transition: all 0.3s;
-    display: block;
-    margin-top: 1rem;
-  }
-  
-  .package-cta:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-  }
-
 /* Teachers */
 .teachers-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(350px,1fr));gap:3rem;max-width:900px;margin:0 auto}
 .teacher-card{text-align:center;padding:2.5rem 2rem;background:#fff;border-radius:24px;border:1px solid var(--border);transition:all .4s}
@@ -393,6 +202,358 @@ a{color:inherit;text-decoration:none}
 .teacher-card h3{font-size:1.5rem;font-weight:800;color:var(--text-dark);margin-bottom:.5rem}
 .teacher-title{display:inline-block;background:var(--gradient-accent);color:#fff;padding:.4rem 1rem;border-radius:50px;font-size:.85rem;font-weight:600;margin-bottom:1.25rem}
 .teacher-card p{color:var(--text-gray);font-size:.95rem;line-height:1.7;text-align:justify;margin-bottom:.75rem}
+
+
+
+/* Let the browser defer rendering of distant sections until they approach the viewport. */
+.reviews,.video-collage,.about,.courses,.how-it-works,.packages,.teachers-section-packages,.placement-cta,.contact,footer{
+  content-visibility:auto;
+  contain-intrinsic-size:700px;
+}
+
+/* ===== Teacher Spotlight ===== */
+.teachers-section-packages{
+  background:var(--bg-light);
+  padding:7rem 2rem;
+  position:relative;
+  overflow:hidden;
+}
+.teachers-section-packages::before{
+  content:"";
+  position:absolute;
+  width:520px;
+  height:520px;
+  right:-220px;
+  top:-180px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(167,102,220,.12),transparent 68%);
+  pointer-events:none;
+}
+.teachers-container{
+  max-width:1240px;
+  margin:0 auto;
+  position:relative;
+  z-index:1;
+}
+.teachers-intro{
+  max-width:760px;
+  margin:0 auto 4rem;
+  text-align:center;
+}
+.teachers-kicker{
+  display:inline-flex;
+  align-items:center;
+  gap:.5rem;
+  color:var(--primary);
+  background:var(--primary-light);
+  border:1px solid rgba(167,102,220,.16);
+  border-radius:999px;
+  padding:.55rem 1rem;
+  font-size:.78rem;
+  font-weight:800;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  margin-bottom:1.25rem;
+}
+.teachers-intro h2{
+  font-size:clamp(2.2rem,4vw,3.7rem);
+  line-height:1.05;
+  letter-spacing:-1.8px;
+  margin-bottom:1rem;
+}
+.teachers-intro p{
+  max-width:620px;
+  margin:0 auto;
+  color:var(--text-gray);
+  font-size:1.05rem;
+}
+.teacher-showcase{
+  display:grid;
+  grid-template-columns:180px minmax(320px,520px) minmax(360px,1fr);
+  align-items:center;
+  gap:3.5rem;
+  min-height:650px;
+}
+.teacher-rail{
+  display:flex;
+  flex-direction:column;
+  gap:1rem;
+}
+.teacher-rail-item{
+  position:relative;
+  text-align:left;
+  border:0;
+  background:transparent;
+  padding:1.25rem 1rem 1.25rem 1.25rem;
+  border-radius:18px;
+  cursor:pointer;
+  color:var(--text-gray);
+  transition:background .3s ease,color .3s ease,transform .3s ease;
+}
+.teacher-rail-item::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:15px;
+  bottom:15px;
+  width:3px;
+  border-radius:99px;
+  background:transparent;
+  transition:background .3s ease;
+}
+.teacher-rail-item:hover{
+  background:#fff;
+  transform:translateX(4px);
+}
+.teacher-rail-item.active{
+  background:#fff;
+  color:var(--text-dark);
+  box-shadow:0 12px 35px rgba(15,23,42,.07);
+}
+.teacher-rail-item.active::before{background:var(--primary);}
+.teacher-rail-number{
+  display:block;
+  font-size:.7rem;
+  font-weight:800;
+  letter-spacing:.12em;
+  color:var(--primary);
+  margin-bottom:.45rem;
+}
+.teacher-rail-name{
+  display:block;
+  font-size:1.2rem;
+  font-weight:800;
+  margin-bottom:.2rem;
+}
+.teacher-rail-role{
+  display:block;
+  font-size:.75rem;
+  line-height:1.4;
+}
+.teacher-visual{
+  position:relative;
+  min-height:620px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.teacher-frame{
+  position:absolute;
+  width:min(100%,430px);
+  height:560px;
+  border:1px solid rgba(167,102,220,.24);
+  pointer-events:none;
+}
+.teacher-frame-back{
+  transform:rotate(-4deg) translate(-18px,12px);
+  border-radius:92px 22px 88px 28px;
+  background:rgba(167,102,220,.07);
+}
+.teacher-frame-front{
+  transform:rotate(2.5deg);
+  border-radius:28px 92px 24px 82px;
+  padding:13px;
+  background:linear-gradient(145deg,rgba(255,255,255,.9),rgba(245,240,250,.95));
+  box-shadow:0 30px 70px rgba(72,43,103,.16);
+  transition:transform .55s cubic-bezier(.2,.8,.2,1),border-radius .55s ease;
+}
+.teacher-photo-wrap{
+  position:relative;
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  border-radius:20px 76px 18px 68px;
+  background:#e9e5ee;
+}
+.teacher-photo-wrap img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+  transition:transform .65s cubic-bezier(.2,.8,.2,1),filter .5s ease;
+}
+.teacher-photo-overlay{
+  position:absolute;
+  left:1rem;
+  right:1rem;
+  bottom:1rem;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:.75rem .9rem;
+  border-radius:14px;
+  color:#fff;
+  font-size:.72rem;
+  font-weight:800;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  background:rgba(15,23,42,.58);
+  backdrop-filter:blur(10px);
+  opacity:0;
+  transform:translateY(10px);
+  transition:opacity .3s ease,transform .3s ease;
+}
+.teacher-showcase:hover .teacher-photo-overlay,
+.teacher-photo-wrap:hover .teacher-photo-overlay{
+  opacity:1;
+  transform:translateY(0);
+}
+.teacher-photo-wrap:hover img{
+  transform:scale(1.09);
+  filter:saturate(1.04);
+}
+.teacher-visual:hover .teacher-frame-front{
+  transform:rotate(0deg) scale(1.015);
+  border-radius:22px 66px 22px 62px;
+}
+.teacher-photo-caption{
+  position:absolute;
+  bottom:3px;
+  left:50%;
+  transform:translateX(-50%);
+  display:flex;
+  align-items:center;
+  gap:.6rem;
+  color:var(--text-gray);
+  font-size:.65rem;
+  font-weight:800;
+  letter-spacing:.16em;
+}
+.teacher-photo-line{
+  width:34px;
+  height:1px;
+  background:var(--primary);
+  opacity:.5;
+}
+.teacher-copy{
+  padding:2rem 0 2rem 1rem;
+}
+.teacher-copy-top{
+  display:flex;
+  align-items:center;
+  gap:.65rem;
+  color:var(--primary);
+  font-size:.7rem;
+  font-weight:800;
+  letter-spacing:.13em;
+  text-transform:uppercase;
+  margin-bottom:1.5rem;
+}
+.teacher-slide-count{color:var(--text-gray);}
+.teacher-dot{width:5px;height:5px;border-radius:50%;background:var(--primary);}
+.teacher-copy h3{
+  font-size:clamp(3rem,5vw,5.3rem);
+  line-height:.9;
+  letter-spacing:-3px;
+  margin-bottom:1rem;
+}
+.teacher-role{
+  display:inline-flex;
+  padding:.45rem .9rem;
+  border-radius:999px;
+  background:var(--gradient-accent);
+  color:#fff;
+  font-size:.78rem;
+  font-weight:800;
+  margin-bottom:1.5rem;
+}
+.teacher-copy p{
+  max-width:610px;
+  color:var(--text-gray);
+  font-size:.98rem;
+  line-height:1.8;
+  margin-bottom:.9rem;
+}
+.teacher-metrics{
+  display:flex;
+  flex-wrap:wrap;
+  gap:1px;
+  margin:2rem 0;
+  background:var(--border);
+  border:1px solid var(--border);
+  border-radius:18px;
+  overflow:hidden;
+  max-width:620px;
+}
+.teacher-metric{
+  flex:1 1 120px;
+  min-width:110px;
+  padding:1rem 1.1rem;
+  background:#fff;
+}
+.teacher-metric strong{
+  display:block;
+  font-size:1.45rem;
+  line-height:1;
+  color:var(--text-dark);
+  margin-bottom:.35rem;
+}
+.teacher-metric span{
+  display:block;
+  color:var(--text-gray);
+  font-size:.68rem;
+  font-weight:700;
+}
+.teacher-controls{
+  display:flex;
+  align-items:center;
+  gap:1rem;
+  max-width:620px;
+}
+.teacher-arrow{
+  flex:0 0 46px;
+  width:46px;
+  height:46px;
+  border-radius:50%;
+  border:1px solid var(--border);
+  background:#fff;
+  color:var(--text-dark);
+  cursor:pointer;
+  transition:all .25s ease;
+}
+.teacher-arrow:hover{
+  color:#fff;
+  background:var(--gradient-accent);
+  border-color:transparent;
+  transform:translateY(-2px);
+}
+.teacher-progress{
+  flex:1;
+  height:3px;
+  background:#e9e8ef;
+  border-radius:99px;
+  overflow:hidden;
+}
+.teacher-progress span{
+  display:block;
+  width:50%;
+  height:100%;
+  background:var(--gradient-accent);
+  border-radius:inherit;
+  transition:width .35s ease;
+}
+
+/* ===== Package view polish + accessibility ===== */
+.package-view-panel{display:none;}
+.package-view-panel.active{display:block;animation:packageFade .35s ease;}
+@keyframes packageFade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.package-view-btn{cursor:pointer;}
+.package-view-btn:focus-visible,
+.teacher-rail-item:focus-visible,
+.teacher-arrow:focus-visible{
+  outline:3px solid rgba(167,102,220,.35);
+  outline-offset:3px;
+}
+
+/* ===== Performance-friendly motion ===== */
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{
+    animation-duration:.01ms!important;
+    animation-iteration-count:1!important;
+    scroll-behavior:auto!important;
+    transition-duration:.01ms!important;
+  }
+}
 
 /* Placement & Contact */
 .placement-cta{background:var(--gradient-accent);color:#fff;text-align:center;padding:5rem 2rem;position:relative;overflow:hidden;z-index:2}
@@ -447,6 +608,9 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
   .footer-grid{grid-template-columns:1fr;gap:2rem}
   .test-buttons,.contact-buttons{flex-direction:column;align-items:stretch}
   .btn-test,.contact-btn{justify-content:center}
+  .popup-modal{padding:2.5rem 1.5rem}
+  .popup-modal h3{font-size:1.5rem}
+  .popup-icon{width:70px;height:70px;font-size:1.75rem}
   .reviews-swiper{padding:1rem 0 2rem}
   .swiper-button-prev,.swiper-button-next{display:none}
   .video-collage-heading h2{font-size:2rem}
@@ -523,16 +687,723 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
 }
 
 
-/* Homepage detailed packages */
-.homepage-packages-container{max-width:1000px;margin:0 auto}
-.homepage-packages-container .packages-section-title{margin-top:0}
-.homepage-packages-container .packages-section-title:first-child{margin-top:0}
-.homepage-packages-container .package-accordion{margin-bottom:1.25rem}
-.homepage-packages-container .package-cta{font-family:inherit}
+/* COMPLETE PACKAGES PAGE STYLES — preserved from packages page */
+.packages-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 5rem 2rem;
+  }
+
+.packages-section-title {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+.packages-section-title h2 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--text-dark);
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.5px;
+  }
+
+.packages-section-title p {
+    color: var(--text-gray);
+    font-size: 1.05rem;
+  }
+
+.package-accordion {
+    background: white;
+    border-radius: 20px;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--border);
+    overflow: visible;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  }
+
+.package-accordion:hover {
+    box-shadow: 0 8px 30px rgba(167, 102, 220, 0.15);
+    transform: translateY(-2px);
+  }
+
+.package-header {
+    padding: 2rem 2.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    transition: all 0.3s;
+  }
+
+.package-header:hover {
+    background: rgba(167, 102, 220, 0.03);
+  }
+
+.package-header-left {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex: 1;
+  }
+
+.package-icon {
+    width: 60px;
+    height: 60px;
+    background: var(--primary-light);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    transition: all 0.3s;
+  }
+
+.package-header-content { flex: 1; }
+
+.package-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    color: var(--text-dark);
+  }
+
+.package-subtitle {
+    font-size: 0.9rem;
+    color: var(--text-gray);
+    font-weight: 500;
+  }
+
+.package-toggle {
+    width: 50px;
+    height: 50px;
+    background: var(--primary-light);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+    font-size: 1.2rem;
+    transition: all 0.3s;
+    flex-shrink: 0;
+  }
+
+.package-accordion.active .package-toggle {
+    transform: rotate(180deg);
+  }
+
+.package-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+.package-accordion.active .package-content {
+    max-height: 1000px;
+  }
+
+.package-body {
+    padding: 0 2.5rem 2.5rem;
+    overflow: visible;
+  }
+
+.package-description {
+    color: var(--text-gray);
+    font-size: 1rem;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+    text-align: left;
+  }
+
+.package-details-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+.package-detail-card {
+    background: var(--primary-light);
+    padding: 1.5rem;
+    border-radius: 16px;
+    text-align: center;
+    transition: all 0.3s;
+  }
+
+.package-detail-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(167, 102, 220, 0.2);
+  }
+
+.package-detail-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-gray);
+    margin-bottom: 0.5rem;
+  }
+
+.package-detail-value {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--text-dark);
+  }
+
+.package-features-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+  }
+
+.package-feature-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.95rem;
+    color: var(--text-gray);
+  }
+
+.package-feature-item i {
+    color: var(--primary);
+    font-size: 0.9rem;
+    width: 20px;
+    text-align: center;
+  }
+
+.package-cta {
+    width: 100%;
+    padding: 1.1rem;
+    background: var(--text-dark);
+    color: white;
+    border: none;
+    border-radius: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: all 0.3s;
+    display: block;
+    margin-top: 1rem;
+  }
+
+.package-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+  }
+
+.teachers-section-packages {
+    background: var(--bg-light);
+    padding: 6rem 2rem;
+  }
+
+.teachers-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+.teachers-horizontal-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2.5rem;
+    margin-top: 3rem;
+  }
+
+.comparison-section {
+    background: var(--bg-light);
+    padding: 6rem 2rem;
+  }
+
+.comparison-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+.comparison-block {
+    margin-bottom: 5rem;
+  }
+
+.comparison-block:last-child {
+    margin-bottom: 0;
+  }
+
+.comparison-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+.comparison-header h2 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--text-dark);
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.5px;
+  }
+
+.comparison-header p {
+    color: var(--text-gray);
+    font-size: 1.05rem;
+  }
+
+.comparison-table-wrapper {
+    background: white;
+    border-radius: 24px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+    overflow-x: auto; /* Enable horizontal scrolling */
+    border: 1px solid var(--border);
+  }
+
+.comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 700px; /* Force horizontal scroll on small screens */
+  }
+
+.comparison-table thead {
+    background: var(--gradient-accent);
+    color: white;
+  }
+
+.comparison-table thead th {
+    padding: 1.5rem 1.25rem;
+    font-weight: 700;
+    font-size: 1rem;
+    text-align: center;
+  }
+
+.comparison-table thead th:first-child {
+    text-align: left;
+    width: 25%;
+    position: sticky;
+    left: 0;
+    background: var(--gradient-accent);
+    z-index: 20;
+  }
+
+.comparison-table tbody tr {
+    border-bottom: 1px solid var(--border);
+    transition: background 0.2s;
+  }
+
+.comparison-table tbody tr:last-child {
+    border-bottom: none;
+  }
+
+.comparison-table tbody tr:hover {
+    background: var(--primary-light);
+  }
+
+.comparison-table td {
+    padding: 1.25rem;
+    text-align: center;
+    font-size: 0.95rem;
+    color: var(--text-gray);
+    font-weight: 500;
+  }
+
+.comparison-table td:first-child {
+    text-align: left;
+    font-weight: 700;
+    color: var(--text-dark);
+    position: sticky;
+    left: 0;
+    background: white;
+    z-index: 10;
+    box-shadow: 2px 0 8px rgba(0,0,0,0.05); /* Subtle shadow to separate from scrolling content */
+  }
+
+.comparison-table tbody tr:hover td:first-child {
+    background: var(--primary-light);
+  }
+
+.comparison-table td i.fa-check {
+    color: var(--primary);
+    font-size: 1.1rem;
+  }
+
+.comparison-table td i.fa-minus {
+    color: var(--text-light);
+    font-size: 1rem;
+  }
+
+.cta-section {
+    background: var(--gradient-accent);
+    color: white;
+    text-align: center;
+    padding: 5rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+.cta-section::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+.cta-container {
+    max-width: 700px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+.cta-section h2 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+  }
+
+.cta-section p {
+    font-size: 1.1rem;
+    margin-bottom: 2.5rem;
+    opacity: 0.95;
+  }
+
+.cta-buttons {
+    display: flex;
+    gap: 1.25rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+.btn-cta {
+    padding: 1rem 2.25rem;
+    border-radius: 50px;
+    font-weight: 700;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    transition: all 0.3s;
+    font-size: 1rem;
+  }
+
+.btn-cta-primary {
+    background: white;
+    color: var(--primary);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  }
+
+.btn-cta-primary:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+  }
+
+.btn-cta-secondary {
+    background: rgba(255,255,255,0.15);
+    color: white;
+    border: 2px solid rgba(255,255,255,0.3);
+  }
+
+.btn-cta-secondary:hover {
+    background: rgba(255,255,255,0.25);
+    transform: translateY(-4px);
+  }
+
+@media (max-width: 768px){
+.packages-container { padding: 3rem 1.5rem; }
+
+.package-header { padding: 1.5rem; }
+
+.package-body { padding: 0 1.5rem 1.5rem; }
+
+.package-details-grid { grid-template-columns: 1fr; }
+
+.package-features-list { grid-template-columns: 1fr; }
+
+.package-title { font-size: 1.2rem; }
+
+.package-cta {
+      padding: 1rem;
+      font-size: 0.95rem;
+      white-space: normal;
+      word-wrap: break-word;
+      display: block;
+      margin-top: 1rem;
+      position: relative;
+      z-index: 10;
+    }
+
+.teachers-horizontal-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+.comparison-block { margin-bottom: 3rem; }
+
+.comparison-header h2 { font-size: 1.8rem; }
+
+.comparison-table-wrapper {
+      margin: 0 -1.5rem;
+      width: calc(100% + 3rem);
+      border-radius: 0;
+      border-left: none;
+      border-right: none;
+    }
+
+.cta-buttons { flex-direction: column; align-items: stretch; }
+
+.cta-section h2 { font-size: 2rem; }
+}
+
+
+/* Homepage package/comparison switch */
+.package-view-switch {
+  display: flex;
+  justify-content: center;
+  gap: .5rem;
+  margin: 0 auto 3rem;
+  padding: .4rem;
+  width: fit-content;
+  background: var(--primary-light);
+  border: 1px solid rgba(167,102,220,.15);
+  border-radius: 50px;
+}
+.package-view-btn {
+  border: none;
+  background: transparent;
+  color: var(--text-gray);
+  padding: .75rem 1.5rem;
+  border-radius: 50px;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all .3s ease;
+}
+.package-view-btn.active {
+  background: var(--gradient-accent);
+  color: #fff;
+  box-shadow: 0 6px 18px rgba(167,102,220,.2);
+}
+.package-view-panel { display: none; }
+.package-view-panel.active { display: block; }
+
+@media (max-width: 768px) {
+  .package-view-switch {
+    width: 100%;
+    max-width: 360px;
+  }
+  .package-view-btn {
+    flex: 1;
+    padding: .7rem .75rem;
+    font-size: .85rem;
+  }
+}
+
+
+/* Comparison is a view inside the homepage packages section */
+#package-compare .comparison-section {
+  background: transparent;
+  padding: 0;
+}
+
+
+@media (max-width:1100px) and (min-width:769px){
+  .nav-container{padding-left:1rem;padding-right:1rem}
+  .nav-menu{gap:1.15rem}
+  .nav-link{font-size:.88rem}
+  .nav-cta{padding:.65rem 1.15rem}
+  .logo-text{font-size:1.2rem}
+}
+
+/* ===== Teacher showcase: fluid desktop + tablet + mobile ===== */
+.teacher-showcase{
+  grid-template-columns:minmax(125px,150px) minmax(300px,430px) minmax(0,1fr);
+  gap:clamp(1.5rem,3vw,3rem);
+  min-height:600px;
+}
+.teacher-visual{
+  min-width:0;
+  min-height:570px;
+}
+.teacher-frame{
+  width:min(100%,400px);
+  height:520px;
+}
+.teacher-copy{
+  min-width:0;
+  padding:1.5rem 0 1.5rem .25rem;
+}
+.teacher-copy h3{
+  font-size:clamp(2.8rem,5vw,4.7rem);
+  letter-spacing:-2.5px;
+}
+.teacher-copy p{
+  max-width:100%;
+}
+.teacher-metrics,
+.teacher-controls{
+  max-width:100%;
+}
+
+/* Avoid the three-column layout becoming wider than smaller laptop/tablet viewports. */
+@media (max-width:1250px) and (min-width:769px){
+  .teachers-section-packages{
+    padding-left:1.25rem;
+    padding-right:1.25rem;
+  }
+  .teachers-container{
+    max-width:1120px;
+  }
+  .teacher-showcase{
+    grid-template-columns:125px minmax(280px,380px) minmax(0,1fr);
+    gap:1.75rem;
+    min-height:550px;
+  }
+  .teacher-visual{
+    min-height:530px;
+  }
+  .teacher-frame{
+    width:min(100%,350px);
+    height:485px;
+  }
+  .teacher-copy{
+    padding-left:0;
+  }
+  .teacher-copy h3{
+    font-size:clamp(2.7rem,4.8vw,4rem);
+  }
+  .teacher-copy p{
+    font-size:.9rem;
+    line-height:1.65;
+  }
+  .teacher-metric{
+    padding:.85rem .8rem;
+  }
+}
+
+/* Tablet/mobile: never allow the teacher content to overflow horizontally. */
 @media (max-width:768px){
-  .homepage-packages-container{width:100%}
-  .homepage-packages-container .package-header{padding:1.25rem}
-  .homepage-packages-container .package-body{padding:0 1.25rem 1.5rem}
+  .teachers-section-packages{
+    padding:5rem 1rem 6rem;
+  }
+  .teachers-intro{
+    margin-bottom:2.5rem;
+  }
+  .teachers-intro h2{
+    font-size:2.25rem;
+    letter-spacing:-1px;
+  }
+  .teacher-showcase{
+    display:flex;
+    flex-direction:column;
+    gap:1.75rem;
+    min-height:0;
+    width:100%;
+  }
+  .teacher-rail{
+    order:1;
+    width:100%;
+    flex-direction:row;
+    gap:.65rem;
+    overflow-x:auto;
+    padding:.15rem .1rem .5rem;
+    scrollbar-width:none;
+  }
+  .teacher-rail::-webkit-scrollbar{display:none}
+  .teacher-rail-item{
+    flex:1 0 145px;
+    padding:.9rem .8rem;
+  }
+  .teacher-rail-item::before{
+    top:auto;
+    bottom:0;
+    left:12px;
+    right:12px;
+    width:auto;
+    height:3px;
+  }
+  .teacher-rail-item:hover{
+    transform:none;
+  }
+  .teacher-visual{
+    order:2;
+    width:min(100%,390px);
+    min-height:455px;
+    margin:0 auto;
+  }
+  .teacher-frame{
+    width:calc(100% - 28px);
+    height:430px;
+  }
+  .teacher-frame-back{
+    transform:rotate(-3deg) translate(-8px,8px);
+  }
+  .teacher-frame-front{
+    transform:rotate(1.5deg);
+    padding:9px;
+  }
+  .teacher-photo-caption{
+    bottom:-2px;
+  }
+  .teacher-copy{
+    order:3;
+    width:100%;
+    padding:0;
+  }
+  .teacher-copy h3{
+    font-size:3.3rem;
+    letter-spacing:-2px;
+  }
+  .teacher-copy p{
+    font-size:.92rem;
+    line-height:1.7;
+  }
+  .teacher-metrics{
+    width:100%;
+  }
+  .teacher-metric{
+    min-width:0;
+    padding:.9rem .75rem;
+  }
+  .teacher-metric strong{
+    font-size:1.25rem;
+  }
+  .teacher-metric span{
+    font-size:.62rem;
+  }
+  .teacher-controls{
+    width:100%;
+  }
+}
+
+/* Small phones */
+@media (max-width:480px){
+  .teachers-section-packages{
+    padding-left:.75rem;
+    padding-right:.75rem;
+  }
+  .teachers-intro h2{
+    font-size:2rem;
+  }
+  .teacher-visual{
+    min-height:400px;
+    width:min(100%,340px);
+  }
+  .teacher-frame{
+    height:375px;
+    width:calc(100% - 20px);
+  }
+  .teacher-photo-wrap{
+    border-radius:16px 54px 15px 48px;
+  }
+  .teacher-copy h3{
+    font-size:2.8rem;
+  }
+  .teacher-copy-top{
+    flex-wrap:wrap;
+    line-height:1.5;
+  }
 }
 
 </style>
@@ -551,16 +1422,16 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
     <div class="track-row track-row-left"><span> PRE-REGISTRATION OPENS JULY 25</span><span class="track-dot"></span><span>BE THE FIRST TO SECURE YOUR SPOT</span><span class="track-dot"></span><span> PRE-REGISTRATION OPENS JULY 25</span><span class="track-dot"></span><span>BE THE FIRST TO SECURE YOUR SPOT</span><span class="track-dot"></span></div>
     <div class="track-row track-row-right"><span>🎉 PRE-REGISTRATION OPENS JULY 25</span><span class="track-dot"></span><span>BE THE FIRST TO SECURE YOUR SPOT</span><span class="track-dot"></span><span> PRE-REGISTRATION OPENS JULY 25</span><span class="track-dot"></span><span>BE THE FIRST TO SECURE YOUR SPOT</span><span class="track-dot"></span></div>
   </div>
-
-  <nav class="navbar">
+<nav class="navbar">
     <div class="nav-container">
-      <a href="#home" class="logo"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/Aclasslogo.jpeg" alt="AClass Logo" class="logo-img" width="42" height="42"><span class="logo-text">ACLASS</span></a>
+      <a href="#home" class="logo"><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/Aclasslogo.jpeg" alt="AClass Logo" class="logo-img" width="42" height="42"><span class="logo-text">ACLASS</span></a>
       <button class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></button>
       <ul class="nav-menu" id="navMenu">
         <li><a href="#home" class="nav-link">Home</a></li>
         <li><a href="#about" class="nav-link">About</a></li>
         <li><a href="#courses" class="nav-link">Courses</a></li>
         <li><a href="#reviews" class="nav-link">Reviews</a></li>
+         <li><a href="#teachers" class="nav-link">Teachers</a></li>
         <li><a href="#packages" class="nav-link">Packages</a></li>
         <li><a href="#contact" class="nav-cta">Contact Us</a></li>
         <li class="language-nav-item">
@@ -586,7 +1457,11 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
       <a href="#reviews" class="tab-item"><i class="fas fa-star"></i><span>Reviews</span></a>
       <a href="#packages" class="tab-item"><i class="fas fa-tags"></i><span>Packages</span></a>
       <a href="#contact" class="tab-item"><i class="fas fa-envelope"></i><span>Contact</span></a>
-    </div>
+    <a href="#teachers" class="tab-item">
+          <i class="fas fa-chalkboard-teacher"></i>
+          <span>Teachers</span>
+        </a>
+        </div>
   </div>
 
   <section id="home" class="hero">
@@ -612,11 +1487,11 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
       <div class="reviews-header"><h2>Student Success Stories</h2><p>Real results from our amazing students</p></div>
       <div class="swiper reviews-swiper">
         <div class="swiper-wrapper">
-          <div class="swiper-slide"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/1rewiew.png" alt="Review 1"></div>
-          <div class="swiper-slide"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/2review.png" alt="Review 2"></div>
-          <div class="swiper-slide"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/3review.png" alt="Review 3"></div>
-          <div class="swiper-slide"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/6review.png" alt="Review 4"></div>
-          <div class="swiper-slide"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/7review.png" alt="Review 5"></div>
+          <div class="swiper-slide"><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/1rewiew.png" alt="Review 1"></div>
+          <div class="swiper-slide"><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/2review.png" alt="Review 2"></div>
+          <div class="swiper-slide"><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/3review.png" alt="Review 3"></div>
+          <div class="swiper-slide"><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/6review.png" alt="Review 4"></div>
+          <div class="swiper-slide"><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/7review.png" alt="Review 5"></div>
         </div>
         <div class="swiper-pagination"></div>
         <div class="swiper-button-prev"></div>
@@ -629,10 +1504,10 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
     <div class="video-collage-container">
       <div class="video-collage-heading"><h2>Life at AClass</h2><p>Experience our vibrant learning community</p></div>
       <div class="video-collage-grid">
-        <div class="video-collage-item"><video autoplay muted loop playsinline><source src="https://github.com/AClassenglish/A_Class/raw/1fcc1f6281bbc539ab3e55a4b955483c7aef54b6/IMG_0629.MOV" type="video/mp4"></video></div>
-        <div class="video-collage-item"><video autoplay muted loop playsinline><source src="https://github.com/AClassenglish/A_Class/raw/1fcc1f6281bbc539ab3e55a4b955483c7aef54b6/IMG_2948.MOV" type="video/mp4"></video></div>
-        <div class="video-collage-item"><video autoplay muted loop playsinline><source src="https://github.com/AClassenglish/A_Class/raw/1fcc1f6281bbc539ab3e55a4b955483c7aef54b6/IMG_3018.MOV" type="video/mp4"></video></div>
-        <div class="video-collage-item"><video autoplay muted loop playsinline><source src="https://github.com/AClassenglish/A_Class/raw/1fcc1f6281bbc539ab3e55a4b955483c7aef54b6/IMG_8786.MOV" type="video/mp4"></video></div>
+        <div class="video-collage-item"><video muted loop playsinline preload="none" data-lazy-video><source src="https://github.com/AClassenglish/A_Class/raw/1fcc1f6281bbc539ab3e55a4b955483c7aef54b6/IMG_0629.MOV" type="video/mp4"></video></div>
+        <div class="video-collage-item"><video muted loop playsinline preload="none" data-lazy-video><source src="https://github.com/AClassenglish/A_Class/raw/1fcc1f6281bbc539ab3e55a4b955483c7aef54b6/IMG_2948.MOV" type="video/mp4"></video></div>
+        <div class="video-collage-item"><video muted loop playsinline preload="none" data-lazy-video><source src="https://github.com/AClassenglish/A_Class/raw/1fcc1f6281bbc539ab3e55a4b955483c7aef54b6/IMG_3018.MOV" type="video/mp4"></video></div>
+        <div class="video-collage-item"><video muted loop playsinline preload="none" data-lazy-video><source src="https://github.com/AClassenglish/A_Class/raw/1fcc1f6281bbc539ab3e55a4b955483c7aef54b6/IMG_8786.MOV" type="video/mp4"></video></div>
       </div>
     </div>
   </section>
@@ -688,24 +1563,34 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
       </div>
     </div>
   </section>
-
-
+  
   <section id="packages" class="packages">
     <div class="container">
       <div class="section-header">
         <span class="section-tag"><i class="fas fa-tags"></i> Pricing</span>
         <h2>Choose Your Package</h2>
-        <p>Flexible lesson formats designed to fit your schedule and learning goals</p>
+        <p>Flexible lesson formats designed to fit your schedule</p>
       </div>
 
-      <div class="homepage-packages-container">
-        <!-- IELTS & SAT Packages -->
+      <div class="package-view-switch" role="tablist" aria-label="Package views">
+        <button class="package-view-btn active" type="button" data-view="package-list" role="tab" aria-selected="true">
+          Packages
+        </button>
+        <button class="package-view-btn" type="button" data-view="package-compare" role="tab" aria-selected="false">
+          Compare
+        </button>
+      </div>
+
+      <div id="package-list" class="package-view-panel active">
+        <div class="packages-container">
+  
+  <!-- IELTS & SAT Packages -->
   <div class="packages-section-title" id="ielts-sat">
     <h2>IELTS & SAT Packages</h2>
     <p>Structured preparation for international examinations</p>
   </div>
 
-  <div class="package-accordion">
+  <div class="package-accordion" onclick="togglePackage(this)">
     <div class="package-header">
       <div class="package-header-left">
         <div class="package-icon"><i class="fas fa-users"></i></div>
@@ -732,12 +1617,12 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
           <div class="package-feature-item"><i class="fas fa-check"></i> Progress monitoring</div>
           <div class="package-feature-item"><i class="fas fa-check"></i> Mock-test practice</div>
         </div>
-        <button class="package-cta" onclick="event.stopPropagation(); window.location.href='#contact'">Enroll Now</button>
+        <button class="package-cta" onclick="event.stopPropagation(); window.location.href='index.html#contact'">Enroll Now</button>
       </div>
     </div>
   </div>
 
-  <div class="package-accordion">
+  <div class="package-accordion" onclick="togglePackage(this)">
     <div class="package-header">
       <div class="package-header-left">
         <div class="package-icon"><i class="fas fa-bolt"></i></div>
@@ -764,12 +1649,12 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
           <div class="package-feature-item"><i class="fas fa-check"></i> Priority teacher support</div>
           <div class="package-feature-item"><i class="fas fa-check"></i> Rapid progress tracking</div>
         </div>
-        <button class="package-cta" onclick="event.stopPropagation(); window.location.href='#contact'">Enroll Now</button>
+        <button class="package-cta" onclick="event.stopPropagation(); window.location.href='index.html#contact'">Enroll Now</button>
       </div>
     </div>
   </div>
 
-  <div class="package-accordion">
+  <div class="package-accordion" onclick="togglePackage(this)">
     <div class="package-header">
       <div class="package-header-left">
         <div class="package-icon"><i class="fas fa-user"></i></div>
@@ -796,12 +1681,12 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
           <div class="package-feature-item"><i class="fas fa-check"></i> Custom learning pace</div>
           <div class="package-feature-item"><i class="fas fa-check"></i> Targeted skill work</div>
         </div>
-        <button class="package-cta" onclick="event.stopPropagation(); window.location.href='#contact'">Enroll Now</button>
+        <button class="package-cta" onclick="event.stopPropagation(); window.location.href='index.html#contact'">Enroll Now</button>
       </div>
     </div>
   </div>
 
-  <div class="package-accordion">
+  <div class="package-accordion" onclick="togglePackage(this)">
     <div class="package-header">
       <div class="package-header-left">
         <div class="package-icon"><i class="fas fa-user-friends"></i></div>
@@ -828,7 +1713,7 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
           <div class="package-feature-item"><i class="fas fa-check"></i> Tailored pair exercises</div>
           <div class="package-feature-item"><i class="fas fa-check"></i> Personalized attention</div>
         </div>
-        <button class="package-cta" onclick="event.stopPropagation(); window.location.href='#contact'">Enroll Now</button>
+        <button class="package-cta" onclick="event.stopPropagation(); window.location.href='index.html#contact'">Enroll Now</button>
       </div>
     </div>
   </div>
@@ -839,7 +1724,7 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
     <p>Improve your overall English level for everyday communication</p>
   </div>
 
-  <div class="package-accordion">
+  <div class="package-accordion" onclick="togglePackage(this)">
     <div class="package-header">
       <div class="package-header-left">
         <div class="package-icon"><i class="fas fa-comments"></i></div>
@@ -868,12 +1753,12 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
           <div class="package-feature-item"><i class="fas fa-check"></i> Pronunciation</div>
           <div class="package-feature-item"><i class="fas fa-check"></i> Real-life practice</div>
         </div>
-        <button class="package-cta" onclick="event.stopPropagation(); window.location.href='#contact'">Enroll Now</button>
+        <button class="package-cta" onclick="event.stopPropagation(); window.location.href='index.html#contact'">Enroll Now</button>
       </div>
     </div>
   </div>
 
-  <div class="package-accordion">
+  <div class="package-accordion" onclick="togglePackage(this)">
     <div class="package-header">
       <div class="package-header-left">
         <div class="package-icon"><i class="fas fa-user-graduate"></i></div>
@@ -902,25 +1787,176 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
           <div class="package-feature-item"><i class="fas fa-check"></i> Regular feedback</div>
           <div class="package-feature-item"><i class="fas fa-check"></i> Progress tracking</div>
         </div>
-        <button class="package-cta" onclick="event.stopPropagation(); window.location.href='#contact'">Enroll Now</button>
+        <button class="package-cta" onclick="event.stopPropagation(); window.location.href='index.html#contact'">Enroll Now</button>
       </div>
     </div>
   </div>
+</div>
+      </div>
+
+      <div id="package-compare" class="package-view-panel">
+        <section class="comparison-section" id="compare">
+  <div class="comparison-container">
+    <div class="comparison-block">
+      <div class="comparison-header">
+        <h2>IELTS & SAT Packages Comparison</h2>
+        <p>Compare all our exam preparation formats side by side</p>
+      </div>
+      <div class="comparison-table-wrapper">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th>Standard Group</th>
+              <th>Intensive Group</th>
+              <th>Individual</th>
+              <th>Pair</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Lessons per month</td><td>12</td><td>20</td><td>12</td><td>12</td></tr>
+            <tr><td>Lessons per week</td><td>3</td><td>5</td><td>3</td><td>3</td></tr>
+            <tr><td>Lesson duration</td><td>90 min</td><td>90 min</td><td>60 min</td><td>60–90 min</td></tr>
+            <tr><td>Class format</td><td>Group</td><td>Group</td><td>1-on-1</td><td>2 students</td></tr>
+            <tr><td>Personalized attention</td><td><i class="fas fa-minus"></i></td><td><i class="fas fa-minus"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td></tr>
+            <tr><td>Exam strategies</td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td></tr>
+            <tr><td>Mock test practice</td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td></tr>
+            <tr><td>Homework & feedback</td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td></tr>
+            <tr><td>Progress monitoring</td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td></tr>
+            <tr><td>Best for</td><td>Balanced prep</td><td>Fast results</td><td>Specific goals</td><td>Study partners</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="comparison-block">
+      <div class="comparison-header">
+        <h2>General English Packages Comparison</h2>
+        <p>Choose between group interaction or personalized one-on-one lessons</p>
+      </div>
+      <div class="comparison-table-wrapper">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th>Group Package</th>
+              <th>Individual Package</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Lessons per month</td><td>12</td><td>12</td></tr>
+            <tr><td>Lessons per week</td><td>3</td><td>3</td></tr>
+            <tr><td>Lesson duration</td><td>60 or 90 min</td><td>60 min</td></tr>
+            <tr><td>Class format</td><td>Group</td><td>1-on-1</td></tr>
+            <tr><td>Personalized attention</td><td><i class="fas fa-minus"></i></td><td><i class="fas fa-check"></i></td></tr>
+            <tr><td>Speaking practice</td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td></tr>
+            <tr><td>Listening skills</td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td></tr>
+            <tr><td>Grammar & vocabulary</td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td></tr>
+            <tr><td>Reading & writing</td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td></tr>
+            <tr><td>Pronunciation coaching</td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td></tr>
+            <tr><td>Customized topics</td><td><i class="fas fa-minus"></i></td><td><i class="fas fa-check"></i></td></tr>
+            <tr><td>Flexible schedule</td><td><i class="fas fa-minus"></i></td><td><i class="fas fa-check"></i></td></tr>
+            <tr><td>Peer interaction</td><td><i class="fas fa-check"></i></td><td><i class="fas fa-minus"></i></td></tr>
+            <tr><td>Best for</td><td>Social learners</td><td>Personal goals</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
       </div>
     </div>
   </section>
 
-  <section class="teachers-section">
-    <div class="container">
-      <div class="section-header"><span class="section-tag"><i class="fas fa-chalkboard-teacher"></i> Our Team</span><h2>Meet Our Expert Teachers</h2><p>Learn from experienced, dedicated professionals committed to your success</p></div>
-      <div class="teachers-grid">
-        <article class="teacher-card"><div class="teacher-image-wrapper"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/Aisa.jpeg" alt="Aisa" loading="lazy" width="150" height="150"></div><h3>Aisa</h3><div class="teacher-title">Senior IELTS Tutor</div><p>Aisa is an experienced English educator with 8 years of IELTS teaching experience and 10 years of experience teaching English overall. She holds an outstanding IELTS score of 8.5, including a perfect 9.0 in Speaking.</p><p>Aisa is currently pursuing a master's degree through the MA TEFL program, specializing in Teaching English as a Foreign Language, at an American University of Armenia.</p></article>
-        <article class="teacher-card"><div class="teacher-image-wrapper"><img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/Ademi.jpeg" alt="Ademi" loading="lazy" width="150" height="150"></div><h3>Ademi</h3><div class="teacher-title">IELTS Tutor</div><p>Ademi is a dedicated IELTS tutor with 4.5 years of teaching experience. She graduated from the American University of Central Asia and achieved an impressive IELTS score of 8.0 with 8.0 for both Writing and Speaking.</p></article>
+  <section class="teachers-section-packages" id="teachers">
+  <div class="teachers-container">
+    <div class="teachers-intro">
+      <span class="teachers-kicker"><i class="fas fa-sparkles"></i> Our Teachers</span>
+      <h2>Meet the people behind your progress.</h2>
+      <p>Experienced teachers, personal attention, and a learning style that keeps you moving forward.</p>
+    </div>
+
+    <div class="teacher-showcase" id="teacherShowcase">
+      <div class="teacher-rail" aria-label="Choose a teacher">
+        <button class="teacher-rail-item active" type="button" data-teacher="0" aria-label="Show Aisa">
+          <span class="teacher-rail-number">01</span>
+          <span class="teacher-rail-name">Aisa</span>
+          <span class="teacher-rail-role">Senior IELTS Tutor</span>
+        </button>
+        <button class="teacher-rail-item" type="button" data-teacher="1" aria-label="Show Ademi">
+          <span class="teacher-rail-number">02</span>
+          <span class="teacher-rail-name">Ademi</span>
+          <span class="teacher-rail-role">IELTS Tutor</span>
+        </button>
+      </div>
+
+      <div class="teacher-visual">
+        <div class="teacher-frame teacher-frame-back"></div>
+        <div class="teacher-frame teacher-frame-front">
+          <div class="teacher-photo-wrap">
+            <img loading="lazy"
+              id="teacherPhoto"
+              src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/Aisa.jpeg"
+              alt="Aisa, Senior IELTS Tutor"
+              width="720"
+              height="900"
+              fetchpriority="high"
+              decoding="async">
+            <div class="teacher-photo-overlay">
+              <span>Meet your teacher</span>
+              <i class="fas fa-arrow-up-right-from-square"></i>
+            </div>
+          </div>
+        </div>
+        <div class="teacher-photo-caption">
+          <span id="teacherPhotoIndex">01</span>
+          <span class="teacher-photo-line"></span>
+          <span>ACLASS</span>
+        </div>
+      </div>
+
+      <div class="teacher-copy" aria-live="polite">
+        <div class="teacher-copy-top">
+          <span class="teacher-slide-count" id="teacherSlideCount">01 / 02</span>
+          <span class="teacher-dot"></span>
+          <span id="teacherSpecialty">IELTS · ENGLISH</span>
+        </div>
+
+        <h3 id="teacherName">Aisa</h3>
+        <div class="teacher-role" id="teacherRole">Senior IELTS Tutor</div>
+        <p id="teacherDescription">Aisa is an experienced English educator with 8 years of IELTS teaching experience and 10 years of experience teaching English overall. She holds an outstanding IELTS score of 8.5, including a perfect 9.0 in Speaking.</p>
+        <p id="teacherDescription2">Aisa is currently pursuing a master's degree through the MA TEFL program, specializing in Teaching English as a Foreign Language, at an American University of Armenia.</p>
+
+        <div class="teacher-metrics">
+          <div class="teacher-metric">
+            <strong id="teacherMetric1">8+</strong>
+            <span id="teacherMetric1Label">Years IELTS</span>
+          </div>
+          <div class="teacher-metric">
+            <strong id="teacherMetric2">8.5</strong>
+            <span id="teacherMetric2Label">IELTS Score</span>
+          </div>
+          <div class="teacher-metric">
+            <strong id="teacherMetric3">9.0</strong>
+            <span id="teacherMetric3Label">Speaking</span>
+          </div>
+        </div>
+
+        <div class="teacher-controls">
+          <button class="teacher-arrow" type="button" id="teacherPrev" aria-label="Previous teacher">
+            <i class="fas fa-arrow-left"></i>
+          </button>
+          <div class="teacher-progress"><span id="teacherProgress"></span></div>
+          <button class="teacher-arrow" type="button" id="teacherNext" aria-label="Next teacher">
+            <i class="fas fa-arrow-right"></i>
+          </button>
+        </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section id="placement" class="placement-cta">
+<section id="placement" class="placement-cta">
     <h2>Not Sure About Your Level?</h2>
     <p>Take our free online assessments and we'll recommend the perfect course for you.</p>
     <div class="test-buttons">
@@ -950,59 +1986,243 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
     <div class="footer-bottom">© 2026 AClass English School. All rights reserved.</div>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-  <script>
-    (function() {
-      'use strict';
-      
-      // Scroll to top
-      if (history.scrollRestoration) history.scrollRestoration = 'manual';
-      window.addEventListener('load', () => window.scrollTo({ top: 0, behavior: 'instant' }));
-      
-      // Custom Cursor
-      const cursor = document.getElementById('customCursor');
-      document.addEventListener('mousemove', (e) => { cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px'; cursor.classList.add('active'); });
-      document.addEventListener('mouseleave', () => cursor.classList.remove('active'));
-      document.querySelectorAll('a, button, .package-preview-card, .course-card, .step-card, .teacher-card').forEach(el => {
-        el.addEventListener('mouseenter', () => cursor.classList.add('hovering'));
-        el.addEventListener('mouseleave', () => cursor.classList.remove('hovering'));
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  'use strict';
+
+  /* Package accordion */
+  window.togglePackage = function (element) {
+    const wasActive = element.classList.contains('active');
+    document.querySelectorAll('.package-accordion').forEach(acc => acc.classList.remove('active'));
+    if (!wasActive) element.classList.add('active');
+  };
+
+  /* Packages / Compare switch — now works because it runs in a real script */
+  const viewButtons = document.querySelectorAll('.package-view-btn');
+  const viewPanels = document.querySelectorAll('.package-view-panel');
+
+  viewButtons.forEach(button => {
+    button.addEventListener('click', function () {
+      const targetId = this.dataset.view;
+
+      viewButtons.forEach(btn => {
+        const active = btn === this;
+        btn.classList.toggle('active', active);
+        btn.setAttribute('aria-selected', active ? 'true' : 'false');
       });
 
-      // Menu
-      const navMenu = document.getElementById('navMenu');
-      const menuToggle = document.getElementById('menuToggle');
-      menuToggle.addEventListener('click', () => navMenu.classList.toggle('active'));
-      document.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', () => navMenu.classList.remove('active'));
-      });
-      window.addEventListener('scroll', () => {
-        const navbar = document.querySelector('.navbar');
-        if (window.scrollY > 50) navbar.classList.add('scrolled');
-        else navbar.classList.remove('scrolled');
+      viewPanels.forEach(panel => {
+        const active = panel.id === targetId;
+        panel.classList.toggle('active', active);
+        panel.setAttribute('aria-hidden', active ? 'false' : 'true');
       });
 
-      // Tab Bar
-      document.querySelectorAll('.tab-item').forEach(tab => {
-        tab.addEventListener('click', function(e) {
-          document.querySelectorAll('.tab-item').forEach(t => t.classList.remove('active'));
-          this.classList.add('active');
-        });
+      if (targetId === 'package-compare') {
+        history.replaceState(null, '', '#compare');
+      } else {
+        history.replaceState(null, '', '#packages');
+      }
+    });
+  });
+
+  /* If someone opens #compare directly, show the comparison view. */
+  if (window.location.hash === '#compare') {
+    const compareButton = document.querySelector('.package-view-btn[data-view="package-compare"]');
+    if (compareButton) compareButton.click();
+  }
+
+  /* Teacher spotlight slider */
+  const teacherData = [
+    {
+      name: 'Aisa',
+      role: 'Senior IELTS Tutor',
+      specialty: 'IELTS · ENGLISH',
+      image: 'https://raw.githubusercontent.com/AClassenglish/A_Class/main/Aisa.jpeg',
+      alt: 'Aisa, Senior IELTS Tutor',
+      description: 'Aisa is an experienced English educator with 8 years of IELTS teaching experience and 10 years of experience teaching English overall. She holds an outstanding IELTS score of 8.5, including a perfect 9.0 in Speaking.',
+      description2: 'Aisa is currently pursuing a master\'s degree through the MA TEFL program, specializing in Teaching English as a Foreign Language, at an American University of Armenia.',
+      metrics: [['8+', 'Years IELTS'], ['8.5', 'IELTS Score'], ['9.0', 'Speaking']]
+    },
+    {
+      name: 'Ademi',
+      role: 'IELTS Tutor',
+      specialty: 'IELTS · ENGLISH',
+      image: 'https://raw.githubusercontent.com/AClassenglish/A_Class/main/Ademi.jpeg',
+      alt: 'Ademi, IELTS Tutor',
+      description: 'Ademi is a dedicated IELTS tutor with 4.5 years of teaching experience. She graduated from the American University of Central Asia and achieved an impressive IELTS score of 8.0 with 8.0 for both Writing and Speaking.',
+      description2: '',
+      metrics: [['4.5+', 'Years Teaching'], ['8.0', 'IELTS Score'], ['8.0', 'Writing + Speaking']]
+    }
+  ];
+
+  const photo = document.getElementById('teacherPhoto');
+  const name = document.getElementById('teacherName');
+  const role = document.getElementById('teacherRole');
+  const specialty = document.getElementById('teacherSpecialty');
+  const description = document.getElementById('teacherDescription');
+  const description2 = document.getElementById('teacherDescription2');
+  const slideCount = document.getElementById('teacherSlideCount');
+  const photoIndex = document.getElementById('teacherPhotoIndex');
+  const progress = document.getElementById('teacherProgress');
+  const railItems = document.querySelectorAll('.teacher-rail-item');
+  const metricValues = [document.getElementById('teacherMetric1'), document.getElementById('teacherMetric2'), document.getElementById('teacherMetric3')];
+  const metricLabels = [document.getElementById('teacherMetric1Label'), document.getElementById('teacherMetric2Label'), document.getElementById('teacherMetric3Label')];
+
+  let teacherIndex = 0;
+
+  function renderTeacher(index) {
+    teacherIndex = (index + teacherData.length) % teacherData.length;
+    const teacher = teacherData[teacherIndex];
+
+    photo.style.opacity = '0';
+    name.style.opacity = '0';
+    description.style.opacity = '0';
+    description2.style.opacity = '0';
+
+    window.setTimeout(() => {
+      photo.src = teacher.image;
+      photo.alt = teacher.alt;
+      name.textContent = teacher.name;
+      role.textContent = teacher.role;
+      specialty.textContent = teacher.specialty;
+      description.textContent = teacher.description;
+      description2.textContent = teacher.description2;
+      description2.style.display = teacher.description2 ? 'block' : 'none';
+
+      teacher.metrics.forEach((metric, i) => {
+        metricValues[i].textContent = metric[0];
+        metricLabels[i].textContent = metric[1];
       });
-// Swiper
-      new Swiper('.reviews-swiper', {
-        loop: true,
-        centeredSlides: true,
-        speed: 600,
-        spaceBetween: 48,
-        slidesPerView: 1.5,
-        pagination: { el: '.swiper-pagination', clickable: true },
-        navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
-        breakpoints: {
-          320: { slidesPerView: 1.1, spaceBetween: 16 },
-          769: { slidesPerView: 1.5, spaceBetween: 48 }
+
+      const number = String(teacherIndex + 1).padStart(2, '0');
+      slideCount.textContent = number + ' / ' + String(teacherData.length).padStart(2, '0');
+      photoIndex.textContent = number;
+      progress.style.width = (((teacherIndex + 1) / teacherData.length) * 100) + '%';
+
+      railItems.forEach((item, i) => {
+        const active = i === teacherIndex;
+        item.classList.toggle('active', active);
+        item.setAttribute('aria-current', active ? 'true' : 'false');
+      });
+
+      requestAnimationFrame(() => {
+        photo.style.opacity = '1';
+        name.style.opacity = '1';
+        description.style.opacity = '1';
+        description2.style.opacity = '1';
+      });
+    }, 170);
+  }
+
+  railItems.forEach(item => {
+    const selectTeacher = () => renderTeacher(Number(item.dataset.teacher));
+    item.addEventListener('click', selectTeacher);
+    item.addEventListener('mouseenter', selectTeacher);
+  });
+
+  document.getElementById('teacherPrev')?.addEventListener('click', () => renderTeacher(teacherIndex - 1));
+  document.getElementById('teacherNext')?.addEventListener('click', () => renderTeacher(teacherIndex + 1));
+
+  renderTeacher(0);
+
+  /* Custom cursor only on devices that actually have a fine pointer. */
+  const cursor = document.getElementById('customCursor');
+  if (cursor && window.matchMedia('(pointer: fine)').matches) {
+    document.addEventListener('mousemove', e => {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
+      cursor.classList.add('active');
+    }, { passive: true });
+    document.addEventListener('mouseleave', () => cursor.classList.remove('active'));
+
+    document.querySelectorAll('a,button,.package-accordion,.course-card,.step-card,.teacher-rail-item,.teacher-arrow').forEach(el => {
+      el.addEventListener('mouseenter', () => cursor.classList.add('hovering'));
+      el.addEventListener('mouseleave', () => cursor.classList.remove('hovering'));
+    });
+  }
+
+  /* Mobile menu */
+  const navMenu = document.getElementById('navMenu');
+  const menuToggle = document.getElementById('menuToggle');
+  if (navMenu && menuToggle) {
+    menuToggle.addEventListener('click', () => navMenu.classList.toggle('active'));
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', () => navMenu.classList.remove('active'));
+    });
+  }
+
+  /* Navbar shadow */
+  const navbar = document.querySelector('.navbar');
+  if (navbar) {
+    const updateNav = () => navbar.classList.toggle('scrolled', window.scrollY > 50);
+    updateNav();
+    window.addEventListener('scroll', updateNav, { passive: true });
+  }
+
+  /* Mobile tabs */
+  document.querySelectorAll('.tab-item').forEach(tab => {
+    tab.addEventListener('click', function () {
+      document.querySelectorAll('.tab-item').forEach(t => t.classList.remove('active'));
+      this.classList.add('active');
+    });
+  });
+
+  /* Reviews slider — waits for deferred Swiper library. */
+  function initReviews() {
+    if (typeof Swiper === 'undefined' || !document.querySelector('.reviews-swiper')) return;
+    new Swiper('.reviews-swiper', {
+      loop: true,
+      centeredSlides: true,
+      speed: 600,
+      spaceBetween: 48,
+      slidesPerView: 1.5,
+      pagination: { el: '.swiper-pagination', clickable: true },
+      navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+      breakpoints: {
+        320: { slidesPerView: 1.1, spaceBetween: 16 },
+        769: { slidesPerView: 1.5, spaceBetween: 48 }
+      }
+    });
+  }
+  if (typeof Swiper !== 'undefined') {
+    initReviews();
+  } else {
+    window.addEventListener('load', initReviews, { once: true });
+  }
+
+  /* Lazy-load the four collage videos only when they approach the viewport. */
+  const lazyVideos = document.querySelectorAll('video[data-lazy-video]');
+  if ('IntersectionObserver' in window && lazyVideos.length) {
+    const videoObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const video = entry.target;
+        if (!video.dataset.loaded) {
+          video.preload = 'metadata';
+          video.querySelectorAll('source').forEach(source => {
+            if (source.dataset.src) source.src = source.dataset.src;
+          });
+          video.dataset.loaded = 'true';
+          video.load();
+          video.play().catch(() => {});
         }
+        videoObserver.unobserve(video);
       });
-    })();
-  </script>
+    }, { rootMargin: '500px 0px' });
+
+    lazyVideos.forEach(video => {
+      videoObserver.observe(video);
+    });
+  } else {
+    lazyVideos.forEach(video => {
+      video.preload = 'metadata';
+      video.load();
+      video.play().catch(() => {});
+    });
+  }
+
+});
+</script>
 </body>
 </html>
