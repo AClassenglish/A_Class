@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html  lang="ru">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">
-<meta name="description" content="AClass — школа английского языка. Курсы IELTS, SAT и общего английского с опытными преподавателями.">
+<meta name="description" content="AClass English School — Expert IELTS, SAT, and Общий английский tutoring in Yerevan, Armenia.">
 <meta name="theme-color" content="#a766dc">
-<title>AClass — Школа английского языка</title>
+<title>AClass — Английский для реальной жизни и ваших целей</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap">
@@ -110,7 +110,7 @@ a{color:inherit;text-decoration:none}
 .hero-stat-number{font-size:2rem;font-weight:800;background:var(--gradient-accent);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:.3rem}
 .hero-stat-label{font-size:.85rem;color:var(--text-gray);font-weight:500}
 
-/* Reviews */
+/* Отзывы */
 .reviews-section{padding:5rem 2rem 6rem;position:relative;z-index:2;width:100%}
 .reviews-header{text-align:center;margin-bottom:3rem}
 .reviews-header h2{font-size:2.5rem;font-weight:800;background:var(--gradient-accent);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:.75rem}
@@ -126,7 +126,7 @@ a{color:inherit;text-decoration:none}
 .swiper-pagination-bullet-active{background:var(--primary);width:28px;border-radius:5px}
 
 /* Video Collage */
-.video-collage-section{padding:4rem 2rem;background:var(--bg-light);width:100%;position:relative;cursor:pointer}
+.video-collage-section{padding:4rem 2rem;background:var(--bg-light);width:100%;position:relative;cursor:default}
 .video-collage-container{max-width:1200px;margin:0 auto}
 .video-collage-heading{text-align:center;margin-bottom:3rem}
 .video-collage-heading h2{font-size:2.5rem;font-weight:800;background:var(--gradient-accent);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:.75rem}
@@ -154,7 +154,7 @@ a{color:inherit;text-decoration:none}
 .stat-number{font-size:2.5rem;font-weight:800;background:var(--gradient-accent);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:.4rem}
 .stat-label{font-size:.9rem;color:var(--text-gray);font-weight:500}
 
-/* Courses */
+/* Курсы */
 .courses-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:2rem}
 .course-card{background:#fff;border-radius:20px;padding:2.5rem;border:1px solid var(--border);transition:all .4s}
 .course-card:hover{transform:translateY(-8px);border-color:var(--primary);box-shadow:0 15px 40px rgba(167,102,220,.12)}
@@ -193,7 +193,7 @@ a{color:inherit;text-decoration:none}
 .btn-explore{background:#fff;color:var(--primary);border:1.5px solid var(--primary);padding:.95rem 2rem;border-radius:50px;font-weight:600;font-size:1rem;display:inline-flex;align-items:center;gap:.6rem;transition:all .3s}
 .btn-explore:hover{background:var(--gradient-accent);color:#fff;border-color:transparent;transform:translateY(-3px);box-shadow:0 10px 25px rgba(167,102,220,.3)}
 
-/* Teachers */
+/* Преподаватели */
 .teachers-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(350px,1fr));gap:3rem;max-width:900px;margin:0 auto}
 .teacher-card{text-align:center;padding:2.5rem 2rem;background:#fff;border-radius:24px;border:1px solid var(--border);transition:all .4s}
 .teacher-card:hover{transform:translateY(-8px);box-shadow:0 15px 40px rgba(167,102,220,.15);border-color:var(--primary)}
@@ -370,7 +370,7 @@ a{color:inherit;text-decoration:none}
   height:100%;
   object-fit:cover;
   object-position:center;
-  transition:transform .65s cubic-bezier(.2,.8,.2,1),filter .5s ease;
+  transition:opacity .28s ease,transform .65s cubic-bezier(.2,.8,.2,1),filter .5s ease;
 }
 .teacher-photo-overlay{
   position:absolute;
@@ -533,7 +533,7 @@ a{color:inherit;text-decoration:none}
   transition:width .35s ease;
 }
 
-/* ===== Package view polish + accessibility ===== */
+/* ===== Пакет view polish + accessibility ===== */
 .package-view-panel{display:none;}
 .package-view-panel.active{display:block;animation:packageFade .35s ease;}
 @keyframes packageFade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
@@ -555,7 +555,7 @@ a{color:inherit;text-decoration:none}
   }
 }
 
-/* Placement & Contact */
+/* Placement & Контакты */
 .placement-cta{background:var(--gradient-accent);color:#fff;text-align:center;padding:5rem 2rem;position:relative;overflow:hidden;z-index:2}
 .placement-cta h2{font-size:2.5rem;margin-bottom:1rem;font-weight:800}
 .placement-cta p{font-size:1.1rem;margin-bottom:2.5rem;opacity:.95;max-width:600px;margin-left:auto;margin-right:auto}
@@ -1157,51 +1157,11 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
 }
 
 
-/* Homepage package/comparison switch */
-.package-view-switch {
-  display: flex;
-  justify-content: center;
-  gap: .5rem;
-  margin: 0 auto 3rem;
-  padding: .4rem;
-  width: fit-content;
-  background: var(--primary-light);
-  border: 1px solid rgba(167,102,220,.15);
-  border-radius: 50px;
-}
-.package-view-btn {
-  border: none;
-  background: transparent;
-  color: var(--text-gray);
-  padding: .75rem 1.5rem;
-  border-radius: 50px;
-  font: inherit;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all .3s ease;
-}
-.package-view-btn.active {
-  background: var(--gradient-accent);
-  color: #fff;
-  box-shadow: 0 6px 18px rgba(167,102,220,.2);
-}
-.package-view-panel { display: none; }
-.package-view-panel.active { display: block; }
-
-@media (max-width: 768px) {
-  .package-view-switch {
-    width: 100%;
-    max-width: 360px;
-  }
-  .package-view-btn {
-    flex: 1;
-    padding: .7rem .75rem;
-    font-size: .85rem;
-  }
-}
+/* Главнаяpage package/comparison switch */
+.package-view-switch{display:flex;justify-content:center;align-items:center;gap:.65rem;margin:0 auto 3rem;padding:0;width:fit-content;background:transparent;border:none}.package-view-btn{appearance:none;border:1px solid rgba(167,102,220,.22);background:#fff;color:var(--text-gray);padding:.8rem 1.5rem;min-width:120px;border-radius:12px;font:inherit;font-weight:700;cursor:pointer;transition:color .25s ease,background .25s ease,border-color .25s ease,box-shadow .25s ease,transform .25s ease}.package-view-btn:hover{color:var(--primary);border-color:rgba(167,102,220,.45);transform:translateY(-2px);box-shadow:0 6px 18px rgba(167,102,220,.10)}.package-view-btn.active{background:var(--gradient-accent);color:#fff;border-color:transparent;box-shadow:0 8px 22px rgba(167,102,220,.25)}.package-view-btn.active:hover{color:#fff;transform:translateY(-2px);box-shadow:0 10px 26px rgba(167,102,220,.3)}.package-view-panel{display:none}.package-view-panel.active{display:block;animation:packageFade .28s ease}@media (max-width:768px){.package-view-switch{width:100%;max-width:360px;gap:.5rem}.package-view-btn{flex:1;min-width:0;padding:.75rem .8rem;font-size:.85rem}}
 
 
-/* Сравнение is a view inside the homepage packages section */
+/* Comparison is a view inside the homepage packages section */
 #package-compare .comparison-section {
   background: transparent;
   padding: 0;
@@ -1407,226 +1367,9 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
 }
 
 
-/* ===== Russian localization typography ===== */
-html[lang="ru"] body{
-  word-break:normal;
-  overflow-wrap:break-word;
-}
-html[lang="ru"] .nav-link{
-  white-space:nowrap;
-}
-html[lang="ru"] .teacher-copy p{
-  max-width:640px;
-}
-html[lang="ru"] .teacher-metric span{
-  line-height:1.35;
-}
-@media (max-width:1100px) and (min-width:769px){
-  html[lang="ru"] .nav-menu{gap:.9rem}
-  html[lang="ru"] .nav-link{font-size:.82rem}
-}
+/* ===== Final teacher + Жизнь в AClass polish ===== */
 
-
-/* ===== UX refinements ===== */
-/* Package/Comparison switch: visual hover only; switching happens on click/tap. */
-.package-view-switch .view-switch-btn:hover{
-  transform:none !important;
-}
-.package-view-switch .view-switch-btn{
-  transition:background-color .25s ease, color .25s ease, border-color .25s ease, box-shadow .25s ease;
-}
-
-/* Keep package panels from making the page jump when one panel has more content. */
-.package-view-panels{
-  display:grid;
-  grid-template-areas:"panel";
-  align-items:start;
-}
-.package-view-panel{
-  grid-area:panel;
-  display:none;
-}
-.package-view-panel.active{
-  display:block;
-}
-
-/* Teachers: no hover-based teacher switching. */
-.teachers-section-packages .teacher-card,
-.teachers-section-packages .teacher-option,
-.teachers-section-packages .teacher-selector button{
-  transition:transform .25s ease, box-shadow .25s ease, background-color .25s ease;
-}
-/* Hover can style, but never change the selected teacher. */
-.teachers-section-packages .teacher-card:hover,
-.teachers-section-packages .teacher-option:hover{
-  transform:none !important;
-}
-
-/* Life at AClass — polished editorial section */
-.life-section{
-  position:relative;
-  overflow:hidden;
-  padding:7rem 0;
-  background:
-    radial-gradient(circle at 12% 15%, rgba(167,102,220,.14), transparent 30%),
-    radial-gradient(circle at 88% 80%, rgba(99,102,241,.12), transparent 32%),
-    #faf8fc;
-}
-.life-section .life-intro{
-  max-width:1180px;
-  margin:0 auto 3.5rem;
-  padding:0 2rem;
-  display:grid;
-  grid-template-columns:minmax(280px,.8fr) minmax(420px,1.2fr);
-  gap:4rem;
-  align-items:end;
-}
-.life-section .life-kicker{
-  display:inline-flex;
-  align-items:center;
-  gap:.55rem;
-  margin-bottom:1rem;
-  color:#8a4bbf;
-  font-size:.76rem;
-  font-weight:800;
-  letter-spacing:.16em;
-  text-transform:uppercase;
-}
-.life-section .life-kicker::before{
-  content:"";
-  width:28px;
-  height:2px;
-  background:linear-gradient(90deg,#a766dc,#6366f1);
-  border-radius:2px;
-}
-.life-section .life-title{
-  margin:0;
-  font-size:clamp(2.4rem,5vw,4.6rem);
-  line-height:.98;
-  letter-spacing:-.045em;
-  color:#17152a;
-}
-.life-section .life-copy{
-  margin:0;
-  max-width:650px;
-  color:#666277;
-  font-size:1.05rem;
-  line-height:1.8;
-}
-.life-section .life-media{
-  width:min(1180px,calc(100% - 4rem));
-  margin:0 auto;
-  display:grid;
-  grid-template-columns:1.15fr .85fr;
-  gap:1rem;
-  min-height:520px;
-}
-.life-section .life-media-card{
-  position:relative;
-  overflow:hidden;
-  border-radius:28px;
-  min-height:520px;
-  background:#e9e4ef;
-  box-shadow:0 24px 70px rgba(55,35,80,.13);
-}
-.life-section .life-media-card img,
-.life-section .life-media-card video{
-  width:100%;
-  height:100%;
-  display:block;
-  object-fit:cover;
-}
-.life-section .life-media-card::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(180deg,transparent 55%,rgba(22,15,35,.45));
-  pointer-events:none;
-}
-.life-section .life-media-label{
-  position:absolute;
-  left:1.25rem;
-  bottom:1.15rem;
-  z-index:2;
-  padding:.65rem .9rem;
-  border:1px solid rgba(255,255,255,.35);
-  border-radius:999px;
-  background:rgba(255,255,255,.15);
-  backdrop-filter:blur(12px);
-  color:#fff;
-  font-size:.78rem;
-  font-weight:700;
-  letter-spacing:.05em;
-}
-.life-section .life-media-side{
-  display:grid;
-  grid-template-rows:1fr 1fr;
-  gap:1rem;
-}
-.life-section .life-media-side .life-media-card{
-  min-height:0;
-}
-.life-section .life-quote{
-  width:min(1180px,calc(100% - 4rem));
-  margin:2rem auto 0;
-  padding:1.15rem 1.35rem;
-  display:flex;
-  align-items:center;
-  gap:1rem;
-  border:1px solid rgba(167,102,220,.16);
-  border-radius:18px;
-  background:rgba(255,255,255,.72);
-  color:#4f4960;
-  font-size:.92rem;
-  line-height:1.6;
-  box-shadow:0 12px 35px rgba(55,35,80,.06);
-}
-.life-section .life-quote i{
-  flex:0 0 auto;
-  width:34px;
-  height:34px;
-  display:grid;
-  place-items:center;
-  border-radius:50%;
-  background:#f0e5fa;
-  color:#8a4bbf;
-}
-@media (max-width:768px){
-  .life-section{padding:5rem 0}
-  .life-section .life-intro{
-    display:block;
-    margin-bottom:2.2rem;
-    padding:0 1.25rem;
-  }
-  .life-section .life-title{
-    font-size:clamp(2.25rem,12vw,3.4rem);
-    margin-bottom:1.25rem;
-  }
-  .life-section .life-copy{font-size:.98rem;line-height:1.7}
-  .life-section .life-media{
-    width:calc(100% - 2.5rem);
-    grid-template-columns:1fr;
-    min-height:0;
-  }
-  .life-section .life-media-card{
-    min-height:340px;
-    border-radius:22px;
-  }
-  .life-section .life-media-side{
-    grid-template-columns:1fr 1fr;
-    grid-template-rows:none;
-    min-height:190px;
-  }
-  .life-section .life-media-side .life-media-card{min-height:190px}
-  .life-section .life-quote{
-    width:calc(100% - 2.5rem);
-    align-items:flex-start;
-    font-size:.86rem;
-  }
-}
-
-
-/* Teacher selector: hover never changes the selected teacher. */
+/* Teacher selection is click-only — hovering does not change the active teacher. */
 .teacher-rail-item:hover{
   background:transparent;
   transform:none;
@@ -1636,8 +1379,7 @@ html[lang="ru"] .teacher-metric span{
   transform:none;
 }
 
-
-/* Reserve the same text area for every teacher so the page doesn't jump. */
+/* Reserve the same vertical space для both teachers' biographies. */
 .teacher-copy{
   min-height:620px;
   display:flex;
@@ -1656,48 +1398,53 @@ html[lang="ru"] .teacher-metric span{
   }
 }
 
-
-/* ===== Life at AClass — on-page editorial section ===== */
+/* ===== Жизнь в AClass — editorial on-page section ===== */
 .life-at-aclass-editorial{
-  position:relative;
-  overflow:hidden;
-  padding:7rem 2rem 5rem;
-  background:
-    radial-gradient(circle at 8% 18%, rgba(167,102,220,.13), transparent 28%),
-    radial-gradient(circle at 92% 82%, rgba(99,102,241,.11), transparent 30%),
-    #faf8fc;
   cursor:default;
+  padding:7rem 2rem;
+  background:
+    radial-gradient(circle at 12% 18%, rgba(167,102,220,.12), transparent 30%),
+    radial-gradient(circle at 88% 82%, rgba(99,102,241,.10), transparent 32%),
+    linear-gradient(135deg,#faf8ff 0%,#f8f7ff 48%,#fbfbff 100%);
+  overflow:hidden;
 }
 .life-editorial-wrap{
-  max-width:1300px;
+  max-width:1240px;
   margin:0 auto;
+  position:relative;
 }
 .life-editorial-intro{
   display:grid;
-  grid-template-columns:minmax(320px,.9fr) minmax(420px,1.1fr);
+  grid-template-columns:minmax(0,1.05fr) minmax(320px,.95fr);
   gap:5rem;
   align-items:end;
-  margin-bottom:3rem;
+  margin-bottom:3.5rem;
+}
+.life-editorial-heading{
+  max-width:720px;
 }
 .life-editorial-kicker{
   display:inline-flex;
   align-items:center;
   gap:.55rem;
-  color:var(--primary-dark);
+  color:var(--primary);
+  background:rgba(255,255,255,.78);
+  border:1px solid rgba(167,102,220,.18);
+  border-radius:999px;
+  padding:.55rem 1rem;
   font-size:.75rem;
   font-weight:800;
-  letter-spacing:.15em;
+  letter-spacing:.1em;
   text-transform:uppercase;
-  margin-bottom:1rem;
+  margin-bottom:1.25rem;
+  box-shadow:0 8px 24px rgba(76,44,112,.06);
 }
-.life-editorial-kicker i{font-size:.9rem}
 .life-editorial-heading h2{
-  margin:0;
-  max-width:650px;
+  font-size:clamp(2.6rem,5vw,5rem);
+  line-height:.98;
+  letter-spacing:-3px;
   color:var(--text-dark);
-  font-size:clamp(2.7rem,5vw,5.1rem);
-  line-height:.95;
-  letter-spacing:-.055em;
+  margin:0;
 }
 .life-editorial-heading h2 em{
   font-style:normal;
@@ -1707,128 +1454,115 @@ html[lang="ru"] .teacher-metric span{
   -webkit-text-fill-color:transparent;
 }
 .life-editorial-intro > p{
-  max-width:690px;
-  margin:0;
   color:var(--text-gray);
-  font-size:1.03rem;
-  line-height:1.85;
+  font-size:1.02rem;
+  line-height:1.9;
+  max-width:560px;
+  margin:0;
+  padding-left:1.5rem;
+  border-left:2px solid rgba(167,102,220,.3);
 }
 .life-at-aclass-editorial .video-collage-grid{
-  position:relative;
-  display:grid;
-  grid-template-columns:1.25fr .75fr .75fr 1.05fr;
+  grid-template-columns:repeat(4,1fr);
   gap:1rem;
-  margin:0;
 }
 .life-at-aclass-editorial .video-collage-item{
-  position:relative;
-  min-height:420px;
-  overflow:hidden;
-  border-radius:24px;
+  aspect-ratio:9/15;
+  border-radius:22px;
+  box-shadow:0 14px 40px rgba(32,23,51,.13);
   background:#e9e5ee;
-  box-shadow:0 22px 55px rgba(55,35,80,.11);
-  cursor:default;
-}
-.life-at-aclass-editorial .video-collage-item:nth-child(2),
-.life-at-aclass-editorial .video-collage-item:nth-child(3){
-  min-height:330px;
-  margin-top:45px;
-}
-.life-at-aclass-editorial .video-collage-item:nth-child(4){
-  min-height:420px;
-}
-.life-at-aclass-editorial .video-collage-item video{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  display:block;
-  transition:transform .7s cubic-bezier(.2,.8,.2,1);
-}
-.life-at-aclass-editorial .video-collage-item:hover video{
-  transform:scale(1.035);
+  isolation:isolate;
 }
 .life-at-aclass-editorial .video-collage-item::after{
   content:"";
   position:absolute;
   inset:0;
-  background:linear-gradient(180deg,transparent 58%,rgba(15,12,25,.58));
+  background:linear-gradient(to top,rgba(15,23,42,.5),transparent 42%);
+  z-index:1;
   pointer-events:none;
 }
-.life-media-caption{
+.life-at-aclass-editorial .video-collage-item video{
+  transition:transform .7s cubic-bezier(.2,.8,.2,1);
+}
+.life-at-aclass-editorial .video-collage-item:hover video{
+  transform:scale(1.035);
+}
+.life-video-label{
   position:absolute;
-  z-index:2;
   left:1rem;
-  right:1rem;
   bottom:1rem;
+  z-index:2;
   color:#fff;
-  font-size:.76rem;
+  font-size:.72rem;
   font-weight:800;
   letter-spacing:.08em;
   text-transform:uppercase;
+  text-shadow:0 2px 12px rgba(0,0,0,.25);
 }
 .life-editorial-footer{
   display:flex;
-  align-items:center;
   justify-content:space-between;
+  align-items:center;
   gap:1rem;
-  margin-top:1.5rem;
-  padding:1rem 0 0;
-  border-top:1px solid rgba(167,102,220,.18);
+  margin-top:1.25rem;
+  padding-top:1.25rem;
+  border-top:1px solid rgba(167,102,220,.16);
   color:var(--text-gray);
-  font-size:.78rem;
-  font-weight:700;
-  letter-spacing:.08em;
+  font-size:.72rem;
+  font-weight:800;
+  letter-spacing:.1em;
   text-transform:uppercase;
 }
 .life-editorial-footer span:first-child{
-  color:var(--primary-dark);
+  color:var(--primary);
 }
-.life-editorial-footer i{margin-right:.35rem}
+.life-editorial-footer i{
+  margin-right:.35rem;
+}
+
 @media (max-width:900px){
   .life-editorial-intro{
     grid-template-columns:1fr;
     gap:1.5rem;
   }
+  .life-editorial-intro > p{
+    padding-left:0;
+    padding-top:1rem;
+    border-left:0;
+    border-top:2px solid rgba(167,102,220,.25);
+    max-width:700px;
+  }
+}
+@media (max-width:768px){
+  .life-at-aclass-editorial{
+    padding:5rem 1rem;
+  }
+  .life-editorial-heading h2{
+    font-size:2.5rem;
+    letter-spacing:-1.7px;
+  }
+  .life-at-aclass-editorial .video-collage-grid{
+    grid-template-columns:repeat(2,1fr);
+    gap:.7rem;
+  }
+  .life-at-aclass-editorial .video-collage-item{
+    aspect-ratio:9/14;
+    border-radius:16px;
+  }
+  .life-editorial-footer{
+    flex-direction:column;
+    align-items:flex-start;
+    line-height:1.5;
+  }
+}
+@media (max-width:480px){
   .life-at-aclass-editorial .video-collage-grid{
     grid-template-columns:1fr 1fr;
   }
-  .life-at-aclass-editorial .video-collage-item,
-  .life-at-aclass-editorial .video-collage-item:nth-child(2),
-  .life-at-aclass-editorial .video-collage-item:nth-child(3),
-  .life-at-aclass-editorial .video-collage-item:nth-child(4){
-    min-height:330px;
-    margin-top:0;
-  }
-}
-@media (max-width:600px){
-  .life-at-aclass-editorial{
-    padding:5rem 1.25rem 3.5rem;
-  }
-  .life-editorial-intro{
-    gap:1.25rem;
-    margin-bottom:2rem;
-  }
-  .life-editorial-heading h2{
-    font-size:clamp(2.35rem,12vw,3.5rem);
-  }
-  .life-editorial-intro > p{
-    font-size:.94rem;
-    line-height:1.7;
-  }
-  .life-at-aclass-editorial .video-collage-grid{
-    grid-template-columns:1fr;
-  }
-  .life-at-aclass-editorial .video-collage-item,
-  .life-at-aclass-editorial .video-collage-item:nth-child(2),
-  .life-at-aclass-editorial .video-collage-item:nth-child(3),
-  .life-at-aclass-editorial .video-collage-item:nth-child(4){
-    min-height:360px;
-  }
-  .life-editorial-footer{
-    align-items:flex-start;
-    flex-direction:column;
-    gap:.55rem;
-    font-size:.68rem;
+  .life-video-label{
+    left:.7rem;
+    bottom:.7rem;
+    font-size:.58rem;
   }
 }
 
@@ -1854,16 +1588,16 @@ html[lang="ru"] .teacher-metric span{
       <button class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></button>
       <ul class="nav-menu" id="navMenu">
         <li><a href="#home" class="nav-link">Главная</a></li>
-        <li><a href="#about" class="nav-link">О нас</a></li>
+        <li><a href="#about" class="nav-link">About</a></li>
         <li><a href="#courses" class="nav-link">Курсы</a></li>
-        <li><a href="#reviews" class="nav-link">Отзывы</a>
-            <a class="nav-link" href="#life-at-aclass">Life at AClass</a></li>
+        <li><a href="#reviews" class="nav-link">Отзывы</a></li>
          <li><a href="#teachers" class="nav-link">Преподаватели</a></li>
         <li><a href="#packages" class="nav-link">Пакеты</a></li>
-        <li><a href="#contact" class="nav-cta">Связаться с нами</a></li>
+        <li><a href="#life-at-aclass" class="nav-link">Жизнь в AClass</a></li>
+        <li><a href="#contact" class="nav-cta">Контакты Us</a></li>
         <li class="language-nav-item">
           <div class="language-switcher" aria-label="Language selection">
-           <a href="./index.html" aria-label="English">EN</a>
+           <a href="./index.html" aria-label="Английский">EN</a>
            <a href="./A_Class_Russian.html" aria-label="Русский">RU</a>
           </div>
         </li>
@@ -1873,7 +1607,7 @@ html[lang="ru"] .teacher-metric span{
 
   <div class="mobile-language-switcher">
     <div class="language-switcher" aria-label="Language selection">
-     <a href="./index.html" aria-label="English">EN</a>
+     <a href="./index.html" aria-label="Английский">EN</a>
       <a href="./A_Class_Russian.html" aria-label="Русский">RU</a>
     </div>
   </div>
@@ -1883,6 +1617,7 @@ html[lang="ru"] .teacher-metric span{
       <a href="#courses" class="tab-item active"><i class="fas fa-graduation-cap"></i><span>Курсы</span></a>
       <a href="#reviews" class="tab-item"><i class="fas fa-star"></i><span>Отзывы</span></a>
       <a href="#packages" class="tab-item"><i class="fas fa-tags"></i><span>Пакеты</span></a>
+      <a href="#life-at-aclass" class="tab-item"><i class="fas fa-camera"></i><span>Life</span></a>
       <a href="#contact" class="tab-item"><i class="fas fa-envelope"></i><span>Контакты</span></a>
     <a href="#teachers" class="tab-item">
           <i class="fas fa-chalkboard-teacher"></i>
@@ -1895,13 +1630,13 @@ html[lang="ru"] .teacher-metric span{
     <div class="hero-container">
       <div class="hero-badge"><i class="fas fa-star"></i><span>15+ Years of Excellence</span></div>
       <h1>Master English, <span>Achieve Your Dreams</span></h1>
-      <p>Specializing in IELTS, SAT, and Общий английский. Join thousands of successful students with our proven methods.</p>
+      <p>Specializing in IELTS, SAT, and Общий английский. Присоединиться thousands of successful учеников with our proven methods.</p>
       <div class="hero-buttons">
         <a href="#contact" class="btn btn-primary"><i class="fab fa-whatsapp"></i>Начать обучение</a>
 <a href="#placement" class="btn btn-secondary"><i class="fas fa-clipboard-check"></i>Free Test</a>
       </div>
       <div class="hero-stats">
-        <div class="hero-stat"><div class="hero-stat-number">15+</div><div class="hero-stat-label">Years Experience</div></div>
+        <div class="hero-stat"><div class="hero-stat-number">15+</div><div class="hero-stat-label">Years Опыт</div></div>
         <div class="hero-stat"><div class="hero-stat-number">5000+</div><div class="hero-stat-label">Students</div></div>
         <div class="hero-stat"><div class="hero-stat-number">98%</div><div class="hero-stat-label">Success Rate</div></div>
         <div class="hero-stat"><div class="hero-stat-number">3</div><div class="hero-stat-label">Programs</div></div>
@@ -1911,7 +1646,7 @@ html[lang="ru"] .teacher-metric span{
 
   <section id="reviews" class="reviews-section">
     <div class="container">
-      <div class="reviews-header"><h2>Student Success Stories</h2><p>Real results from our amazing students</p></div>
+      <div class="reviews-header"><h2>Student Success Stories</h2><p>Real results from our amazing учеников</p></div>
       <div class="swiper reviews-swiper">
         <div class="swiper-wrapper">
           <div class="swiper-slide"><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/1rewiew.png" alt="Review 1"></div>
@@ -1928,75 +1663,63 @@ html[lang="ru"] .teacher-metric span{
   </section>
 
   <section class="video-collage-section life-at-aclass-editorial" id="life-at-aclass">
-    <div class="video-collage-container">
-      <div class="video-collage-heading"><h2>Жизнь в AClass</h2><p>Experience our vibrant learning community</p></div>
+    <div class="life-editorial-wrap">
+      <div class="life-editorial-intro">
+        <div class="life-editorial-heading">
+          <span class="life-editorial-kicker"><i class="fas fa-camera"></i> Жизнь в AClass</span>
+          <h2>Learning goes beyond <em>textbooks.</em></h2>
+        </div>
+        <p>
+          Take a look inside our classrooms, ученик activities, speaking practice, celebrations,
+          and the moments that make learning English enjoyable. Every photo and video reflects
+          the supportive, engaging environment we create для our учеников.
+        </p>
+      </div>
+
       <div class="video-collage-grid">
-        <div class="video-collage-item"><video muted loop playsinline preload="none" data-lazy-video><source src="https://github.com/AClassenglish/A_Class/raw/1fcc1f6281bbc539ab3e55a4b955483c7aef54b6/IMG_0629.MOV" type="video/mp4"></video></div>
-        <div class="video-collage-item"><video muted loop playsinline preload="none" data-lazy-video><source src="https://github.com/AClassenglish/A_Class/raw/1fcc1f6281bbc539ab3e55a4b955483c7aef54b6/IMG_2948.MOV" type="video/mp4"></video></div>
-        <div class="video-collage-item"><video muted loop playsinline preload="none" data-lazy-video><source src="https://github.com/AClassenglish/A_Class/raw/1fcc1f6281bbc539ab3e55a4b955483c7aef54b6/IMG_3018.MOV" type="video/mp4"></video></div>
-        <div class="video-collage-item"><video muted loop playsinline preload="none" data-lazy-video><source src="https://github.com/AClassenglish/A_Class/raw/1fcc1f6281bbc539ab3e55a4b955483c7aef54b6/IMG_8786.MOV" type="video/mp4"></video></div>
+        <div class="video-collage-item">
+          <video muted loop playsinline preload="none" data-lazy-video>
+            <source src="https://github.com/AClassenglish/A_Class/raw/1fcc1f6281bbc539ab3e55a4b955483c7aef54b6/IMG_0629.MOV" type="video/mp4">
+          </video>
+          <span class="life-video-label">In the classroom</span>
+        </div>
+        <div class="video-collage-item">
+          <video muted loop playsinline preload="none" data-lazy-video>
+            <source src="https://github.com/AClassenglish/A_Class/raw/1fcc1f6281bbc539ab3e55a4b955483c7aef54b6/IMG_2948.MOV" type="video/mp4">
+          </video>
+          <span class="life-video-label">Student moments</span>
+        </div>
+        <div class="video-collage-item">
+          <video muted loop playsinline preload="none" data-lazy-video>
+            <source src="https://github.com/AClassenglish/A_Class/raw/1fcc1f6281bbc539ab3e55a4b955483c7aef54b6/IMG_3018.MOV" type="video/mp4">
+          </video>
+          <span class="life-video-label">Устная речь & practice</span>
+        </div>
+        <div class="video-collage-item">
+          <video muted loop playsinline preload="none" data-lazy-video>
+            <source src="https://github.com/AClassenglish/A_Class/raw/1fcc1f6281bbc539ab3e55a4b955483c7aef54b6/IMG_8786.MOV" type="video/mp4">
+          </video>
+          <span class="life-video-label">Celebrations</span>
+        </div>
+      </div>
+
+      <div class="life-editorial-footer">
+        <span><i class="fas fa-sparkles"></i> Подробнее than just a classroom</span>
+        <span>Учиться · Connect · Grow</span>
       </div>
     </div>
   </section>
 
-  <section class="video-collage-section life-at-aclass-editorial" id="life-at-aclass">
-  <div class="life-editorial-wrap">
-    <div class="life-editorial-intro">
-      <div class="life-editorial-heading">
-        <span class="life-editorial-kicker"><i class="fas fa-camera"></i> Жизнь в AClass</span>
-        <h2>Обучение выходит <em>за рамки</em> учебников.</h2>
-      </div>
-      <p>
-        Обучение выходит за рамки учебников. Загляните в наши классы, посмотрите на студенческие активности,
-        разговорную практику, праздники и моменты, которые делают изучение английского приятным.
-        Каждое фото и видео отражает поддерживающую и вовлекающую атмосферу, которую мы создаём для наших студентов.
-      </p>
-    </div>
-
-    <div class="video-collage-grid">
-      <div class="video-collage-item">
-        <video muted loop playsinline preload="none" data-lazy-video>
-          <source src="https://github.com/AClassenglish/A_Class/raw/1fcc1f6281bbc539ab3e55a4b955483c7aef54b6/IMG_0629.MOV" type="video/mp4">
-        </video>
-        <span class="life-media-caption">Внутри класса</span>
-      </div>
-      <div class="video-collage-item">
-        <video muted loop playsinline preload="none" data-lazy-video>
-          <source src="https://github.com/AClassenglish/A_Class/raw/1fcc1f6281bbc539ab3e55a4b955483c7aef54b6/IMG_2948.MOV" type="video/mp4">
-        </video>
-        <span class="life-media-caption">Студенческие активности</span>
-      </div>
-      <div class="video-collage-item">
-        <video muted loop playsinline preload="none" data-lazy-video>
-          <source src="https://github.com/AClassenglish/A_Class/raw/1fcc1f6281bbc539ab3e55a4b955483c7aef54b6/IMG_3018.MOV" type="video/mp4">
-        </video>
-        <span class="life-media-caption">Разговорная практика</span>
-      </div>
-      <div class="video-collage-item">
-        <video muted loop playsinline preload="none" data-lazy-video>
-          <source src="https://github.com/AClassenglish/A_Class/raw/1fcc1f6281bbc539ab3e55a4b955483c7aef54b6/IMG_8786.MOV" type="video/mp4">
-        </video>
-        <span class="life-media-caption">Моменты в AClass</span>
-      </div>
-    </div>
-
-    <div class="life-editorial-footer">
-      <span><i class="fas fa-sparkles"></i> Больше, чем просто класс</span>
-      <span>Учись · Общайся · Развивайся</span>
-    </div>
-  </div>
-</section>
-
-<section id="about" class="about">
+  <section id="about" class="about">
     <div class="container">
       <div class="section-header"><span class="section-tag"><i class="fas fa-info-circle"></i> About Us</span><h2>Why Choose AClass?</h2><p>A modern education center with a structured, results-oriented approach</p></div>
       <div class="about-grid">
         <div class="about-text">
           <h3>Your Partner in Academic Success</h3>
-          <p>With more than 15 years of experience in education, we have developed a structured and results-oriented approach that helps students improve their language skills and prepare confidently for international examinations.</p>
+          <p>With more than 15 years of experience in education, we have developed a structured and results-oriented approach that helps учеников improve their language skills and prepare confidently для international examinations.</p>
           <p>Our courses combine experienced teachers, carefully selected materials, regular feedback, and continuous progress monitoring.</p>
           <div class="about-stats">
-            <div class="stat-card"><div class="stat-number">15+</div><div class="stat-label">Years Experience</div></div>
+            <div class="stat-card"><div class="stat-number">15+</div><div class="stat-label">Years Опыт</div></div>
             <div class="stat-card"><div class="stat-number">3</div><div class="stat-label">Core Programs</div></div>
             <div class="stat-card"><div class="stat-number">100%</div><div class="stat-label">Personalized</div></div>
           </div>
@@ -2016,25 +1739,25 @@ html[lang="ru"] .teacher-metric span{
 
   <section id="courses" class="courses">
     <div class="container">
-      <div class="section-header"><span class="section-tag"><i class="fas fa-graduation-cap"></i> Наши курсы</span><h2>Tailored Programs for Every Goal</h2><p>From international exam preparation to everyday fluency</p></div>
+      <div class="section-header"><span class="section-tag"><i class="fas fa-graduation-cap"></i> Наши курсы</span><h2>Tailored Programs для Every Goal</h2><p>From international exam preparation to everyday fluency</p></div>
       <div class="courses-grid">
-        <article class="course-card"><div class="course-icon"><i class="fas fa-graduation-cap"></i></div><h3>IELTS Preparation</h3><p>Learn effective exam strategies, improve academic vocabulary and grammar, and practice with IELTS-style tasks.</p><ul class="course-features"><li>Special attention to Writing and Speaking</li><li>Personalized corrections & recommendations</li><li>Model answers and practical guidance</li><li>Proven strategies to improve band score</li></ul></article>
-        <article class="course-card"><div class="course-icon"><i class="fas fa-book-open"></i></div><h3>SAT Preparation</h3><p>Develop the knowledge, accuracy, and time-management skills required for the Digital SAT.</p><ul class="course-features"><li>Reading, Grammar, Math & Vocabulary</li><li>Problem-solving strategies</li><li>Time management techniques</li><li>Regular mock tests</li></ul></article>
-        <article class="course-card"><div class="course-icon"><i class="fas fa-comments"></i></div><h3>Общий английский</h3><p>Improve your overall English level for education, work, travel, or everyday communication.</p><ul class="course-features"><li>Уверенность в разговорной речи & Произношение</li><li>Listening & Навыки чтения</li><li>Грамматическая точность & Vocabulary</li><li>Практика в реальных ситуациях</li></ul></article>
+        <article class="course-card"><div class="course-icon"><i class="fas fa-graduation-cap"></i></div><h3>IELTS Preparation</h3><p>Учиться effective exam strategies, improve academic vocabulary and grammar, and practice with IELTS-style tasks.</p><ul class="course-features"><li>Special attention to Writing and Устная речь</li><li>Personalized corrections & recommendations</li><li>Model answers and practical guidance</li><li>Proven strategies to improve band score</li></ul></article>
+        <article class="course-card"><div class="course-icon"><i class="fas fa-book-open"></i></div><h3>SAT Preparation</h3><p>Develop the knowledge, accuracy, and time-management skills required для the Digital SAT.</p><ul class="course-features"><li>Reading, Grammar, Math & Vocabulary</li><li>Problem-solving strategies</li><li>Time management techniques</li><li>Regular mock tests</li></ul></article>
+        <article class="course-card"><div class="course-icon"><i class="fas fa-comments"></i></div><h3>Общий английский</h3><p>Improve your overall English level для education, work, travel, or everyday communication.</p><ul class="course-features"><li>Устная речь confidence & Pronunciation</li><li>Listening & Reading skills</li><li>Grammar accuracy & Vocabulary</li><li>Real-life practice</li></ul></article>
       </div>
     </div>
   </section>
 
   <section class="how-it-works">
     <div class="container">
-      <div class="section-header"><span class="section-tag"><i class="fas fa-cogs"></i> Methodology</span><h2>Как проходят наши занятия</h2><p>Clear, structured, and proven 6-step learning process</p></div>
+      <div class="section-header"><span class="section-tag"><i class="fas fa-cogs"></i> Methodology</span><h2>How Our Занятия Work</h2><p>Clear, structured, and proven 6-step learning process</p></div>
       <div class="steps-grid">
         <article class="step-card"><div class="step-number">1</div><h4>Initial Assessment</h4><p>Placement test to determine your level and recommend the best program.</p></article>
         <article class="step-card"><div class="step-number">2</div><h4>Personalized Plan</h4><p>Custom study plan based on your level, goals, and target result.</p></article>
         <article class="step-card"><div class="step-number">3</div><h4>Guided Practice</h4><p>Teacher introduces new material and demonstrates strategies.</p></article>
         <article class="step-card"><div class="step-number">4</div><h4>Independent Practice</h4><p>Complete exercises to apply what you've learned.</p></article>
         <article class="step-card"><div class="step-number">5</div><h4>Detailed Feedback</h4><p>Clear corrections on grammar, vocabulary, and technique.</p></article>
-        <article class="step-card"><div class="step-number">6</div><h4>Progress Monitoring</h4><p>Continuous monitoring through tests and mock exams.</p></article>
+        <article class="step-card"><div class="step-number">6</div><h4>Прогресс Monitoring</h4><p>Continuous monitoring through tests and mock exams.</p></article>
       </div>
     </div>
   </section>
@@ -2043,11 +1766,11 @@ html[lang="ru"] .teacher-metric span{
     <div class="container">
       <div class="section-header">
         <span class="section-tag"><i class="fas fa-tags"></i> Pricing</span>
-        <h2>Choose Your Package</h2>
+        <h2>Choose Your Пакет</h2>
         <p>Flexible lesson formats designed to fit your schedule</p>
       </div>
 
-      <div class="package-view-switch" role="tablist" aria-label="Package views">
+      <div class="package-view-switch" role="tablist" aria-label="Пакет views">
         <button class="package-view-btn active" type="button" data-view="package-list" role="tab" aria-selected="true">
           Пакеты
         </button>
@@ -2059,134 +1782,134 @@ html[lang="ru"] .teacher-metric span{
       <div id="package-list" class="package-view-panel active">
         <div class="packages-container">
   
-  <!-- IELTS и SAT Пакеты -->
+  <!-- IELTS & SAT Пакеты -->
   <div class="packages-section-title" id="ielts-sat">
-    <h2>IELTS и SAT Пакеты</h2>
-    <p>Structured preparation for international examinations</p>
+    <h2>IELTS & SAT Пакеты</h2>
+    <p>Structured preparation для international examinations</p>
   </div>
 
-  <div class="package-accordion" onclick="togglePackage(this)">
+  <div class="package-accordion" onclick="toggleПакет(this)">
     <div class="package-header">
       <div class="package-header-left">
         <div class="package-icon"><i class="fas fa-users"></i></div>
         <div class="package-header-content">
-          <div class="package-title">IELTS/SAT Стандартная группа</div>
-          <div class="package-subtitle">12 lessons/month • 3 lessons/week • 90 min</div>
+          <div class="package-title">IELTS/SAT Standard Group</div>
+          <div class="package-subtitle">12 lessons/месяц • 3 lessons/week • 90 min</div>
         </div>
       </div>
       <div class="package-toggle"><i class="fas fa-chevron-down"></i></div>
     </div>
     <div class="package-content">
       <div class="package-body">
-        <p class="package-description">The Standard package provides consistent and structured preparation. It is suitable for students who have sufficient time before their examination and prefer a balanced study schedule.</p>
+        <p class="package-description">The Standard package provides consistent and structured preparation. It is suitable для учеников who have sufficient time before their examination and prefer a balanced study schedule.</p>
         <div class="package-details-grid">
-          <div class="package-detail-card"><div class="package-detail-label">Lessons/Month</div><div class="package-detail-value">12</div></div>
-          <div class="package-detail-card"><div class="package-detail-label">Lessons/Week</div><div class="package-detail-value">3</div></div>
-          <div class="package-detail-card"><div class="package-detail-label">Duration</div><div class="package-detail-value">90 min</div></div>
+          <div class="package-detail-card"><div class="package-detail-label">Занятия/Month</div><div class="package-detail-value">12</div></div>
+          <div class="package-detail-card"><div class="package-detail-label">Занятия/Week</div><div class="package-detail-value">3</div></div>
+          <div class="package-detail-card"><div class="package-detail-label">Продолжительность</div><div class="package-detail-value">90 min</div></div>
         </div>
         <div class="package-features-list">
-          <div class="package-feature-item"><i class="fas fa-check"></i> Занятия с преподавателем</div>
-          <div class="package-feature-item"><i class="fas fa-check"></i> Стратегии сдачи экзамена</div>
-          <div class="package-feature-item"><i class="fas fa-check"></i> Практические задания</div>
-          <div class="package-feature-item"><i class="fas fa-check"></i> Домашние задания и обратная связь</div>
-          <div class="package-feature-item"><i class="fas fa-check"></i> Отслеживание прогресса</div>
-          <div class="package-feature-item"><i class="fas fa-check"></i> Практика пробных тестов</div>
+          <div class="package-feature-item"><i class="fas fa-check"></i> Teacher-led lessons</div>
+          <div class="package-feature-item"><i class="fas fa-check"></i> Exam strategies</div>
+          <div class="package-feature-item"><i class="fas fa-check"></i> Practice exercises</div>
+          <div class="package-feature-item"><i class="fas fa-check"></i> Главнаяwork & feedback</div>
+          <div class="package-feature-item"><i class="fas fa-check"></i> Прогресс monitoring</div>
+          <div class="package-feature-item"><i class="fas fa-check"></i> Mock-test practice</div>
         </div>
         <button class="package-cta" onclick="event.stopPropagation(); window.location.href='index.html#contact'">Enroll Now</button>
       </div>
     </div>
   </div>
 
-  <div class="package-accordion" onclick="togglePackage(this)">
+  <div class="package-accordion" onclick="toggleПакет(this)">
     <div class="package-header">
       <div class="package-header-left">
         <div class="package-icon"><i class="fas fa-bolt"></i></div>
         <div class="package-header-content">
-          <div class="package-title">IELTS/SAT Интенсивная группа</div>
-          <div class="package-subtitle">20 lessons/month • 5 lessons/week • 90 min</div>
+          <div class="package-title">IELTS/SAT Intensive Group</div>
+          <div class="package-subtitle">20 lessons/месяц • 5 lessons/week • 90 min</div>
         </div>
       </div>
       <div class="package-toggle"><i class="fas fa-chevron-down"></i></div>
     </div>
     <div class="package-content">
       <div class="package-body">
-        <p class="package-description">The Intensive package is designed for students who need faster progress or have a limited amount of time before their examination. Students study more frequently and complete a larger amount of guided and independent practice.</p>
+        <p class="package-description">The Intensive package is designed для учеников who need faster progress or have a limited amount of time before their examination. Students study more frequently and complete a larger amount of guided and independent practice.</p>
         <div class="package-details-grid">
-          <div class="package-detail-card"><div class="package-detail-label">Lessons/Month</div><div class="package-detail-value">20</div></div>
-          <div class="package-detail-card"><div class="package-detail-label">Lessons/Week</div><div class="package-detail-value">5</div></div>
-          <div class="package-detail-card"><div class="package-detail-label">Duration</div><div class="package-detail-value">90 min</div></div>
+          <div class="package-detail-card"><div class="package-detail-label">Занятия/Month</div><div class="package-detail-value">20</div></div>
+          <div class="package-detail-card"><div class="package-detail-label">Занятия/Week</div><div class="package-detail-value">5</div></div>
+          <div class="package-detail-card"><div class="package-detail-label">Продолжительность</div><div class="package-detail-value">90 min</div></div>
         </div>
         <div class="package-features-list">
-          <div class="package-feature-item"><i class="fas fa-check"></i> Занятия с высокой частотой</div>
-          <div class="package-feature-item"><i class="fas fa-check"></i> Идеально для предстоящего экзамена</div>
-          <div class="package-feature-item"><i class="fas fa-check"></i> Большой объём практики</div>
-          <div class="package-feature-item"><i class="fas fa-check"></i> Интенсивная практика пробных тестов</div>
-          <div class="package-feature-item"><i class="fas fa-check"></i> Приоритетная поддержка преподавателя</div>
-          <div class="package-feature-item"><i class="fas fa-check"></i> Быстрое отслеживание прогресса</div>
+          <div class="package-feature-item"><i class="fas fa-check"></i> High-frequency lessons</div>
+          <div class="package-feature-item"><i class="fas fa-check"></i> Ideal для upcoming exams</div>
+          <div class="package-feature-item"><i class="fas fa-check"></i> High practice volume</div>
+          <div class="package-feature-item"><i class="fas fa-check"></i> Intensive mock tests</div>
+          <div class="package-feature-item"><i class="fas fa-check"></i> Priority teacher support</div>
+          <div class="package-feature-item"><i class="fas fa-check"></i> Rapid progress tracking</div>
         </div>
         <button class="package-cta" onclick="event.stopPropagation(); window.location.href='index.html#contact'">Enroll Now</button>
       </div>
     </div>
   </div>
 
-  <div class="package-accordion" onclick="togglePackage(this)">
+  <div class="package-accordion" onclick="toggleПакет(this)">
     <div class="package-header">
       <div class="package-header-left">
         <div class="package-icon"><i class="fas fa-user"></i></div>
         <div class="package-header-content">
-          <div class="package-title">IELTS/SAT Индивидуальные занятия</div>
-          <div class="package-subtitle">12 lessons/month • 3 lessons/week • 60 min</div>
+          <div class="package-title">IELTS/SAT Individual</div>
+          <div class="package-subtitle">12 lessons/месяц • 3 lessons/week • 60 min</div>
         </div>
       </div>
       <div class="package-toggle"><i class="fas fa-chevron-down"></i></div>
     </div>
     <div class="package-content">
       <div class="package-body">
-        <p class="package-description">Индивидуальные занятия lessons provide the highest level of personalisation. The teacher can focus entirely on the student's specific weaknesses, goals, and learning pace. Ideal for students with a specific target score or limited preparation time.</p>
+        <p class="package-description">Индивидуальные занятия provide the highest level of personalisation. The teacher can focus entirely on the ученик's specific weaknesses, goals, and learning pace. Ideal для учеников with a specific target score or limited preparation time.</p>
         <div class="package-details-grid">
-          <div class="package-detail-card"><div class="package-detail-label">Lessons/Month</div><div class="package-detail-value">12</div></div>
-          <div class="package-detail-card"><div class="package-detail-label">Lessons/Week</div><div class="package-detail-value">3</div></div>
-          <div class="package-detail-card"><div class="package-detail-label">Duration</div><div class="package-detail-value">60 min</div></div>
+          <div class="package-detail-card"><div class="package-detail-label">Занятия/Month</div><div class="package-detail-value">12</div></div>
+          <div class="package-detail-card"><div class="package-detail-label">Занятия/Week</div><div class="package-detail-value">3</div></div>
+          <div class="package-detail-card"><div class="package-detail-label">Продолжительность</div><div class="package-detail-value">60 min</div></div>
         </div>
         <div class="package-features-list">
-          <div class="package-feature-item"><i class="fas fa-check"></i> Полностью индивидуальный план</div>
-          <div class="package-feature-item"><i class="fas fa-check"></i> Фокус на слабых сторонах</div>
-          <div class="package-feature-item"><i class="fas fa-check"></i> Гибкий график</div>
-          <div class="package-feature-item"><i class="fas fa-check"></i> Индивидуальное внимание преподавателя</div>
-          <div class="package-feature-item"><i class="fas fa-check"></i> Индивидуальный темп обучения</div>
-          <div class="package-feature-item"><i class="fas fa-check"></i> Работа над конкретными навыками</div>
+          <div class="package-feature-item"><i class="fas fa-check"></i> Fully personalized plan</div>
+          <div class="package-feature-item"><i class="fas fa-check"></i> Focus on weaknesses</div>
+          <div class="package-feature-item"><i class="fas fa-check"></i> Гибкое расписание</div>
+          <div class="package-feature-item"><i class="fas fa-check"></i> One-on-one attention</div>
+          <div class="package-feature-item"><i class="fas fa-check"></i> Custom learning pace</div>
+          <div class="package-feature-item"><i class="fas fa-check"></i> Targeted skill work</div>
         </div>
         <button class="package-cta" onclick="event.stopPropagation(); window.location.href='index.html#contact'">Enroll Now</button>
       </div>
     </div>
   </div>
 
-  <div class="package-accordion" onclick="togglePackage(this)">
+  <div class="package-accordion" onclick="toggleПакет(this)">
     <div class="package-header">
       <div class="package-header-left">
         <div class="package-icon"><i class="fas fa-user-friends"></i></div>
         <div class="package-header-content">
-          <div class="package-title">IELTS/SAT Занятия в паре</div>
-          <div class="package-subtitle">12 lessons/month • Два ученика в группе</div>
+          <div class="package-title">IELTS/SAT Pair Пакет</div>
+          <div class="package-subtitle">12 lessons/месяц • Two учеников за class</div>
         </div>
       </div>
       <div class="package-toggle"><i class="fas fa-chevron-down"></i></div>
     </div>
     <div class="package-content">
       <div class="package-body">
-        <p class="package-description">Study with a partner in a small, focused class of two students. This format combines the benefits of personalized attention with the motivation of collaborative learning. Perfect for friends or classmates with similar goals.</p>
+        <p class="package-description">Study with a partner in a small, focused class of two учеников. This format combines the benefits of personalized attention with the motivation of collaborative learning. Perfect для friends or classmates with similar goals.</p>
         <div class="package-details-grid">
-          <div class="package-detail-card"><div class="package-detail-label">Lessons/Month</div><div class="package-detail-value">12</div></div>
-          <div class="package-detail-card"><div class="package-detail-label">Lessons/Week</div><div class="package-detail-value">3</div></div>
-          <div class="package-detail-card"><div class="package-detail-label">Class Size</div><div class="package-detail-value">2 students</div></div>
+          <div class="package-detail-card"><div class="package-detail-label">Занятия/Month</div><div class="package-detail-value">12</div></div>
+          <div class="package-detail-card"><div class="package-detail-label">Занятия/Week</div><div class="package-detail-value">3</div></div>
+          <div class="package-detail-card"><div class="package-detail-label">Class Size</div><div class="package-detail-value">2 учеников</div></div>
         </div>
         <div class="package-features-list">
-          <div class="package-feature-item"><i class="fas fa-check"></i> Два ученика в группе</div>
-          <div class="package-feature-item"><i class="fas fa-check"></i> Совместное обучение</div>
-          <div class="package-feature-item"><i class="fas fa-check"></i> Выгодный формат</div>
-          <div class="package-feature-item"><i class="fas fa-check"></i> Общая мотивация</div>
-          <div class="package-feature-item"><i class="fas fa-check"></i> Задания для занятий в паре</div>
-          <div class="package-feature-item"><i class="fas fa-check"></i> Индивидуальный подход</div>
+          <div class="package-feature-item"><i class="fas fa-check"></i> Two учеников за class</div>
+          <div class="package-feature-item"><i class="fas fa-check"></i> Collaborative learning</div>
+          <div class="package-feature-item"><i class="fas fa-check"></i> Cost-effective</div>
+          <div class="package-feature-item"><i class="fas fa-check"></i> Shared motivation</div>
+          <div class="package-feature-item"><i class="fas fa-check"></i> Tailored pair exercises</div>
+          <div class="package-feature-item"><i class="fas fa-check"></i> Personalized attention</div>
         </div>
         <button class="package-cta" onclick="event.stopPropagation(); window.location.href='index.html#contact'">Enroll Now</button>
       </div>
@@ -2196,71 +1919,71 @@ html[lang="ru"] .teacher-metric span{
   <!-- Общий английский Пакеты -->
   <div class="packages-section-title" id="general-english" style="margin-top: 4rem;">
     <h2>Общий английский Пакеты</h2>
-    <p>Improve your overall English level for everyday communication</p>
+    <p>Improve your overall English level для everyday communication</p>
   </div>
 
-  <div class="package-accordion" onclick="togglePackage(this)">
+  <div class="package-accordion" onclick="toggleПакет(this)">
     <div class="package-header">
       <div class="package-header-left">
         <div class="package-icon"><i class="fas fa-comments"></i></div>
         <div class="package-header-content">
           <div class="package-title">Общий английский Group</div>
-          <div class="package-subtitle">12 lessons/month • 3 lessons/week • 60 or 90 min</div>
+          <div class="package-subtitle">12 lessons/месяц • 3 lessons/week • 60 or 90 min</div>
         </div>
       </div>
       <div class="package-toggle"><i class="fas fa-chevron-down"></i></div>
     </div>
     <div class="package-content">
       <div class="package-body">
-        <p class="package-description">Our Общий английский programme is designed for students who want to improve their overall English level for education, work, travel, or everyday communication. Lessons are interactive and communication-focused, helping students use English naturally in real-life situations.</p>
+        <p class="package-description">Our Общий английский programme is designed для учеников who want to improve their overall English level для education, work, travel, or everyday communication. Занятия are interactive and communication-focused, helping учеников use English naturally in real-life situations.</p>
         <div class="package-details-grid">
-          <div class="package-detail-card"><div class="package-detail-label">Lessons/Month</div><div class="package-detail-value">12</div></div>
-          <div class="package-detail-card"><div class="package-detail-label">Lessons/Week</div><div class="package-detail-value">3</div></div>
-          <div class="package-detail-card"><div class="package-detail-label">Duration</div><div class="package-detail-value">60 or 90 min</div></div>
+          <div class="package-detail-card"><div class="package-detail-label">Занятия/Month</div><div class="package-detail-value">12</div></div>
+          <div class="package-detail-card"><div class="package-detail-label">Занятия/Week</div><div class="package-detail-value">3</div></div>
+          <div class="package-detail-card"><div class="package-detail-label">Продолжительность</div><div class="package-detail-value">60 or 90 min</div></div>
         </div>
         <div class="package-features-list">
-          <div class="package-feature-item"><i class="fas fa-check"></i> Уверенность в разговорной речи</div>
-          <div class="package-feature-item"><i class="fas fa-check"></i> Понимание речи на слух</div>
-          <div class="package-feature-item"><i class="fas fa-check"></i> Грамматическая точность</div>
-          <div class="package-feature-item"><i class="fas fa-check"></i> Словарный запас</div>
-          <div class="package-feature-item"><i class="fas fa-check"></i> Навыки чтения</div>
-          <div class="package-feature-item"><i class="fas fa-check"></i> Навыки письма</div>
-          <div class="package-feature-item"><i class="fas fa-check"></i> Произношение</div>
-          <div class="package-feature-item"><i class="fas fa-check"></i> Практика в реальных ситуациях</div>
+          <div class="package-feature-item"><i class="fas fa-check"></i> Устная речь confidence</div>
+          <div class="package-feature-item"><i class="fas fa-check"></i> Listening comprehension</div>
+          <div class="package-feature-item"><i class="fas fa-check"></i> Grammar accuracy</div>
+          <div class="package-feature-item"><i class="fas fa-check"></i> Vocabulary range</div>
+          <div class="package-feature-item"><i class="fas fa-check"></i> Reading skills</div>
+          <div class="package-feature-item"><i class="fas fa-check"></i> Writing skills</div>
+          <div class="package-feature-item"><i class="fas fa-check"></i> Pronunciation</div>
+          <div class="package-feature-item"><i class="fas fa-check"></i> Real-life practice</div>
         </div>
         <button class="package-cta" onclick="event.stopPropagation(); window.location.href='index.html#contact'">Enroll Now</button>
       </div>
     </div>
   </div>
 
-  <div class="package-accordion" onclick="togglePackage(this)">
+  <div class="package-accordion" onclick="toggleПакет(this)">
     <div class="package-header">
       <div class="package-header-left">
         <div class="package-icon"><i class="fas fa-user-graduate"></i></div>
         <div class="package-header-content">
-          <div class="package-title">Общий английский Индивидуальные занятия</div>
-          <div class="package-subtitle">12 lessons/month • 3 lessons/week • 60 min</div>
+          <div class="package-title">Общий английский Individual</div>
+          <div class="package-subtitle">12 lessons/месяц • 3 lessons/week • 60 min</div>
         </div>
       </div>
       <div class="package-toggle"><i class="fas fa-chevron-down"></i></div>
     </div>
     <div class="package-content">
       <div class="package-body">
-        <p class="package-description">Personalized Общий английский lessons tailored entirely to your goals, pace, and interests. Whether you want to improve for work, travel, or personal growth, your teacher will create a custom plan focused on your specific needs.</p>
+        <p class="package-description">Personalized Общий английский lessons tailored entirely to your goals, pace, and interests. Whether you want to improve для work, travel, or personal growth, your teacher will create a custom plan focused on your specific needs.</p>
         <div class="package-details-grid">
-          <div class="package-detail-card"><div class="package-detail-label">Lessons/Month</div><div class="package-detail-value">12</div></div>
-          <div class="package-detail-card"><div class="package-detail-label">Lessons/Week</div><div class="package-detail-value">3</div></div>
-          <div class="package-detail-card"><div class="package-detail-label">Duration</div><div class="package-detail-value">60 min</div></div>
+          <div class="package-detail-card"><div class="package-detail-label">Занятия/Month</div><div class="package-detail-value">12</div></div>
+          <div class="package-detail-card"><div class="package-detail-label">Занятия/Week</div><div class="package-detail-value">3</div></div>
+          <div class="package-detail-card"><div class="package-detail-label">Продолжительность</div><div class="package-detail-value">60 min</div></div>
         </div>
         <div class="package-features-list">
-          <div class="package-feature-item"><i class="fas fa-check"></i> Индивидуальная программа</div>
-          <div class="package-feature-item"><i class="fas fa-check"></i> Фокус на ваших целях</div>
-          <div class="package-feature-item"><i class="fas fa-check"></i> Работа над произношением</div>
-          <div class="package-feature-item"><i class="fas fa-check"></i> Гибкий выбор тем</div>
-          <div class="package-feature-item"><i class="fas fa-check"></i> Индивидуальное внимание преподавателя</div>
-          <div class="package-feature-item"><i class="fas fa-check"></i> Индивидуальный темп</div>
-          <div class="package-feature-item"><i class="fas fa-check"></i> Регулярная обратная связь</div>
-          <div class="package-feature-item"><i class="fas fa-check"></i> Отслеживание прогресса</div>
+          <div class="package-feature-item"><i class="fas fa-check"></i> Customized curriculum</div>
+          <div class="package-feature-item"><i class="fas fa-check"></i> Focus on your goals</div>
+          <div class="package-feature-item"><i class="fas fa-check"></i> Pronunciation coaching</div>
+          <div class="package-feature-item"><i class="fas fa-check"></i> Flexible topics</div>
+          <div class="package-feature-item"><i class="fas fa-check"></i> One-on-one attention</div>
+          <div class="package-feature-item"><i class="fas fa-check"></i> Personal pace</div>
+          <div class="package-feature-item"><i class="fas fa-check"></i> Regular feedback</div>
+          <div class="package-feature-item"><i class="fas fa-check"></i> Прогресс tracking</div>
         </div>
         <button class="package-cta" onclick="event.stopPropagation(); window.location.href='index.html#contact'">Enroll Now</button>
       </div>
@@ -2274,7 +1997,7 @@ html[lang="ru"] .teacher-metric span{
   <div class="comparison-container">
     <div class="comparison-block">
       <div class="comparison-header">
-        <h2>IELTS и SAT Пакеты Сравнение</h2>
+        <h2>IELTS & SAT Пакеты Comparison</h2>
         <p>Сравнить all our exam preparation formats side by side</p>
       </div>
       <div class="comparison-table-wrapper">
@@ -2282,23 +2005,23 @@ html[lang="ru"] .teacher-metric span{
           <thead>
             <tr>
               <th>Feature</th>
-              <th>Стандартная группа</th>
-              <th>Интенсивная группа</th>
-              <th>Индивидуальные занятия</th>
+              <th>Standard Group</th>
+              <th>Intensive Group</th>
+              <th>Individual</th>
               <th>Pair</th>
             </tr>
           </thead>
           <tbody>
-            <tr><td>Занятий в месяц</td><td>12</td><td>20</td><td>12</td><td>12</td></tr>
-            <tr><td>Занятий в неделю</td><td>3</td><td>5</td><td>3</td><td>3</td></tr>
-            <tr><td>Продолжительность занятия</td><td>90 min</td><td>90 min</td><td>60 min</td><td>60–90 min</td></tr>
-            <tr><td>Формат занятий</td><td>Group</td><td>Group</td><td>1-on-1</td><td>2 students</td></tr>
-            <tr><td>Индивидуальный подход</td><td><i class="fas fa-minus"></i></td><td><i class="fas fa-minus"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td></tr>
-            <tr><td>Стратегии сдачи экзамена</td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td></tr>
-            <tr><td>Пробные тесты</td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td></tr>
-            <tr><td>Домашние задания и обратная связь</td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td></tr>
-            <tr><td>Отслеживание прогресса</td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td></tr>
-            <tr><td>Подходит для</td><td>Balanced prep</td><td>Fast results</td><td>Specific goals</td><td>Study partners</td></tr>
+            <tr><td>Занятия в месяц</td><td>12</td><td>20</td><td>12</td><td>12</td></tr>
+            <tr><td>Занятия за week</td><td>3</td><td>5</td><td>3</td><td>3</td></tr>
+            <tr><td>Lesson duration</td><td>90 min</td><td>90 min</td><td>60 min</td><td>60–90 min</td></tr>
+            <tr><td>Class format</td><td>Group</td><td>Group</td><td>1-on-1</td><td>2 учеников</td></tr>
+            <tr><td>Personalized attention</td><td><i class="fas fa-minus"></i></td><td><i class="fas fa-minus"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td></tr>
+            <tr><td>Exam strategies</td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td></tr>
+            <tr><td>Mock test practice</td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td></tr>
+            <tr><td>Главнаяwork & feedback</td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td></tr>
+            <tr><td>Прогресс monitoring</td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td></tr>
+            <tr><td>Best для</td><td>Balanced prep</td><td>Fast results</td><td>Specific goals</td><td>Study partners</td></tr>
           </tbody>
         </table>
       </div>
@@ -2306,7 +2029,7 @@ html[lang="ru"] .teacher-metric span{
 
     <div class="comparison-block">
       <div class="comparison-header">
-        <h2>Общий английский Пакеты Сравнение</h2>
+        <h2>Общий английский Пакеты Comparison</h2>
         <p>Choose between group interaction or personalized one-on-one lessons</p>
       </div>
       <div class="comparison-table-wrapper">
@@ -2314,25 +2037,25 @@ html[lang="ru"] .teacher-metric span{
           <thead>
             <tr>
               <th>Feature</th>
-              <th>Групповой пакет</th>
-              <th>Индивидуальный пакет</th>
+              <th>Group Пакет</th>
+              <th>Individual Пакет</th>
             </tr>
           </thead>
           <tbody>
-            <tr><td>Занятий в месяц</td><td>12</td><td>12</td></tr>
-            <tr><td>Занятий в неделю</td><td>3</td><td>3</td></tr>
-            <tr><td>Продолжительность занятия</td><td>60 or 90 min</td><td>60 min</td></tr>
-            <tr><td>Формат занятий</td><td>Group</td><td>1-on-1</td></tr>
-            <tr><td>Индивидуальный подход</td><td><i class="fas fa-minus"></i></td><td><i class="fas fa-check"></i></td></tr>
-            <tr><td>Разговорная практика</td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td></tr>
-            <tr><td>Навыки аудирования</td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td></tr>
-            <tr><td>Грамматика и словарный запас</td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td></tr>
-            <tr><td>Чтение и письмо</td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td></tr>
-            <tr><td>Работа над произношением</td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td></tr>
-            <tr><td>Индивидуальные темы</td><td><i class="fas fa-minus"></i></td><td><i class="fas fa-check"></i></td></tr>
-            <tr><td>Гибкий график</td><td><i class="fas fa-minus"></i></td><td><i class="fas fa-check"></i></td></tr>
-            <tr><td>Взаимодействие в группе</td><td><i class="fas fa-check"></i></td><td><i class="fas fa-minus"></i></td></tr>
-            <tr><td>Подходит для</td><td>Social learners</td><td>Personal goals</td></tr>
+            <tr><td>Занятия в месяц</td><td>12</td><td>12</td></tr>
+            <tr><td>Занятия за week</td><td>3</td><td>3</td></tr>
+            <tr><td>Lesson duration</td><td>60 or 90 min</td><td>60 min</td></tr>
+            <tr><td>Class format</td><td>Group</td><td>1-on-1</td></tr>
+            <tr><td>Personalized attention</td><td><i class="fas fa-minus"></i></td><td><i class="fas fa-check"></i></td></tr>
+            <tr><td>Устная речь practice</td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td></tr>
+            <tr><td>Listening skills</td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td></tr>
+            <tr><td>Grammar & vocabulary</td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td></tr>
+            <tr><td>Reading & writing</td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td></tr>
+            <tr><td>Pronunciation coaching</td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td></tr>
+            <tr><td>Customized topics</td><td><i class="fas fa-minus"></i></td><td><i class="fas fa-check"></i></td></tr>
+            <tr><td>Гибкое расписание</td><td><i class="fas fa-minus"></i></td><td><i class="fas fa-check"></i></td></tr>
+            <tr><td>Peer interaction</td><td><i class="fas fa-check"></i></td><td><i class="fas fa-minus"></i></td></tr>
+            <tr><td>Best для</td><td>Social learners</td><td>Personal goals</td></tr>
           </tbody>
         </table>
       </div>
@@ -2347,20 +2070,20 @@ html[lang="ru"] .teacher-metric span{
   <div class="teachers-container">
     <div class="teachers-intro">
       <span class="teachers-kicker"><i class="fas fa-sparkles"></i> Наши преподаватели</span>
-      <h2>Познакомьтесь с теми, кто помогает вам двигаться вперёд.</h2>
-      <p>Опытные преподаватели, индивидуальный подход и обучение, которое помогает вам постоянно прогрессировать.</p>
+      <h2>Познакомьтесь с людьми, которые помогают вам двигаться вперёд.</h2>
+      <p>Опытные преподаватели, индивидуальное внимание и формат обучения, который помогает вам двигаться вперёд.</p>
     </div>
 
     <div class="teacher-showcase" id="teacherShowcase">
-      <div class="teacher-rail" aria-label="Выберите преподавателя">
-        <button class="teacher-rail-item active" type="button" data-teacher="0" aria-label="Показать Аису">
+      <div class="teacher-rail" aria-label="Choose a teacher">
+        <button class="teacher-rail-item active" type="button" data-teacher="0" aria-label="Show Аиса">
           <span class="teacher-rail-number">01</span>
-          <span class="teacher-rail-name">Aisa</span>
+          <span class="teacher-rail-name">Аиса</span>
           <span class="teacher-rail-role">Старший преподаватель IELTS</span>
         </button>
-        <button class="teacher-rail-item" type="button" data-teacher="1" aria-label="Показать Адеми">
+        <button class="teacher-rail-item" type="button" data-teacher="1" aria-label="Show Адеми">
           <span class="teacher-rail-number">02</span>
-          <span class="teacher-rail-name">Ademi</span>
+          <span class="teacher-rail-name">Адеми</span>
           <span class="teacher-rail-role">Преподаватель IELTS</span>
         </button>
       </div>
@@ -2371,8 +2094,8 @@ html[lang="ru"] .teacher-metric span{
           <div class="teacher-photo-wrap">
             <img loading="lazy"
               id="teacherPhoto"
-              src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/Aisa.jpeg"
-              alt="Aisa, Старший преподаватель IELTS"
+              src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/Аиса.jpeg"
+              alt="Аиса, Старший преподаватель IELTS"
               width="720"
               height="900"
               fetchpriority="high"
@@ -2397,11 +2120,11 @@ html[lang="ru"] .teacher-metric span{
           <span id="teacherSpecialty">IELTS · АНГЛИЙСКИЙ</span>
         </div>
 
-        <h3 id="teacherName">Aisa</h3>
+        <h3 id="teacherИмя">Аиса</h3>
         <div class="teacher-role" id="teacherRole">Старший преподаватель IELTS</div>
         <div class="teacher-description-wrap">
-        <p id="teacherDescription">Аиса — опытный преподаватель английского языка с 8-летним опытом подготовки к IELTS и 10-летним общим опытом преподавания английского. Её результат IELTS — 8.5, включая максимальные 9.0 за Speaking.</p>
-        <p id="teacherDescription2">Сейчас Аиса обучается по программе MA TEFL по специальности «Преподавание английского как иностранного» в Американском университете Армении.</p>
+          <p id="teacherDescription">Аиса — опытный преподаватель английского языка с 8-летним опытом подготовки к IELTS и 10-летним общим опытом преподавания английского языка. Она получила впечатляющий результат IELTS 8.5, включая максимальные 9.0 за устную часть.</p>
+          <p id="teacherDescription2">В настоящее время Аиса получает степень магистра по программе MA TEFL по специальности «Преподавание английского как иностранного» в Американском университете Армении.</p>
         </div>
 
         <div class="teacher-metrics">
@@ -2411,20 +2134,20 @@ html[lang="ru"] .teacher-metric span{
           </div>
           <div class="teacher-metric">
             <strong id="teacherMetric2">8.5</strong>
-            <span id="teacherMetric2Label">Балл IELTS</span>
+            <span id="teacherMetric2Label">Баллы IELTS</span>
           </div>
           <div class="teacher-metric">
             <strong id="teacherMetric3">9.0</strong>
-            <span id="teacherMetric3Label">Speaking</span>
+            <span id="teacherMetric3Label">Устная речь</span>
           </div>
         </div>
 
         <div class="teacher-controls">
-          <button class="teacher-arrow" type="button" id="teacherPrev" aria-label="Предыдущий преподаватель">
+          <button class="teacher-arrow" type="button" id="teacherPrev" aria-label="Назад teacher">
             <i class="fas fa-arrow-left"></i>
           </button>
           <div class="teacher-progress"><span id="teacherProgress"></span></div>
-          <button class="teacher-arrow" type="button" id="teacherNext" aria-label="Следующий преподаватель">
+          <button class="teacher-arrow" type="button" id="teacherДалее" aria-label="Далее teacher">
             <i class="fas fa-arrow-right"></i>
           </button>
         </div>
@@ -2434,8 +2157,8 @@ html[lang="ru"] .teacher-metric span{
 </section>
 
 <section id="placement" class="placement-cta">
-    <h2>Not Sure About Your Level?</h2>
-    <p>Take our free online assessments and we'll recommend the perfect course for you.</p>
+    <h2>Not Sure About Your Уровень?</h2>
+    <p>Take our free online assessments and we'll recommend the perfect course для you.</p>
     <div class="test-buttons">
       <a href="https://aclassenglish.github.io/A_Class/English%20Placement%20Test%20%20A%20Class.html" target="_blank" class="btn-test"><i class="fas fa-spell-check"></i>Grammar & Vocabulary Test</a>
       <a href="https://aclassenglish.github.io/A_Class/English%20Reading%20Level%20Assessment%20%20A%20Class.html" target="_blank" class="btn-test"><i class="fas fa-book-reader"></i>Reading Assessment</a>
@@ -2444,23 +2167,23 @@ html[lang="ru"] .teacher-metric span{
 
   <section id="contact" class="contact">
     <div class="container">
-      <div class="section-header"><span class="section-tag"><i class="fas fa-envelope"></i> Contact Us</span><h2>Get in Touch</h2><p>Reach out to us directly via WhatsApp or Instagram</p></div>
+      <div class="section-header"><span class="section-tag"><i class="fas fa-envelope"></i> Контакты Us</span><h2>Get in Touch</h2><p>Reach out to us directly via WhatsApp or Instagram</p></div>
       <div class="contact-buttons">
         <a href="https://wa.me/37477347364" target="_blank" class="contact-btn whatsapp"><i class="fab fa-whatsapp"></i><span>WhatsApp</span></a>
         <a href="https://www.instagram.com/aclass.am" target="_blank" class="contact-btn instagram"><i class="fab fa-instagram"></i><span>Instagram</span></a>
       </div>
-      <div class="contact-note"><i class="fas fa-clock"></i> We typically respond within 1-2 hours during business hours</div>
+      <div class="contact-note"><i class="fas fa-clock"></i> We typically respond within 1-2 часов during business часов</div>
     </div>
   </section>
 
   <footer>
     <div class="footer-grid">
-      <div class="footer-col"><h4>AClass English School</h4><p>Empowering students to achieve English fluency and exam success for over 15 years.</p><div class="social-links"><a href="https://www.instagram.com/aclass.am" target="_blank"><i class="fab fa-instagram"></i></a><a href="https://wa.me/37477347364" target="_blank"><i class="fab fa-whatsapp"></i></a></div></div>
-      <div class="footer-col"><h4>Quick Links</h4><ul class="footer-links"><li><a href="#home"><i class="fas fa-chevron-right"></i> Home</a></li><li><a href="#about"><i class="fas fa-chevron-right"></i> About Us</a></li><li><a href="#courses"><i class="fas fa-chevron-right"></i> Courses</a></li><li><a href="#packages"><i class="fas fa-chevron-right"></i> All Пакеты</a></li><li><a href="#life-at-aclass"><i class="fas fa-chevron-right"></i> Жизнь в AClass</a></li></ul></div>
+      <div class="footer-col"><h4>AClass English School</h4><p>Empowering учеников to achieve English fluency and exam success для over 15 years.</p><div class="social-links"><a href="https://www.instagram.com/aclass.am" target="_blank"><i class="fab fa-instagram"></i></a><a href="https://wa.me/37477347364" target="_blank"><i class="fab fa-whatsapp"></i></a></div></div>
+      <div class="footer-col"><h4>Quick Links</h4><ul class="footer-links"><li><a href="#home"><i class="fas fa-chevron-right"></i> Главная</a></li><li><a href="#about"><i class="fas fa-chevron-right"></i> About Us</a></li><li><a href="#courses"><i class="fas fa-chevron-right"></i> Курсы</a></li><li><a href="#packages"><i class="fas fa-chevron-right"></i> All Пакеты</a></li><li><a href="#life-at-aclass"><i class="fas fa-chevron-right"></i> Жизнь в AClass</a></li></ul></div>
       <div class="footer-col"><h4>Programs</h4><ul class="footer-links"><li><a href="#courses"><i class="fas fa-chevron-right"></i> IELTS</a></li><li><a href="#courses"><i class="fas fa-chevron-right"></i> SAT</a></li><li><a href="#courses"><i class="fas fa-chevron-right"></i> Общий английский</a></li></ul></div>
       <div class="footer-col"><h4>Контакты</h4><ul class="footer-links"><li><a href="mailto:info@aclass.am"><i class="fas fa-envelope"></i> info@aclass.am</a></li><li><a href="https://wa.me/37477347364"><i class="fas fa-phone"></i> +374 77 347 364</a></li><li><a href="#"><i class="fas fa-map-marker-alt"></i> Yerevan, Armenia</a></li></ul></div>
     </div>
-    <div class="footer-bottom">© 2026 AClass English School. All rights reserved.</div>
+    <div class="footer-bottom">© 2026 AClass English School. Все права защищены.</div>
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
@@ -2468,8 +2191,8 @@ html[lang="ru"] .teacher-metric span{
 document.addEventListener('DOMContentLoaded', function () {
   'use strict';
 
-  /* Package accordion */
-  window.togglePackage = function (element) {
+  /* Пакет accordion */
+  window.toggleПакет = function (element) {
     const wasActive = element.classList.contains('active');
     document.querySelectorAll('.package-accordion').forEach(acc => acc.classList.remove('active'));
     if (!wasActive) element.classList.add('active');
@@ -2512,29 +2235,29 @@ document.addEventListener('DOMContentLoaded', function () {
   /* Teacher spotlight slider */
   const teacherData = [
     {
-      name: 'Aisa',
+      name: 'Аиса',
       role: 'Старший преподаватель IELTS',
       specialty: 'IELTS · АНГЛИЙСКИЙ',
-      image: 'https://raw.githubusercontent.com/AClassenglish/A_Class/main/Aisa.jpeg',
-      alt: 'Aisa, Старший преподаватель IELTS',
-      description: 'Аиса — опытный преподаватель английского языка с 8-летним опытом подготовки к IELTS и 10-летним общим опытом преподавания английского. Её результат IELTS — 8.5, включая максимальные 9.0 за Speaking.',
-      description2: 'Aisa is currently pursuing a master\'s degree through the MA TEFL program, specializing in Teaching English as a Foreign Language, at an American University of Armenia.',
-      metrics: [['8+', 'Лет IELTS'], ['8.5', 'Балл IELTS'], ['9.0', 'Speaking']]
+      image: 'https://raw.githubusercontent.com/AClassenglish/A_Class/main/Аиса.jpeg',
+      alt: 'Аиса, Старший преподаватель IELTS',
+      description: 'Аиса — опытный преподаватель английского языка с 8-летним опытом подготовки к IELTS и 10-летним общим опытом преподавания английского языка. Она получила впечатляющий результат IELTS 8.5, включая максимальные 9.0 за устную часть.',
+      description2: 'Аиса is currently pursuing a master\'s degree through the MA TEFL program, specializing in Teaching English as a Foreign Language, at an American University of Armenia.',
+      metrics: [['8+', 'Лет IELTS'], ['8.5', 'Баллы IELTS'], ['9.0', 'Устная речь']]
     },
     {
-      name: 'Ademi',
+      name: 'Адеми',
       role: 'Преподаватель IELTS',
       specialty: 'IELTS · АНГЛИЙСКИЙ',
-      image: 'https://raw.githubusercontent.com/AClassenglish/A_Class/main/Ademi.jpeg',
-      alt: 'Ademi, Преподаватель IELTS',
-      description: 'Адеми — преподаватель IELTS с 4,5 годами опыта. Она окончила Американский университет Центральной Азии и получила результат IELTS 8.0, набрав 8.0 за Writing и Speaking.',
+      image: 'https://raw.githubusercontent.com/AClassenglish/A_Class/main/Адеми.jpeg',
+      alt: 'Адеми, Преподаватель IELTS',
+      description: 'Адеми — преподаватель IELTS с 4,5 годами опыта преподавания. Она окончила Американский университет Центральной Азии и получила впечатляющий результат IELTS 8.0, набрав 8.0 как за письменную, так и за устную часть.',
       description2: '',
-      metrics: [['4.5+', 'Лет преподавания'], ['8.0', 'Балл IELTS'], ['8.0', 'Writing + Speaking']]
+      metrics: [['4.5+', 'Лет преподавания'], ['8.0', 'Баллы IELTS'], ['8.0', 'Письмо + устная речь']]
     }
   ];
 
   const photo = document.getElementById('teacherPhoto');
-  const name = document.getElementById('teacherName');
+  const name = document.getElementById('teacherИмя');
   const role = document.getElementById('teacherRole');
   const specialty = document.getElementById('teacherSpecialty');
   const description = document.getElementById('teacherDescription');
@@ -2548,21 +2271,29 @@ document.addEventListener('DOMContentLoaded', function () {
 
   let teacherIndex = 0;
 
+  /*
+   * Teacher slider
+   * No fade-out, no delayed DOM swap, and no height animation.
+   * The layout stays exactly the same when switching between teachers.
+   */
+  const teacherImages = teacherData.map(teacher => {
+    const img = new Image();
+    img.src = teacher.image;
+    return img;
+  });
+
   function renderTeacher(index) {
     teacherIndex = (index + teacherData.length) % teacherData.length;
     const teacher = teacherData[teacherIndex];
 
-    photo.style.opacity = '0';
-    name.style.opacity = '0';
-    description.style.opacity = '0';
-    description2.style.opacity = '0';
-
-    window.setTimeout(() => {
+    const updateContent = () => {
       photo.src = teacher.image;
       photo.alt = teacher.alt;
+
       name.textContent = teacher.name;
       role.textContent = teacher.role;
       specialty.textContent = teacher.specialty;
+
       description.textContent = teacher.description;
       description2.textContent = teacher.description2;
       description2.style.display = teacher.description2 ? 'block' : 'none';
@@ -2573,23 +2304,35 @@ document.addEventListener('DOMContentLoaded', function () {
       });
 
       const number = String(teacherIndex + 1).padStart(2, '0');
-      slideCount.textContent = number + ' / ' + String(teacherData.length).padStart(2, '0');
+      slideCount.textContent =
+        number + ' / ' + String(teacherData.length).padStart(2, '0');
+
       photoIndex.textContent = number;
-      progress.style.width = (((teacherIndex + 1) / teacherData.length) * 100) + '%';
+      progress.style.width =
+        (((teacherIndex + 1) / teacherData.length) * 100) + '%';
 
       railItems.forEach((item, i) => {
         const active = i === teacherIndex;
         item.classList.toggle('active', active);
         item.setAttribute('aria-current', active ? 'true' : 'false');
       });
+    };
 
-      requestAnimationFrame(() => {
-        photo.style.opacity = '1';
-        name.style.opacity = '1';
-        description.style.opacity = '1';
-        description2.style.opacity = '1';
-      });
-    }, 170);
+    /*
+     * Both teacher images are preloaded. If the requested image is already
+     * ready, swap immediately; otherwise wait для that image only.
+     * Nothing else in the section is hidden or animated.
+     */
+    const image = teacherImages[teacherIndex];
+
+    if (image && image.complete) {
+      updateContent();
+    } else if (image) {
+      image.onload = updateContent;
+      image.onerror = updateContent;
+    } else {
+      updateContent();
+    }
   }
 
   railItems.forEach(item => {
@@ -2598,7 +2341,7 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   document.getElementById('teacherPrev')?.addEventListener('click', () => renderTeacher(teacherIndex - 1));
-  document.getElementById('teacherNext')?.addEventListener('click', () => renderTeacher(teacherIndex + 1));
+  document.getElementById('teacherДалее')?.addEventListener('click', () => renderTeacher(teacherIndex + 1));
 
   renderTeacher(0);
 
@@ -2644,8 +2387,8 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  /* Reviews slider — waits for deferred Swiper library. */
-  function initReviews() {
+  /* Отзывы slider — waits для deferred Swiper library. */
+  function initОтзывы() {
     if (typeof Swiper === 'undefined' || !document.querySelector('.reviews-swiper')) return;
     new Swiper('.reviews-swiper', {
       loop: true,
@@ -2662,9 +2405,9 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
   if (typeof Swiper !== 'undefined') {
-    initReviews();
+    initОтзывы();
   } else {
-    window.addEventListener('load', initReviews, { once: true });
+    window.addEventListener('load', initОтзывы, { once: true });
   }
 
   /* Lazy-load the four collage videos only when they approach the viewport. */
