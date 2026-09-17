@@ -126,7 +126,7 @@ a{color:inherit;text-decoration:none}
 .swiper-pagination-bullet-active{background:var(--primary);width:28px;border-radius:5px}
 
 /* Video Collage */
-.video-collage-section{padding:4rem 2rem;background:var(--bg-light);width:100%;position:relative;cursor:pointer}
+.video-collage-section{padding:4rem 2rem;background:var(--bg-light);width:100%;position:relative;cursor:default}
 .video-collage-container{max-width:1200px;margin:0 auto}
 .video-collage-heading{text-align:center;margin-bottom:3rem}
 .video-collage-heading h2{font-size:2.5rem;font-weight:800;background:var(--gradient-accent);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:.75rem}
@@ -1406,6 +1406,206 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
   }
 }
 
+
+/* ===== Final teacher + Life at AClass polish ===== */
+
+/* Teacher selection is click-only — hovering does not change the active teacher. */
+.teacher-rail-item:hover{
+  background:transparent;
+  transform:none;
+}
+.teacher-rail-item.active:hover{
+  background:#fff;
+  transform:none;
+}
+
+/* Reserve the same vertical space for both teachers' biographies. */
+.teacher-copy{
+  min-height:620px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+.teacher-description-wrap{
+  min-height:205px;
+}
+@media (max-width:768px){
+  .teacher-copy{
+    min-height:0;
+  }
+  .teacher-description-wrap{
+    min-height:0;
+  }
+}
+
+/* ===== Life at AClass — editorial on-page section ===== */
+.life-at-aclass-editorial{
+  cursor:default;
+  padding:7rem 2rem;
+  background:
+    radial-gradient(circle at 12% 18%, rgba(167,102,220,.12), transparent 30%),
+    radial-gradient(circle at 88% 82%, rgba(99,102,241,.10), transparent 32%),
+    linear-gradient(135deg,#faf8ff 0%,#f8f7ff 48%,#fbfbff 100%);
+  overflow:hidden;
+}
+.life-editorial-wrap{
+  max-width:1240px;
+  margin:0 auto;
+  position:relative;
+}
+.life-editorial-intro{
+  display:grid;
+  grid-template-columns:minmax(0,1.05fr) minmax(320px,.95fr);
+  gap:5rem;
+  align-items:end;
+  margin-bottom:3.5rem;
+}
+.life-editorial-heading{
+  max-width:720px;
+}
+.life-editorial-kicker{
+  display:inline-flex;
+  align-items:center;
+  gap:.55rem;
+  color:var(--primary);
+  background:rgba(255,255,255,.78);
+  border:1px solid rgba(167,102,220,.18);
+  border-radius:999px;
+  padding:.55rem 1rem;
+  font-size:.75rem;
+  font-weight:800;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  margin-bottom:1.25rem;
+  box-shadow:0 8px 24px rgba(76,44,112,.06);
+}
+.life-editorial-heading h2{
+  font-size:clamp(2.6rem,5vw,5rem);
+  line-height:.98;
+  letter-spacing:-3px;
+  color:var(--text-dark);
+  margin:0;
+}
+.life-editorial-heading h2 em{
+  font-style:normal;
+  background:var(--gradient-accent);
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.life-editorial-intro > p{
+  color:var(--text-gray);
+  font-size:1.02rem;
+  line-height:1.9;
+  max-width:560px;
+  margin:0;
+  padding-left:1.5rem;
+  border-left:2px solid rgba(167,102,220,.3);
+}
+.life-at-aclass-editorial .video-collage-grid{
+  grid-template-columns:repeat(4,1fr);
+  gap:1rem;
+}
+.life-at-aclass-editorial .video-collage-item{
+  aspect-ratio:9/15;
+  border-radius:22px;
+  box-shadow:0 14px 40px rgba(32,23,51,.13);
+  background:#e9e5ee;
+  isolation:isolate;
+}
+.life-at-aclass-editorial .video-collage-item::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to top,rgba(15,23,42,.5),transparent 42%);
+  z-index:1;
+  pointer-events:none;
+}
+.life-at-aclass-editorial .video-collage-item video{
+  transition:transform .7s cubic-bezier(.2,.8,.2,1);
+}
+.life-at-aclass-editorial .video-collage-item:hover video{
+  transform:scale(1.035);
+}
+.life-video-label{
+  position:absolute;
+  left:1rem;
+  bottom:1rem;
+  z-index:2;
+  color:#fff;
+  font-size:.72rem;
+  font-weight:800;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  text-shadow:0 2px 12px rgba(0,0,0,.25);
+}
+.life-editorial-footer{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:1rem;
+  margin-top:1.25rem;
+  padding-top:1.25rem;
+  border-top:1px solid rgba(167,102,220,.16);
+  color:var(--text-gray);
+  font-size:.72rem;
+  font-weight:800;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+}
+.life-editorial-footer span:first-child{
+  color:var(--primary);
+}
+.life-editorial-footer i{
+  margin-right:.35rem;
+}
+
+@media (max-width:900px){
+  .life-editorial-intro{
+    grid-template-columns:1fr;
+    gap:1.5rem;
+  }
+  .life-editorial-intro > p{
+    padding-left:0;
+    padding-top:1rem;
+    border-left:0;
+    border-top:2px solid rgba(167,102,220,.25);
+    max-width:700px;
+  }
+}
+@media (max-width:768px){
+  .life-at-aclass-editorial{
+    padding:5rem 1rem;
+  }
+  .life-editorial-heading h2{
+    font-size:2.5rem;
+    letter-spacing:-1.7px;
+  }
+  .life-at-aclass-editorial .video-collage-grid{
+    grid-template-columns:repeat(2,1fr);
+    gap:.7rem;
+  }
+  .life-at-aclass-editorial .video-collage-item{
+    aspect-ratio:9/14;
+    border-radius:16px;
+  }
+  .life-editorial-footer{
+    flex-direction:column;
+    align-items:flex-start;
+    line-height:1.5;
+  }
+}
+@media (max-width:480px){
+  .life-at-aclass-editorial .video-collage-grid{
+    grid-template-columns:1fr 1fr;
+  }
+  .life-video-label{
+    left:.7rem;
+    bottom:.7rem;
+    font-size:.58rem;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -1433,6 +1633,7 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
         <li><a href="#reviews" class="nav-link">Reviews</a></li>
          <li><a href="#teachers" class="nav-link">Teachers</a></li>
         <li><a href="#packages" class="nav-link">Packages</a></li>
+        <li><a href="#life-at-aclass" class="nav-link">Life at AClass</a></li>
         <li><a href="#contact" class="nav-cta">Contact Us</a></li>
         <li class="language-nav-item">
           <div class="language-switcher" aria-label="Language selection">
@@ -1456,6 +1657,7 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
       <a href="#courses" class="tab-item active"><i class="fas fa-graduation-cap"></i><span>Courses</span></a>
       <a href="#reviews" class="tab-item"><i class="fas fa-star"></i><span>Reviews</span></a>
       <a href="#packages" class="tab-item"><i class="fas fa-tags"></i><span>Packages</span></a>
+      <a href="#life-at-aclass" class="tab-item"><i class="fas fa-camera"></i><span>Life</span></a>
       <a href="#contact" class="tab-item"><i class="fas fa-envelope"></i><span>Contact</span></a>
     <a href="#teachers" class="tab-item">
           <i class="fas fa-chalkboard-teacher"></i>
@@ -1500,14 +1702,50 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
     </div>
   </section>
 
-  <section class="video-collage-section" onclick="window.location.href='life-at-aclass.html'">
-    <div class="video-collage-container">
-      <div class="video-collage-heading"><h2>Life at AClass</h2><p>Experience our vibrant learning community</p></div>
+  <section class="video-collage-section life-at-aclass-editorial" id="life-at-aclass">
+    <div class="life-editorial-wrap">
+      <div class="life-editorial-intro">
+        <div class="life-editorial-heading">
+          <span class="life-editorial-kicker"><i class="fas fa-camera"></i> Life at AClass</span>
+          <h2>Learning goes beyond <em>textbooks.</em></h2>
+        </div>
+        <p>
+          Take a look inside our classrooms, student activities, speaking practice, celebrations,
+          and the moments that make learning English enjoyable. Every photo and video reflects
+          the supportive, engaging environment we create for our students.
+        </p>
+      </div>
+
       <div class="video-collage-grid">
-        <div class="video-collage-item"><video muted loop playsinline preload="none" data-lazy-video><source src="https://github.com/AClassenglish/A_Class/raw/1fcc1f6281bbc539ab3e55a4b955483c7aef54b6/IMG_0629.MOV" type="video/mp4"></video></div>
-        <div class="video-collage-item"><video muted loop playsinline preload="none" data-lazy-video><source src="https://github.com/AClassenglish/A_Class/raw/1fcc1f6281bbc539ab3e55a4b955483c7aef54b6/IMG_2948.MOV" type="video/mp4"></video></div>
-        <div class="video-collage-item"><video muted loop playsinline preload="none" data-lazy-video><source src="https://github.com/AClassenglish/A_Class/raw/1fcc1f6281bbc539ab3e55a4b955483c7aef54b6/IMG_3018.MOV" type="video/mp4"></video></div>
-        <div class="video-collage-item"><video muted loop playsinline preload="none" data-lazy-video><source src="https://github.com/AClassenglish/A_Class/raw/1fcc1f6281bbc539ab3e55a4b955483c7aef54b6/IMG_8786.MOV" type="video/mp4"></video></div>
+        <div class="video-collage-item">
+          <video muted loop playsinline preload="none" data-lazy-video>
+            <source src="https://github.com/AClassenglish/A_Class/raw/1fcc1f6281bbc539ab3e55a4b955483c7aef54b6/IMG_0629.MOV" type="video/mp4">
+          </video>
+          <span class="life-video-label">In the classroom</span>
+        </div>
+        <div class="video-collage-item">
+          <video muted loop playsinline preload="none" data-lazy-video>
+            <source src="https://github.com/AClassenglish/A_Class/raw/1fcc1f6281bbc539ab3e55a4b955483c7aef54b6/IMG_2948.MOV" type="video/mp4">
+          </video>
+          <span class="life-video-label">Student moments</span>
+        </div>
+        <div class="video-collage-item">
+          <video muted loop playsinline preload="none" data-lazy-video>
+            <source src="https://github.com/AClassenglish/A_Class/raw/1fcc1f6281bbc539ab3e55a4b955483c7aef54b6/IMG_3018.MOV" type="video/mp4">
+          </video>
+          <span class="life-video-label">Speaking & practice</span>
+        </div>
+        <div class="video-collage-item">
+          <video muted loop playsinline preload="none" data-lazy-video>
+            <source src="https://github.com/AClassenglish/A_Class/raw/1fcc1f6281bbc539ab3e55a4b955483c7aef54b6/IMG_8786.MOV" type="video/mp4">
+          </video>
+          <span class="life-video-label">Celebrations</span>
+        </div>
+      </div>
+
+      <div class="life-editorial-footer">
+        <span><i class="fas fa-sparkles"></i> More than just a classroom</span>
+        <span>Learn · Connect · Grow</span>
       </div>
     </div>
   </section>
@@ -1924,8 +2162,10 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
 
         <h3 id="teacherName">Aisa</h3>
         <div class="teacher-role" id="teacherRole">Senior IELTS Tutor</div>
-        <p id="teacherDescription">Aisa is an experienced English educator with 8 years of IELTS teaching experience and 10 years of experience teaching English overall. She holds an outstanding IELTS score of 8.5, including a perfect 9.0 in Speaking.</p>
-        <p id="teacherDescription2">Aisa is currently pursuing a master's degree through the MA TEFL program, specializing in Teaching English as a Foreign Language, at an American University of Armenia.</p>
+        <div class="teacher-description-wrap">
+          <p id="teacherDescription">Aisa is an experienced English educator with 8 years of IELTS teaching experience and 10 years of experience teaching English overall. She holds an outstanding IELTS score of 8.5, including a perfect 9.0 in Speaking.</p>
+          <p id="teacherDescription2">Aisa is currently pursuing a master's degree through the MA TEFL program, specializing in Teaching English as a Foreign Language, at an American University of Armenia.</p>
+        </div>
 
         <div class="teacher-metrics">
           <div class="teacher-metric">
@@ -1979,7 +2219,7 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
   <footer>
     <div class="footer-grid">
       <div class="footer-col"><h4>AClass English School</h4><p>Empowering students to achieve English fluency and exam success for over 15 years.</p><div class="social-links"><a href="https://www.instagram.com/aclass.am" target="_blank"><i class="fab fa-instagram"></i></a><a href="https://wa.me/37477347364" target="_blank"><i class="fab fa-whatsapp"></i></a></div></div>
-      <div class="footer-col"><h4>Quick Links</h4><ul class="footer-links"><li><a href="#home"><i class="fas fa-chevron-right"></i> Home</a></li><li><a href="#about"><i class="fas fa-chevron-right"></i> About Us</a></li><li><a href="#courses"><i class="fas fa-chevron-right"></i> Courses</a></li><li><a href="#packages"><i class="fas fa-chevron-right"></i> All Packages</a></li><li><a href="life-at-aclass.html"><i class="fas fa-chevron-right"></i> Life at AClass</a></li></ul></div>
+      <div class="footer-col"><h4>Quick Links</h4><ul class="footer-links"><li><a href="#home"><i class="fas fa-chevron-right"></i> Home</a></li><li><a href="#about"><i class="fas fa-chevron-right"></i> About Us</a></li><li><a href="#courses"><i class="fas fa-chevron-right"></i> Courses</a></li><li><a href="#packages"><i class="fas fa-chevron-right"></i> All Packages</a></li><li><a href="#life-at-aclass"><i class="fas fa-chevron-right"></i> Life at AClass</a></li></ul></div>
       <div class="footer-col"><h4>Programs</h4><ul class="footer-links"><li><a href="#courses"><i class="fas fa-chevron-right"></i> IELTS</a></li><li><a href="#courses"><i class="fas fa-chevron-right"></i> SAT</a></li><li><a href="#courses"><i class="fas fa-chevron-right"></i> General English</a></li></ul></div>
       <div class="footer-col"><h4>Contact</h4><ul class="footer-links"><li><a href="mailto:info@aclass.am"><i class="fas fa-envelope"></i> info@aclass.am</a></li><li><a href="https://wa.me/37477347364"><i class="fas fa-phone"></i> +374 77 347 364</a></li><li><a href="#"><i class="fas fa-map-marker-alt"></i> Yerevan, Armenia</a></li></ul></div>
     </div>
@@ -2118,7 +2358,6 @@ document.addEventListener('DOMContentLoaded', function () {
   railItems.forEach(item => {
     const selectTeacher = () => renderTeacher(Number(item.dataset.teacher));
     item.addEventListener('click', selectTeacher);
-    item.addEventListener('mouseenter', selectTeacher);
   });
 
   document.getElementById('teacherPrev')?.addEventListener('click', () => renderTeacher(teacherIndex - 1));
