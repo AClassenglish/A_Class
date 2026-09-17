@@ -1426,6 +1426,412 @@ html[lang="ru"] .teacher-metric span{
   html[lang="ru"] .nav-link{font-size:.82rem}
 }
 
+
+/* ===== UX refinements ===== */
+/* Package/Comparison switch: visual hover only; switching happens on click/tap. */
+.package-view-switch .view-switch-btn:hover{
+  transform:none !important;
+}
+.package-view-switch .view-switch-btn{
+  transition:background-color .25s ease, color .25s ease, border-color .25s ease, box-shadow .25s ease;
+}
+
+/* Keep package panels from making the page jump when one panel has more content. */
+.package-view-panels{
+  display:grid;
+  grid-template-areas:"panel";
+  align-items:start;
+}
+.package-view-panel{
+  grid-area:panel;
+  display:none;
+}
+.package-view-panel.active{
+  display:block;
+}
+
+/* Teachers: no hover-based teacher switching. */
+.teachers-section-packages .teacher-card,
+.teachers-section-packages .teacher-option,
+.teachers-section-packages .teacher-selector button{
+  transition:transform .25s ease, box-shadow .25s ease, background-color .25s ease;
+}
+/* Hover can style, but never change the selected teacher. */
+.teachers-section-packages .teacher-card:hover,
+.teachers-section-packages .teacher-option:hover{
+  transform:none !important;
+}
+
+/* Life at AClass — polished editorial section */
+.life-section{
+  position:relative;
+  overflow:hidden;
+  padding:7rem 0;
+  background:
+    radial-gradient(circle at 12% 15%, rgba(167,102,220,.14), transparent 30%),
+    radial-gradient(circle at 88% 80%, rgba(99,102,241,.12), transparent 32%),
+    #faf8fc;
+}
+.life-section .life-intro{
+  max-width:1180px;
+  margin:0 auto 3.5rem;
+  padding:0 2rem;
+  display:grid;
+  grid-template-columns:minmax(280px,.8fr) minmax(420px,1.2fr);
+  gap:4rem;
+  align-items:end;
+}
+.life-section .life-kicker{
+  display:inline-flex;
+  align-items:center;
+  gap:.55rem;
+  margin-bottom:1rem;
+  color:#8a4bbf;
+  font-size:.76rem;
+  font-weight:800;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+}
+.life-section .life-kicker::before{
+  content:"";
+  width:28px;
+  height:2px;
+  background:linear-gradient(90deg,#a766dc,#6366f1);
+  border-radius:2px;
+}
+.life-section .life-title{
+  margin:0;
+  font-size:clamp(2.4rem,5vw,4.6rem);
+  line-height:.98;
+  letter-spacing:-.045em;
+  color:#17152a;
+}
+.life-section .life-copy{
+  margin:0;
+  max-width:650px;
+  color:#666277;
+  font-size:1.05rem;
+  line-height:1.8;
+}
+.life-section .life-media{
+  width:min(1180px,calc(100% - 4rem));
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:1.15fr .85fr;
+  gap:1rem;
+  min-height:520px;
+}
+.life-section .life-media-card{
+  position:relative;
+  overflow:hidden;
+  border-radius:28px;
+  min-height:520px;
+  background:#e9e4ef;
+  box-shadow:0 24px 70px rgba(55,35,80,.13);
+}
+.life-section .life-media-card img,
+.life-section .life-media-card video{
+  width:100%;
+  height:100%;
+  display:block;
+  object-fit:cover;
+}
+.life-section .life-media-card::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg,transparent 55%,rgba(22,15,35,.45));
+  pointer-events:none;
+}
+.life-section .life-media-label{
+  position:absolute;
+  left:1.25rem;
+  bottom:1.15rem;
+  z-index:2;
+  padding:.65rem .9rem;
+  border:1px solid rgba(255,255,255,.35);
+  border-radius:999px;
+  background:rgba(255,255,255,.15);
+  backdrop-filter:blur(12px);
+  color:#fff;
+  font-size:.78rem;
+  font-weight:700;
+  letter-spacing:.05em;
+}
+.life-section .life-media-side{
+  display:grid;
+  grid-template-rows:1fr 1fr;
+  gap:1rem;
+}
+.life-section .life-media-side .life-media-card{
+  min-height:0;
+}
+.life-section .life-quote{
+  width:min(1180px,calc(100% - 4rem));
+  margin:2rem auto 0;
+  padding:1.15rem 1.35rem;
+  display:flex;
+  align-items:center;
+  gap:1rem;
+  border:1px solid rgba(167,102,220,.16);
+  border-radius:18px;
+  background:rgba(255,255,255,.72);
+  color:#4f4960;
+  font-size:.92rem;
+  line-height:1.6;
+  box-shadow:0 12px 35px rgba(55,35,80,.06);
+}
+.life-section .life-quote i{
+  flex:0 0 auto;
+  width:34px;
+  height:34px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  background:#f0e5fa;
+  color:#8a4bbf;
+}
+@media (max-width:768px){
+  .life-section{padding:5rem 0}
+  .life-section .life-intro{
+    display:block;
+    margin-bottom:2.2rem;
+    padding:0 1.25rem;
+  }
+  .life-section .life-title{
+    font-size:clamp(2.25rem,12vw,3.4rem);
+    margin-bottom:1.25rem;
+  }
+  .life-section .life-copy{font-size:.98rem;line-height:1.7}
+  .life-section .life-media{
+    width:calc(100% - 2.5rem);
+    grid-template-columns:1fr;
+    min-height:0;
+  }
+  .life-section .life-media-card{
+    min-height:340px;
+    border-radius:22px;
+  }
+  .life-section .life-media-side{
+    grid-template-columns:1fr 1fr;
+    grid-template-rows:none;
+    min-height:190px;
+  }
+  .life-section .life-media-side .life-media-card{min-height:190px}
+  .life-section .life-quote{
+    width:calc(100% - 2.5rem);
+    align-items:flex-start;
+    font-size:.86rem;
+  }
+}
+
+
+/* Teacher selector: hover never changes the selected teacher. */
+.teacher-rail-item:hover{
+  background:transparent;
+  transform:none;
+}
+.teacher-rail-item.active:hover{
+  background:#fff;
+  transform:none;
+}
+
+
+/* Reserve the same text area for every teacher so the page doesn't jump. */
+.teacher-copy{
+  min-height:620px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+.teacher-description-wrap{
+  min-height:205px;
+}
+@media (max-width:768px){
+  .teacher-copy{
+    min-height:0;
+  }
+  .teacher-description-wrap{
+    min-height:0;
+  }
+}
+
+
+/* ===== Life at AClass — on-page editorial section ===== */
+.life-at-aclass-editorial{
+  position:relative;
+  overflow:hidden;
+  padding:7rem 2rem 5rem;
+  background:
+    radial-gradient(circle at 8% 18%, rgba(167,102,220,.13), transparent 28%),
+    radial-gradient(circle at 92% 82%, rgba(99,102,241,.11), transparent 30%),
+    #faf8fc;
+  cursor:default;
+}
+.life-editorial-wrap{
+  max-width:1300px;
+  margin:0 auto;
+}
+.life-editorial-intro{
+  display:grid;
+  grid-template-columns:minmax(320px,.9fr) minmax(420px,1.1fr);
+  gap:5rem;
+  align-items:end;
+  margin-bottom:3rem;
+}
+.life-editorial-kicker{
+  display:inline-flex;
+  align-items:center;
+  gap:.55rem;
+  color:var(--primary-dark);
+  font-size:.75rem;
+  font-weight:800;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+  margin-bottom:1rem;
+}
+.life-editorial-kicker i{font-size:.9rem}
+.life-editorial-heading h2{
+  margin:0;
+  max-width:650px;
+  color:var(--text-dark);
+  font-size:clamp(2.7rem,5vw,5.1rem);
+  line-height:.95;
+  letter-spacing:-.055em;
+}
+.life-editorial-heading h2 em{
+  font-style:normal;
+  background:var(--gradient-accent);
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.life-editorial-intro > p{
+  max-width:690px;
+  margin:0;
+  color:var(--text-gray);
+  font-size:1.03rem;
+  line-height:1.85;
+}
+.life-at-aclass-editorial .video-collage-grid{
+  position:relative;
+  display:grid;
+  grid-template-columns:1.25fr .75fr .75fr 1.05fr;
+  gap:1rem;
+  margin:0;
+}
+.life-at-aclass-editorial .video-collage-item{
+  position:relative;
+  min-height:420px;
+  overflow:hidden;
+  border-radius:24px;
+  background:#e9e5ee;
+  box-shadow:0 22px 55px rgba(55,35,80,.11);
+  cursor:default;
+}
+.life-at-aclass-editorial .video-collage-item:nth-child(2),
+.life-at-aclass-editorial .video-collage-item:nth-child(3){
+  min-height:330px;
+  margin-top:45px;
+}
+.life-at-aclass-editorial .video-collage-item:nth-child(4){
+  min-height:420px;
+}
+.life-at-aclass-editorial .video-collage-item video{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  transition:transform .7s cubic-bezier(.2,.8,.2,1);
+}
+.life-at-aclass-editorial .video-collage-item:hover video{
+  transform:scale(1.035);
+}
+.life-at-aclass-editorial .video-collage-item::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg,transparent 58%,rgba(15,12,25,.58));
+  pointer-events:none;
+}
+.life-media-caption{
+  position:absolute;
+  z-index:2;
+  left:1rem;
+  right:1rem;
+  bottom:1rem;
+  color:#fff;
+  font-size:.76rem;
+  font-weight:800;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.life-editorial-footer{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:1rem;
+  margin-top:1.5rem;
+  padding:1rem 0 0;
+  border-top:1px solid rgba(167,102,220,.18);
+  color:var(--text-gray);
+  font-size:.78rem;
+  font-weight:700;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.life-editorial-footer span:first-child{
+  color:var(--primary-dark);
+}
+.life-editorial-footer i{margin-right:.35rem}
+@media (max-width:900px){
+  .life-editorial-intro{
+    grid-template-columns:1fr;
+    gap:1.5rem;
+  }
+  .life-at-aclass-editorial .video-collage-grid{
+    grid-template-columns:1fr 1fr;
+  }
+  .life-at-aclass-editorial .video-collage-item,
+  .life-at-aclass-editorial .video-collage-item:nth-child(2),
+  .life-at-aclass-editorial .video-collage-item:nth-child(3),
+  .life-at-aclass-editorial .video-collage-item:nth-child(4){
+    min-height:330px;
+    margin-top:0;
+  }
+}
+@media (max-width:600px){
+  .life-at-aclass-editorial{
+    padding:5rem 1.25rem 3.5rem;
+  }
+  .life-editorial-intro{
+    gap:1.25rem;
+    margin-bottom:2rem;
+  }
+  .life-editorial-heading h2{
+    font-size:clamp(2.35rem,12vw,3.5rem);
+  }
+  .life-editorial-intro > p{
+    font-size:.94rem;
+    line-height:1.7;
+  }
+  .life-at-aclass-editorial .video-collage-grid{
+    grid-template-columns:1fr;
+  }
+  .life-at-aclass-editorial .video-collage-item,
+  .life-at-aclass-editorial .video-collage-item:nth-child(2),
+  .life-at-aclass-editorial .video-collage-item:nth-child(3),
+  .life-at-aclass-editorial .video-collage-item:nth-child(4){
+    min-height:360px;
+  }
+  .life-editorial-footer{
+    align-items:flex-start;
+    flex-direction:column;
+    gap:.55rem;
+    font-size:.68rem;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -1450,7 +1856,8 @@ html[lang="ru"] .teacher-metric span{
         <li><a href="#home" class="nav-link">Главная</a></li>
         <li><a href="#about" class="nav-link">О нас</a></li>
         <li><a href="#courses" class="nav-link">Курсы</a></li>
-        <li><a href="#reviews" class="nav-link">Отзывы</a></li>
+        <li><a href="#reviews" class="nav-link">Отзывы</a>
+            <a class="nav-link" href="#life-at-aclass">Life at AClass</a></li>
          <li><a href="#teachers" class="nav-link">Преподаватели</a></li>
         <li><a href="#packages" class="nav-link">Пакеты</a></li>
         <li><a href="#contact" class="nav-cta">Связаться с нами</a></li>
@@ -1520,7 +1927,7 @@ html[lang="ru"] .teacher-metric span{
     </div>
   </section>
 
-  <section class="video-collage-section" onclick="window.location.href='life-at-aclass.html'">
+  <section class="video-collage-section life-at-aclass-editorial" id="life-at-aclass">
     <div class="video-collage-container">
       <div class="video-collage-heading"><h2>Жизнь в AClass</h2><p>Experience our vibrant learning community</p></div>
       <div class="video-collage-grid">
@@ -1532,7 +1939,55 @@ html[lang="ru"] .teacher-metric span{
     </div>
   </section>
 
-  <section id="about" class="about">
+  <section class="video-collage-section life-at-aclass-editorial" id="life-at-aclass">
+  <div class="life-editorial-wrap">
+    <div class="life-editorial-intro">
+      <div class="life-editorial-heading">
+        <span class="life-editorial-kicker"><i class="fas fa-camera"></i> Жизнь в AClass</span>
+        <h2>Обучение выходит <em>за рамки</em> учебников.</h2>
+      </div>
+      <p>
+        Обучение выходит за рамки учебников. Загляните в наши классы, посмотрите на студенческие активности,
+        разговорную практику, праздники и моменты, которые делают изучение английского приятным.
+        Каждое фото и видео отражает поддерживающую и вовлекающую атмосферу, которую мы создаём для наших студентов.
+      </p>
+    </div>
+
+    <div class="video-collage-grid">
+      <div class="video-collage-item">
+        <video muted loop playsinline preload="none" data-lazy-video>
+          <source src="https://github.com/AClassenglish/A_Class/raw/1fcc1f6281bbc539ab3e55a4b955483c7aef54b6/IMG_0629.MOV" type="video/mp4">
+        </video>
+        <span class="life-media-caption">Внутри класса</span>
+      </div>
+      <div class="video-collage-item">
+        <video muted loop playsinline preload="none" data-lazy-video>
+          <source src="https://github.com/AClassenglish/A_Class/raw/1fcc1f6281bbc539ab3e55a4b955483c7aef54b6/IMG_2948.MOV" type="video/mp4">
+        </video>
+        <span class="life-media-caption">Студенческие активности</span>
+      </div>
+      <div class="video-collage-item">
+        <video muted loop playsinline preload="none" data-lazy-video>
+          <source src="https://github.com/AClassenglish/A_Class/raw/1fcc1f6281bbc539ab3e55a4b955483c7aef54b6/IMG_3018.MOV" type="video/mp4">
+        </video>
+        <span class="life-media-caption">Разговорная практика</span>
+      </div>
+      <div class="video-collage-item">
+        <video muted loop playsinline preload="none" data-lazy-video>
+          <source src="https://github.com/AClassenglish/A_Class/raw/1fcc1f6281bbc539ab3e55a4b955483c7aef54b6/IMG_8786.MOV" type="video/mp4">
+        </video>
+        <span class="life-media-caption">Моменты в AClass</span>
+      </div>
+    </div>
+
+    <div class="life-editorial-footer">
+      <span><i class="fas fa-sparkles"></i> Больше, чем просто класс</span>
+      <span>Учись · Общайся · Развивайся</span>
+    </div>
+  </div>
+</section>
+
+<section id="about" class="about">
     <div class="container">
       <div class="section-header"><span class="section-tag"><i class="fas fa-info-circle"></i> About Us</span><h2>Why Choose AClass?</h2><p>A modern education center with a structured, results-oriented approach</p></div>
       <div class="about-grid">
@@ -1944,8 +2399,10 @@ html[lang="ru"] .teacher-metric span{
 
         <h3 id="teacherName">Aisa</h3>
         <div class="teacher-role" id="teacherRole">Старший преподаватель IELTS</div>
+        <div class="teacher-description-wrap">
         <p id="teacherDescription">Аиса — опытный преподаватель английского языка с 8-летним опытом подготовки к IELTS и 10-летним общим опытом преподавания английского. Её результат IELTS — 8.5, включая максимальные 9.0 за Speaking.</p>
         <p id="teacherDescription2">Сейчас Аиса обучается по программе MA TEFL по специальности «Преподавание английского как иностранного» в Американском университете Армении.</p>
+        </div>
 
         <div class="teacher-metrics">
           <div class="teacher-metric">
@@ -1999,7 +2456,7 @@ html[lang="ru"] .teacher-metric span{
   <footer>
     <div class="footer-grid">
       <div class="footer-col"><h4>AClass English School</h4><p>Empowering students to achieve English fluency and exam success for over 15 years.</p><div class="social-links"><a href="https://www.instagram.com/aclass.am" target="_blank"><i class="fab fa-instagram"></i></a><a href="https://wa.me/37477347364" target="_blank"><i class="fab fa-whatsapp"></i></a></div></div>
-      <div class="footer-col"><h4>Quick Links</h4><ul class="footer-links"><li><a href="#home"><i class="fas fa-chevron-right"></i> Home</a></li><li><a href="#about"><i class="fas fa-chevron-right"></i> About Us</a></li><li><a href="#courses"><i class="fas fa-chevron-right"></i> Courses</a></li><li><a href="#packages"><i class="fas fa-chevron-right"></i> All Пакеты</a></li><li><a href="life-at-aclass.html"><i class="fas fa-chevron-right"></i> Жизнь в AClass</a></li></ul></div>
+      <div class="footer-col"><h4>Quick Links</h4><ul class="footer-links"><li><a href="#home"><i class="fas fa-chevron-right"></i> Home</a></li><li><a href="#about"><i class="fas fa-chevron-right"></i> About Us</a></li><li><a href="#courses"><i class="fas fa-chevron-right"></i> Courses</a></li><li><a href="#packages"><i class="fas fa-chevron-right"></i> All Пакеты</a></li><li><a href="#life-at-aclass"><i class="fas fa-chevron-right"></i> Жизнь в AClass</a></li></ul></div>
       <div class="footer-col"><h4>Programs</h4><ul class="footer-links"><li><a href="#courses"><i class="fas fa-chevron-right"></i> IELTS</a></li><li><a href="#courses"><i class="fas fa-chevron-right"></i> SAT</a></li><li><a href="#courses"><i class="fas fa-chevron-right"></i> Общий английский</a></li></ul></div>
       <div class="footer-col"><h4>Контакты</h4><ul class="footer-links"><li><a href="mailto:info@aclass.am"><i class="fas fa-envelope"></i> info@aclass.am</a></li><li><a href="https://wa.me/37477347364"><i class="fas fa-phone"></i> +374 77 347 364</a></li><li><a href="#"><i class="fas fa-map-marker-alt"></i> Yerevan, Armenia</a></li></ul></div>
     </div>
@@ -2138,7 +2595,6 @@ document.addEventListener('DOMContentLoaded', function () {
   railItems.forEach(item => {
     const selectTeacher = () => renderTeacher(Number(item.dataset.teacher));
     item.addEventListener('click', selectTeacher);
-    item.addEventListener('mouseenter', selectTeacher);
   });
 
   document.getElementById('teacherPrev')?.addEventListener('click', () => renderTeacher(teacherIndex - 1));
