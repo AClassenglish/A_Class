@@ -370,7 +370,7 @@ a{color:inherit;text-decoration:none}
   height:100%;
   object-fit:cover;
   object-position:center;
-  transition:transform .65s cubic-bezier(.2,.8,.2,1),filter .5s ease;
+  transition:opacity .28s ease,transform .65s cubic-bezier(.2,.8,.2,1),filter .5s ease;
 }
 .teacher-photo-overlay{
   position:absolute;
@@ -1158,47 +1158,7 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
 
 
 /* Homepage package/comparison switch */
-.package-view-switch {
-  display: flex;
-  justify-content: center;
-  gap: .5rem;
-  margin: 0 auto 3rem;
-  padding: .4rem;
-  width: fit-content;
-  background: var(--primary-light);
-  border: 1px solid rgba(167,102,220,.15);
-  border-radius: 50px;
-}
-.package-view-btn {
-  border: none;
-  background: transparent;
-  color: var(--text-gray);
-  padding: .75rem 1.5rem;
-  border-radius: 50px;
-  font: inherit;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all .3s ease;
-}
-.package-view-btn.active {
-  background: var(--gradient-accent);
-  color: #fff;
-  box-shadow: 0 6px 18px rgba(167,102,220,.2);
-}
-.package-view-panel { display: none; }
-.package-view-panel.active { display: block; }
-
-@media (max-width: 768px) {
-  .package-view-switch {
-    width: 100%;
-    max-width: 360px;
-  }
-  .package-view-btn {
-    flex: 1;
-    padding: .7rem .75rem;
-    font-size: .85rem;
-  }
-}
+.package-view-switch{display:flex;justify-content:center;align-items:center;gap:.65rem;margin:0 auto 3rem;padding:0;width:fit-content;background:transparent;border:none}.package-view-btn{appearance:none;border:1px solid rgba(167,102,220,.22);background:#fff;color:var(--text-gray);padding:.8rem 1.5rem;min-width:120px;border-radius:12px;font:inherit;font-weight:700;cursor:pointer;transition:color .25s ease,background .25s ease,border-color .25s ease,box-shadow .25s ease,transform .25s ease}.package-view-btn:hover{color:var(--primary);border-color:rgba(167,102,220,.45);transform:translateY(-2px);box-shadow:0 6px 18px rgba(167,102,220,.10)}.package-view-btn.active{background:var(--gradient-accent);color:#fff;border-color:transparent;box-shadow:0 8px 22px rgba(167,102,220,.25)}.package-view-btn.active:hover{color:#fff;transform:translateY(-2px);box-shadow:0 10px 26px rgba(167,102,220,.3)}.package-view-panel{display:none}.package-view-panel.active{display:block;animation:packageFade .28s ease}@media (max-width:768px){.package-view-switch{width:100%;max-width:360px;gap:.5rem}.package-view-btn{flex:1;min-width:0;padding:.75rem .8rem;font-size:.85rem}}
 
 
 /* Comparison is a view inside the homepage packages section */
@@ -2311,21 +2271,29 @@ document.addEventListener('DOMContentLoaded', function () {
 
   let teacherIndex = 0;
 
+  /*
+   * Teacher slider
+   * No fade-out, no delayed DOM swap, and no height animation.
+   * The layout stays exactly the same when switching between teachers.
+   */
+  const teacherImages = teacherData.map(teacher => {
+    const img = new Image();
+    img.src = teacher.image;
+    return img;
+  });
+
   function renderTeacher(index) {
     teacherIndex = (index + teacherData.length) % teacherData.length;
     const teacher = teacherData[teacherIndex];
 
-    photo.style.opacity = '0';
-    name.style.opacity = '0';
-    description.style.opacity = '0';
-    description2.style.opacity = '0';
-
-    window.setTimeout(() => {
+    const updateContent = () => {
       photo.src = teacher.image;
       photo.alt = teacher.alt;
+
       name.textContent = teacher.name;
       role.textContent = teacher.role;
       specialty.textContent = teacher.specialty;
+
       description.textContent = teacher.description;
       description2.textContent = teacher.description2;
       description2.style.display = teacher.description2 ? 'block' : 'none';
@@ -2336,23 +2304,35 @@ document.addEventListener('DOMContentLoaded', function () {
       });
 
       const number = String(teacherIndex + 1).padStart(2, '0');
-      slideCount.textContent = number + ' / ' + String(teacherData.length).padStart(2, '0');
+      slideCount.textContent =
+        number + ' / ' + String(teacherData.length).padStart(2, '0');
+
       photoIndex.textContent = number;
-      progress.style.width = (((teacherIndex + 1) / teacherData.length) * 100) + '%';
+      progress.style.width =
+        (((teacherIndex + 1) / teacherData.length) * 100) + '%';
 
       railItems.forEach((item, i) => {
         const active = i === teacherIndex;
         item.classList.toggle('active', active);
         item.setAttribute('aria-current', active ? 'true' : 'false');
       });
+    };
 
-      requestAnimationFrame(() => {
-        photo.style.opacity = '1';
-        name.style.opacity = '1';
-        description.style.opacity = '1';
-        description2.style.opacity = '1';
-      });
-    }, 170);
+    /*
+     * Both teacher images are preloaded. If the requested image is already
+     * ready, swap immediately; otherwise wait for that image only.
+     * Nothing else in the section is hidden or animated.
+     */
+    const image = teacherImages[teacherIndex];
+
+    if (image && image.complete) {
+      updateContent();
+    } else if (image) {
+      image.onload = updateContent;
+      image.onerror = updateContent;
+    } else {
+      updateContent();
+    }
   }
 
   railItems.forEach(item => {
