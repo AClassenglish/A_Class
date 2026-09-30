@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">
   <meta name="description" content="კონფიდენციალურობის პოლიტიკა — AClass English School">
   <meta name="theme-color" content="#0FA6B3">
+  <link href="https://raw.githubusercontent.com/AClassenglish/A_Class/main/images/Aclasslogo.jpeg" rel="icon" type="image/jpeg">
+  <link href="https://raw.githubusercontent.com/AClassenglish/A_Class/main/images/Aclasslogo.jpeg" rel="shortcut icon" type="image/jpeg">
+  <link href="https://raw.githubusercontent.com/AClassenglish/A_Class/main/images/Aclasslogo.jpeg" rel="apple-touch-icon">
   <title>კონფიდენციალურობის პოლიტიკა — AClass English School</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
@@ -177,6 +180,31 @@
         sans-serif;
     }
 
+    .policy-language-group + .policy-language-group{
+      margin-top:3.2rem;
+    }
+
+    .policy-language-heading{
+      padding-bottom:1rem;
+      margin-bottom:.5rem;
+      border-bottom:2px solid rgba(15,166,179,.16);
+    }
+
+    .policy-language-heading .language-label{
+      margin-bottom:0;
+      font-size:.78rem;
+    }
+
+    .policy-language-group .policy-section{
+      padding-bottom:2.2rem;
+    }
+
+    .language-divider{
+      height:1px;
+      margin:3rem 0;
+      background:var(--border);
+    }
+
     @media (max-width:600px){
       .header-inner{
         padding:.85rem 1rem;
@@ -199,16 +227,109 @@
         margin-top:1.5rem;
       }
     }
-  </style>
+  
+    /* Full-text legal document styling */
+    .policy{
+      padding:clamp(1.7rem,4vw,3.2rem);
+    }
+
+    .policy-language-group + .policy-language-group{
+      margin-top:3.5rem;
+    }
+
+    .policy-language-heading{
+      padding:0 0 .8rem;
+      margin:0 0 1.4rem;
+      border-bottom:1px solid var(--border);
+    }
+
+    .policy-language-heading .language-label{
+      margin:0;
+      font-size:.75rem;
+      letter-spacing:1.4px;
+    }
+
+    .policy-language-group .policy-section{
+      padding:0 0 1.45rem;
+      margin:0;
+    }
+
+    .policy-language-group .policy-section + .policy-section{
+      padding-top:0;
+      border-top:0;
+    }
+
+    .policy-language-group .language-block{
+      margin:0;
+    }
+
+    .policy-language-group .language-label{
+      display:none;
+    }
+
+    .policy-language-group h2{
+      display:inline;
+      font-size:1rem;
+      line-height:1.7;
+      margin:0;
+      font-weight:800;
+    }
+
+    .policy-language-group p{
+      display:inline;
+      font-size:.94rem;
+      line-height:1.8;
+      color:var(--text-gray);
+    }
+
+    .policy-language-group h2::after{
+      content:" ";
+    }
+
+    .policy-language-group ul{
+      margin:.35rem 0 0 1.2rem;
+      padding:0;
+      color:var(--text-gray);
+    }
+
+    .policy-language-group li{
+      margin:.2rem 0;
+      padding-left:.15rem;
+      font-size:.94rem;
+      line-height:1.75;
+    }
+
+    .language-divider{
+      height:1px;
+      margin:2.2rem 0 3rem;
+      background:var(--border);
+    }
+
+    @media(max-width:600px){
+      .policy{
+        padding:1.35rem;
+      }
+
+      .policy-language-group .policy-section{
+        padding-bottom:1.15rem;
+      }
+
+      .policy-language-group h2,
+      .policy-language-group p,
+      .policy-language-group li{
+        font-size:.9rem;
+      }
+    }
+</style>
 </head>
 
 <body>
 
   <header class="site-header">
     <div class="header-inner">
-      <a class="logo" href="index.html" aria-label="AClass English School — Home">
+      <a class="logo" href="index.html" aria-label="AClass English School — Home" title="Back to home">
         <img
-          src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/Aclasslogo.jpeg"
+          src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/images/Aclasslogo.jpeg"
           alt="AClass English School"
           width="42"
           height="42"
@@ -235,11 +356,13 @@
     </div>
 
     <article class="policy">
-
-      <!-- SECTION 1 -->
-      <section class="policy-section">
-
-        <div class="language-block georgian" lang="ka">
+      <section class="policy-language-group" lang="ka">
+        <div class="policy-language-heading">
+          <span class="language-label">ქართული</span>
+        </div>
+        
+        <section class="policy-section">
+          <div class="language-block georgian" lang="ka">
           <span class="language-label">ქართული</span>
           <h2>1. შესავალი</h2>
           <p>
@@ -249,24 +372,10 @@
             ჩვენი ინგლისური ენის პროგრამების შესახებ.
           </p>
         </div>
-
-        <div class="language-block english" lang="en">
-          <span class="language-label">English</span>
-          <h2>1. Introduction</h2>
-          <p>
-            AClass English School respects your privacy and is committed to protecting
-            the personal information you share with us when you use our website,
-            contact us, or request information about our English language programs.
-          </p>
-        </div>
-
-      </section>
-
-
-      <!-- SECTION 2 -->
-      <section class="policy-section">
-
-        <div class="language-block georgian" lang="ka">
+        </section>
+        
+        <section class="policy-section">
+          <div class="language-block georgian" lang="ka">
           <span class="language-label">ქართული</span>
           <h2>2. ინფორმაცია, რომელსაც შესაძლოა შევაგროვოთ</h2>
 
@@ -290,8 +399,132 @@
             </li>
           </ul>
         </div>
+        </section>
+        
+        <section class="policy-section">
+          <div class="language-block georgian" lang="ka">
+          <span class="language-label">ქართული</span>
+          <h2>3. როგორ ვიყენებთ თქვენს ინფორმაციას</h2>
 
-        <div class="language-block english" lang="en">
+          <p>
+            თქვენს მიერ მოწოდებული ინფორმაცია შესაძლოა გამოვიყენოთ თქვენს
+            შეკითხვებზე პასუხის გასაცემად, ჩვენი პროგრამებისა და სერვისების
+            შესახებ ინფორმაციის მოსაწოდებლად, თქვენს მოთხოვნებთან დაკავშირებით
+            კომუნიკაციისთვის და ჩვენი ვებსაიტისა და სერვისების შესანარჩუნებლად
+            და გასაუმჯობესებლად.
+          </p>
+        </div>
+        </section>
+        
+        <section class="policy-section">
+          <div class="language-block georgian" lang="ka">
+          <span class="language-label">ქართული</span>
+          <h2>4. ქუქი-ფაილები და ვებსაიტის ტექნოლოგიები</h2>
+
+          <p>
+            ჩვენს ვებსაიტზე შესაძლოა გამოყენებული იყოს ქუქი-ფაილები ან მსგავსი
+            ტექნოლოგიები ვებსაიტის ფუნქციონირების უზრუნველსაყოფად, ვებსაიტის
+            გამოყენების გასაანალიზებლად და მომხმარებლის გამოცდილების
+            გასაუმჯობესებლად. ქუქი-ფაილების მართვა შეგიძლიათ თქვენი ბრაუზერის
+            პარამეტრების მეშვეობით.
+          </p>
+        </div>
+        </section>
+        
+        <section class="policy-section">
+          <div class="language-block georgian" lang="ka">
+          <span class="language-label">ქართული</span>
+          <h2>5. ინფორმაციის გაზიარება</h2>
+
+          <p>
+            ჩვენ არ ვყიდით თქვენს პერსონალურ ინფორმაციას. შესაძლოა ინფორმაცია
+            გავუზიაროთ სერვისის მომწოდებლებს ან მესამე მხარეებს, როდესაც ეს
+            აუცილებელია ვებსაიტის ფუნქციონირებისთვის, თქვენ მიერ მოთხოვნილი
+            სერვისების მიწოდებისთვის ან მოქმედი სამართლებრივი ვალდებულებების
+            შესასრულებლად.
+          </p>
+        </div>
+        </section>
+        
+        <section class="policy-section">
+          <div class="language-block georgian" lang="ka">
+          <span class="language-label">ქართული</span>
+          <h2>6. მონაცემთა უსაფრთხოება</h2>
+
+          <p>
+            ჩვენ ვიღებთ გონივრულ ზომებს პერსონალური ინფორმაციის არაავტორიზებული
+            წვდომისგან, ცვლილებისგან, გამჟღავნებისგან ან განადგურებისგან
+            დასაცავად. თუმცა, მონაცემთა გადაცემის ან ელექტრონული შენახვის არცერთი
+            მეთოდი არ შეიძლება ჩაითვალოს სრულად უსაფრთხოდ.
+          </p>
+        </div>
+        </section>
+        
+        <section class="policy-section">
+          <div class="language-block georgian" lang="ka">
+          <span class="language-label">ქართული</span>
+          <h2>7. თქვენი არჩევანი</h2>
+
+          <p>
+            თქვენ შეგიძლიათ უარი თქვათ გარკვეული ინფორმაციის მოწოდებაზე, თუმცა
+            ამან შესაძლოა შეზღუდოს ჩვენი შესაძლებლობა, ვუპასუხოთ თქვენს
+            შეკითხვას ან მოგაწოდოთ თქვენ მიერ მოთხოვნილი სერვისი. შესაბამის
+            შემთხვევებში, თქვენ ასევე შეგიძლიათ მოითხოვოთ თქვენს პერსონალურ
+            ინფორმაციაზე წვდომა ან მისი შესწორება.
+          </p>
+        </div>
+        </section>
+        
+        <section class="policy-section">
+          <div class="language-block georgian" lang="ka">
+          <span class="language-label">ქართული</span>
+          <h2>8. ცვლილებები ამ პოლიტიკაში</h2>
+
+          <p>
+            ჩვენ შესაძლოა დროდადრო განვაახლოთ ეს კონფიდენციალურობის პოლიტიკა.
+            ნებისმიერი ცვლილება გამოქვეყნდება ამ გვერდზე განახლებული თარიღის
+            მითითებით.
+          </p>
+        </div>
+        </section>
+        
+        <section class="policy-section">
+          <div class="language-block georgian" lang="ka">
+          <span class="language-label">ქართული</span>
+          <h2>9. საკონტაქტო ინფორმაცია</h2>
+
+          <p>
+            თუ გაქვთ შეკითხვები ამ კონფიდენციალურობის პოლიტიკასთან დაკავშირებით
+            ან გსურთ გაიგოთ, როგორ მუშავდება თქვენი ინფორმაცია, გთხოვთ,
+            დაუკავშირდეთ AClass English School-ს ჩვენი მთავარი გვერდზე
+            მითითებული საკონტაქტო საშუალებების გამოყენებით.
+          </p>
+        </div>
+        </section>
+        
+      </section>
+
+      <div class="language-divider" aria-hidden="true"></div>
+    
+      <section class="policy-language-group" lang="en">
+        <div class="policy-language-heading">
+          <span class="language-label">English</span>
+        </div>
+        
+        <section class="policy-section">
+          <div class="language-block english" lang="en">
+          <span class="language-label">English</span>
+          <h2>1. Introduction</h2>
+          <p>
+            AClass English School respects your privacy and is committed to protecting
+            the personal information you share with us when you use our website,
+            contact us, or request information about our English language programs.
+          </p>
+        </div>
+        </section>
+        
+        <section class="policy-section">
+          <div class="language-block english" lang="en">
           <span class="language-label">English</span>
           <h2>2. Information We May Collect</h2>
 
@@ -311,27 +544,10 @@
             </li>
           </ul>
         </div>
-
-      </section>
-
-
-      <!-- SECTION 3 -->
-      <section class="policy-section">
-
-        <div class="language-block georgian" lang="ka">
-          <span class="language-label">ქართული</span>
-          <h2>3. როგორ ვიყენებთ თქვენს ინფორმაციას</h2>
-
-          <p>
-            თქვენს მიერ მოწოდებული ინფორმაცია შესაძლოა გამოვიყენოთ თქვენს
-            შეკითხვებზე პასუხის გასაცემად, ჩვენი პროგრამებისა და სერვისების
-            შესახებ ინფორმაციის მოსაწოდებლად, თქვენს მოთხოვნებთან დაკავშირებით
-            კომუნიკაციისთვის და ჩვენი ვებსაიტისა და სერვისების შესანარჩუნებლად
-            და გასაუმჯობესებლად.
-          </p>
-        </div>
-
-        <div class="language-block english" lang="en">
+        </section>
+        
+        <section class="policy-section">
+          <div class="language-block english" lang="en">
           <span class="language-label">English</span>
           <h2>3. How We Use Your Information</h2>
 
@@ -341,27 +557,10 @@
             about your requests, and maintain and improve our website and services.
           </p>
         </div>
-
-      </section>
-
-
-      <!-- SECTION 4 -->
-      <section class="policy-section">
-
-        <div class="language-block georgian" lang="ka">
-          <span class="language-label">ქართული</span>
-          <h2>4. ქუქი-ფაილები და ვებსაიტის ტექნოლოგიები</h2>
-
-          <p>
-            ჩვენს ვებსაიტზე შესაძლოა გამოყენებული იყოს ქუქი-ფაილები ან მსგავსი
-            ტექნოლოგიები ვებსაიტის ფუნქციონირების უზრუნველსაყოფად, ვებსაიტის
-            გამოყენების გასაანალიზებლად და მომხმარებლის გამოცდილების
-            გასაუმჯობესებლად. ქუქი-ფაილების მართვა შეგიძლიათ თქვენი ბრაუზერის
-            პარამეტრების მეშვეობით.
-          </p>
-        </div>
-
-        <div class="language-block english" lang="en">
+        </section>
+        
+        <section class="policy-section">
+          <div class="language-block english" lang="en">
           <span class="language-label">English</span>
           <h2>4. Cookies and Website Technologies</h2>
 
@@ -371,27 +570,10 @@
             You can manage cookies through your browser settings.
           </p>
         </div>
-
-      </section>
-
-
-      <!-- SECTION 5 -->
-      <section class="policy-section">
-
-        <div class="language-block georgian" lang="ka">
-          <span class="language-label">ქართული</span>
-          <h2>5. ინფორმაციის გაზიარება</h2>
-
-          <p>
-            ჩვენ არ ვყიდით თქვენს პერსონალურ ინფორმაციას. შესაძლოა ინფორმაცია
-            გავუზიაროთ სერვისის მომწოდებლებს ან მესამე მხარეებს, როდესაც ეს
-            აუცილებელია ვებსაიტის ფუნქციონირებისთვის, თქვენ მიერ მოთხოვნილი
-            სერვისების მიწოდებისთვის ან მოქმედი სამართლებრივი ვალდებულებების
-            შესასრულებლად.
-          </p>
-        </div>
-
-        <div class="language-block english" lang="en">
+        </section>
+        
+        <section class="policy-section">
+          <div class="language-block english" lang="en">
           <span class="language-label">English</span>
           <h2>5. Sharing of Information</h2>
 
@@ -401,26 +583,10 @@
             provide requested services, or comply with applicable legal obligations.
           </p>
         </div>
-
-      </section>
-
-
-      <!-- SECTION 6 -->
-      <section class="policy-section">
-
-        <div class="language-block georgian" lang="ka">
-          <span class="language-label">ქართული</span>
-          <h2>6. მონაცემთა უსაფრთხოება</h2>
-
-          <p>
-            ჩვენ ვიღებთ გონივრულ ზომებს პერსონალური ინფორმაციის არაავტორიზებული
-            წვდომისგან, ცვლილებისგან, გამჟღავნებისგან ან განადგურებისგან
-            დასაცავად. თუმცა, მონაცემთა გადაცემის ან ელექტრონული შენახვის არცერთი
-            მეთოდი არ შეიძლება ჩაითვალოს სრულად უსაფრთხოდ.
-          </p>
-        </div>
-
-        <div class="language-block english" lang="en">
+        </section>
+        
+        <section class="policy-section">
+          <div class="language-block english" lang="en">
           <span class="language-label">English</span>
           <h2>6. Data Security</h2>
 
@@ -431,27 +597,10 @@
             completely secure.
           </p>
         </div>
-
-      </section>
-
-
-      <!-- SECTION 7 -->
-      <section class="policy-section">
-
-        <div class="language-block georgian" lang="ka">
-          <span class="language-label">ქართული</span>
-          <h2>7. თქვენი არჩევანი</h2>
-
-          <p>
-            თქვენ შეგიძლიათ უარი თქვათ გარკვეული ინფორმაციის მოწოდებაზე, თუმცა
-            ამან შესაძლოა შეზღუდოს ჩვენი შესაძლებლობა, ვუპასუხოთ თქვენს
-            შეკითხვას ან მოგაწოდოთ თქვენ მიერ მოთხოვნილი სერვისი. შესაბამის
-            შემთხვევებში, თქვენ ასევე შეგიძლიათ მოითხოვოთ თქვენს პერსონალურ
-            ინფორმაციაზე წვდომა ან მისი შესწორება.
-          </p>
-        </div>
-
-        <div class="language-block english" lang="en">
+        </section>
+        
+        <section class="policy-section">
+          <div class="language-block english" lang="en">
           <span class="language-label">English</span>
           <h2>7. Your Choices</h2>
 
@@ -462,25 +611,10 @@
             personal information.
           </p>
         </div>
-
-      </section>
-
-
-      <!-- SECTION 8 -->
-      <section class="policy-section">
-
-        <div class="language-block georgian" lang="ka">
-          <span class="language-label">ქართული</span>
-          <h2>8. ცვლილებები ამ პოლიტიკაში</h2>
-
-          <p>
-            ჩვენ შესაძლოა დროდადრო განვაახლოთ ეს კონფიდენციალურობის პოლიტიკა.
-            ნებისმიერი ცვლილება გამოქვეყნდება ამ გვერდზე განახლებული თარიღის
-            მითითებით.
-          </p>
-        </div>
-
-        <div class="language-block english" lang="en">
+        </section>
+        
+        <section class="policy-section">
+          <div class="language-block english" lang="en">
           <span class="language-label">English</span>
           <h2>8. Changes to This Policy</h2>
 
@@ -489,26 +623,10 @@
             published on this page together with an updated revision date.
           </p>
         </div>
-
-      </section>
-
-
-      <!-- SECTION 9 -->
-      <section class="policy-section">
-
-        <div class="language-block georgian" lang="ka">
-          <span class="language-label">ქართული</span>
-          <h2>9. საკონტაქტო ინფორმაცია</h2>
-
-          <p>
-            თუ გაქვთ შეკითხვები ამ კონფიდენციალურობის პოლიტიკასთან დაკავშირებით
-            ან გსურთ გაიგოთ, როგორ მუშავდება თქვენი ინფორმაცია, გთხოვთ,
-            დაუკავშირდეთ AClass English School-ს ჩვენი მთავარი გვერდზე
-            მითითებული საკონტაქტო საშუალებების გამოყენებით.
-          </p>
-        </div>
-
-        <div class="language-block english" lang="en">
+        </section>
+        
+        <section class="policy-section">
+          <div class="language-block english" lang="en">
           <span class="language-label">English</span>
           <h2>9. Contact</h2>
 
@@ -518,10 +636,10 @@
             provided on our home page.
           </p>
         </div>
-
+        </section>
+        
       </section>
-
-    </article>
+</article>
   </main>
 
 </body>
