@@ -239,22 +239,25 @@
 .content-editor a{color:#0fa6b3}
 @media (max-width:1100px){.editor-workspace-single{grid-template-columns:1fr}.site-preview-pane{min-width:0}}
 
-/* Focused Website CMS: Policies + Packages */
-.package-admin-list{display:grid;gap:12px}
-.package-admin-row{display:grid;grid-template-columns:minmax(220px,1.5fr) 150px 120px 150px 110px;gap:12px;align-items:end;padding:16px;border:1px solid var(--border);border-radius:14px;background:#fff}
-.package-admin-row .package-name strong{display:block;font-size:14px}
-.package-admin-row .package-name small{display:block;color:var(--muted);margin-top:4px}
-.package-admin-row .field-label{margin:0}
-.package-admin-row input,.package-admin-row select{width:100%}
-.package-admin-actions{display:flex;align-items:center;gap:8px;justify-content:flex-end}
-.package-admin-actions button{white-space:nowrap}
-.package-admin-note{display:flex;gap:10px;align-items:flex-start;margin-bottom:16px;padding:12px 14px;border:1px solid #dcece9;border-radius:12px;background:#f7fbfa;color:#526467;font-size:12px;line-height:1.5}
-.package-admin-note strong{color:#1c3437;white-space:nowrap}
-.package-status{display:flex;align-items:center;gap:7px;min-height:40px}
-.package-status input{width:auto}
-.package-price-input{text-align:right;font-weight:700}
-@media(max-width:1100px){.package-admin-row{grid-template-columns:1fr 1fr}.package-admin-actions{justify-content:flex-start}.package-status{align-self:center}}
-@media(max-width:700px){.package-admin-row{grid-template-columns:1fr}.package-admin-actions{justify-content:stretch}.package-admin-actions button{flex:1}}
+/* Focused Website CMS: Policies + Products */
+.package-admin-list{display:grid;gap:18px}
+.package-group{border:1px solid var(--border);border-radius:16px;background:#fff;overflow:hidden}
+.package-group-head{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:15px 18px;background:#f7fbfa;border-bottom:1px solid var(--border)}
+.package-group-head strong{font-size:14px;color:#193336}.package-group-head span{font-size:12px;color:var(--muted)}
+.package-group-items{display:grid;gap:10px;padding:12px}
+.package-admin-row{display:grid;grid-template-columns:minmax(230px,1.5fr) 150px 130px 130px minmax(150px,1fr);gap:12px;align-items:center;padding:14px;border:1px solid #e7eeee;border-radius:13px;background:#fff}
+.package-admin-row .package-name strong{display:block;font-size:14px}.package-admin-row .package-name small{display:block;color:var(--muted);margin-top:4px}
+.package-admin-row .field-label{margin:0}.package-admin-row input,.package-admin-row select{width:100%}
+.package-admin-actions{display:flex;align-items:center;gap:8px;justify-content:flex-end}.package-admin-actions button{white-space:nowrap}
+.package-admin-note{display:flex;gap:10px;align-items:flex-start;margin-bottom:16px;padding:12px 14px;border:1px solid #dcece9;border-radius:12px;background:#f7fbfa;color:#526467;font-size:12px;line-height:1.5}.package-admin-note strong{color:#1c3437;white-space:nowrap}
+.package-status{display:flex;align-items:center;gap:7px;min-height:40px}.package-status input{width:auto}.package-price-input{text-align:right;font-weight:700}
+.product-editor{margin-top:18px;padding:20px;border:1px solid var(--border);border-radius:16px;background:#fbfdfd}.product-editor.hidden{display:none}
+.product-editor-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.product-editor-grid .full{grid-column:1/-1}
+.product-editor textarea{width:100%;min-height:92px;resize:vertical}.product-editor .editor-section{margin-top:18px;padding-top:18px;border-top:1px solid var(--border)}
+.product-editor .editor-section h4{margin:0 0 10px;color:#193336}.product-editor-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:18px}.feature-hint{font-size:11px;color:var(--muted);margin-top:5px}
+.product-badges{display:flex;gap:6px;flex-wrap:wrap;margin-top:7px}.product-badge{font-size:10px;padding:4px 7px;border-radius:999px;background:#eef7f5;color:#315c5c}.product-badge.warn{background:#fff5df;color:#8b6416}
+@media(max-width:1100px){.package-admin-row{grid-template-columns:1fr 1fr}.package-admin-actions{justify-content:flex-start}.package-status{align-self:center}.product-editor-grid{grid-template-columns:1fr}}
+@media(max-width:700px){.package-admin-row{grid-template-columns:1fr}.package-admin-actions{justify-content:stretch}.package-admin-actions button{flex:1}.package-group-head{align-items:flex-start;flex-direction:column}}
 
 </style>
 </head>
@@ -571,19 +574,73 @@
           <div class="card cms-card">
             <div class="card-head">
               <div>
-                <h3>Packages & Prices</h3>
-                <p>These prices will be used by the student checkout. Set the price before enabling payment.</p>
+                <h3>Packages & Products</h3>
+                <p>Manage the products customers will see and enroll in. Prices and product details are stored here for the website and checkout.</p>
               </div>
-              <button class="ghost" id="seedPackagesButton">Create packages</button>
+              <button class="primary small-primary" id="addPackageButton">+ Add product</button>
             </div>
 
             <div class="package-admin-note">
-              <strong>Payment connection</strong>
-              <span>Changing a price here changes the amount available to the checkout after the public payment page is connected to this package list.</span>
+              <strong>Product catalog</strong>
+              <span>Products are grouped by IELTS, SAT, and General English. You can edit titles, descriptions, lesson details, features, prices, and payment availability without touching the website code.</span>
             </div>
 
             <div id="packagesList" class="package-admin-list"></div>
-            <div id="packagesEmpty" class="coming hidden">No packages yet. Click “Create packages” to add the standard AClass package list.</div>
+            <div id="packagesEmpty" class="coming hidden">No products yet. Click “Add product” to create the first one.</div>
+
+            <form id="productEditor" class="product-editor hidden">
+              <div class="editor-top">
+                <div><span class="eyebrow">Product editor</span><h3 id="productEditorHeading">Add product</h3></div>
+                <button type="button" class="ghost" id="cancelProductButton">Cancel</button>
+              </div>
+              <input type="hidden" id="productId">
+              <div class="product-editor-grid">
+                <label class="field-label">Category
+                  <select id="productCategory" required>
+                    <option value="">Select category</option><option value="ielts">IELTS</option><option value="sat">SAT</option><option value="general_english">General English</option>
+                  </select>
+                </label>
+                <label class="field-label">Product key
+                  <input id="productKey" required placeholder="ielts_group">
+                </label>
+                <label class="field-label">Title — English<input id="productNameEn" required></label>
+                <label class="field-label">Title — Russian<input id="productNameRu" required></label>
+                <label class="field-label">Title — Georgian<input id="productNameGe" required></label>
+                <label class="field-label">Format<input id="productFormat" placeholder="Group / Individual / Pair"></label>
+                <label class="field-label full">Description — English<textarea id="productDescEn"></textarea></label>
+                <label class="field-label full">Description — Russian<textarea id="productDescRu"></textarea></label>
+                <label class="field-label full">Description — Georgian<textarea id="productDescGe"></textarea></label>
+              </div>
+
+              <div class="editor-section">
+                <h4>Course details</h4>
+                <div class="product-editor-grid">
+                  <label class="field-label">Lessons<input id="productLessons" type="number" min="0" step="1" placeholder="16"></label>
+                  <label class="field-label">Lessons per week<input id="productLessonsWeek" type="number" min="0" step="1" placeholder="2"></label>
+                  <label class="field-label">Lesson length — minutes<input id="productLessonMinutes" type="number" min="0" step="1" placeholder="90"></label>
+                  <label class="field-label">Duration — weeks<input id="productDurationWeeks" type="number" min="0" step="1" placeholder="8"></label>
+                  <label class="field-label">Price<input id="productPrice" type="number" min="0" step="0.01" placeholder="0.00"></label>
+                  <label class="field-label">Currency<select id="productCurrency"><option value="GEL">GEL</option><option value="AMD">AMD</option></select></label>
+                </div>
+              </div>
+
+              <div class="editor-section">
+                <h4>Features</h4>
+                <div class="product-editor-grid">
+                  <label class="field-label">Features — English<textarea id="productFeaturesEn" placeholder="One feature per line"></textarea></label>
+                  <label class="field-label">Features — Russian<textarea id="productFeaturesRu" placeholder="One feature per line"></textarea></label>
+                  <label class="field-label">Features — Georgian<textarea id="productFeaturesGe" placeholder="One feature per line"></textarea></label>
+                  <label class="field-label">Display order<input id="productSortOrder" type="number" step="1" value="0"></label>
+                </div>
+                <div class="feature-hint">Enter one feature per line. Example: Placement test, Weekly speaking practice, Homework.</div>
+              </div>
+
+              <div class="editor-section">
+                <label class="publish-toggle"><input type="checkbox" id="productActive" checked> Active</label>
+                <label class="publish-toggle"><input type="checkbox" id="productPaymentEnabled"> Payment enabled</label>
+              </div>
+              <div class="product-editor-actions"><button type="submit" class="primary">Save product</button></div>
+            </form>
           </div>
         </div>
 
@@ -939,134 +996,68 @@ document.addEventListener('DOMContentLoaded', async () => {
     setTimeout(()=>el.classList.add('hidden'),3000);
   }
 
-  function currentPackageName(row){
-    return row['name_'+cmsLanguage] || row.name_en || row.package_key;
-  }
-
-  function currentSiteUrlForPolicy(page){
-    const file = cmsLanguage==='ru' ? 'ru.html' : (cmsLanguage==='ge' ? 'Ge.html' : 'index.html');
-    return './' + page.slug + '.html';
-  }
-
-  function renderPolicies(){
-    const list=document.getElementById('policyList');
-    const policies=cmsPages.filter(p=>POLICY_SLUGS.includes(String(p.slug||'').toLowerCase()));
-
-    list.innerHTML=policies.map(p=>`
-      <button class="page-list-item ${p.id===selectedPolicyId?'active':''}" data-policy-id="${p.id}">
-        <strong>${cmsEsc(p.title||p.slug)}</strong>
-        <span>${cmsEsc(p.slug)}</span>
-      </button>
-    `).join('');
-
-    document.getElementById('policyEmpty').classList.toggle('hidden',policies.length!==0);
-    if(selectedPolicyId && !policies.some(p=>p.id===selectedPolicyId)) selectedPolicyId=null;
-  }
-
-  function openPolicyEditor(page){
-    selectedPolicyId=page.id;
-    document.getElementById('policyEditorEmpty').classList.add('hidden');
-    document.getElementById('policyEditor').classList.remove('hidden');
-    document.getElementById('policyId').value=page.id;
-    document.getElementById('policyTitle').value=page.title||'';
-    document.getElementById('policyContentEditor').innerHTML=page.content_html||'';
-    document.getElementById('policyPublished').checked=page.published!==false;
-    document.getElementById('policyEditorHeading').textContent='Edit '+(page.title||page.slug);
-    const url=currentSiteUrlForPolicy(page);
-    document.getElementById('policySiteUrlLabel').textContent=url;
-    document.getElementById('openPolicySite').href=url;
-    document.getElementById('policySitePreview').src=url;
-    renderPolicies();
-  }
+  function currentPackageName(row){ return row['name_'+cmsLanguage] || row.name_en || row.package_key; }
+  function categoryLabel(category){ return ({ielts:'IELTS',sat:'SAT',general_english:'General English'})[category] || 'Needs category'; }
+  function linesToArray(value){ return String(value||'').split(/\r?\n/).map(x=>x.trim()).filter(Boolean); }
+  function arrayToLines(value){ return Array.isArray(value) ? value.join('\n') : ''; }
+  function numberOrNull(id){ const v=document.getElementById(id).value.trim(); return v===''?null:Number(v); }
 
   function renderPackages(){
     const list=document.getElementById('packagesList');
-    if(!cmsPackages.length){
-      list.innerHTML='';
-      document.getElementById('packagesEmpty').classList.remove('hidden');
-      return;
-    }
-
+    if(!cmsPackages.length){ list.innerHTML=''; document.getElementById('packagesEmpty').classList.remove('hidden'); return; }
     document.getElementById('packagesEmpty').classList.add('hidden');
-
-    list.innerHTML=cmsPackages.map(p=>`
-      <div class="package-admin-row" data-package-id="${p.id}">
-        <div class="package-name">
-          <strong>${cmsEsc(currentPackageName(p))}</strong>
-          <small>${cmsEsc(p.package_key)}</small>
-        </div>
-
-        <label class="field-label">
-          Price
-          <input class="package-price-input" type="number" min="0" step="0.01" value="${p.price==null?'':cmsEsc(p.price)}" placeholder="0.00">
-        </label>
-
-        <label class="field-label">
-          Currency
-          <select class="package-currency">
-            <option value="GEL" ${p.currency==='GEL'?'selected':''}>GEL</option>
-            <option value="AMD" ${p.currency==='AMD'?'selected':''}>AMD</option>
-          </select>
-        </label>
-
-        <label class="package-status">
-          <input type="checkbox" class="package-payment-enabled" ${p.payment_enabled?'checked':''}>
-          <span>Payment enabled</span>
-        </label>
-
-        <div class="package-admin-actions">
-          <button type="button" class="tiny-btn" data-save-package>Save</button>
-        </div>
-      </div>
-    `).join('');
+    const groups=[['ielts','IELTS'],['sat','SAT'],['general_english','General English'],['uncategorized','Needs category']];
+    list.innerHTML=groups.map(([key,label])=>{
+      const items=cmsPackages.filter(p=>(p.category||'uncategorized')===key);
+      if(!items.length) return '';
+      return `<section class="package-group"><div class="package-group-head"><div><strong>${label}</strong><span> · ${items.length} product${items.length===1?'':'s'}</span></div><button type="button" class="ghost tiny-btn" data-add-category="${key==='uncategorized'?'':key}">+ Add here</button></div><div class="package-group-items">${items.map(p=>{
+        const missing=!p.category;
+        return `<div class="package-admin-row" data-package-id="${p.id}">
+          <div class="package-name"><strong>${cmsEsc(currentPackageName(p))}</strong><small>${cmsEsc(p.package_key)}</small><div class="product-badges"><span class="product-badge">${cmsEsc(categoryLabel(p.category))}</span>${p.active?'<span class="product-badge">Active</span>':'<span class="product-badge warn">Inactive</span>'}${p.payment_enabled?'<span class="product-badge">Payment on</span>':'<span class="product-badge warn">Payment off</span>'}${missing?'<span class="product-badge warn">Choose category</span>':''}</div></div>
+          <label class="field-label">Price<input class="package-price-input" type="number" min="0" step="0.01" value="${p.price==null?'':cmsEsc(p.price)}" placeholder="0.00"></label>
+          <label class="field-label">Currency<select class="package-currency"><option value="GEL" ${p.currency==='GEL'?'selected':''}>GEL</option><option value="AMD" ${p.currency==='AMD'?'selected':''}>AMD</option></select></label>
+          <label class="package-status"><input type="checkbox" class="package-payment-enabled" ${p.payment_enabled?'checked':''}><span>Payment</span></label>
+          <div class="package-admin-actions"><button type="button" class="tiny-btn" data-edit-package>Edit</button><button type="button" class="tiny-btn" data-save-package>Save</button></div>
+        </div>`;
+      }).join('')}</div></section>`;
+    }).join('');
   }
+
+  function openProductEditor(product=null, category=''){
+    document.getElementById('productEditor').classList.remove('hidden');
+    document.getElementById('productEditorHeading').textContent=product?'Edit product':'Add product';
+    document.getElementById('productId').value=product?.id||'';
+    document.getElementById('productCategory').value=product?.category||category||'';
+    document.getElementById('productKey').value=product?.package_key||'';
+    document.getElementById('productNameEn').value=product?.name_en||'';
+    document.getElementById('productNameRu').value=product?.name_ru||'';
+    document.getElementById('productNameGe').value=product?.name_ge||'';
+    document.getElementById('productFormat').value=product?.format||'';
+    document.getElementById('productDescEn').value=product?.description_en||'';
+    document.getElementById('productDescRu').value=product?.description_ru||'';
+    document.getElementById('productDescGe').value=product?.description_ge||'';
+    document.getElementById('productLessons').value=product?.lessons??'';
+    document.getElementById('productLessonsWeek').value=product?.lessons_per_week??'';
+    document.getElementById('productLessonMinutes').value=product?.lesson_length_minutes??'';
+    document.getElementById('productDurationWeeks').value=product?.duration_weeks??'';
+    document.getElementById('productPrice').value=product?.price??'';
+    document.getElementById('productCurrency').value=product?.currency||'GEL';
+    document.getElementById('productFeaturesEn').value=arrayToLines(product?.features_en);
+    document.getElementById('productFeaturesRu').value=arrayToLines(product?.features_ru);
+    document.getElementById('productFeaturesGe').value=arrayToLines(product?.features_ge);
+    document.getElementById('productSortOrder').value=product?.sort_order??0;
+    document.getElementById('productActive').checked=product?.active!==false;
+    document.getElementById('productPaymentEnabled').checked=product?.payment_enabled===true;
+    document.getElementById('productEditor').scrollIntoView({behavior:'smooth',block:'start'});
+  }
+  function closeProductEditor(){ document.getElementById('productEditor').classList.add('hidden'); }
 
   async function loadCMS(){
-    const {data:pages,error:pagesError}=await supabase
-      .from('site_pages')
-      .select('*')
-      .eq('language',cmsLanguage)
-      .order('slug');
-
-    if(pagesError){
-      cmsNotify('Could not load website pages: '+pagesError.message,true);
-      return;
-    }
-
-    const {data:packages,error:packagesError}=await supabase
-      .from('site_packages')
-      .select('*')
-      .order('sort_order');
-
-    if(packagesError){
-      cmsNotify('Packages table is not ready yet. Run the package SQL setup first.',true);
-      cmsPages=pages||[];
-      cmsPackages=[];
-      renderPolicies();
-      renderPackages();
-      return;
-    }
-
-    cmsPages=pages||[];
-    cmsPackages=packages||[];
-    renderPolicies();
-    renderPackages();
-  }
-
-  async function seedPackages(){
-    const rows=PACKAGE_SEED.map(p=>({
-      ...p,
-      price:null,
-      currency:'GEL',
-      active:true,
-      payment_enabled:false
-    }));
-
-    const {data,error}=await supabase.from('site_packages').upsert(rows,{onConflict:'package_key'}).select();
-    if(error){cmsNotify(error.message,true);return;}
-    cmsPackages=data||[];
-    renderPackages();
-    cmsNotify('Package list created. Add the real prices, then enable payment.');
+    const {data:pages,error:pagesError}=await supabase.from('site_pages').select('*').eq('language',cmsLanguage).order('slug');
+    if(pagesError){ cmsNotify('Could not load website pages: '+pagesError.message,true); return; }
+    const {data:packages,error:packagesError}=await supabase.from('site_packages').select('*').order('sort_order').order('id');
+    if(packagesError){ cmsNotify('Packages table is not ready yet. Run the upgraded package SQL first.',true); cmsPages=pages||[]; cmsPackages=[]; renderPolicies(); renderPackages(); return; }
+    cmsPages=pages||[]; cmsPackages=packages||[]; renderPolicies(); renderPackages();
   }
 
   document.getElementById('websiteNav').addEventListener('click', async ()=>{
@@ -1136,48 +1127,57 @@ document.addEventListener('DOMContentLoaded', async () => {
     cmsNotify('Policy saved.');
   });
 
-  document.getElementById('seedPackagesButton').addEventListener('click',async()=>{
-    if(!confirm('Create the six standard AClass packages? Existing package prices will not be replaced.'))return;
-    await seedPackages();
-  });
+  document.getElementById('addPackageButton').addEventListener('click',()=>openProductEditor());
+  document.getElementById('cancelProductButton').addEventListener('click',closeProductEditor);
 
   document.getElementById('packagesList').addEventListener('click',async e=>{
+    const add=e.target.closest('[data-add-category]');
+    if(add){ openProductEditor(null,add.dataset.addCategory||''); return; }
+    const edit=e.target.closest('[data-edit-package]');
+    if(edit){ const row=edit.closest('[data-package-id]'); const product=cmsPackages.find(p=>String(p.id)===row.dataset.packageId); if(product)openProductEditor(product); return; }
     const save=e.target.closest('[data-save-package]');
     if(!save)return;
-
-    const row=save.closest('[data-package-id]');
-    const id=Number(row.dataset.packageId);
-    const priceInput=row.querySelector('.package-price-input');
-    const price=priceInput.value.trim()===''?null:Number(priceInput.value);
-
-    if(price!==null && (!Number.isFinite(price)||price<0)){
-      cmsNotify('Enter a valid non-negative price.',true);
-      return;
-    }
-
+    const row=save.closest('[data-package-id]'); const id=Number(row.dataset.packageId);
+    const priceInput=row.querySelector('.package-price-input'); const price=priceInput.value.trim()===''?null:Number(priceInput.value);
+    if(price!==null && (!Number.isFinite(price)||price<0)){cmsNotify('Enter a valid non-negative price.',true);return;}
     const paymentEnabled=row.querySelector('.package-payment-enabled').checked;
-    if(paymentEnabled && (price===null || price<=0)){
-      cmsNotify('Set a real price before enabling payment.',true);
-      return;
-    }
-
-    const payload={
-      price,
-      currency:row.querySelector('.package-currency').value,
-      payment_enabled:paymentEnabled,
-      updated_at:new Date().toISOString()
-    };
-
+    if(paymentEnabled && (price===null || price<=0)){cmsNotify('Set a real price before enabling payment.',true);return;}
+    const payload={price,currency:row.querySelector('.package-currency').value,payment_enabled:paymentEnabled,updated_at:new Date().toISOString()};
     const {data,error}=await supabase.from('site_packages').update(payload).eq('id',id).select().single();
-    if(error){cmsNotify(error.message,true);return;}
-
-    const index=cmsPackages.findIndex(p=>p.id===id);
-    if(index>=0)cmsPackages[index]=data;
-    renderPackages();
-    cmsNotify('Package price saved.');
+    if(error){cmsNotify(error.message,true);return;} const index=cmsPackages.findIndex(p=>p.id===id); if(index>=0)cmsPackages[index]=data; renderPackages(); cmsNotify('Price and payment settings saved.');
   });
 
-  // Keep the package management tab usable even before the first load.
+  document.getElementById('productEditor').addEventListener('submit',async e=>{
+    e.preventDefault();
+    const idValue=document.getElementById('productId').value.trim();
+    const category=document.getElementById('productCategory').value;
+    const packageKey=document.getElementById('productKey').value.trim();
+    const price=numberOrNull('productPrice');
+    const paymentEnabled=document.getElementById('productPaymentEnabled').checked;
+    if(!category){cmsNotify('Choose a product category.',true);return;}
+    if(!packageKey){cmsNotify('Product key is required.',true);return;}
+    if(price!==null && (!Number.isFinite(price)||price<0)){cmsNotify('Enter a valid price.',true);return;}
+    if(paymentEnabled && (price===null || price<=0)){cmsNotify('Set a real price before enabling payment.',true);return;}
+    const payload={
+      package_key:packageKey, category,
+      name_en:document.getElementById('productNameEn').value.trim(), name_ru:document.getElementById('productNameRu').value.trim(), name_ge:document.getElementById('productNameGe').value.trim(),
+      description_en:document.getElementById('productDescEn').value.trim(), description_ru:document.getElementById('productDescRu').value.trim(), description_ge:document.getElementById('productDescGe').value.trim(),
+      lessons:numberOrNull('productLessons'), lessons_per_week:numberOrNull('productLessonsWeek'), lesson_length_minutes:numberOrNull('productLessonMinutes'), duration_weeks:numberOrNull('productDurationWeeks'), format:document.getElementById('productFormat').value.trim(),
+      price, currency:document.getElementById('productCurrency').value,
+      features_en:linesToArray(document.getElementById('productFeaturesEn').value), features_ru:linesToArray(document.getElementById('productFeaturesRu').value), features_ge:linesToArray(document.getElementById('productFeaturesGe').value),
+      sort_order:Number(document.getElementById('productSortOrder').value||0), active:document.getElementById('productActive').checked, payment_enabled:paymentEnabled, updated_at:new Date().toISOString()
+    };
+    if(!payload.name_en||!payload.name_ru||!payload.name_ge){cmsNotify('Add the product title in all three languages.',true);return;}
+    let result;
+    if(idValue){ result=await supabase.from('site_packages').update(payload).eq('id',Number(idValue)).select().single(); }
+    else { result=await supabase.from('site_packages').insert(payload).select().single(); }
+    if(result.error){cmsNotify(result.error.message,true);return;}
+    if(idValue){const i=cmsPackages.findIndex(p=>p.id===Number(idValue));if(i>=0)cmsPackages[i]=result.data;}else cmsPackages.push(result.data);
+    cmsPackages.sort((a,b)=>(a.sort_order||0)-(b.sort_order||0)||(a.id||0)-(b.id||0));
+    renderPackages(); closeProductEditor(); cmsNotify(idValue?'Product updated.':'Product created.');
+  });
+
+  // Load website CMS only when the Website section is opened.
 
 
 });
