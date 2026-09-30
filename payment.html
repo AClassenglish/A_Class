@@ -532,6 +532,8 @@
       }
     }
   </style>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 
 <body>
@@ -564,6 +566,7 @@
         <strong>TEST MODE</strong><br>
         This page is currently designed for testing the checkout experience only.
         The payment button does not contact a bank or payment provider and does not charge a card.
+        For testing, the student/order details are saved to the AClass Payments database.
         Real payment processing will be connected later through the official payment API.
       </div>
     </div>
@@ -662,7 +665,7 @@
           </div>
 
           <div class="helper">
-            These fields are used only by this local browser test and are never sent to a payment provider.
+            These test card fields are used only for local validation and are never saved to the AClass database or sent to a payment provider.
           </div>
         </div>
 
@@ -699,8 +702,8 @@
       <h2>Test Payment Successful</h2>
 
       <p>
-        The checkout flow worked successfully. No real money was charged.
-        This confirms that the front-end payment process is ready for the next stage.
+        The test order was successfully saved to the AClass Payments database. No real money was charged.
+        This confirms that the checkout form can create an order record for the next stage.
       </p>
 
       <div class="test-reference">
@@ -723,6 +726,12 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function () {
+      // AClass Payments — Supabase connection
+      // This is a publishable client key. Never put a Supabase secret/service_role key here.
+      const SUPABASE_URL = 'https://tideabdwbgekztipetfu.supabase.co';
+      const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_3PbDtf_Qd6vdLWuO-kV_WA__MMFoFUs';
+      const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
+
       const form = document.getElementById('paymentForm');
       const packageSelect = document.getElementById('package');
       const selectedPackageName = document.getElementById('selectedPackageName');
@@ -769,7 +778,7 @@
         return 'ACLASS-TEST-' + random;
       }
 
-      form.addEventListener('submit', function (event) {
+      form.addEventListener('submit', async function (event) {
         event.preventDefault();
         clearError();
 
@@ -809,15 +818,41 @@
           return;
         }
 
-        payButton.disabled = true;
-        payButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i><span>Processing test payment…</span>';
+        const orderReference = makeReference();
 
-        setTimeout(function () {
-          referenceNumber.textContent = makeReference();
+        payButton.disabled = true;
+        payButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i><span>Saving test order…</span>';
+
+        try {
+          const { error } = await supabase
+            .from('orders')
+            .insert([{
+              order_reference: orderReference,
+              student_name: fullName,
+              phone: phone,
+              email: email,
+              package_name: packageSelect.value,
+              amount: 100,
+              currency: 'GEL',
+              payment_status: 'test_paid'
+            }]);
+
+          if (error) {
+            console.error('Supabase order error:', error);
+            throw error;
+          }
+
+          referenceNumber.textContent = orderReference;
           checkout.style.display = 'none';
           successScreen.classList.add('show');
           window.scrollTo({ top: 0, behavior: 'smooth' });
-        }, 1200);
+        } catch (error) {
+          payButton.disabled = false;
+          payButton.innerHTML = '<i class="fas fa-lock"></i><span>Test Pay — 100 GEL</span>';
+
+          const details = error && error.message ? ' ' + error.message : '';
+          showError('The test order could not be saved to the database.' + details);
+        }
       });
     });
   </script>
