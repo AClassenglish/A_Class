@@ -667,7 +667,10 @@
                 <h3>Packages & Products</h3>
                 <p>Manage the products customers will see and enroll in. Prices and product details are stored here for the website and checkout.</p>
               </div>
-              <button class="primary small-primary" id="addPackageButton">+ Add product</button>
+              <div style="display:flex;gap:8px;align-items:center">
+                <button type="button" class="ghost small-primary" id="refreshPackagesButton">↻ Refresh</button>
+                <button class="primary small-primary" id="addPackageButton">+ Add product</button>
+              </div>
             </div>
 
             <div class="package-admin-note">
@@ -675,8 +678,13 @@
               <span>Manage IELTS, SAT, and General English products here. Edit titles, descriptions, lesson details, features, prices, and payment availability without touching the website code.</span>
             </div>
 
+            <div id="packagesLoading" class="coming">Loading packages from Supabase…</div>
             <div id="packagesList" class="package-admin-list"></div>
-            <div id="packagesEmpty" class="coming hidden">No packages were returned from the database yet.</div>
+            <div id="packagesEmpty" class="coming hidden">
+      <strong>No packages found.</strong><br>
+      The site_packages table is reachable, but it currently contains no products.
+      Use <b>+ Add product</b> to create one.
+    </div>
 
             <form id="productEditor" class="product-editor hidden">
               <div class="editor-top">
@@ -1142,7 +1150,9 @@ document.addEventListener('DOMContentLoaded', async () => {
   function renderPackages(){
     const list=document.getElementById('packagesList');
     const empty=document.getElementById('packagesEmpty');
+    const loading=document.getElementById('packagesLoading');
     if(!list) return;
+    if(loading) loading.classList.add('hidden');
     if(!cmsPackages.length){
       list.innerHTML='';
       if(empty){
@@ -1243,12 +1253,25 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
   function closeProductEditor(){ document.getElementById('productEditor').classList.add('hidden'); }
 
-  async function ensurePackageCatalog(){
-    // The previous build defined PACKAGE_SEED but never actually inserted it.
-    // Seed any missing starter products so a fresh/empty site_packages table is usable.
+  async function loadPackageRows(){
+    return await supabase
+      .from('site_packages')
+      .select('*')
+      .order('sort_order', { ascending:true })
+      .order('id', { ascending:true });
+  }
+
+  async function ensurePackageCatalog(existingRows){
+    // Only seed when the table is genuinely empty.
+    // Loading existing rows is always the first priority.
+    const rows = Array.isArray(existingRows) ? existingRows : [];
+    if(rows.length) return {data:true,error:null,seeded:false};
+
     const seedRows = PACKAGE_SEED.map((p,index)=>({
       ...p,
-      category: p.package_key.startsWith('general_english') ? 'general_english' : 'ielts',
+      category: p.package_key === 'general_english_group' || p.package_key === 'general_english_individual'
+        ? 'general_english'
+        : 'ielts',
       description_en: p.name_en,
       description_ru: p.name_ru,
       description_ge: p.name_ge,
@@ -1256,7 +1279,8 @@ document.addEventListener('DOMContentLoaded', async () => {
       lessons_per_week: 3,
       lesson_length_minutes: 60,
       duration_weeks: 4,
-      format: p.package_key.includes('individual') ? 'Individual' : (p.package_key.includes('pair') ? 'Pair' : 'Group'),
+      format: p.package_key.includes('individual') ? 'Individual'
+        : (p.package_key.includes('pair') ? 'Pair' : 'Group'),
       price: null,
       currency: 'GEL',
       features_en: [],
@@ -1268,48 +1292,87 @@ document.addEventListener('DOMContentLoaded', async () => {
       updated_at: new Date().toISOString()
     }));
 
-    const existingRes = await supabase.from('site_packages').select('id,package_key');
-    if(existingRes.error) return existingRes;
+    const insertRes = await supabase
+      .from('site_packages')
+      .insert(seedRows)
+      .select('*');
 
-    const existingKeys = new Set((existingRes.data || []).map(row => row.package_key));
-    const missing = seedRows.filter(row => !existingKeys.has(row.package_key));
-    if(missing.length){
-      const insertRes = await supabase.from('site_packages').insert(missing).select();
-      if(insertRes.error) return insertRes;
-    }
-    return {data:true,error:null};
+    if(insertRes.error) return {data:null,error:insertRes.error,seeded:false};
+    return {data:insertRes.data || [],error:null,seeded:true};
   }
 
   async function loadCMS(){
-    // Make sure the starter catalog exists before reading it.
-    const seedRes = await ensurePackageCatalog();
-    if(seedRes.error){
-      cmsNotify('Could not initialize packages: '+seedRes.error.message,true);
-    }
+    // IMPORTANT:
+    // 1. Read the table first.
+    // 2. Render whatever exists.
+    // 3. Seed only if the table is genuinely empty.
+    // This prevents a seed/permission failure from making an otherwise
+    // readable package catalog appear blank.
 
-    const [pagesRes, packagesRes] = await Promise.all([
-      supabase.from('site_pages').select('*').eq('language',cmsLanguage).order('slug'),
-      supabase.from('site_packages').select('*').order('sort_order').order('id')
-    ]);
-
-    const pages = pagesRes.data || [];
-    const packages = packagesRes.data || [];
-
-    if(pagesRes.error){
-      cmsNotify('Could not load website pages: '+pagesRes.error.message,true);
-    }
+    const packagesRes = await loadPackageRows();
 
     if(packagesRes.error){
-      cmsPackages=[];
-      cmsPages=pages;
-      renderPolicies();
+      cmsPackages = [];
       renderPackages();
-      cmsNotify('Could not load packages: '+packagesRes.error.message,true);
+      cmsNotify(
+        'Could not load packages: ' + packagesRes.error.message,
+        true
+      );
       return;
     }
 
-    cmsPages=pages;
-    cmsPackages=packages;
+    let packages = packagesRes.data || [];
+
+    // If empty, attempt the starter seed. Existing data is never overwritten.
+    if(!packages.length){
+      const seedRes = await ensurePackageCatalog(packages);
+
+      if(seedRes.error){
+        cmsPackages = [];
+        renderPackages();
+        cmsNotify(
+          'Package table is accessible, but starter products could not be created: ' +
+          seedRes.error.message,
+          true
+        );
+        return;
+      }
+
+      // Use the rows returned by the insert. If the API doesn't return them,
+      // perform one normal read.
+      packages = seedRes.data && seedRes.data.length
+        ? seedRes.data
+        : ((await loadPackageRows()).data || []);
+    }
+
+    // Website policies are independent from the package catalog.
+    // Load them separately so a policy/API issue cannot blank Packages.
+    try{
+      const pagesRes = await supabase
+        .from('site_pages')
+        .select('*')
+        .eq('language',cmsLanguage)
+        .order('slug');
+
+      cmsPages = pagesRes.data || [];
+
+      if(pagesRes.error){
+        cmsNotify(
+          'Packages loaded. Website pages could not be loaded: ' +
+          pagesRes.error.message,
+          true
+        );
+      }
+    }catch(error){
+      cmsPages = [];
+    }
+
+    cmsPackages = packages;
+    cmsPackages.sort((a,b)=>
+      (a.sort_order||0)-(b.sort_order||0) ||
+      (a.id||0)-(b.id||0)
+    );
+
     renderPolicies();
     renderPackages();
   }
@@ -1381,6 +1444,17 @@ document.addEventListener('DOMContentLoaded', async () => {
   });
 
   document.getElementById('addPackageButton').addEventListener('click',()=>openProductEditor());
+  document.getElementById('refreshPackagesButton').addEventListener('click',async ()=>{
+    const btn=document.getElementById('refreshPackagesButton');
+    if(btn){btn.disabled=true;btn.textContent='Refreshing…';}
+    const loading=document.getElementById('packagesLoading');
+    if(loading) loading.classList.remove('hidden');
+    try{
+      await loadCMS();
+    }finally{
+      if(btn){btn.disabled=false;btn.textContent='↻ Refresh';}
+    }
+  });
   document.getElementById('cancelProductButton').addEventListener('click',closeProductEditor);
   document.querySelectorAll('[data-add-feature]').forEach(btn=>btn.addEventListener('click',()=>addFeatureInput(btn.dataset.addFeature,'')));
 
