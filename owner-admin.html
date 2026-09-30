@@ -221,7 +221,24 @@
     .empty-content-note{margin:10px 0 0;padding:10px 12px;border-radius:9px;background:#FFF4E8;color:#875E25;font-size:9px;line-height:1.5}
     .current-site-label{font-size:9px;font-weight:900;color:#008D9D}
     @media(max-width:1100px){.page-editor-workspace{grid-template-columns:1fr}.live-site-preview,.page-draft-preview{height:430px}}
-  </style>
+  
+/* Single visual page editor */
+.editor-workspace-single{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(360px,.9fr);gap:18px;align-items:start}
+.editor-pane-full{width:100%;min-width:0}
+.editor-pane-full .pane-head{min-height:62px}
+.editor-pane-full .pane-head strong{display:block}
+.editor-pane-full .pane-head span{display:block;margin-top:4px}
+.editor-toolbar{display:flex;align-items:center;flex-wrap:wrap;gap:7px;padding:10px 12px;border:1px solid #dfe9e7;border-bottom:0;border-radius:12px 12px 0 0;background:#f8fbfa}
+.editor-toolbar button{min-width:38px;height:34px;padding:0 10px;border:1px solid #dbe7e5;border-radius:8px;background:#fff;color:#203337;cursor:pointer;font-weight:700}
+.editor-toolbar button:hover{border-color:#0fa6b3;color:#0fa6b3}
+.content-editor{min-height:520px;padding:28px 32px;border:1px solid #dfe9e7;border-radius:0 0 12px 12px;background:#fff;color:#253538;line-height:1.75;font-size:16px;outline:none;overflow:auto}
+.content-editor:focus{border-color:#0fa6b3;box-shadow:0 0 0 3px rgba(15,166,179,.10)}
+.content-editor h1,.content-editor h2,.content-editor h3{color:#15282b;line-height:1.25;margin:1.3em 0 .55em}
+.content-editor p{margin:.7em 0}
+.content-editor ul,.content-editor ol{padding-left:1.5em}
+.content-editor a{color:#0fa6b3}
+@media (max-width:1100px){.editor-workspace-single{grid-template-columns:1fr}.site-preview-pane{min-width:0}}
+</style>
 </head>
 <body class="auth-initializing">
 <div id="authLoading"><div class="loading-box">Checking Owner session…</div></div>
@@ -489,34 +506,41 @@
                 <label class="field-label">Slug<input id="pageSlug" required placeholder="privacy-policy"></label>
                 <label class="field-label">Page title<input id="pageTitle" required></label>
                 <div class="field-label">Page content
-                  <div class="page-editor-modes" id="pageEditorModes">
-                    <button type="button" class="page-editor-mode active" data-editor-mode="visual">Visual / Structure</button>
-                    <button type="button" class="page-editor-mode" data-editor-mode="html">HTML / Liquid</button>
-                  </div>
-                  <div class="page-editor-workspace">
-                    <div class="editor-pane">
-                      <div class="pane-head"><strong id="editorPaneTitle">Structured editor</strong><span>Edit the text where it appears</span></div>
-                      <div id="visualEditorPane">
-                        <div class="editor-toolbar" id="editorToolbar">
-                          <button type="button" data-cmd="bold"><b>B</b></button><button type="button" data-cmd="italic"><i>I</i></button><button type="button" data-cmd="insertUnorderedList">• List</button><button type="button" data-cmd="insertOrderedList">1. List</button><button type="button" data-cmd="formatBlock" data-value="h2">H2</button><button type="button" data-cmd="formatBlock" data-value="p">P</button>
+                  <div class="editor-workspace-single">
+                    <div class="editor-pane editor-pane-full">
+                      <div class="pane-head">
+                        <div>
+                          <strong>Page editor</strong>
+                          <span>Edit the page directly below — no HTML or code required.</span>
                         </div>
-                        <div id="pageContentEditor" class="content-editor visual-mode" contenteditable="true"></div>
                       </div>
-                      <div id="htmlEditorPane" class="hidden">
-                        <textarea id="pageHtmlEditor" class="html-editor" spellcheck="false" placeholder="Paste or write HTML / Liquid here..."></textarea>
-                        <div class="editor-note">Use this mode for custom HTML, CSS, Liquid, embeds or advanced design changes. Nothing is changed on the live website until you save.</div>
+                      <div class="editor-toolbar" id="editorToolbar">
+                        <button type="button" data-cmd="bold"><b>B</b></button>
+                        <button type="button" data-cmd="italic"><i>I</i></button>
+                        <button type="button" data-cmd="insertUnorderedList">• List</button>
+                        <button type="button" data-cmd="insertOrderedList">1. List</button>
+                        <button type="button" data-cmd="formatBlock" data-value="h2">H2</button>
+                        <button type="button" data-cmd="formatBlock" data-value="h3">H3</button>
+                        <button type="button" data-cmd="formatBlock" data-value="p">P</button>
+                        <button type="button" data-cmd="createLink">Link</button>
                       </div>
+                      <div id="pageContentEditor" class="content-editor visual-mode" contenteditable="true"></div>
                     </div>
                     <div class="site-preview-pane">
                       <div class="pane-head">
-                        <div><strong>Current website</strong><div id="currentSiteUrlLabel" class="current-site-label">Select a page to preview it</div></div>
-                        <div class="preview-toolbar"><a id="openCurrentSite" class="preview-link" href="#" target="_blank" rel="noopener">Open ↗</a></div>
+                        <div>
+                          <strong>Current website</strong>
+                          <div id="currentSiteUrlLabel" class="current-site-label">Select a page to preview it</div>
+                        </div>
+                        <div class="preview-toolbar">
+                          <a id="openCurrentSite" class="preview-link" href="#" target="_blank" rel="noopener">Open ↗</a>
+                        </div>
                       </div>
                       <iframe id="currentSitePreview" class="live-site-preview" title="Current website preview"></iframe>
-                      <div id="emptyContentNote" class="empty-content-note hidden">This CMS page does not have content saved yet. The panel on the right shows the existing website, so you can compare it before adding or changing anything.</div>
+                      <div id="emptyContentNote" class="empty-content-note hidden">This CMS page does not have content saved yet. The preview on the right shows the existing website, so you can compare it before changing anything.</div>
                     </div>
                   </div>
-                </div>
+                </div></div>
                 <label class="publish-toggle"><input type="checkbox" id="pagePublished" checked> Published</label>
                 <div id="cmsMessage" class="cms-message hidden"></div>
               </form>
@@ -972,19 +996,17 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   function openPageEditor(page){
-    selectedPageId=page.id; document.getElementById('pageEditorEmpty').classList.add('hidden'); document.getElementById('pageEditor').classList.remove('hidden');
-    const content=page.content_html||'';
-    document.getElementById('pageId').value=page.id; document.getElementById('pageSlug').value=page.slug; document.getElementById('pageTitle').value=page.title; document.getElementById('pagePublished').checked=page.published;
-    document.getElementById('pageContentEditor').innerHTML=content;
-    document.getElementById('pageHtmlEditor').value=content;
-    document.getElementById('pageEditorHeading').textContent=page.title||'Edit page';
-    document.querySelectorAll('.page-editor-mode').forEach(x=>x.classList.toggle('active',x.dataset.editorMode==='visual'));
-    document.getElementById('visualEditorPane').classList.remove('hidden');
-    document.getElementById('htmlEditorPane').classList.add('hidden');
-    document.getElementById('editorPaneTitle').textContent='Structured editor';
-    refreshPagePreview(page);
-    renderCMS();
-  }
+      selectedPageId=page.id;
+      document.getElementById('pageEditor').classList.remove('hidden');
+      document.getElementById('pageId').value=page.id;
+      document.getElementById('pageSlug').value=page.slug||'';
+      document.getElementById('pageTitle').value=page.title||'';
+      document.getElementById('pageContentEditor').innerHTML=page.content_html||'';
+      document.getElementById('pagePublished').checked=page.published!==false;
+      document.getElementById('pageEditorHeading').textContent='Edit '+(page.title||page.slug||'page');
+      refreshPagePreview(page);
+      document.getElementById('pageEditor').scrollIntoView({behavior:'smooth',block:'start'});
+    }
   async function addMenu(location){
     const next=cmsMenus.filter(x=>x.location===location).length;
     const {data,error}=await supabase.from('site_menu_items').insert({location,language:cmsLanguage,title:location==='header'?'New menu item':'New footer link',href:'#',sort_order:next,active:true}).select().single();
