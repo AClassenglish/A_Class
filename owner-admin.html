@@ -672,11 +672,11 @@
 
             <div class="package-admin-note">
               <strong>Product catalog</strong>
-              <span>Manage IELTS, SAT, and General English products here. Edit titles, descriptions, lesson details, features, prices, and payment availability without touching the website code.</span>
+              <span>Manage IELTS & SAT and General English products here. Edit titles, descriptions, lesson details, features, prices, and payment availability without touching the website code.</span>
             </div>
 
             <div id="packagesList" class="package-admin-list"></div>
-            <div id="packagesEmpty" class="coming hidden">No packages were returned from the database yet.</div>
+            <div id="packagesEmpty" class="coming hidden">No packages are available yet.</div>
 
             <form id="productEditor" class="product-editor hidden">
               <div class="editor-top">
@@ -687,7 +687,7 @@
               <div class="product-editor-grid">
                 <label class="field-label">Category
                   <select id="productCategory" class="product-select" required>
-                    <option value="">Select category</option><option value="ielts">IELTS</option><option value="sat">SAT</option><option value="general_english">General English</option>
+                    <option value="">Select category</option><option value="ielts_sat">IELTS &amp; SAT</option><option value="ielts">IELTS</option><option value="sat">SAT</option><option value="general_english">General English</option>
                   </select>
                 </label>
                 <label class="field-label">Product key
@@ -1102,12 +1102,96 @@ document.addEventListener('DOMContentLoaded', async () => {
   const POLICY_SLUGS = ['privacy-policy','terms-and-conditions','refund-policy'];
 
   const PACKAGE_SEED = [
-    {package_key:'ielts_sat_standard', name_en:'IELTS/SAT Standard Group', name_ru:'IELTS/SAT Standard Group', name_ge:'IELTS/SAT Standard Group', sort_order:1},
-    {package_key:'ielts_sat_intensive', name_en:'IELTS/SAT Intensive Group', name_ru:'IELTS/SAT Intensive Group', name_ge:'IELTS/SAT Intensive Group', sort_order:2},
-    {package_key:'ielts_sat_individual', name_en:'IELTS/SAT Individual', name_ru:'IELTS/SAT Individual', name_ge:'IELTS/SAT Individual', sort_order:3},
-    {package_key:'ielts_sat_pair', name_en:'IELTS/SAT Pair Package', name_ru:'IELTS/SAT Pair Package', name_ge:'IELTS/SAT Pair Package', sort_order:4},
-    {package_key:'general_english_group', name_en:'General English Group', name_ru:'Общий английский — группа', name_ge:'ზოგადი ინგლისური — ჯგუფი', sort_order:5},
-    {package_key:'general_english_individual', name_en:'General English Individual', name_ru:'Общий английский — индивидуально', name_ge:'ზოგადი ინგლისური — ინდივიდუალური', sort_order:6}
+    {
+      package_key:'ielts_sat_standard',
+      category:'ielts_sat',
+      name_en:'IELTS/SAT Standard Group',
+      name_ru:'IELTS/SAT Standard Group',
+      name_ge:'IELTS/SAT Standard Group',
+      description_en:'Structured group preparation for IELTS or SAT with a consistent weekly schedule.',
+      description_ru:'Структурированная групповая подготовка к IELTS или SAT по стабильному еженедельному расписанию.',
+      description_ge:'სტრუქტურირებული ჯგუფური მომზადება IELTS-ის ან SAT-ისთვის სტაბილური ყოველკვირეული გრაფიკით.',
+      lessons:12, lessons_per_week:3, lesson_length_minutes:90, duration_weeks:4, format:'Group',
+      features_en:['Speaking confidence & Pronunciation','Listening & Reading skills','Grammar accuracy & Vocabulary','Real-life practice'],
+      features_ru:['Уверенность в речи и произношение','Навыки аудирования и чтения','Грамматика и словарный запас','Практика реальных ситуаций'],
+      features_ge:['საუბრის თავდაჯერება და გამოთქმა','მოსმენისა და კითხვის უნარები','გრამატიკა და ლექსიკა','რეალური სიტუაციების პრაქტიკა'],
+      sort_order:1
+    },
+    {
+      package_key:'ielts_sat_intensive',
+      category:'ielts_sat',
+      name_en:'IELTS/SAT Intensive Group',
+      name_ru:'IELTS/SAT Intensive Group',
+      name_ge:'IELTS/SAT Intensive Group',
+      description_en:'Intensive group preparation for students who want a faster study pace.',
+      description_ru:'ინтенсивная групповая подготовка для студентов, которым нужен более быстрый темп обучения.',
+      description_ge:'ინტენსიური ჯგუფური მომზადება სტუდენტებისთვის, რომლებსაც სწავლის უფრო სწრაფი ტემპი სჭირდებათ.',
+      lessons:20, lessons_per_week:5, lesson_length_minutes:90, duration_weeks:4, format:'Group',
+      features_en:['Focused exam preparation','Speaking confidence & Pronunciation','Listening & Reading skills','Detailed feedback'],
+      features_ru:['Целенаправленная подготовка к экзамену','Уверенность в речи и произношение','Навыки аудирования и чтения','Подробная обратная связь'],
+      features_ge:['გამოცდისთვის მიზნობრივი მომზადება','საუბრის თავდაჯერება და გამოთქმა','მოსმენისა და კითხვის უნარები','დეტალური უკუკავშირი'],
+      sort_order:2
+    },
+    {
+      package_key:'ielts_sat_individual',
+      category:'ielts_sat',
+      name_en:'IELTS/SAT Individual',
+      name_ru:'IELTS/SAT Individual',
+      name_ge:'IELTS/SAT Individual',
+      description_en:'One-to-one IELTS or SAT preparation tailored to the student’s goals and level.',
+      description_ru:'Индивидуальная подготовка к IELTS или SAT с учётом целей и уровня студента.',
+      description_ge:'ინდივიდუალური მომზადება IELTS-ის ან SAT-ისთვის სტუდენტის მიზნებსა და დონეზე მორგებული პროგრამით.',
+      lessons:12, lessons_per_week:3, lesson_length_minutes:60, duration_weeks:4, format:'Individual',
+      features_en:['Personalized plan','Targeted exam practice','Detailed feedback','Progress monitoring'],
+      features_ru:['Персональный план','Целевая экзаменационная практика','Подробная обратная связь','Отслеживание прогресса'],
+      features_ge:['პერსონალიზებული გეგმა','მიზნობრივი საგამოცდო პრაქტიკა','დეტალური უკუკავშირი','პროგრესის მონიტორინგი'],
+      sort_order:3
+    },
+    {
+      package_key:'ielts_sat_pair',
+      category:'ielts_sat',
+      name_en:'IELTS/SAT Pair Package',
+      name_ru:'IELTS/SAT Pair Package',
+      name_ge:'IELTS/SAT Pair Package',
+      description_en:'IELTS or SAT preparation for two students learning together.',
+      description_ru:'Подготовка к IELTS или SAT для двух студентов, которые занимаются вместе.',
+      description_ge:'IELTS-ის ან SAT-ისთვის მომზადება ორი სტუდენტისთვის, რომლებიც ერთად სწავლობენ.',
+      lessons:12, lessons_per_week:3, lesson_length_minutes:60, duration_weeks:4, format:'Pair',
+      features_en:['Shared personalized practice','Speaking practice','Exam-focused exercises','Detailed feedback'],
+      features_ru:['Совместная персонализированная практика','Разговорная практика','Упражнения для экзамена','Подробная обратная связь'],
+      features_ge:['ერთობლივი პერსონალიზებული პრაქტიკა','საუბრის პრაქტიკა','გამოცდაზე ორიენტირებული სავარჯიშოები','დეტალური უკუკავშირი'],
+      sort_order:4
+    },
+    {
+      package_key:'general_english_group',
+      category:'general_english',
+      name_en:'General English Group',
+      name_ru:'Общий английский — группа',
+      name_ge:'ზოგადი ინგლისური — ჯგუფი',
+      description_en:'General English lessons focused on practical communication and everyday confidence.',
+      description_ru:'Общий английский с фокусом на практическое общение и уверенность в повседневной речи.',
+      description_ge:'ზოგადი ინგლისური პრაქტიკულ კომუნიკაციასა და ყოველდღიურ თავდაჯერებაზე ორიენტირებული გაკვეთილებით.',
+      format:'Group',
+      features_en:['Speaking confidence & Pronunciation','Listening & Reading skills','Grammar accuracy & Vocabulary','Real-life practice'],
+      features_ru:['Уверенность в речи и произношение','Навыки аудирования и чтения','Грамматика и словарный запас','Практика реальных ситуаций'],
+      features_ge:['საუბრის თავდაჯერება და გამოთქმა','მოსმენისა და კითხვის უნარები','გრამატიკა და ლექსიკა','რეალური სიტუაციების პრაქტიკა'],
+      sort_order:5
+    },
+    {
+      package_key:'general_english_individual',
+      category:'general_english',
+      name_en:'General English Individual',
+      name_ru:'Общий английский — индивидуально',
+      name_ge:'ზოგადი ინგლისური — ინდივიდუალური',
+      description_en:'One-to-one General English lessons tailored to the student’s level and goals.',
+      description_ru:'Индивидуальные уроки общего английского, адаптированные под уровень и цели студента.',
+      description_ge:'ზოგადი ინგლისურის ინდივიდუალური გაკვეთილები სტუდენტის დონისა და მიზნების მიხედვით.',
+      format:'Individual',
+      features_en:['Personalized plan','Speaking confidence','Grammar & Vocabulary','Progress monitoring'],
+      features_ru:['Персональный план','Уверенность в речи','Грамматика и словарный запас','Отслеживание прогресса'],
+      features_ge:['პერსონალიზებული გეგმა','საუბრის თავდაჯერება','გრამატიკა და ლექსიკა','პროგრესის მონიტორინგი'],
+      sort_order:6
+    }
   ];
 
   function cmsEsc(v){ return escapeHtml(v); }
@@ -1122,18 +1206,27 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   function currentPackageName(row){ return row['name_'+cmsLanguage] || row.name_en || row.package_key; }
-  function categoryLabel(category){ return ({ielts:'IELTS',sat:'SAT',general_english:'General English'})[category] || 'Needs category'; }
+  function categoryLabel(category){
+    return ({
+      ielts_sat:'IELTS & SAT',
+      ielts:'IELTS',
+      sat:'SAT',
+      general_english:'General English'
+    })[category] || 'Needs category';
+  }
   function linesToArray(value){ return String(value||'').split(/\r?\n/).map(x=>x.trim()).filter(Boolean); }
   function arrayToLines(value){ return Array.isArray(value) ? value.join('\n') : ''; }
   function numberOrNull(id){ const v=document.getElementById(id).value.trim(); return v===''?null:Number(v); }
 
   function normalizePackageCategory(product){
     const raw=String(product?.category||'').trim().toLowerCase().replace(/[\s-]+/g,'_');
+    if(raw==='ielts_sat' || raw==='ielts_and_sat' || (raw.includes('ielts') && raw.includes('sat'))) return 'ielts_sat';
     if(raw==='ielts' || raw.includes('ielts')) return 'ielts';
     if(raw==='sat' || raw.includes('sat')) return 'sat';
     if(raw==='general_english' || raw.includes('general') || raw.includes('english')) return 'general_english';
     const key=String(product?.package_key||'').toLowerCase();
     if(key.includes('general_english')) return 'general_english';
+    if(key.includes('ielts') && key.includes('sat')) return 'ielts_sat';
     if(key.includes('ielts')) return 'ielts';
     if(key.includes('sat')) return 'sat';
     return 'uncategorized';
@@ -1153,7 +1246,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
     if(empty) empty.classList.add('hidden');
 
-    const groups=[['ielts','IELTS'],['sat','SAT'],['general_english','General English'],['uncategorized','Other products']];
+    const groups=[['ielts_sat','IELTS & SAT'],['ielts','IELTS'],['sat','SAT'],['general_english','General English'],['uncategorized','Other products']];
     list.innerHTML=groups.map(([key,label])=>{
       const items=cmsPackages.filter(p=>normalizePackageCategory(p)===key);
       if(!items.length) return '';
@@ -1243,6 +1336,32 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
   function closeProductEditor(){ document.getElementById('productEditor').classList.add('hidden'); }
 
+  async function seedPackagesIfEmpty(existingPackages){
+    if(Array.isArray(existingPackages) && existingPackages.length) return existingPackages;
+
+    const rows = PACKAGE_SEED.map(item => ({
+      ...item,
+      currency:'GEL',
+      price:null,
+      active:true,
+      payment_enabled:false,
+      updated_at:new Date().toISOString()
+    }));
+
+    const {data,error}=await supabase
+      .from('site_packages')
+      .insert(rows)
+      .select('*');
+
+    if(error){
+      cmsNotify('Packages table is empty, but the starter products could not be created: '+error.message,true);
+      return [];
+    }
+
+    cmsNotify('Starter package catalog created.');
+    return data || [];
+  }
+
   async function loadCMS(){
     const [pagesRes, packagesRes] = await Promise.all([
       supabase.from('site_pages').select('*').eq('language',cmsLanguage).order('slug'),
@@ -1250,7 +1369,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     ]);
 
     const pages = pagesRes.data || [];
-    const packages = packagesRes.data || [];
 
     if(pagesRes.error){
       cmsNotify('Could not load website pages: '+pagesRes.error.message,true);
@@ -1266,7 +1384,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     cmsPages=pages;
-    cmsPackages=packages;
+    cmsPackages=await seedPackagesIfEmpty(packagesRes.data || []);
+    cmsPackages.sort((a,b)=>(a.sort_order||0)-(b.sort_order||0)||(a.id||0)-(b.id||0));
+
     renderPolicies();
     renderPackages();
   }
