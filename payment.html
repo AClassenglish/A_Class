@@ -708,7 +708,7 @@
 
       <div class="test-reference">
         <small>Test reference</small>
-        <strong id="referenceNumber">ACLASS-TEST-000000</strong>
+        <strong id="referenceNumber">—</strong>
       </div>
 
       <br>
@@ -842,7 +842,8 @@
             throw error;
           }
 
-          referenceNumber.textContent = orderReference;
+          // Replace the placeholder completely so the reference can never be duplicated.
+          referenceNumber.replaceChildren(document.createTextNode(orderReference));
           checkout.style.display = 'none';
           successScreen.classList.add('show');
           window.scrollTo({ top: 0, behavior: 'smooth' });
