@@ -21,7 +21,7 @@
 <style>
 :root{--primary:#0FA6B3;--primary-dark:#087F89;--primary-light:#E8F7EE;--secondary:#78D64B;--gradient-start:#0FA6B3;--gradient-end:#78D64B;--gradient-accent:linear-gradient(135deg,#0FA6B3 0%,#35C78D 50%,#78D64B 100%);--gradient-story:linear-gradient(45deg,#0FA6B3 0%,#35C78D 50%,#78D64B 100%);--text-dark:#102022;--text-gray:#4B5B5D;--text-light:#8B999B;--white:#fff;--bg-light:#F7FBF8;--border:#E3ECE8;--whatsapp-green:#25D366;--glass-bg:rgba(255,255,255,.92);--glass-border:rgba(238,240,246,.8)}
 *,::before,::after{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html{scroll-behavior:smooth;scroll-padding-top:110px;width:100%;overflow-x:hidden}
+html {scroll-padding-top:110px;width:100%;overflow-x:hidden}
 body{font-family:'Plus Jakarta Sans',system-ui,-apple-system,sans-serif;color:var(--text-dark);line-height:1.6;background:var(--white);overflow-x:hidden;padding-bottom:80px;-webkit-font-smoothing:antialiased;width:100%;max-width:100vw}
 img{max-width:100%;height:auto;display:block}
 button{font-family:inherit}
@@ -30,11 +30,11 @@ a{color:inherit;text-decoration:none}
 /* Custom Cursor */
 .custom-cursor{position:fixed;top:0;left:0;width:36px;height:36px;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .1s ease-out,opacity .3s;opacity:0}
 .custom-cursor.active{opacity:1}
-.custom-cursor-inner{width:100%;height:100%;background:var(--gradient-accent);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1rem;font-weight:800;box-shadow:0 4px 15px rgba(167,102,220,.4);transition:transform .2s}
+.custom-cursor-inner{width:100%;height:100%;background:var(--gradient-accent);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1rem;font-weight:800;box-shadow:0 4px 15px rgba(15,166,179,.4);transition:transform .2s}
 .custom-cursor.hovering .custom-cursor-inner{transform:scale(1.4)}
 
 /* Backgrounds */
-.animated-bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;background:linear-gradient(135deg,#fff 0%,#fafbff 50%,#f8f5ff 100%)}
+.animated-bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;background:linear-gradient(135deg,#fff 0%,#F7FBF8 50%,#F2F9F5 100%)}
 .floating-shape{position:absolute;border-radius:50%;background:linear-gradient(135deg,var(--gradient-start),var(--gradient-end));opacity:.04;filter:blur(100px);animation:float 30s infinite ease-in-out}
 .floating-shape:nth-child(1){width:500px;height:500px;top:-150px;right:-150px}
 .floating-shape:nth-child(2){width:400px;height:400px;bottom:-100px;left:-100px;animation-delay:10s}
@@ -73,7 +73,7 @@ a{color:inherit;text-decoration:none}
 
 /* Navbar */
 .navbar{position:fixed;top:0;left:0;right:0;background:var(--glass-bg);backdrop-filter:blur(15px);border-bottom:1px solid var(--glass-border);z-index:1000;padding:1rem 0;transition:padding .3s ease,box-shadow .3s ease;width:100%}
-.navbar.scrolled{padding:.75rem 0;box-shadow:0 4px 20px rgba(167,102,220,.08)}
+.navbar.scrolled{padding:.75rem 0;box-shadow:0 4px 20px rgba(15,166,179,.08)}
 .nav-container{max-width:1400px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;padding:0 2rem;position:relative;z-index:2}
 .logo{display:flex;align-items:center;gap:.75rem}
 .logo-img{width:42px;height:42px;border-radius:50%;object-fit:cover;border:2px solid var(--primary)}
@@ -82,10 +82,10 @@ a{color:inherit;text-decoration:none}
 .nav-link{color:var(--text-gray);font-weight:500;font-size:.95rem;transition:color .3s ease;position:relative;display:flex;align-items:center;gap:.35rem;cursor:pointer}
 .nav-link:hover{color:var(--primary)}
 .nav-cta{background:var(--gradient-accent);color:#fff!important;padding:.7rem 1.5rem;border-radius:50px;font-weight:600;transition:all .3s}
-.nav-cta:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(167,102,220,.3)}
+.nav-cta:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(15,166,179,.3)}
 .menu-toggle{display:none;background:none;border:none;font-size:1.4rem;cursor:pointer;color:var(--primary);width:40px;height:40px;align-items:center;justify-content:center;border-radius:10px}
 /* Mobile Tab Bar */
-.mobile-tab-bar{display:none;position:fixed;bottom:0;left:0;right:0;background:var(--glass-bg);backdrop-filter:blur(15px);border-top:1px solid var(--glass-border);z-index:1000;padding:.5rem 0;box-shadow:0 -4px 20px rgba(167,102,220,.1);width:100%}
+.mobile-tab-bar{display:none;position:fixed;bottom:0;left:0;right:0;background:var(--glass-bg);backdrop-filter:blur(15px);border-top:1px solid var(--glass-border);z-index:1000;padding:.5rem 0;box-shadow:0 -4px 20px rgba(15,166,179,.1);width:100%}
 .tab-bar-container{display:flex;justify-content:space-around;align-items:center;max-width:500px;margin:0 auto}
 .tab-item{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:.5rem;color:var(--text-gray);font-size:.7rem;font-weight:600;transition:color .3s;flex:1;gap:.25rem}
 .tab-item i{font-size:1.3rem;margin-bottom:.2rem;transition:transform .3s}
@@ -95,14 +95,14 @@ a{color:inherit;text-decoration:none}
 /* Hero */
 .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:10rem 0 6rem;position:relative;width:100%}
 .hero-container{max-width:100%;margin:0 auto;text-align:center;position:relative;z-index:2;padding:0 2rem;width:100%}
-.hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:var(--primary-light);color:var(--primary-dark);padding:.5rem 1.2rem;border-radius:50px;font-size:.85rem;font-weight:600;margin-bottom:2rem;border:1px solid rgba(167,102,220,.15)}
+.hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:var(--primary-light);color:var(--primary-dark);padding:.5rem 1.2rem;border-radius:50px;font-size:.85rem;font-weight:600;margin-bottom:2rem;border:1px solid rgba(15,166,179,.15)}
 .hero h1{font-size:3.8rem;font-weight:800;line-height:1.1;margin-bottom:1.5rem;letter-spacing:-1.5px;color:var(--text-dark)}
 .hero h1 span{background:var(--gradient-accent);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .hero p{font-size:1.15rem;margin-bottom:2.5rem;color:var(--text-gray);max-width:600px;margin-left:auto;margin-right:auto}
 .hero-buttons{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:3.5rem}
 .btn{padding:.95rem 2rem;border-radius:50px;font-weight:600;display:inline-flex;align-items:center;gap:.7rem;transition:all .3s;cursor:pointer;border:none;font-size:1rem;font-family:inherit}
 .btn-primary{background:var(--gradient-accent);color:#fff}
-.btn-primary:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(167,102,220,.35)}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(15,166,179,.35)}
 .btn-secondary{background:#fff;color:var(--primary);border:1.5px solid var(--primary)}
 .btn-secondary:hover{background:var(--primary-light);transform:translateY(-3px)}
 .hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;max-width:800px;margin:0 auto}
@@ -111,7 +111,7 @@ a{color:inherit;text-decoration:none}
 .hero-stat-number{font-size:2rem;font-weight:800;background:var(--gradient-accent);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:.3rem}
 .hero-stat-label{font-size:.85rem;color:var(--text-gray);font-weight:500}
 
-/* Отзывы */
+/* Reviews */
 .reviews-section{padding:5rem 2rem 6rem;position:relative;z-index:2;width:100%}
 .reviews-header{text-align:center;margin-bottom:3rem}
 .reviews-header h2{font-size:2.5rem;font-weight:800;background:var(--gradient-accent);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:.75rem}
@@ -119,8 +119,8 @@ a{color:inherit;text-decoration:none}
 .reviews-swiper{padding:2rem 0 3rem;overflow:visible!important;width:100%;max-width:600px;margin:0 auto}
 .swiper-slide{transition:all .6s cubic-bezier(.4,0,.2,1);opacity:.4;filter:blur(3px);transform:scale(.85);border-radius:16px;overflow:hidden;border:1px solid var(--border);background:#fff}
 .swiper-slide img{width:100%;height:auto;display:block;pointer-events:none;user-select:none}
-.swiper-slide-active{opacity:1;filter:blur(0);transform:scale(1);box-shadow:0 25px 60px rgba(167,102,220,.25);z-index:10;border-color:var(--primary)}
-.swiper-button-prev,.swiper-button-next{color:var(--primary);background:#fff;width:45px;height:45px;border-radius:50%;box-shadow:0 4px 15px rgba(167,102,220,.15);border:1.5px solid var(--primary);transition:all .3s}
+.swiper-slide-active{opacity:1;filter:blur(0);transform:scale(1);box-shadow:0 25px 60px rgba(15,166,179,.25);z-index:10;border-color:var(--primary)}
+.swiper-button-prev,.swiper-button-next{color:var(--primary);background:#fff;width:45px;height:45px;border-radius:50%;box-shadow:0 4px 15px rgba(15,166,179,.15);border:1.5px solid var(--primary);transition:all .3s}
 .swiper-button-prev::after,.swiper-button-next::after{font-size:1rem;font-weight:800}
 .swiper-button-prev:hover,.swiper-button-next:hover{background:var(--gradient-accent);color:#fff;border-color:transparent;transform:scale(1.1)}
 .swiper-pagination-bullet{width:10px;height:10px;background:var(--border);opacity:1;transition:all .3s}
@@ -142,11 +142,11 @@ a{color:inherit;text-decoration:none}
 .courses,.packages{background:var(--white)}
 .container{max-width:1300px;margin:0 auto;width:100%}
 .section-header{text-align:center;margin-bottom:3.5rem}
-.section-tag{display:inline-flex;align-items:center;gap:.5rem;background:var(--primary-light);color:var(--primary-dark);padding:.5rem 1.25rem;border-radius:50px;font-size:.85rem;font-weight:600;margin-bottom:1.25rem;border:1px solid rgba(167,102,220,.15)}
+.section-tag{display:inline-flex;align-items:center;gap:.5rem;background:var(--primary-light);color:var(--primary-dark);padding:.5rem 1.25rem;border-radius:50px;font-size:.85rem;font-weight:600;margin-bottom:1.25rem;border:1px solid rgba(15,166,179,.15)}
 .section-header h2{font-size:2.5rem;font-weight:800;color:var(--text-dark);margin-bottom:1rem}
 .section-header p{color:var(--text-gray);max-width:600px;margin:0 auto;font-size:1.05rem}
 
-/* О нас */
+/* About */
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
 .about-text h3{font-size:2rem;color:var(--text-dark);margin-bottom:1.25rem;font-weight:700}
 .about-text p{color:var(--text-gray);margin-bottom:1.25rem;font-size:1rem}
@@ -155,10 +155,10 @@ a{color:inherit;text-decoration:none}
 .stat-number{font-size:2.5rem;font-weight:800;background:var(--gradient-accent);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:.4rem}
 .stat-label{font-size:.9rem;color:var(--text-gray);font-weight:500}
 
-/* Курсы */
+/* Courses */
 .courses-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:2rem}
 .course-card{background:#fff;border-radius:20px;padding:2.5rem;border:1px solid var(--border);transition:all .4s}
-.course-card:hover{transform:translateY(-8px);border-color:var(--primary);box-shadow:0 15px 40px rgba(167,102,220,.12)}
+.course-card:hover{transform:translateY(-8px);border-color:var(--primary);box-shadow:0 15px 40px rgba(15,166,179,.12)}
 .course-icon{width:65px;height:65px;margin-bottom:1.5rem;background:var(--primary-light);border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:1.8rem;color:var(--primary)}
 .course-card h3{color:var(--text-dark);margin-bottom:1rem;font-size:1.4rem;font-weight:700}
 .course-card p{color:var(--text-gray);font-size:.95rem;margin-bottom:1.5rem}
@@ -174,10 +174,10 @@ a{color:inherit;text-decoration:none}
 .step-card h4{color:var(--text-dark);margin:1.25rem 0 .75rem;font-size:1.2rem;font-weight:700}
 .step-card p{color:var(--text-gray);font-size:.95rem}
 
-/* Пакеты Preview */
+/* Packages Preview */
 .packages-preview-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem;max-width:1100px;margin:0 auto 3rem}
 .package-preview-card{background:#fff;border-radius:20px;padding:2.5rem;border:1px solid var(--border);text-align:center;transition:all .4s}
-.package-preview-card:hover{transform:translateY(-8px);border-color:var(--primary);box-shadow:0 15px 40px rgba(167,102,220,.2)}
+.package-preview-card:hover{transform:translateY(-8px);border-color:var(--primary);box-shadow:0 15px 40px rgba(15,166,179,.2)}
 .package-preview-card.featured{background:linear-gradient(135deg,var(--gradient-start),var(--gradient-end));color:#fff;border-color:transparent}
 .package-preview-icon{width:70px;height:70px;background:var(--primary-light);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--primary);font-size:2rem;margin:0 auto 1.5rem}
 .package-preview-card.featured .package-preview-icon{background:rgba(255,255,255,.2);color:#fff}
@@ -189,16 +189,16 @@ a{color:inherit;text-decoration:none}
 .package-preview-card.featured .package-preview-features li{color:rgba(255,255,255,.9);border-bottom-color:rgba(255,255,255,.2)}
 .package-preview-features li:last-child{border-bottom:none}
 .package-preview-features li i{color:var(--primary);width:20px;text-align:center}
-.package-preview-card.featured .package-preview-features li i{color:#fde68a}
+.package-preview-card.featured .package-preview-features li i{color:#DDF4E4}
 .explore-more-container{text-align:center;margin-top:3rem}
 .btn-explore{background:#fff;color:var(--primary);border:1.5px solid var(--primary);padding:.95rem 2rem;border-radius:50px;font-weight:600;font-size:1rem;display:inline-flex;align-items:center;gap:.6rem;transition:all .3s}
-.btn-explore:hover{background:var(--gradient-accent);color:#fff;border-color:transparent;transform:translateY(-3px);box-shadow:0 10px 25px rgba(167,102,220,.3)}
+.btn-explore:hover{background:var(--gradient-accent);color:#fff;border-color:transparent;transform:translateY(-3px);box-shadow:0 10px 25px rgba(15,166,179,.3)}
 
-/* Преподаватели */
+/* Teachers */
 .teachers-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(350px,1fr));gap:3rem;max-width:900px;margin:0 auto}
 .teacher-card{text-align:center;padding:2.5rem 2rem;background:#fff;border-radius:24px;border:1px solid var(--border);transition:all .4s}
-.teacher-card:hover{transform:translateY(-8px);box-shadow:0 15px 40px rgba(167,102,220,.15);border-color:var(--primary)}
-.teacher-image-wrapper{width:150px;height:150px;margin:0 auto 1.5rem;border-radius:50%;overflow:hidden;border:4px solid var(--primary-light);box-shadow:0 8px 25px rgba(167,102,220,.2)}
+.teacher-card:hover{transform:translateY(-8px);box-shadow:0 15px 40px rgba(15,166,179,.15);border-color:var(--primary)}
+.teacher-image-wrapper{width:150px;height:150px;margin:0 auto 1.5rem;border-radius:50%;overflow:hidden;border:4px solid var(--primary-light);box-shadow:0 8px 25px rgba(15,166,179,.2)}
 .teacher-image-wrapper img{width:100%;height:100%;object-fit:cover}
 .teacher-card h3{font-size:1.5rem;font-weight:800;color:var(--text-dark);margin-bottom:.5rem}
 .teacher-title{display:inline-block;background:var(--gradient-accent);color:#fff;padding:.4rem 1rem;border-radius:50px;font-size:.85rem;font-weight:600;margin-bottom:1.25rem}
@@ -227,7 +227,7 @@ a{color:inherit;text-decoration:none}
   right:-220px;
   top:-180px;
   border-radius:50%;
-  background:radial-gradient(circle,rgba(167,102,220,.12),transparent 68%);
+  background:radial-gradient(circle,rgba(15,166,179,.12),transparent 68%);
   pointer-events:none;
 }
 .teachers-container{
@@ -247,7 +247,7 @@ a{color:inherit;text-decoration:none}
   gap:.5rem;
   color:var(--primary);
   background:var(--primary-light);
-  border:1px solid rgba(167,102,220,.16);
+  border:1px solid rgba(15,166,179,.16);
   border-radius:999px;
   padding:.55rem 1rem;
   font-size:.78rem;
@@ -342,13 +342,13 @@ a{color:inherit;text-decoration:none}
   position:absolute;
   width:min(100%,430px);
   height:560px;
-  border:1px solid rgba(167,102,220,.24);
+  border:1px solid rgba(15,166,179,.24);
   pointer-events:none;
 }
 .teacher-frame-back{
   transform:rotate(-4deg) translate(-18px,12px);
   border-radius:92px 22px 88px 28px;
-  background:rgba(167,102,220,.07);
+  background:rgba(15,166,179,.07);
 }
 .teacher-frame-front{
   transform:rotate(2.5deg);
@@ -364,7 +364,7 @@ a{color:inherit;text-decoration:none}
   height:100%;
   overflow:hidden;
   border-radius:20px 76px 18px 68px;
-  background:#e9e5ee;
+  background:#E7EFEA;
 }
 .teacher-photo-wrap img{
   width:100%;
@@ -542,7 +542,7 @@ a{color:inherit;text-decoration:none}
 .package-view-btn:focus-visible,
 .teacher-rail-item:focus-visible,
 .teacher-arrow:focus-visible{
-  outline:3px solid rgba(167,102,220,.35);
+  outline:3px solid rgba(15,166,179,.35);
   outline-offset:3px;
 }
 
@@ -556,7 +556,7 @@ a{color:inherit;text-decoration:none}
   }
 }
 
-/* Placement & Контакты */
+/* Placement & Contact */
 .placement-cta{background:var(--gradient-accent);color:#fff;text-align:center;padding:5rem 2rem;position:relative;overflow:hidden;z-index:2}
 .placement-cta h2{font-size:2.5rem;margin-bottom:1rem;font-weight:800}
 .placement-cta p{font-size:1.1rem;margin-bottom:2.5rem;opacity:.95;max-width:600px;margin-left:auto;margin-right:auto}
@@ -572,14 +572,14 @@ a{color:inherit;text-decoration:none}
 
 /* Footer */
 footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2rem;position:relative;z-index:2;width:100%}
-.footer-grid{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:2.5rem;margin-bottom:3rem}.footer-col{min-width:0}.footer-links a{word-break:break-word}
+.footer-grid{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:2.5rem;margin-bottom:3rem}
 .footer-col h4{color:#fff;margin-bottom:1.25rem;font-size:1.1rem;font-weight:700}
 .footer-col p{font-size:.95rem;line-height:1.7;margin-bottom:.75rem}
 .footer-links{list-style:none}
 .footer-links a{color:var(--text-light);display:flex;align-items:center;gap:.5rem;margin-bottom:.75rem;transition:all .3s;font-size:.95rem}
 .footer-links a:hover{color:var(--primary);transform:translateX(6px)}
 .social-links{display:flex;gap:.9rem;margin-top:1.25rem}
-.social-links a{width:42px;height:42px;border-radius:50%;background:rgba(167,102,220,.1);border:1.5px solid var(--primary);display:flex;align-items:center;justify-content:center;color:var(--primary);font-size:1.1rem;transition:all .3s}
+.social-links a{width:42px;height:42px;border-radius:50%;background:rgba(15,166,179,.1);border:1.5px solid var(--primary);display:flex;align-items:center;justify-content:center;color:var(--primary);font-size:1.1rem;transition:all .3s}
 .social-links a:hover{background:var(--gradient-accent);color:#fff;border-color:transparent;transform:translateY(-4px)}
 .footer-bottom{max-width:1300px;margin:0 auto;padding-top:2rem;border-top:1px solid rgba(255,255,255,.1);text-align:center;font-size:.9rem;color:var(--text-light)}
 
@@ -588,13 +588,13 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
   .hero h1{font-size:3rem}
   .hero-stats{grid-template-columns:repeat(2,1fr)}
   .about-grid{grid-template-columns:1fr;gap:3rem}
-  .footer-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:2rem}
+  .footer-grid{grid-template-columns:1fr 1fr}
   .side-tracks{display:none}
   .custom-cursor{display:none!important}
   .video-collage-grid{grid-template-columns:repeat(2,1fr);gap:.8rem}
 }
 @media (max-width:768px){
-  .mobile-header-track{display:block}
+  .mobile-header-track{display:none}
   .mobile-tab-bar{display:block}
   .nav-menu{display:none}
   .menu-toggle{display:flex}
@@ -606,7 +606,7 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
   .hero-stat-number{font-size:1.75rem}
   .section-header h2,.reviews-header h2{font-size:2rem}
   .courses-grid{grid-template-columns:1fr}
-  .footer-grid{grid-template-columns:1fr;gap:1.5rem}
+  .footer-grid{grid-template-columns:1fr;gap:2rem}
   .test-buttons,.contact-buttons{flex-direction:column;align-items:stretch}
   .btn-test,.contact-btn{justify-content:center}
   .popup-modal{padding:2.5rem 1.5rem}
@@ -655,7 +655,7 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
 .language-switcher a:hover,
 .language-switcher a.active {
   background: #fff;
-  color: #4b35c8;
+  color: #087F89;
 }
 @media (max-width: 900px) {
   .language-switcher {
@@ -724,7 +724,7 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
   }
 
 .package-accordion:hover {
-    box-shadow: 0 8px 30px rgba(167, 102, 220, 0.15);
+    box-shadow: 0 8px 30px rgba(15,166,179, 0.15);
     transform: translateY(-2px);
   }
 
@@ -739,7 +739,7 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
   }
 
 .package-header:hover {
-    background: rgba(167, 102, 220, 0.03);
+    background: rgba(15,166,179, 0.03);
   }
 
 .package-header-left {
@@ -836,7 +836,7 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
 
 .package-detail-card:hover {
     transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(167, 102, 220, 0.2);
+    box-shadow: 0 8px 20px rgba(15,166,179, 0.2);
   }
 
 .package-detail-label {
@@ -1158,8 +1158,8 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
 }
 
 
-/* Главнаяpage package/comparison switch */
-.package-view-switch{display:flex;justify-content:center;align-items:center;gap:.65rem;margin:0 auto 3rem;padding:0;width:fit-content;background:transparent;border:none}.package-view-btn{appearance:none;border:1px solid rgba(167,102,220,.22);background:#fff;color:var(--text-gray);padding:.8rem 1.5rem;min-width:120px;border-radius:12px;font:inherit;font-weight:700;cursor:pointer;transition:color .25s ease,background .25s ease,border-color .25s ease,box-shadow .25s ease,transform .25s ease}.package-view-btn:hover{color:var(--primary);border-color:rgba(167,102,220,.45);transform:translateY(-2px);box-shadow:0 6px 18px rgba(167,102,220,.10)}.package-view-btn.active{background:var(--gradient-accent);color:#fff;border-color:transparent;box-shadow:0 8px 22px rgba(167,102,220,.25)}.package-view-btn.active:hover{color:#fff;transform:translateY(-2px);box-shadow:0 10px 26px rgba(167,102,220,.3)}.package-view-panel{display:none}.package-view-panel.active{display:block;animation:packageFade .28s ease}@media (max-width:768px){.package-view-switch{width:100%;max-width:360px;gap:.5rem}.package-view-btn{flex:1;min-width:0;padding:.75rem .8rem;font-size:.85rem}}
+/* Homepage package/comparison switch */
+.package-view-switch{display:flex;justify-content:center;align-items:center;gap:.65rem;margin:0 auto 3rem;padding:0;width:fit-content;background:transparent;border:none}.package-view-btn{appearance:none;border:1px solid rgba(15,166,179,.22);background:#fff;color:var(--text-gray);padding:.8rem 1.5rem;min-width:120px;border-radius:12px;font:inherit;font-weight:700;cursor:pointer;transition:color .25s ease,background .25s ease,border-color .25s ease,box-shadow .25s ease,transform .25s ease}.package-view-btn:hover{color:var(--primary);border-color:rgba(15,166,179,.45);transform:translateY(-2px);box-shadow:0 6px 18px rgba(15,166,179,.10)}.package-view-btn.active{background:var(--gradient-accent);color:#fff;border-color:transparent;box-shadow:0 8px 22px rgba(15,166,179,.25)}.package-view-btn.active:hover{color:#fff;transform:translateY(-2px);box-shadow:0 10px 26px rgba(15,166,179,.3)}.package-view-panel{display:none}.package-view-panel.active{display:block;animation:packageFade .28s ease}@media (max-width:768px){.package-view-switch{width:100%;max-width:360px;gap:.5rem}.package-view-btn{flex:1;min-width:0;padding:.75rem .8rem;font-size:.85rem}}
 
 
 /* Comparison is a view inside the homepage packages section */
@@ -1273,7 +1273,7 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
   }
   .teacher-rail::-webkit-scrollbar{display:none}
   .teacher-rail-item{
-    flex:1 0 145px;
+    flex:0 0 145px;
     padding:.9rem .8rem;
   }
   .teacher-rail-item::before{
@@ -1368,7 +1368,7 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
 }
 
 
-/* ===== Final teacher + Жизнь в AClass polish ===== */
+/* ===== Final teacher + Life at AClass polish ===== */
 
 /* Teacher selection is click-only — hovering does not change the active teacher. */
 .teacher-rail-item:hover{
@@ -1399,14 +1399,14 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
   }
 }
 
-/* ===== Жизнь в AClass — editorial on-page section ===== */
+/* ===== Life at AClass — editorial on-page section ===== */
 .life-at-aclass-editorial{
   cursor:default;
   padding:7rem 2rem;
   background:
-    radial-gradient(circle at 12% 18%, rgba(167,102,220,.12), transparent 30%),
-    radial-gradient(circle at 88% 82%, rgba(99,102,241,.10), transparent 32%),
-    linear-gradient(135deg,#faf8ff 0%,#f8f7ff 48%,#fbfbff 100%);
+    radial-gradient(circle at 12% 18%, rgba(15,166,179,.12), transparent 30%),
+    radial-gradient(circle at 88% 82%, rgba(120,214,75,.10), transparent 32%),
+    linear-gradient(135deg,#F8FCF9 0%,#F6FBF8 48%,#FAFDFC 100%);
   overflow:hidden;
 }
 .life-editorial-wrap{
@@ -1430,7 +1430,7 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
   gap:.55rem;
   color:var(--primary);
   background:rgba(255,255,255,.78);
-  border:1px solid rgba(167,102,220,.18);
+  border:1px solid rgba(15,166,179,.18);
   border-radius:999px;
   padding:.55rem 1rem;
   font-size:.75rem;
@@ -1461,7 +1461,7 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
   max-width:560px;
   margin:0;
   padding-left:1.5rem;
-  border-left:2px solid rgba(167,102,220,.3);
+  border-left:2px solid rgba(15,166,179,.3);
 }
 .life-at-aclass-editorial .video-collage-grid{
   grid-template-columns:repeat(4,1fr);
@@ -1471,7 +1471,7 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
   aspect-ratio:9/15;
   border-radius:22px;
   box-shadow:0 14px 40px rgba(32,23,51,.13);
-  background:#e9e5ee;
+  background:#E7EFEA;
   isolation:isolate;
 }
 .life-at-aclass-editorial .video-collage-item::after{
@@ -1507,7 +1507,7 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
   gap:1rem;
   margin-top:1.25rem;
   padding-top:1.25rem;
-  border-top:1px solid rgba(167,102,220,.16);
+  border-top:1px solid rgba(15,166,179,.16);
   color:var(--text-gray);
   font-size:.72rem;
   font-weight:800;
@@ -1530,7 +1530,7 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
     padding-left:0;
     padding-top:1rem;
     border-left:0;
-    border-top:2px solid rgba(167,102,220,.25);
+    border-top:2px solid rgba(15,166,179,.25);
     max-width:700px;
   }
 }
@@ -1568,11 +1568,51 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
 }
 
 
-/* The announcement ticker is desktop-only. */
-@media (max-width:768px){
-  .mobile-header-track{display:none !important;}
+@media (min-width:901px){
+  .nav-container{padding:0 1.15rem;}
+  .nav-menu{gap:1.25rem;}
+  .nav-link{font-size:.88rem;}
+  .nav-cta{padding:.62rem 1.1rem;white-space:nowrap;}
+  .language-switcher a{min-width:28px;height:26px;padding:0 6px;font-size:10px;}
 }
 
+.legal-section{padding:6rem 2rem;background:var(--bg-light,#fafbff);}
+.legal-grid{max-width:1050px;margin:0 auto;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;}
+.legal-card{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:1rem;padding:1.35rem;text-decoration:none;color:inherit;background:#fff;border:1px solid rgba(15,166,179,.14);border-radius:20px;box-shadow:0 10px 30px rgba(15,166,179,.07);transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;}
+.legal-card:hover{transform:translateY(-4px);box-shadow:0 16px 36px rgba(15,166,179,.12);border-color:rgba(15,166,179,.3);}
+.legal-card-icon{width:44px;height:44px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:rgba(15,166,179,.1);color:var(--primary);font-size:1rem;}
+.legal-card h3{margin:0 0 .35rem;font-size:1rem;color:var(--text-dark);}
+.legal-card p{margin:0;color:var(--text-gray);font-size:.78rem;line-height:1.5;}
+.legal-card-arrow{color:var(--primary);font-size:.8rem;}
+.payment-section{padding:4.5rem 2rem 6rem;background:var(--bg-light,#fafbff);}
+.payment-card{max-width:1050px;margin:0 auto;display:flex;align-items:center;gap:1.5rem;padding:1.7rem 1.9rem;border:1px dashed rgba(15,166,179,.3);border-radius:24px;background:rgba(255,255,255,.72);}
+.payment-icon{width:58px;height:58px;flex:0 0 58px;border-radius:18px;display:flex;align-items:center;justify-content:center;background:var(--gradient-accent);color:#fff;font-size:1.25rem;box-shadow:0 10px 25px rgba(15,166,179,.2);}
+.payment-copy{flex:1;}
+.payment-kicker{display:block;margin-bottom:.25rem;font-size:.7rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--primary);}
+.payment-copy h2{margin:0 0 .35rem;font-size:1.45rem;}
+.payment-copy p{margin:0;color:var(--text-gray);font-size:.88rem;line-height:1.55;}
+.payment-status{flex:0 0 auto;padding:.45rem .75rem;border-radius:999px;background:rgba(15,166,179,.1);color:var(--primary);font-size:.7rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap;}
+.footer-contact-label{display:block;font-size:.68rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--primary);margin-bottom:.15rem;}
+.footer-contact-name{display:block;font-weight:700;color:#fff;margin-bottom:.2rem;}
+@media(max-width:900px){
+  .legal-section{padding:5rem 1rem;}
+  .legal-grid{grid-template-columns:1fr;max-width:620px;}
+  .payment-section{padding:1rem 1rem 5rem;}
+  .payment-card{align-items:flex-start;flex-wrap:wrap;padding:1.35rem;gap:1rem;}
+  .payment-copy{min-width:0;}
+  .payment-status{margin-left:74px;}
+}
+@media(max-width:520px){
+  .legal-card{grid-template-columns:auto 1fr;}
+  .legal-card-arrow{display:none;}
+  .payment-card{display:grid;grid-template-columns:auto 1fr;}
+  .payment-status{grid-column:2;margin-left:0;justify-self:start;}
+}
+#legal{scroll-margin-top:90px;}
+
+html { scroll-behavior: auto !important; }
+
+section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
 </style>
 
   <!-- Фавикон AClass -->
@@ -1604,6 +1644,7 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
 <li><a class="nav-link" href="#teachers">Преподаватели</a></li>
 <li><a class="nav-link" href="#packages">Пакеты</a></li>
 <li><a class="nav-link" href="#life-at-aclass">Жизнь в AClass</a></li>
+<li><a class="nav-link" href="#legal">Правовая информация</a></li>
 <li><a class="nav-cta" href="#contact">Связаться с нами</a></li>
 <li class="language-nav-item">
 <div aria-label="Language selection" class="language-switcher">
@@ -1631,6 +1672,7 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
 <i class="fas fa-chalkboard-teacher"></i>
 <span>Преподаватели</span>
 </a>
+<a class="tab-item" href="#legal"><i class="fas fa-scale-balanced"></i><span>Правовая информация</span></a>
 </div>
 </div>
 <section class="hero" id="home">
@@ -1808,7 +1850,7 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
 <div class="package-feature-item"><i class="fas fa-check"></i> Контроль прогресса</div>
 <div class="package-feature-item"><i class="fas fa-check"></i> Практика пробных тестов</div>
 </div>
-<button class="package-cta" onclick="event.stopPropagation(); window.location.href='index.html#contact'">Записаться</button>
+<button class="package-cta" onclick="event.stopPropagation(); window.location.href='ru.html#contact'">Записаться</button>
 </div>
 </div>
 </div>
@@ -1839,7 +1881,7 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
 <div class="package-feature-item"><i class="fas fa-check"></i> Приоритетная поддержка преподавателя</div>
 <div class="package-feature-item"><i class="fas fa-check"></i> Быстрый контроль прогресса</div>
 </div>
-<button class="package-cta" onclick="event.stopPropagation(); window.location.href='index.html#contact'">Записаться</button>
+<button class="package-cta" onclick="event.stopPropagation(); window.location.href='ru.html#contact'">Записаться</button>
 </div>
 </div>
 </div>
@@ -1870,7 +1912,7 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
 <div class="package-feature-item"><i class="fas fa-check"></i> Индивидуальный темп обучения</div>
 <div class="package-feature-item"><i class="fas fa-check"></i> Работа над конкретными навыками</div>
 </div>
-<button class="package-cta" onclick="event.stopPropagation(); window.location.href='index.html#contact'">Записаться</button>
+<button class="package-cta" onclick="event.stopPropagation(); window.location.href='ru.html#contact'">Записаться</button>
 </div>
 </div>
 </div>
@@ -1901,7 +1943,7 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
 <div class="package-feature-item"><i class="fas fa-check"></i> Специальные задания для пары</div>
 <div class="package-feature-item"><i class="fas fa-check"></i> Индивидуальное внимание</div>
 </div>
-<button class="package-cta" onclick="event.stopPropagation(); window.location.href='index.html#contact'">Записаться</button>
+<button class="package-cta" onclick="event.stopPropagation(); window.location.href='ru.html#contact'">Записаться</button>
 </div>
 </div>
 </div>
@@ -1939,7 +1981,7 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
 <div class="package-feature-item"><i class="fas fa-check"></i> Произношение</div>
 <div class="package-feature-item"><i class="fas fa-check"></i> Практика реальных ситуаций</div>
 </div>
-<button class="package-cta" onclick="event.stopPropagation(); window.location.href='index.html#contact'">Записаться</button>
+<button class="package-cta" onclick="event.stopPropagation(); window.location.href='ru.html#contact'">Записаться</button>
 </div>
 </div>
 </div>
@@ -1972,7 +2014,7 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
 <div class="package-feature-item"><i class="fas fa-check"></i> Регулярная обратная связь</div>
 <div class="package-feature-item"><i class="fas fa-check"></i> Отслеживание прогресса</div>
 </div>
-<button class="package-cta" onclick="event.stopPropagation(); window.location.href='index.html#contact'">Записаться</button>
+<button class="package-cta" onclick="event.stopPropagation(); window.location.href='ru.html#contact'">Записаться</button>
 </div>
 </div>
 </div>
@@ -2050,6 +2092,20 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
 </div>
 </div>
 </section>
+<section id="payment" class="payment-section">
+  <div class="container">
+    <div class="payment-card">
+      <div class="payment-icon"><i class="fas fa-credit-card"></i></div>
+      <div class="payment-copy">
+        <span class="payment-kicker">Оплата</span>
+        <h2>Информация об оплате</h2>
+        <p>Способы оплаты и инструкции появятся здесь в ближайшее время. Мы добавим официальную информацию об оплате, как только она будет готова.</p>
+      </div>
+      <span class="payment-status">Скоро</span>
+    </div>
+  </div>
+</section>
+
 <section class="teachers-section-packages" id="teachers">
 <div class="teachers-container">
 <div class="teachers-intro">
@@ -2059,22 +2115,37 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
 </div>
 <div class="teacher-showcase" id="teacherShowcase">
 <div aria-label="Choose a teacher" class="teacher-rail">
-<button aria-label="Show Aisa" class="teacher-rail-item active" data-teacher="0" type="button">
+<button aria-label="Показать Айку" class="teacher-rail-item active" data-teacher="0" type="button">
 <span class="teacher-rail-number">01</span>
+<span class="teacher-rail-name">Айка</span>
+<span class="teacher-rail-role">Основатель · Преподаватель IELTS</span>
+</button>
+<button aria-label="Показать Аису" class="teacher-rail-item" data-teacher="1" type="button">
+<span class="teacher-rail-number">02</span>
 <span class="teacher-rail-name">Аиса</span>
 <span class="teacher-rail-role">Старший преподаватель IELTS</span>
 </button>
-<button aria-label="Show Ademi" class="teacher-rail-item" data-teacher="1" type="button">
-<span class="teacher-rail-number">02</span>
+<button aria-label="Показать Адеми" class="teacher-rail-item" data-teacher="2" type="button">
+<span class="teacher-rail-number">03</span>
 <span class="teacher-rail-name">Адеми</span>
 <span class="teacher-rail-role">Преподаватель IELTS</span>
+</button>
+<button aria-label="Показать Инессу" class="teacher-rail-item" data-teacher="3" type="button">
+<span class="teacher-rail-number">04</span>
+<span class="teacher-rail-name">Инесса</span>
+<span class="teacher-rail-role">Преподаватель IELTS</span>
+</button>
+<button aria-label="Показать Алекса" class="teacher-rail-item" data-teacher="4" type="button">
+<span class="teacher-rail-number">05</span>
+<span class="teacher-rail-name">Алекс</span>
+<span class="teacher-rail-role">Преподаватель SAT и NUET</span>
 </button>
 </div>
 <div class="teacher-visual">
 <div class="teacher-frame teacher-frame-back"></div>
 <div class="teacher-frame teacher-frame-front">
 <div class="teacher-photo-wrap">
-<img alt="Аиса, старший преподаватель IELTS" decoding="async" fetchpriority="high" height="900" id="teacherPhoto" loading="lazy" src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/Aisa.jpeg" width="720"/>
+<img alt="Мисс Айка, основатель A Class и преподаватель IELTS" decoding="async" fetchpriority="high" height="900" id="teacherPhoto" loading="lazy" src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/Aika.jpeg" width="720"/>
 <div class="teacher-photo-overlay">
 <span>Познакомьтесь с преподавателем</span>
 <i class="fas fa-arrow-up-right-from-square"></i>
@@ -2089,28 +2160,28 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
 </div>
 <div aria-live="polite" class="teacher-copy">
 <div class="teacher-copy-top">
-<span class="teacher-slide-count" id="teacherSlideCount">01 / 02</span>
+<span class="teacher-slide-count" id="teacherSlideCount">01 / 05</span>
 <span class="teacher-dot"></span>
 <span id="teacherSpecialty">IELTS · АНГЛИЙСКИЙ</span>
 </div>
-<h3 id="teacherName">Аиса</h3>
-<div class="teacher-role" id="teacherRole">Старший преподаватель IELTS</div>
+<h3 id="teacherName">Айка</h3>
+<div class="teacher-role" id="teacherRole">Основатель · Преподаватель IELTS</div>
 <div class="teacher-description-wrap">
-<p id="teacherDescription">Айса— опытный преподаватель английского языка с 8-летним опытом подготовки к IELTS и 10-летним общим опытом преподавания английского языка. Она получила результат IELTS 8.5, включая максимальные 9.0 за устную часть.</p>
-<p id="teacherDescription2">Айсаполучает степень магистра по программе MA TEFL по специальности «Преподавание английского языка как иностранного» в Американском университете Армении.</p>
+<p id="teacherDescription">Мисс Айка — фаундер A Class и преподаватель с более чем 15-летним опытом.</p>
+<p id="teacherDescription2">За годы работы она подготовила более 1000 выпускников, а средний балл её учеников на IELTS составляет 7.5. Её личный результат IELTS — 8.5.</p>
 </div>
 <div class="teacher-metrics">
 <div class="teacher-metric">
-<strong id="teacherMetric1">8+</strong>
-<span id="teacherMetric1Label">Лет подготовки к IELTS</span>
+<strong id="teacherMetric1">15+</strong>
+<span id="teacherMetric1Label">Лет преподавания</span>
 </div>
 <div class="teacher-metric">
 <strong id="teacherMetric2">8.5</strong>
 <span id="teacherMetric2Label">Баллы IELTS</span>
 </div>
 <div class="teacher-metric">
-<strong id="teacherMetric3">9.0</strong>
-<span id="teacherMetric3Label">Устная часть</span>
+<strong id="teacherMetric3">1000+</strong>
+<span id="teacherMetric3Label">Ученики</span>
 </div>
 </div>
 <div class="teacher-controls">
@@ -2137,9 +2208,11 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
 <section class="contact" id="contact">
 <div class="container">
 <div class="section-header"><span class="section-tag"><i class="fas fa-envelope"></i> Связаться с нами</span><h2>Свяжитесь с нами</h2><p>Свяжитесь с нами напрямую через WhatsApp или Instagram</p></div>
+<div class="contact-note" style="margin-top:0;margin-bottom:1.5rem;"><strong style="display:block;color:var(--text-dark);margin-bottom:.25rem;">Директор</strong><span style="display:block;margin-bottom:.35rem;">Gvalia Aigerim</span><a href="tel:555637881" style="color:var(--primary);font-weight:700;">555 637 881</a></div>
 <div class="contact-buttons">
 <a class="contact-btn whatsapp" href="https://api.whatsapp.com/send?phone=77472297002" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i><span>WhatsApp</span></a>
 <a class="contact-btn instagram" href="https://www.instagram.com/aclass.kz" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i><span>Instagram</span></a>
+<a class="contact-btn" href="tel:555637881" style="background:var(--text-dark);color:#fff;"><i class="fas fa-phone"></i><span>555 637 881</span></a>
 </div>
 <div class="contact-note"><i class="fas fa-clock"></i> Обычно мы отвечаем в течение 1–2 часов в рабочее время</div>
 </div>
@@ -2149,8 +2222,8 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
 <div class="footer-col"><h4>Школа английского языка AClass</h4><p>Более 15 лет помогаем ученикам свободно говорить на английском и успешно сдавать экзамены.</p><div class="social-links"><a href="https://www.instagram.com/aclass.kz" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a><a href="https://api.whatsapp.com/send?phone=77472297002" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i></a></div></div>
 <div class="footer-col"><h4>Быстрые ссылки</h4><ul class="footer-links"><li><a href="#home"><i class="fas fa-chevron-right"></i> Главная</a></li><li><a href="#about"><i class="fas fa-chevron-right"></i> О нас</a></li><li><a href="#courses"><i class="fas fa-chevron-right"></i> Курсы</a></li><li><a href="#packages"><i class="fas fa-chevron-right"></i> Все пакеты</a></li><li><a href="#life-at-aclass"><i class="fas fa-chevron-right"></i> Жизнь в AClass</a></li></ul></div>
 <div class="footer-col"><h4>Программы</h4><ul class="footer-links"><li><a href="#courses"><i class="fas fa-chevron-right"></i> IELTS</a></li><li><a href="#courses"><i class="fas fa-chevron-right"></i> SAT</a></li><li><a href="#courses"><i class="fas fa-chevron-right"></i> Общий английский</a></li></ul></div>
-<div class="footer-col"><h4>Контакты</h4><ul class="footer-links"><li><a href="mailto:info@aclass.am"><i class="fas fa-envelope"></i> info@aclass.am</a></li><li><a href="https://api.whatsapp.com/send?phone=77472297002"><i class="fas fa-phone"></i> +7 747 229 7002</a></li></ul></div>
-<div class="footer-col"><h4>Правовая информация</h4><ul class="footer-links"><li><a href="privacy-policy.html"><i class="fas fa-shield-halved"></i> Политика конфиденциальности</a></li><li><a href="terms-and-conditions.html"><i class="fas fa-file-contract"></i> Условия использования</a></li><li><a href="refund-policy.html"><i class="fas fa-rotate-left"></i> Политика возврата</a></li></ul></div>
+<div class="footer-col"><h4>Контакты</h4><ul class="footer-links"><li><span class="footer-contact-label">Директор</span></li><li><span class="footer-contact-name">Gvalia Aigerim</span></li><li><a href="tel:555637881"><i class="fas fa-phone"></i> 555 637 881</a></li><li><a href="mailto:info@aclass.am"><i class="fas fa-envelope"></i> info@aclass.am</a></li><li><a href="https://api.whatsapp.com/send?phone=77472297002"><i class="fab fa-whatsapp"></i> WhatsApp</a></li></ul></div>
+<div class="footer-col" id="legal"><h4>Правовая информация</h4><ul class="footer-links"><li><a href="privacy-policy.html"><i class="fas fa-shield-halved"></i> Политика конфиденциальности</a></li><li><a href="terms-and-conditions.html"><i class="fas fa-file-contract"></i> Условия использования</a></li><li><a href="refund-policy.html"><i class="fas fa-rotate-left"></i> Политика возврата</a></li></ul></div>
 </div>
 <div class="footer-bottom">© 2026 Школа английского языка AClass. Все права защищены.</div>
 </footer>
@@ -2166,7 +2239,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (!wasActive) element.classList.add('active');
   };
 
-  /* Пакеты / Сравнение switch — now works because it runs in a real script */
+  /* Packages / Compare switch — now works because it runs in a real script */
   const viewButtons = document.querySelectorAll('.package-view-btn');
   const viewPanels = document.querySelectorAll('.package-view-panel');
 
@@ -2203,13 +2276,23 @@ document.addEventListener('DOMContentLoaded', function () {
   /* Teacher spotlight slider */
   const teacherData = [
     {
+      name: 'Айка',
+      role: 'Основатель · Преподаватель IELTS',
+      specialty: 'IELTS · АНГЛИЙСКИЙ',
+      image: 'https://raw.githubusercontent.com/AClassenglish/A_Class/main/Aika.jpeg',
+      alt: 'Мисс Айка, основатель A Class и преподаватель IELTS',
+      description: 'Мисс Айка — фаундер A Class и преподаватель с более чем 15-летним опытом. За годы работы она подготовила более 1000 выпускников, а средний балл её учеников на IELTS составляет 7.5.',
+      description2: 'Её личный результат IELTS — 8.5. Мисс Айка получила образование в двух европейских университетах: Mikkeli University в Финляндии и Karel de Grote University в Нидерландах. В своей работе она делает акцент на системной подготовке, глубоком понимании структуры IELTS и развитии навыков, которые позволяют студентам стабильно достигать высоких результатов.',
+      metrics: [['15+', 'Лет преподавания'], ['8.5', 'Баллы IELTS'], ['1000+', 'Ученики']]
+    },
+    {
       name: 'Аиса',
       role: 'Старший преподаватель IELTS',
       specialty: 'IELTS · АНГЛИЙСКИЙ',
       image: 'https://raw.githubusercontent.com/AClassenglish/A_Class/main/Aisa.jpeg',
       alt: 'Аиса, старший преподаватель IELTS',
-      description: 'Айса— опытный преподаватель английского языка с 8-летним опытом подготовки к IELTS и 10-летним общим опытом преподавания английского языка. Она получила результат IELTS 8.5, включая максимальные 9.0 за устную часть.',
-      description2: 'Айса получает степень магистра по программе MA TEFL по специальности «Преподавание английского языка как иностранного» в Американском университете Армении.',
+      description: 'Аиса — опытный преподаватель английского языка с 8-летним опытом подготовки к IELTS и 10-летним общим опытом преподавания английского языка. Она получила результат IELTS 8.5, включая максимальные 9.0 за устную часть.',
+      description2: 'Аиса получает степень магистра по программе MA TEFL по специальности «Преподавание английского языка как иностранного» в Американском университете Армении.',
       metrics: [['8+', 'Лет подготовки к IELTS'], ['8.5', 'Баллы IELTS'], ['9.0', 'Устная часть']]
     },
     {
@@ -2217,10 +2300,30 @@ document.addEventListener('DOMContentLoaded', function () {
       role: 'Преподаватель IELTS',
       specialty: 'IELTS · АНГЛИЙСКИЙ',
       image: 'https://raw.githubusercontent.com/AClassenglish/A_Class/main/Ademi.jpeg',
-      alt: 'Ademi, Преподаватель IELTS',
+      alt: 'Адеми, преподаватель IELTS',
       description: 'Адеми — преподаватель IELTS с 4,5 годами опыта преподавания. Она окончила Американский университет Центральной Азии и получила результат IELTS 8.0, набрав 8.0 как за письменную, так и за устную часть.',
       description2: '',
-      metrics: [['4.5+', 'Years Teaching'], ['8.0', 'Баллы IELTS'], ['8.0', 'Письмо + устная часть']]
+      metrics: [['4,5+', 'Лет преподавания'], ['8.0', 'Баллы IELTS'], ['8.0', 'Письмо + устная часть']]
+    },
+    {
+      name: 'Инесса',
+      role: 'Преподаватель IELTS',
+      specialty: 'IELTS · АНГЛИЙСКИЙ',
+      image: 'https://raw.githubusercontent.com/AClassenglish/A_Class/main/Inessa.JPG',
+      alt: 'Мисс Инесса, преподаватель IELTS',
+      description: 'Мисс Инесса — преподаватель IELTS с более чем 8-летним опытом работы. По образованию она педагог иностранных языков, что позволяет ей сочетать профессиональную методическую подготовку с практическим подходом к подготовке к IELTS.',
+      description2: 'На занятиях Мисс Инесса уделяет особое внимание развитию всех четырёх навыков, работе над типичными ошибками и системной подготовке к экзамену.',
+      metrics: [['8+', 'Лет преподавания'], ['4', 'Навыка IELTS'], ['8+', 'Лет опыта']]
+    },
+    {
+      name: 'Алекс',
+      role: 'Преподаватель SAT и NUET',
+      specialty: 'SAT · NUET',
+      image: 'https://raw.githubusercontent.com/AClassenglish/A_Class/main/Alex.png',
+      alt: 'Алекс, преподаватель SAT и NUET',
+      description: 'Алекс — преподаватель SAT и NUET с 4-летним опытом работы. Его личный результат SAT — 1590, а результат NUET — 220.',
+      description2: 'Сейчас Алекс является студентом медицинского факультета Назарбаев Университета.',
+      metrics: [['4+', 'Лет преподавания'], ['1590', 'Результат SAT'], ['220', 'Результат NUET']]
     }
   ];
 
@@ -2287,7 +2390,7 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 
     /*
-     * Both teacher images are preloaded. If the requested image is already
+     * All teacher images are preloaded. If the requested image is already
      * ready, swap immediately; otherwise wait for that image only.
      * Nothing else in the section is hidden or animated.
      */
@@ -2355,8 +2458,8 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  /* Отзывы slider — waits for deferred Swiper library. */
-  function initОтзывы() {
+  /* Reviews slider — waits for deferred Swiper library. */
+  function initReviews() {
     if (typeof Swiper === 'undefined' || !document.querySelector('.reviews-swiper')) return;
     new Swiper('.reviews-swiper', {
       loop: true,
@@ -2373,9 +2476,9 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
   if (typeof Swiper !== 'undefined') {
-    initОтзывы();
+    initReviews();
   } else {
-    window.addEventListener('load', initОтзывы, { once: true });
+    window.addEventListener('load', initReviews, { once: true });
   }
 
   /* Lazy-load the four collage videos only when they approach the viewport. */
