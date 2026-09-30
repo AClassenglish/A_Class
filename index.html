@@ -5,6 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">
 <meta name="description" content="AClass English School — Expert IELTS, SAT, and General English tutoring.">
 <meta name="theme-color" content="#0FA6B3">
+
+<!-- AClass favicon -->
+<link href="https://raw.githubusercontent.com/AClassenglish/A_Class/main/images/Aclasslogo.jpeg" rel="icon" type="image/jpeg"/>
+<link href="https://raw.githubusercontent.com/AClassenglish/A_Class/main/images/Aclasslogo.jpeg" rel="shortcut icon" type="image/jpeg"/>
+<link href="https://raw.githubusercontent.com/AClassenglish/A_Class/main/images/Aclasslogo.jpeg" rel="apple-touch-icon"/>
 <title>AClass English School — IELTS, SAT &amp; General English</title>
 
 
@@ -1683,29 +1688,15 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
 .legal-card h3{margin:0 0 .35rem;font-size:1rem;color:var(--text-dark);}
 .legal-card p{margin:0;color:var(--text-gray);font-size:.78rem;line-height:1.5;}
 .legal-card-arrow{color:var(--primary);font-size:.8rem;}
-.payment-section{padding:4.5rem 2rem 6rem;background:var(--bg-light,#fafbff);}
-.payment-card{max-width:1050px;margin:0 auto;display:flex;align-items:center;gap:1.5rem;padding:1.7rem 1.9rem;border:1px dashed rgba(15,166,179,.3);border-radius:24px;background:rgba(255,255,255,.72);}
-.payment-icon{width:58px;height:58px;flex:0 0 58px;border-radius:18px;display:flex;align-items:center;justify-content:center;background:var(--gradient-accent);color:#fff;font-size:1.25rem;box-shadow:0 10px 25px rgba(15,166,179,.2);}
-.payment-copy{flex:1;}
-.payment-kicker{display:block;margin-bottom:.25rem;font-size:.7rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--primary);}
-.payment-copy h2{margin:0 0 .35rem;font-size:1.45rem;}
-.payment-copy p{margin:0;color:var(--text-gray);font-size:.88rem;line-height:1.55;}
-.payment-status{flex:0 0 auto;padding:.45rem .75rem;border-radius:999px;background:rgba(15,166,179,.1);color:var(--primary);font-size:.7rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap;}
 .footer-contact-label{display:block;font-size:.68rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--primary);margin-bottom:.15rem;}
 .footer-contact-name{display:block;font-weight:700;color:#fff;margin-bottom:.2rem;}
 @media(max-width:900px){
   .legal-section{padding:5rem 1rem;}
   .legal-grid{grid-template-columns:1fr;max-width:620px;}
-  .payment-section{padding:1rem 1rem 5rem;}
-  .payment-card{align-items:flex-start;flex-wrap:wrap;padding:1.35rem;gap:1rem;}
-  .payment-copy{min-width:0;}
-  .payment-status{margin-left:74px;}
 }
 @media(max-width:520px){
   .legal-card{grid-template-columns:auto 1fr;}
   .legal-card-arrow{display:none;}
-  .payment-card{display:grid;grid-template-columns:auto 1fr;}
-  .payment-status{grid-column:2;margin-left:0;justify-self:start;}
 }
 #legal{scroll-margin-top:90px !important;}
 
@@ -1750,6 +1741,51 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
 .package-cms-price{margin-top:10px;font-weight:800;color:var(--primary);font-size:1.05rem}
 .package-accordion .package-cms-price:empty{display:none}
 .package-cms-source{font-size:.78rem;opacity:.75;margin-top:6px}
+</style>
+
+
+<style id="aclass-package-redesign">
+/* Compact AClass product cards */
+#packages .packages-container{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;
+  align-items:stretch;max-width:1220px;margin:0 auto;
+}
+#packages .packages-section-title{grid-column:1/-1;margin:8px 0 0;padding:2px 0;text-align:left}
+#packages .packages-section-title:not(:first-child){margin-top:24px!important}
+#packages .packages-section-title h2{margin:0 0 5px;font-size:clamp(1.3rem,2vw,1.7rem);letter-spacing:-.025em}
+#packages .packages-section-title p{margin:0;color:var(--text-gray);font-size:.84rem}
+#packages .package-accordion{
+  grid-column:span 1;margin:0;min-width:0;background:linear-gradient(180deg,#fff 0%,#fbfdff 100%);
+  border:1px solid rgba(15,166,179,.14);border-radius:18px;overflow:hidden;
+  box-shadow:0 6px 20px rgba(15,42,60,.055);transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease;
+  display:flex;flex-direction:column;
+}
+#packages .package-accordion:hover{transform:translateY(-2px);border-color:rgba(15,166,179,.28);box-shadow:0 10px 26px rgba(15,42,60,.09)}
+#packages .package-header{padding:16px 17px 13px;cursor:default;gap:10px;align-items:flex-start;background:linear-gradient(135deg,rgba(15,166,179,.045),rgba(167,102,220,.035))}
+#packages .package-header-left{width:100%;align-items:flex-start;min-width:0;gap:10px}
+#packages .package-icon{width:40px;height:40px;flex:0 0 40px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:var(--gradient-accent);color:#fff;font-size:.9rem;box-shadow:0 5px 13px rgba(15,166,179,.14)}
+#packages .package-header-content{min-width:0;padding-top:0}
+#packages .package-title{font-size:1rem;font-weight:800;line-height:1.25;color:var(--text-dark)}
+#packages .package-subtitle{margin-top:4px;color:var(--text-gray);font-size:.72rem;line-height:1.4}
+#packages .package-toggle{display:none}
+#packages .package-content,#packages .package-accordion.active .package-content{max-height:none;overflow:visible;display:block;flex:1}
+#packages .package-body{padding:0 17px 17px;display:flex;flex-direction:column;height:100%;min-width:0}
+#packages .package-content{min-width:0}
+#packages .package-description{margin:0 0 12px;padding-top:0;color:var(--text-gray);font-size:.76rem;line-height:1.5}
+#packages .package-details-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin:0 0 12px}
+#packages .package-detail-card{min-width:0;padding:8px 6px;border-radius:10px;background:#f7fbfc;border:1px solid rgba(15,166,179,.08);text-align:center}
+#packages .package-detail-label{font-size:.55rem;text-transform:uppercase;letter-spacing:.05em;color:var(--text-light);font-weight:800}
+#packages .package-detail-value{margin-top:3px;font-size:.73rem;font-weight:800;color:var(--text-dark);overflow-wrap:anywhere}
+#packages .package-features-list{display:grid;grid-template-columns:1fr;gap:5px;margin:0 0 12px}
+#packages .package-feature-item{font-size:.68rem;line-height:1.35;color:var(--text-gray);display:flex;gap:6px;align-items:flex-start}
+#packages .package-feature-item i{color:var(--primary);font-size:.62rem;margin-top:3px;flex:0 0 auto}
+#packages .package-cms-price{margin:auto 0 10px;padding-top:8px;font-size:.95rem;font-weight:900;color:var(--primary);border-top:1px solid var(--border)}
+#packages .package-cta{width:100%;min-height:40px;border:0;border-radius:11px;background:var(--gradient-accent);color:#fff;font-weight:800;font-size:.76rem;box-shadow:0 6px 16px rgba(15,166,179,.16);cursor:pointer;transition:transform .2s ease,box-shadow .2s ease}
+#packages .package-cta:hover{transform:translateY(-1px);box-shadow:0 9px 20px rgba(15,166,179,.22)}
+#packages .package-view-switch{margin-bottom:24px}
+@media(max-width:1050px){#packages .packages-container{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:650px){#packages .packages-container{grid-template-columns:1fr;gap:14px}#packages .package-header{padding:15px 15px 12px}#packages .package-body{padding:0 15px 15px}#packages .package-title{font-size:.96rem}#packages .package-subtitle{font-size:.7rem}#packages .package-features-list{grid-template-columns:1fr 1fr}}
+@media(max-width:430px){#packages .package-features-list{grid-template-columns:1fr}}
 </style>
 
 </head>
@@ -2023,7 +2059,7 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
 <h2>IELTS &amp; SAT Packages</h2>
 <p>Structured preparation for international examinations</p>
 </div>
-<div class="package-accordion" onclick="togglePackage(this)">
+<div class="package-accordion">
 <div class="package-header">
 <div class="package-header-left">
 <div class="package-icon"><i class="fas fa-users"></i></div>
@@ -2054,7 +2090,7 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
 </div>
 </div>
 </div>
-<div class="package-accordion" onclick="togglePackage(this)">
+<div class="package-accordion">
 <div class="package-header">
 <div class="package-header-left">
 <div class="package-icon"><i class="fas fa-bolt"></i></div>
@@ -2085,7 +2121,7 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
 </div>
 </div>
 </div>
-<div class="package-accordion" onclick="togglePackage(this)">
+<div class="package-accordion">
 <div class="package-header">
 <div class="package-header-left">
 <div class="package-icon"><i class="fas fa-user"></i></div>
@@ -2116,7 +2152,7 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
 </div>
 </div>
 </div>
-<div class="package-accordion" onclick="togglePackage(this)">
+<div class="package-accordion">
 <div class="package-header">
 <div class="package-header-left">
 <div class="package-icon"><i class="fas fa-user-friends"></i></div>
@@ -2152,7 +2188,7 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
 <h2>General English Packages</h2>
 <p>Improve your overall English level for everyday communication</p>
 </div>
-<div class="package-accordion" onclick="togglePackage(this)">
+<div class="package-accordion">
 <div class="package-header">
 <div class="package-header-left">
 <div class="package-icon"><i class="fas fa-comments"></i></div>
@@ -2185,7 +2221,7 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
 </div>
 </div>
 </div>
-<div class="package-accordion" onclick="togglePackage(this)">
+<div class="package-accordion">
 <div class="package-header">
 <div class="package-header-left">
 <div class="package-icon"><i class="fas fa-user-graduate"></i></div>
@@ -2294,19 +2330,6 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
 </section>
 
 
-<section class="payment-section" id="payment">
-<div class="container">
-<div class="payment-card">
-<div class="payment-icon"><i class="fas fa-credit-card"></i></div>
-<div class="payment-copy">
-<span class="payment-kicker">Payment</span>
-<h2>Payment Information</h2>
-<p>Payment methods and instructions will be available here soon. We’ll add the official payment details once they are ready.</p>
-</div>
-<span class="payment-status">Coming soon</span>
-</div>
-</div>
-</section>
 
 
 <section class="teachers-section-packages" id="teachers">
@@ -2685,7 +2708,7 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
 <h2>Пакеты IELTS и SAT</h2>
 <p>Структурированная подготовка к международным экзаменам</p>
 </div>
-<div class="package-accordion" onclick="togglePackage(this)">
+<div class="package-accordion">
 <div class="package-header">
 <div class="package-header-left">
 <div class="package-icon"><i class="fas fa-users"></i></div>
@@ -2716,7 +2739,7 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
 </div>
 </div>
 </div>
-<div class="package-accordion" onclick="togglePackage(this)">
+<div class="package-accordion">
 <div class="package-header">
 <div class="package-header-left">
 <div class="package-icon"><i class="fas fa-bolt"></i></div>
@@ -2747,7 +2770,7 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
 </div>
 </div>
 </div>
-<div class="package-accordion" onclick="togglePackage(this)">
+<div class="package-accordion">
 <div class="package-header">
 <div class="package-header-left">
 <div class="package-icon"><i class="fas fa-user"></i></div>
@@ -2778,7 +2801,7 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
 </div>
 </div>
 </div>
-<div class="package-accordion" onclick="togglePackage(this)">
+<div class="package-accordion">
 <div class="package-header">
 <div class="package-header-left">
 <div class="package-icon"><i class="fas fa-user-friends"></i></div>
@@ -2814,7 +2837,7 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
 <h2>Пакеты общего английского</h2>
 <p>Улучшите общий уровень английского для повседневного общения</p>
 </div>
-<div class="package-accordion" onclick="togglePackage(this)">
+<div class="package-accordion">
 <div class="package-header">
 <div class="package-header-left">
 <div class="package-icon"><i class="fas fa-comments"></i></div>
@@ -2847,7 +2870,7 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
 </div>
 </div>
 </div>
-<div class="package-accordion" onclick="togglePackage(this)">
+<div class="package-accordion">
 <div class="package-header">
 <div class="package-header-left">
 <div class="package-icon"><i class="fas fa-user-graduate"></i></div>
@@ -2956,19 +2979,6 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
 </section>
 
 
-<section class="payment-section" id="payment">
-<div class="container">
-<div class="payment-card">
-<div class="payment-icon"><i class="fas fa-credit-card"></i></div>
-<div class="payment-copy">
-<span class="payment-kicker">Оплата</span>
-<h2>Информация об оплате</h2>
-<p>Способы оплаты и инструкции появятся здесь в ближайшее время. Мы добавим официальную информацию об оплате, как только она будет готова.</p>
-</div>
-<span class="payment-status">Скоро</span>
-</div>
-</div>
-</section>
 
 
 <section class="teachers-section-packages" id="teachers">
@@ -3337,7 +3347,7 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
 <h2>IELTS-ისა და SAT-ის პაკეტები</h2>
 <p>სტრუქტურირებული მომზადება საერთაშორისო გამოცდებისთვის</p>
 </div>
-<div class="package-accordion" onclick="togglePackage(this)">
+<div class="package-accordion">
 <div class="package-header">
 <div class="package-header-left">
 <div class="package-icon"><i class="fas fa-users"></i></div>
@@ -3368,7 +3378,7 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
 </div>
 </div>
 </div>
-<div class="package-accordion" onclick="togglePackage(this)">
+<div class="package-accordion">
 <div class="package-header">
 <div class="package-header-left">
 <div class="package-icon"><i class="fas fa-bolt"></i></div>
@@ -3399,7 +3409,7 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
 </div>
 </div>
 </div>
-<div class="package-accordion" onclick="togglePackage(this)">
+<div class="package-accordion">
 <div class="package-header">
 <div class="package-header-left">
 <div class="package-icon"><i class="fas fa-user"></i></div>
@@ -3430,7 +3440,7 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
 </div>
 </div>
 </div>
-<div class="package-accordion" onclick="togglePackage(this)">
+<div class="package-accordion">
 <div class="package-header">
 <div class="package-header-left">
 <div class="package-icon"><i class="fas fa-user-friends"></i></div>
@@ -3466,7 +3476,7 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
 <h2>ზოგადი ინგლისურის პაკეტები</h2>
 <p>გაიუმჯობესე ინგლისურის საერთო დონე ყოველდღიური კომუნიკაციისთვის</p>
 </div>
-<div class="package-accordion" onclick="togglePackage(this)">
+<div class="package-accordion">
 <div class="package-header">
 <div class="package-header-left">
 <div class="package-icon"><i class="fas fa-comments"></i></div>
@@ -3499,7 +3509,7 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
 </div>
 </div>
 </div>
-<div class="package-accordion" onclick="togglePackage(this)">
+<div class="package-accordion">
 <div class="package-header">
 <div class="package-header-left">
 <div class="package-icon"><i class="fas fa-user-graduate"></i></div>
@@ -3755,13 +3765,6 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
 <script type="text/plain" id="aclass-script-en">
 
   'use strict';
-
-  /* Package accordion */
-  window.togglePackage = function (element) {
-    const wasActive = element.classList.contains('active');
-    document.querySelectorAll('.package-accordion').forEach(acc => acc.classList.remove('active'));
-    if (!wasActive) element.classList.add('active');
-  };
 
   /* Packages / Compare switch — now works because it runs in a real script */
   const viewButtons = document.querySelectorAll('.package-view-btn');
@@ -4053,13 +4056,6 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
 
   'use strict';
 
-  /* Package accordion */
-  window.togglePackage = function (element) {
-    const wasActive = element.classList.contains('active');
-    document.querySelectorAll('.package-accordion').forEach(acc => acc.classList.remove('active'));
-    if (!wasActive) element.classList.add('active');
-  };
-
   /* Packages / Compare switch — now works because it runs in a real script */
   const viewButtons = document.querySelectorAll('.package-view-btn');
   const viewPanels = document.querySelectorAll('.package-view-panel');
@@ -4339,13 +4335,6 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
 <script type="text/plain" id="aclass-script-ge">
 
   'use strict';
-
-  /* Package accordion */
-  window.togglePackage = function (element) {
-    const wasActive = element.classList.contains('active');
-    document.querySelectorAll('.package-accordion').forEach(acc => acc.classList.remove('active'));
-    if (!wasActive) element.classList.add('active');
-  };
 
   /* პაკეტები / შედარება switch — now works because it runs in a real script */
   const viewButtons = document.querySelectorAll('.package-view-btn');
@@ -4752,8 +4741,8 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
     const duration=formatValue(row,L);
     const format=row.format||'';
     const href='payment.html?package='+encodeURIComponent(row.package_key||name);
-    return `<div class="package-accordion" data-cms-package-key="${esc(row.package_key||'')}" onclick="togglePackage(this)">
-      <div class="package-header"><div class="package-header-left"><div class="package-icon"><i class="fas ${iconFor(row)}"></i></div><div class="package-header-content"><div class="package-title">${esc(name)}</div><div class="package-subtitle">${month} lessons/month${week!==null&&week!==''?' • '+esc(week)+' lessons/week':''}${row.lesson_length_minutes?' • '+esc(row.lesson_length_minutes)+' min':''}</div></div></div><div class="package-toggle"><i class="fas fa-chevron-down"></i></div></div>
+    return `<div class="package-accordion" data-cms-package-key="${esc(row.package_key||'')}">
+      <div class="package-header"><div class="package-header-left"><div class="package-icon"><i class="fas ${iconFor(row)}"></i></div><div class="package-header-content"><div class="package-title">${esc(name)}</div><div class="package-subtitle">${month} lessons/month${week!==null&&week!==''?' • '+esc(week)+' lessons/week':''}${row.lesson_length_minutes?' • '+esc(row.lesson_length_minutes)+' min':''}</div></div></div></div>
       <div class="package-content"><div class="package-body"><p class="package-description">${esc(desc)}</p>
       <div class="package-details-grid"><div class="package-detail-card"><div class="package-detail-label">${esc(L.month)}</div><div class="package-detail-value">${esc(month)}</div></div><div class="package-detail-card"><div class="package-detail-label">${esc(L.week)}</div><div class="package-detail-value">${esc(week)}</div></div><div class="package-detail-card"><div class="package-detail-label">${esc(L.duration)}</div><div class="package-detail-value">${duration}</div></div>${format?`<div class="package-detail-card"><div class="package-detail-label">${esc(L.format)}</div><div class="package-detail-value">${esc(format)}</div></div>`:''}</div>
       ${features.length?`<div class="package-features-list">${features.map(x=>`<div class="package-feature-item"><i class="fas fa-check"></i> ${esc(x)}</div>`).join('')}</div>`:''}
