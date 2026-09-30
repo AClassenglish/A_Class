@@ -679,6 +679,7 @@
             </div>
 
             <div id="packagesLoading" class="coming">Loading packages from Supabase…</div>
+            <div id="packagesError" class="coming hidden"></div>
             <div id="packagesList" class="package-admin-list"></div>
             <div id="packagesEmpty" class="coming hidden">
       <strong>No packages found.</strong><br>
@@ -1253,12 +1254,37 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
   function closeProductEditor(){ document.getElementById('productEditor').classList.add('hidden'); }
 
+  async function withTimeout(promise, ms=8000){
+    return await Promise.race([
+      promise,
+      new Promise(resolve => setTimeout(() => resolve({
+        data:null,
+        error:new Error('Supabase request timed out after '+Math.round(ms/1000)+' seconds. Check that public.site_packages is exposed in Data API and that the change has finished saving.')
+      }), ms))
+    ]);
+  }
+
+  function setPackagesError(message){
+    const el=document.getElementById('packagesError');
+    if(!el) return;
+    if(message){
+      el.innerHTML='<strong>Could not load packages.</strong><br>'+cmsEsc(message);
+      el.classList.remove('hidden');
+    }else{
+      el.textContent='';
+      el.classList.add('hidden');
+    }
+  }
+
   async function loadPackageRows(){
-    return await supabase
-      .from('site_packages')
-      .select('*')
-      .order('sort_order', { ascending:true })
-      .order('id', { ascending:true });
+    return await withTimeout(
+      supabase
+        .from('site_packages')
+        .select('*')
+        .order('sort_order', { ascending:true })
+        .order('id', { ascending:true }),
+      8000
+    );
   }
 
   async function ensurePackageCatalog(existingRows){
@@ -1292,89 +1318,101 @@ document.addEventListener('DOMContentLoaded', async () => {
       updated_at: new Date().toISOString()
     }));
 
-    const insertRes = await supabase
-      .from('site_packages')
-      .insert(seedRows)
-      .select('*');
+    const insertRes = await withTimeout(
+      supabase
+        .from('site_packages')
+        .insert(seedRows)
+        .select('*'),
+      10000
+    );
 
     if(insertRes.error) return {data:null,error:insertRes.error,seeded:false};
     return {data:insertRes.data || [],error:null,seeded:true};
   }
 
   async function loadCMS(){
-    // IMPORTANT:
-    // 1. Read the table first.
-    // 2. Render whatever exists.
-    // 3. Seed only if the table is genuinely empty.
-    // This prevents a seed/permission failure from making an otherwise
-    // readable package catalog appear blank.
+    const loading=document.getElementById('packagesLoading');
+    setPackagesError('');
+    if(loading) loading.classList.remove('hidden');
 
-    const packagesRes = await loadPackageRows();
+    try{
+      // Read packages first. Do not let seeding or policy loading block the catalog.
+      const packagesRes = await loadPackageRows();
 
-    if(packagesRes.error){
-      cmsPackages = [];
-      renderPackages();
-      cmsNotify(
-        'Could not load packages: ' + packagesRes.error.message,
-        true
-      );
-      return;
-    }
-
-    let packages = packagesRes.data || [];
-
-    // If empty, attempt the starter seed. Existing data is never overwritten.
-    if(!packages.length){
-      const seedRes = await ensurePackageCatalog(packages);
-
-      if(seedRes.error){
-        cmsPackages = [];
+      if(packagesRes.error){
+        cmsPackages=[];
         renderPackages();
-        cmsNotify(
-          'Package table is accessible, but starter products could not be created: ' +
-          seedRes.error.message,
-          true
-        );
+        setPackagesError(packagesRes.error.message);
+        cmsNotify('Could not load packages: '+packagesRes.error.message,true);
         return;
       }
 
-      // Use the rows returned by the insert. If the API doesn't return them,
-      // perform one normal read.
-      packages = seedRes.data && seedRes.data.length
-        ? seedRes.data
-        : ((await loadPackageRows()).data || []);
-    }
+      let packages = packagesRes.data || [];
 
-    // Website policies are independent from the package catalog.
-    // Load them separately so a policy/API issue cannot blank Packages.
-    try{
-      const pagesRes = await supabase
-        .from('site_pages')
-        .select('*')
-        .eq('language',cmsLanguage)
-        .order('slug');
+      // Seed only when the table is genuinely empty.
+      if(!packages.length){
+        const seedRes = await ensurePackageCatalog(packages);
 
-      cmsPages = pagesRes.data || [];
+        if(seedRes.error){
+          cmsPackages=[];
+          renderPackages();
+          setPackagesError(seedRes.error.message);
+          cmsNotify(
+            'Package table is reachable, but starter products could not be created: '+
+            seedRes.error.message,
+            true
+          );
+          return;
+        }
 
-      if(pagesRes.error){
-        cmsNotify(
-          'Packages loaded. Website pages could not be loaded: ' +
-          pagesRes.error.message,
-          true
+        packages = seedRes.data && seedRes.data.length
+          ? seedRes.data
+          : ((await loadPackageRows()).data || []);
+      }
+
+      // Policies are independent; a policy problem must never block Packages.
+      try{
+        const pagesRes = await withTimeout(
+          supabase
+            .from('site_pages')
+            .select('*')
+            .eq('language',cmsLanguage)
+            .order('slug'),
+          8000
         );
+        cmsPages = pagesRes.data || [];
+        if(pagesRes.error){
+          cmsNotify(
+            'Packages loaded. Website pages could not be loaded: '+
+            pagesRes.error.message,
+            true
+          );
+        }
+      }catch(_){
+        cmsPages=[];
+      }
+
+      cmsPackages = packages || [];
+      cmsPackages.sort((a,b)=>
+        (a.sort_order||0)-(b.sort_order||0) ||
+        (a.id||0)-(b.id||0)
+      );
+
+      renderPolicies();
+      renderPackages();
+
+      if(!cmsPackages.length){
+        setPackagesError('The site_packages table is accessible, but it contains no products.');
       }
     }catch(error){
-      cmsPages = [];
+      cmsPackages=[];
+      renderPackages();
+      const message=error?.message || String(error);
+      setPackagesError(message);
+      cmsNotify('Could not load packages: '+message,true);
+    }finally{
+      if(loading) loading.classList.add('hidden');
     }
-
-    cmsPackages = packages;
-    cmsPackages.sort((a,b)=>
-      (a.sort_order||0)-(b.sort_order||0) ||
-      (a.id||0)-(b.id||0)
-    );
-
-    renderPolicies();
-    renderPackages();
   }
 
   document.getElementById('websiteNav').addEventListener('click', async ()=>{
@@ -1449,6 +1487,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     if(btn){btn.disabled=true;btn.textContent='Refreshing…';}
     const loading=document.getElementById('packagesLoading');
     if(loading) loading.classList.remove('hidden');
+    setPackagesError('');
     try{
       await loadCMS();
     }finally{
