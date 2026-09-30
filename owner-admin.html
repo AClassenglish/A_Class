@@ -12,6 +12,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
   <style>
+    /* Keep auth screens invisible until the initial session check completes. */
+    body.auth-initializing #loginView,
+    body.auth-initializing #appView { visibility:hidden !important; }
     :root{
       --teal:#0FA6B3;
       --green:#78D64B;
@@ -166,7 +169,7 @@
     }
   </style>
 </head>
-<body>
+<body class="auth-initializing">
 <div id="authLoading"><div class="loading-box">Checking Owner session…</div></div>
 
 <section id="loginView" class="login-wrap">
@@ -681,6 +684,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   authLoading.classList.add('hidden');
+  document.body.classList.remove('auth-initializing');
 });
 </script>
 </body>
