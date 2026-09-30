@@ -1648,13 +1648,13 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
  AClass favicon 
 
 
-<link href="https://raw.githubusercontent.com/AClassenglish/A_Class/main/Aclasslogo.jpeg" rel="icon" type="image/jpeg"/>
+<link href="https://raw.githubusercontent.com/AClassenglish/A_Class/main/images/Aclasslogo.jpeg" rel="icon" type="image/jpeg"/>
 
 
-<link href="https://raw.githubusercontent.com/AClassenglish/A_Class/main/Aclasslogo.jpeg" rel="shortcut icon" type="image/jpeg"/>
+<link href="https://raw.githubusercontent.com/AClassenglish/A_Class/main/images/Aclasslogo.jpeg" rel="shortcut icon" type="image/jpeg"/>
 
 
-<link href="https://raw.githubusercontent.com/AClassenglish/A_Class/main/Aclasslogo.jpeg" rel="apple-touch-icon"/>
+<link href="https://raw.githubusercontent.com/AClassenglish/A_Class/main/images/Aclasslogo.jpeg" rel="apple-touch-icon"/>
 
 
 
@@ -1674,6 +1674,40 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
 <body>
 <div id="aclass-language-loading">AClass</div>
 <div id="aclass-site-root"></div>
+<script>
+(function () {
+  if (window.Swiper) return;
+
+  window.__aclassSwiperWaiters = window.__aclassSwiperWaiters || [];
+
+  function notify() {
+    const waiters = window.__aclassSwiperWaiters.splice(0);
+    waiters.forEach(function (fn) {
+      try { fn(window.Swiper); } catch (e) { console.error(e); }
+    });
+  }
+
+  window.__aclassEnsureSwiper = function (callback) {
+    if (window.Swiper) {
+      callback(window.Swiper);
+      return;
+    }
+    window.__aclassSwiperWaiters.push(callback);
+
+    if (!document.getElementById('aclass-swiper-js')) {
+      const script = document.createElement('script');
+      script.id = 'aclass-swiper-js';
+      script.src = 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js';
+      script.onload = notify;
+      script.onerror = function () {
+        console.error('AClass: Swiper failed to load.');
+      };
+      document.head.appendChild(script);
+    }
+  };
+})();
+</script>
+
 
 <!-- Original homepage bodies are preserved here as editable templates. -->
 <template id="aclass-template-en">
@@ -1699,7 +1733,7 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
 
 <nav class="navbar">
 <div class="nav-container">
-<a class="logo" href="#home"><img alt="AClass Logo" class="logo-img" decoding="async" height="42" loading="lazy" src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/Aclasslogo.jpeg" width="42"/><span class="logo-text">ACLASS</span></a>
+<a class="logo" href="#home"><img alt="AClass Logo" class="logo-img" decoding="async" height="42" loading="lazy" src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/images/Aclasslogo.jpeg" width="42"/><span class="logo-text">ACLASS</span></a>
 <button class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></button>
 <ul class="nav-menu" id="navMenu">
 <li><a class="nav-link" href="#home">Home</a></li>
@@ -1769,11 +1803,11 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
 <div class="reviews-header"><h2>Student Success Stories</h2><p>Real results from our amazing students</p></div>
 <div class="swiper reviews-swiper">
 <div class="swiper-wrapper">
-<div class="swiper-slide"><img alt="Review 1" decoding="async" fetchpriority="low" loading="lazy" src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/1rewiew.png"/></div>
-<div class="swiper-slide"><img alt="Review 2" decoding="async" fetchpriority="low" loading="lazy" src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/2review.png"/></div>
-<div class="swiper-slide"><img alt="Review 3" decoding="async" fetchpriority="low" loading="lazy" src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/3review.png"/></div>
-<div class="swiper-slide"><img alt="Review 4" decoding="async" fetchpriority="low" loading="lazy" src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/6review.png"/></div>
-<div class="swiper-slide"><img alt="Review 5" decoding="async" fetchpriority="low" loading="lazy" src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/7review.png"/></div>
+<div class="swiper-slide"><img alt="Review 1" decoding="async" fetchpriority="low" loading="lazy" src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/images/1rewiew.png"/></div>
+<div class="swiper-slide"><img alt="Review 2" decoding="async" fetchpriority="low" loading="lazy" src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/images/2review.png"/></div>
+<div class="swiper-slide"><img alt="Review 3" decoding="async" fetchpriority="low" loading="lazy" src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/images/3review.png"/></div>
+<div class="swiper-slide"><img alt="Review 4" decoding="async" fetchpriority="low" loading="lazy" src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/images/6review.png"/></div>
+<div class="swiper-slide"><img alt="Review 5" decoding="async" fetchpriority="low" loading="lazy" src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/images/7review.png"/></div>
 </div>
 <div class="swiper-pagination"></div>
 <div class="swiper-button-prev"></div>
@@ -1799,25 +1833,25 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
 <div class="video-collage-grid">
 <div class="video-collage-item">
 <video data-lazy-video="" loop="" muted="" playsinline="" preload="none">
-<source src="https://github.com/AClassenglish/A_Class/raw/1fcc1f6281bbc539ab3e55a4b955483c7aef54b6/IMG_0629.MOV" type="video/mp4"/>
+<source src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/videos/IMG_0629.MOV" type="video/quicktime"/>
 </video>
 <span class="life-video-label">In the classroom</span>
 </div>
 <div class="video-collage-item">
 <video data-lazy-video="" loop="" muted="" playsinline="" preload="none">
-<source src="https://github.com/AClassenglish/A_Class/raw/1fcc1f6281bbc539ab3e55a4b955483c7aef54b6/IMG_2948.MOV" type="video/mp4"/>
+<source src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/videos/IMG_2948.MOV" type="video/quicktime"/>
 </video>
 <span class="life-video-label">Student moments</span>
 </div>
 <div class="video-collage-item">
 <video data-lazy-video="" loop="" muted="" playsinline="" preload="none">
-<source src="https://github.com/AClassenglish/A_Class/raw/1fcc1f6281bbc539ab3e55a4b955483c7aef54b6/IMG_3018.MOV" type="video/mp4"/>
+<source src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/videos/IMG_3018.MOV" type="video/quicktime"/>
 </video>
 <span class="life-video-label">Speaking &amp; practice</span>
 </div>
 <div class="video-collage-item">
 <video data-lazy-video="" loop="" muted="" playsinline="" preload="none">
-<source src="https://github.com/AClassenglish/A_Class/raw/1fcc1f6281bbc539ab3e55a4b955483c7aef54b6/IMG_8786.MOV" type="video/mp4"/>
+<source src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/videos/IMG_8786.MOV" type="video/quicktime"/>
 </video>
 <span class="life-video-label">Celebrations</span>
 </div>
@@ -2232,7 +2266,7 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
 <div class="teacher-frame teacher-frame-back"></div>
 <div class="teacher-frame teacher-frame-front">
 <div class="teacher-photo-wrap">
-<img alt="Miss Aika, Founder and IELTS Instructor" decoding="async" fetchpriority="high" height="900" id="teacherPhoto" loading="lazy" src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/Aika.jpeg" width="720"/>
+<img alt="Miss Aika, Founder and IELTS Instructor" decoding="async" fetchpriority="high" height="900" id="teacherPhoto" loading="lazy" src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/images/Aika.jpeg" width="720"/>
 <div class="teacher-photo-overlay">
 <span>Meet your teacher</span>
 <i class="fas fa-arrow-up-right-from-square"></i>
@@ -2321,9 +2355,9 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
 <div class="footer-col" id="legal">
 <h4>Legal</h4>
 <ul class="footer-links">
-<li><a href="privacy-policy.html"><i class="fas fa-chevron-right"></i> Privacy Policy</a></li>
-<li><a href="terms-and-conditions.html"><i class="fas fa-chevron-right"></i> Terms &amp; Conditions</a></li>
-<li><a href="refund-policy.html"><i class="fas fa-chevron-right"></i> Refund Policy</a></li>
+<li><a href="pages/privacy-policy.html"><i class="fas fa-chevron-right"></i> Privacy Policy</a></li>
+<li><a href="pages/terms-and-conditions.html"><i class="fas fa-chevron-right"></i> Terms &amp; Conditions</a></li>
+<li><a href="pages/refund-policy.html"><i class="fas fa-chevron-right"></i> Refund Policy</a></li>
 </ul>
 </div>
 </div>
@@ -2360,7 +2394,7 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
 
 <nav class="navbar">
 <div class="nav-container">
-<a class="logo" href="#home"><img alt="AClass Logo" class="logo-img" decoding="async" height="42" loading="lazy" src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/Aclasslogo.jpeg" width="42"/><span class="logo-text">ACLASS</span></a>
+<a class="logo" href="#home"><img alt="AClass Logo" class="logo-img" decoding="async" height="42" loading="lazy" src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/images/Aclasslogo.jpeg" width="42"/><span class="logo-text">ACLASS</span></a>
 <button class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></button>
 <ul class="nav-menu" id="navMenu">
 <li><a class="nav-link" href="#home">Главная</a></li>
@@ -2433,11 +2467,11 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
 <div class="reviews-header"><h2>Истории успеха наших учеников</h2><p>Реальные результаты наших учеников</p></div>
 <div class="swiper reviews-swiper">
 <div class="swiper-wrapper">
-<div class="swiper-slide"><img alt="Review 1" decoding="async" fetchpriority="low" loading="lazy" src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/1rewiew.png"/></div>
-<div class="swiper-slide"><img alt="Review 2" decoding="async" fetchpriority="low" loading="lazy" src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/2review.png"/></div>
-<div class="swiper-slide"><img alt="Review 3" decoding="async" fetchpriority="low" loading="lazy" src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/3review.png"/></div>
-<div class="swiper-slide"><img alt="Review 4" decoding="async" fetchpriority="low" loading="lazy" src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/6review.png"/></div>
-<div class="swiper-slide"><img alt="Review 5" decoding="async" fetchpriority="low" loading="lazy" src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/7review.png"/></div>
+<div class="swiper-slide"><img alt="Review 1" decoding="async" fetchpriority="low" loading="lazy" src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/images/1rewiew.png"/></div>
+<div class="swiper-slide"><img alt="Review 2" decoding="async" fetchpriority="low" loading="lazy" src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/images/2review.png"/></div>
+<div class="swiper-slide"><img alt="Review 3" decoding="async" fetchpriority="low" loading="lazy" src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/images/3review.png"/></div>
+<div class="swiper-slide"><img alt="Review 4" decoding="async" fetchpriority="low" loading="lazy" src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/images/6review.png"/></div>
+<div class="swiper-slide"><img alt="Review 5" decoding="async" fetchpriority="low" loading="lazy" src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/images/7review.png"/></div>
 </div>
 <div class="swiper-pagination"></div>
 <div class="swiper-button-prev"></div>
@@ -2461,25 +2495,25 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
 <div class="video-collage-grid">
 <div class="video-collage-item">
 <video data-lazy-video="" loop="" muted="" playsinline="" preload="none">
-<source src="https://github.com/AClassenglish/A_Class/raw/1fcc1f6281bbc539ab3e55a4b955483c7aef54b6/IMG_0629.MOV" type="video/mp4"/>
+<source src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/videos/IMG_0629.MOV" type="video/quicktime"/>
 </video>
 <span class="life-video-label">В классе</span>
 </div>
 <div class="video-collage-item">
 <video data-lazy-video="" loop="" muted="" playsinline="" preload="none">
-<source src="https://github.com/AClassenglish/A_Class/raw/1fcc1f6281bbc539ab3e55a4b955483c7aef54b6/IMG_2948.MOV" type="video/mp4"/>
+<source src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/videos/IMG_2948.MOV" type="video/quicktime"/>
 </video>
 <span class="life-video-label">Моменты учеников</span>
 </div>
 <div class="video-collage-item">
 <video data-lazy-video="" loop="" muted="" playsinline="" preload="none">
-<source src="https://github.com/AClassenglish/A_Class/raw/1fcc1f6281bbc539ab3e55a4b955483c7aef54b6/IMG_3018.MOV" type="video/mp4"/>
+<source src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/videos/IMG_3018.MOV" type="video/quicktime"/>
 </video>
 <span class="life-video-label">Разговорная практика</span>
 </div>
 <div class="video-collage-item">
 <video data-lazy-video="" loop="" muted="" playsinline="" preload="none">
-<source src="https://github.com/AClassenglish/A_Class/raw/1fcc1f6281bbc539ab3e55a4b955483c7aef54b6/IMG_8786.MOV" type="video/mp4"/>
+<source src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/videos/IMG_8786.MOV" type="video/quicktime"/>
 </video>
 <span class="life-video-label">Праздники</span>
 </div>
@@ -2894,7 +2928,7 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
 <div class="teacher-frame teacher-frame-back"></div>
 <div class="teacher-frame teacher-frame-front">
 <div class="teacher-photo-wrap">
-<img alt="Мисс Айка, основатель A Class и преподаватель IELTS" decoding="async" fetchpriority="high" height="900" id="teacherPhoto" loading="lazy" src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/Aika.jpeg" width="720"/>
+<img alt="Мисс Айка, основатель A Class и преподаватель IELTS" decoding="async" fetchpriority="high" height="900" id="teacherPhoto" loading="lazy" src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/images/Aika.jpeg" width="720"/>
 <div class="teacher-photo-overlay">
 <span>Познакомьтесь с преподавателем</span>
 <i class="fas fa-arrow-up-right-from-square"></i>
@@ -2978,7 +3012,7 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
 <div class="footer-col"><h4>Быстрые ссылки</h4><ul class="footer-links"><li><a href="#home"><i class="fas fa-chevron-right"></i> Главная</a></li><li><a href="#about"><i class="fas fa-chevron-right"></i> О нас</a></li><li><a href="#courses"><i class="fas fa-chevron-right"></i> Курсы</a></li><li><a href="#packages"><i class="fas fa-chevron-right"></i> Все пакеты</a></li><li><a href="#life-at-aclass"><i class="fas fa-chevron-right"></i> Жизнь в AClass</a></li></ul></div>
 <div class="footer-col"><h4>Программы</h4><ul class="footer-links"><li><a href="#courses"><i class="fas fa-chevron-right"></i> IELTS</a></li><li><a href="#courses"><i class="fas fa-chevron-right"></i> SAT</a></li><li><a href="#courses"><i class="fas fa-chevron-right"></i> Общий английский</a></li></ul></div>
 <div class="footer-col"><h4>Контакты</h4><ul class="footer-links"><li><span class="footer-contact-label">Директор</span></li><li><span class="footer-contact-name">Gvalia Aigerim</span></li><li><a href="tel:555637881"><i class="fas fa-phone"></i> 555 637 881</a></li><li><a href="mailto:info@aclass.am"><i class="fas fa-envelope"></i> info@aclass.am</a></li><li><a href="https://api.whatsapp.com/send?phone=77472297002"><i class="fab fa-whatsapp"></i> WhatsApp</a></li></ul></div>
-<div class="footer-col" id="legal"><h4>Правовая информация</h4><ul class="footer-links"><li><a href="privacy-policy.html"><i class="fas fa-shield-halved"></i> Политика конфиденциальности</a></li><li><a href="terms-and-conditions.html"><i class="fas fa-file-contract"></i> Условия использования</a></li><li><a href="refund-policy.html"><i class="fas fa-rotate-left"></i> Политика возврата</a></li></ul></div>
+<div class="footer-col" id="legal"><h4>Правовая информация</h4><ul class="footer-links"><li><a href="pages/privacy-policy.html"><i class="fas fa-shield-halved"></i> Политика конфиденциальности</a></li><li><a href="pages/terms-and-conditions.html"><i class="fas fa-file-contract"></i> Условия использования</a></li><li><a href="pages/refund-policy.html"><i class="fas fa-rotate-left"></i> Политика возврата</a></li></ul></div>
 </div>
 <div class="footer-bottom">© 2026 Школа английского языка AClass. Все права защищены.</div>
 </footer>
@@ -3013,7 +3047,7 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
 
 <nav class="navbar">
 <div class="nav-container">
-<a class="logo" href="#home"><img alt="AClass Logo" class="logo-img" decoding="async" height="42" loading="lazy" src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/Aclasslogo.jpeg" width="42"/><span class="logo-text">ACLASS</span></a>
+<a class="logo" href="#home"><img alt="AClass Logo" class="logo-img" decoding="async" height="42" loading="lazy" src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/images/Aclasslogo.jpeg" width="42"/><span class="logo-text">ACLASS</span></a>
 <button class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></button>
 <ul class="nav-menu" id="navMenu">
 <li><a class="nav-link" href="#home">მთავარი</a></li>
@@ -3083,11 +3117,11 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
 <div class="reviews-header"><h2>სტუდენტების წარმატების ისტორიები</h2><p>ჩვენი სტუდენტების რეალური შედეგები</p></div>
 <div class="swiper reviews-swiper">
 <div class="swiper-wrapper">
-<div class="swiper-slide"><img alt="შეფასება 1" decoding="async" fetchpriority="low" loading="lazy" src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/1rewiew.png"/></div>
-<div class="swiper-slide"><img alt="შეფასება 2" decoding="async" fetchpriority="low" loading="lazy" src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/2review.png"/></div>
-<div class="swiper-slide"><img alt="შეფასება 3" decoding="async" fetchpriority="low" loading="lazy" src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/3review.png"/></div>
-<div class="swiper-slide"><img alt="შეფასება 4" decoding="async" fetchpriority="low" loading="lazy" src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/6review.png"/></div>
-<div class="swiper-slide"><img alt="შეფასება 5" decoding="async" fetchpriority="low" loading="lazy" src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/7review.png"/></div>
+<div class="swiper-slide"><img alt="შეფასება 1" decoding="async" fetchpriority="low" loading="lazy" src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/images/1rewiew.png"/></div>
+<div class="swiper-slide"><img alt="შეფასება 2" decoding="async" fetchpriority="low" loading="lazy" src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/images/2review.png"/></div>
+<div class="swiper-slide"><img alt="შეფასება 3" decoding="async" fetchpriority="low" loading="lazy" src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/images/3review.png"/></div>
+<div class="swiper-slide"><img alt="შეფასება 4" decoding="async" fetchpriority="low" loading="lazy" src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/images/6review.png"/></div>
+<div class="swiper-slide"><img alt="შეფასება 5" decoding="async" fetchpriority="low" loading="lazy" src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/images/7review.png"/></div>
 </div>
 <div class="swiper-pagination"></div>
 <div class="swiper-button-prev"></div>
@@ -3113,25 +3147,25 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
 <div class="video-collage-grid">
 <div class="video-collage-item">
 <video data-lazy-video="" loop="" muted="" playsinline="" preload="none">
-<source src="https://github.com/AClassenglish/A_Class/raw/1fcc1f6281bbc539ab3e55a4b955483c7aef54b6/IMG_0629.MOV" type="video/mp4"/>
+<source src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/videos/IMG_0629.MOV" type="video/quicktime"/>
 </video>
 <span class="life-video-label">საკლასო ოთახში</span>
 </div>
 <div class="video-collage-item">
 <video data-lazy-video="" loop="" muted="" playsinline="" preload="none">
-<source src="https://github.com/AClassenglish/A_Class/raw/1fcc1f6281bbc539ab3e55a4b955483c7aef54b6/IMG_2948.MOV" type="video/mp4"/>
+<source src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/videos/IMG_2948.MOV" type="video/quicktime"/>
 </video>
 <span class="life-video-label">სტუდენტური მომენტები</span>
 </div>
 <div class="video-collage-item">
 <video data-lazy-video="" loop="" muted="" playsinline="" preload="none">
-<source src="https://github.com/AClassenglish/A_Class/raw/1fcc1f6281bbc539ab3e55a4b955483c7aef54b6/IMG_3018.MOV" type="video/mp4"/>
+<source src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/videos/IMG_3018.MOV" type="video/quicktime"/>
 </video>
 <span class="life-video-label">საუბარი და პრაქტიკა</span>
 </div>
 <div class="video-collage-item">
 <video data-lazy-video="" loop="" muted="" playsinline="" preload="none">
-<source src="https://github.com/AClassenglish/A_Class/raw/1fcc1f6281bbc539ab3e55a4b955483c7aef54b6/IMG_8786.MOV" type="video/mp4"/>
+<source src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/videos/IMG_8786.MOV" type="video/quicktime"/>
 </video>
 <span class="life-video-label">აღნიშვნები</span>
 </div>
@@ -3531,7 +3565,7 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
 <div class="teacher-frame teacher-frame-back"></div>
 <div class="teacher-frame teacher-frame-front">
 <div class="teacher-photo-wrap">
-<img alt="Miss აიკა, A Class-ის დამფუძნებელი და IELTS-ის ინსტრუქტორი" decoding="async" fetchpriority="high" height="900" id="teacherPhoto" loading="eager" src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/Aika.jpeg" width="720"/>
+<img alt="Miss აიკა, A Class-ის დამფუძნებელი და IELTS-ის ინსტრუქტორი" decoding="async" fetchpriority="high" height="900" id="teacherPhoto" loading="eager" src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/images/Aika.jpeg" width="720"/>
 <div class="teacher-photo-overlay">
 <span>გაიცანი შენი მასწავლებელი</span>
 <i class="fas fa-arrow-up-right-from-square"></i>
@@ -3620,9 +3654,9 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
 <div class="footer-col">
 <h4>იურიდიული ინფორმაცია</h4>
 <ul class="footer-links">
-<li><a href="privacy-policy.html"><i class="fas fa-chevron-right"></i> კონფიდენციალურობის პოლიტიკა</a></li>
-<li><a href="terms-and-conditions.html"><i class="fas fa-chevron-right"></i> წესები და პირობები</a></li>
-<li><a href="refund-policy.html"><i class="fas fa-chevron-right"></i> თანხის დაბრუნების პოლიტიკა</a></li>
+<li><a href="pages/privacy-policy.html"><i class="fas fa-chevron-right"></i> კონფიდენციალურობის პოლიტიკა</a></li>
+<li><a href="pages/terms-and-conditions.html"><i class="fas fa-chevron-right"></i> წესები და პირობები</a></li>
+<li><a href="pages/refund-policy.html"><i class="fas fa-chevron-right"></i> თანხის დაბრუნების პოლიტიკა</a></li>
 </ul>
 </div>
 </div>
@@ -3687,7 +3721,7 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
       name: 'Aika',
       role: 'Founder · IELTS Instructor',
       specialty: 'IELTS · ENGLISH',
-      image: 'https://raw.githubusercontent.com/AClassenglish/A_Class/main/Aika.jpeg',
+      image: 'https://raw.githubusercontent.com/AClassenglish/A_Class/main/images/Aika.jpeg',
       alt: 'Miss Aika, Founder and IELTS Instructor',
       description: 'Miss Aika is the founder of A Class and an IELTS instructor with over 15 years of teaching experience. Throughout her career, she has taught more than 1,000 students, with an average IELTS score of 7.5 among her learners.',
       description2: 'Her personal IELTS score is 8.5. Miss Aika studied at Mikkeli University in Finland and Karel de Grote University in the Netherlands. In her teaching, she focuses on structured preparation, a deep understanding of the IELTS exam, and developing the practical language skills students need to achieve consistently strong results.',
@@ -3697,7 +3731,7 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
       name: 'Aisa',
       role: 'Senior IELTS Tutor',
       specialty: 'IELTS · ENGLISH',
-      image: 'https://raw.githubusercontent.com/AClassenglish/A_Class/main/Aisa.jpeg',
+      image: 'https://raw.githubusercontent.com/AClassenglish/A_Class/main/images/Aisa.jpeg',
       alt: 'Aisa, Senior IELTS Tutor',
       description: 'Aisa is an experienced English educator with 8 years of IELTS teaching experience and 10 years of experience teaching English overall. She holds an outstanding IELTS score of 8.5, including a perfect 9.0 in Speaking.',
       description2: 'Aisa is currently pursuing a master\'s degree through the MA TEFL program, specializing in Teaching English as a Foreign Language, at an American University of Armenia.',
@@ -3707,7 +3741,7 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
       name: 'Ademi',
       role: 'IELTS Tutor',
       specialty: 'IELTS · ENGLISH',
-      image: 'https://raw.githubusercontent.com/AClassenglish/A_Class/main/Ademi.jpeg',
+      image: 'https://raw.githubusercontent.com/AClassenglish/A_Class/main/images/Ademi.jpeg',
       alt: 'Ademi, IELTS Tutor',
       description: 'Ademi is a dedicated IELTS tutor with 4.5 years of teaching experience. She graduated from the American University of Central Asia and achieved an impressive IELTS score of 8.0 with 8.0 for both Writing and Speaking.',
       description2: '',
@@ -3717,7 +3751,7 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
       name: 'Inessa',
       role: 'IELTS Tutor',
       specialty: 'IELTS · ENGLISH',
-      image: 'https://raw.githubusercontent.com/AClassenglish/A_Class/main/Inessa.JPG',
+      image: 'https://raw.githubusercontent.com/AClassenglish/A_Class/main/images/Inessa.JPG',
       alt: 'Miss Inessa, IELTS Tutor',
       description: 'Miss Inessa is an IELTS tutor with over 8 years of teaching experience. She holds a degree in foreign language education, which allows her to combine a strong methodological background with a practical approach to IELTS preparation.',
       description2: 'In her classes, Miss Inessa focuses on developing all four IELTS skills, addressing common mistakes, and helping students prepare for the exam in a structured and consistent way.',
@@ -3727,7 +3761,7 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
     name: 'Alex',
     role: 'SAT & NUET Tutor',
     specialty: 'SAT · NUET',
-    image: 'https://raw.githubusercontent.com/AClassenglish/A_Class/main/Alex.png',
+    image: 'https://raw.githubusercontent.com/AClassenglish/A_Class/main/images/Alex.png',
     description: 'Alex is an SAT and NUET tutor with 4 years of teaching experience. His personal SAT score is 1590, and his NUET score is 220.',
     description2: 'He is currently a medical student at Nazarbayev University. In his classes, Alex focuses on understanding question logic, effective problem-solving strategies, and structured preparation that helps students improve their scores with confidence.',
     metrics: [
@@ -3828,6 +3862,18 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
 
   renderTeacher(0);
 
+  /* Warm the browser cache for the other teacher portraits in the background.
+     This keeps teacher switching immediate without downloading everything
+     before the page becomes interactive. */
+  const warmTeacherImages = () => {
+    teacherData.forEach((teacher) => getTeacherImage(teacher));
+  };
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(warmTeacherImages, { timeout: 1500 });
+  } else {
+    setTimeout(warmTeacherImages, 250);
+  }
+
   /* Mobile menu */
   const navMenu = document.getElementById('navMenu');
   const menuToggle = document.getElementById('menuToggle');
@@ -3857,12 +3903,19 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
   /* Reviews slider — waits for deferred Swiper library. */
   function initReviews() {
     if (typeof Swiper === 'undefined' || !document.querySelector('.reviews-swiper')) return;
-    new Swiper('.reviews-swiper', {
+    if (window.__aclassReviewSwiper) {
+      try { window.__aclassReviewSwiper.destroy(true, true); } catch (e) {}
+      window.__aclassReviewSwiper = null;
+    }
+    window.__aclassReviewSwiper = new Swiper('.reviews-swiper', {
       loop: true,
       centeredSlides: true,
       speed: 600,
       spaceBetween: 48,
       slidesPerView: 1.5,
+      grabCursor: true,
+      touchRatio: 1,
+      simulateTouch: true,
       pagination: { el: '.swiper-pagination', clickable: true },
       navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
       breakpoints: {
@@ -3873,8 +3926,8 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
   }
   if (typeof Swiper !== 'undefined') {
     initReviews();
-  } else {
-    window.addEventListener('load', initReviews, { once: true });
+  } else if (window.__aclassEnsureSwiper) {
+    window.__aclassEnsureSwiper(function () { initReviews(); });
   }
 
   /* Lazy-load the four collage videos only when they approach the viewport. */
@@ -3891,7 +3944,10 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
           });
           video.dataset.loaded = 'true';
           video.load();
-          video.play().catch(() => {});
+          const playPromise = video.play();
+          if (playPromise && typeof playPromise.catch === 'function') {
+            playPromise.catch(() => {});
+          }
         }
         videoObserver.unobserve(video);
       });
@@ -3962,7 +4018,7 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
       name: 'Айка',
       role: 'Основатель · Преподаватель IELTS',
       specialty: 'IELTS · АНГЛИЙСКИЙ',
-      image: 'https://raw.githubusercontent.com/AClassenglish/A_Class/main/Aika.jpeg',
+      image: 'https://raw.githubusercontent.com/AClassenglish/A_Class/main/images/Aika.jpeg',
       alt: 'Мисс Айка, основатель A Class и преподаватель IELTS',
       description: 'Мисс Айка — фаундер A Class и преподаватель с более чем 15-летним опытом. За годы работы она подготовила более 1000 выпускников, а средний балл её учеников на IELTS составляет 7.5.',
       description2: 'Её личный результат IELTS — 8.5. Мисс Айка получила образование в двух европейских университетах: Mikkeli University в Финляндии и Karel de Grote University в Нидерландах. В своей работе она делает акцент на системной подготовке, глубоком понимании структуры IELTS и развитии навыков, которые позволяют студентам стабильно достигать высоких результатов.',
@@ -3972,7 +4028,7 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
       name: 'Аиса',
       role: 'Старший преподаватель IELTS',
       specialty: 'IELTS · АНГЛИЙСКИЙ',
-      image: 'https://raw.githubusercontent.com/AClassenglish/A_Class/main/Aisa.jpeg',
+      image: 'https://raw.githubusercontent.com/AClassenglish/A_Class/main/images/Aisa.jpeg',
       alt: 'Аиса, старший преподаватель IELTS',
       description: 'Аиса — опытный преподаватель английского языка с 8-летним опытом подготовки к IELTS и 10-летним общим опытом преподавания английского языка. Она получила результат IELTS 8.5, включая максимальные 9.0 за устную часть.',
       description2: 'Аиса получает степень магистра по программе MA TEFL по специальности «Преподавание английского языка как иностранного» в Американском университете Армении.',
@@ -3982,7 +4038,7 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
       name: 'Адеми',
       role: 'Преподаватель IELTS',
       specialty: 'IELTS · АНГЛИЙСКИЙ',
-      image: 'https://raw.githubusercontent.com/AClassenglish/A_Class/main/Ademi.jpeg',
+      image: 'https://raw.githubusercontent.com/AClassenglish/A_Class/main/images/Ademi.jpeg',
       alt: 'Адеми, преподаватель IELTS',
       description: 'Адеми — преподаватель IELTS с 4,5 годами опыта преподавания. Она окончила Американский университет Центральной Азии и получила результат IELTS 8.0, набрав 8.0 как за письменную, так и за устную часть.',
       description2: '',
@@ -3992,7 +4048,7 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
       name: 'Инесса',
       role: 'Преподаватель IELTS',
       specialty: 'IELTS · АНГЛИЙСКИЙ',
-      image: 'https://raw.githubusercontent.com/AClassenglish/A_Class/main/Inessa.JPG',
+      image: 'https://raw.githubusercontent.com/AClassenglish/A_Class/main/images/Inessa.JPG',
       alt: 'Мисс Инесса, преподаватель IELTS',
       description: 'Мисс Инесса — преподаватель IELTS с более чем 8-летним опытом работы. По образованию она педагог иностранных языков, что позволяет ей сочетать профессиональную методическую подготовку с практическим подходом к подготовке к IELTS.',
       description2: 'На занятиях Мисс Инесса уделяет особое внимание развитию всех четырёх навыков, работе над типичными ошибками и системной подготовке к экзамену.',
@@ -4002,7 +4058,7 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
       name: 'Алекс',
       role: 'Преподаватель SAT и NUET',
       specialty: 'SAT · NUET',
-      image: 'https://raw.githubusercontent.com/AClassenglish/A_Class/main/Alex.png',
+      image: 'https://raw.githubusercontent.com/AClassenglish/A_Class/main/images/Alex.png',
       alt: 'Алекс, преподаватель SAT и NUET',
       description: 'Алекс — преподаватель SAT и NUET с 4-летним опытом работы. Его личный результат SAT — 1590, а результат NUET — 220.',
       description2: 'Сейчас Алекс является студентом медицинского факультета Назарбаев Университета.',
@@ -4093,6 +4149,18 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
 
   renderTeacher(0);
 
+  /* Warm the browser cache for the other teacher portraits in the background.
+     This keeps teacher switching immediate without downloading everything
+     before the page becomes interactive. */
+  const warmTeacherImages = () => {
+    teacherData.forEach((teacher) => getTeacherImage(teacher));
+  };
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(warmTeacherImages, { timeout: 1500 });
+  } else {
+    setTimeout(warmTeacherImages, 250);
+  }
+
   /* Mobile menu */
   const navMenu = document.getElementById('navMenu');
   const menuToggle = document.getElementById('menuToggle');
@@ -4122,12 +4190,19 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
   /* Reviews slider — waits for deferred Swiper library. */
   function initReviews() {
     if (typeof Swiper === 'undefined' || !document.querySelector('.reviews-swiper')) return;
-    new Swiper('.reviews-swiper', {
+    if (window.__aclassReviewSwiper) {
+      try { window.__aclassReviewSwiper.destroy(true, true); } catch (e) {}
+      window.__aclassReviewSwiper = null;
+    }
+    window.__aclassReviewSwiper = new Swiper('.reviews-swiper', {
       loop: true,
       centeredSlides: true,
       speed: 600,
       spaceBetween: 48,
       slidesPerView: 1.5,
+      grabCursor: true,
+      touchRatio: 1,
+      simulateTouch: true,
       pagination: { el: '.swiper-pagination', clickable: true },
       navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
       breakpoints: {
@@ -4138,8 +4213,8 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
   }
   if (typeof Swiper !== 'undefined') {
     initReviews();
-  } else {
-    window.addEventListener('load', initReviews, { once: true });
+  } else if (window.__aclassEnsureSwiper) {
+    window.__aclassEnsureSwiper(function () { initReviews(); });
   }
 
   /* Lazy-load the four collage videos only when they approach the viewport. */
@@ -4156,7 +4231,10 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
           });
           video.dataset.loaded = 'true';
           video.load();
-          video.play().catch(() => {});
+          const playPromise = video.play();
+          if (playPromise && typeof playPromise.catch === 'function') {
+            playPromise.catch(() => {});
+          }
         }
         videoObserver.unobserve(video);
       });
@@ -4227,7 +4305,7 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
       name: 'Aika',
       role: 'დამფუძნებელი · IELTS-ის ინსტრუქტორი',
       specialty: 'IELTS · ინგლისური',
-      image: 'https://raw.githubusercontent.com/AClassenglish/A_Class/main/Aika.jpeg',
+      image: 'https://raw.githubusercontent.com/AClassenglish/A_Class/main/images/Aika.jpeg',
       alt: 'Miss აიკა, A Class-ის დამფუძნებელი და IELTS-ის ინსტრუქტორი',
       description: 'მის აიკა არის A Class-ის დამფუძნებელი და IELTS-ის ინსტრუქტორი 15 წელზე მეტი გამოცდილებით. კარიერის განმავლობაში მან 1,000-ზე მეტ სტუდენტს ასწავლა, ხოლო მისი სტუდენტების IELTS-ის საშუალო შედეგი 7.5-ს შეადგენს.',
       description2: 'მისი პირადი IELTS-ის შედეგია 8.5. მის აიკამ განათლება მიიღო ფინეთის Mikkeli University-სა და ნიდერლანდების Karel de Grote University-ში. სწავლებისას ის ყურადღებას ამახვილებს სტრუქტურირებულ მომზადებაზე, IELTS-ის გამოცდის ღრმა გაგებასა და იმ პრაქტიკული ენობრივი უნარების განვითარებაზე, რომლებიც სტუდენტებს სტაბილურად მაღალი შედეგების მიღწევაში ეხმარება.',
@@ -4237,7 +4315,7 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
       name: 'Aisa',
       role: 'IELTS-ის უფროსი ტუტორი',
       specialty: 'IELTS · ინგლისური',
-      image: 'https://raw.githubusercontent.com/AClassenglish/A_Class/main/Aisa.jpeg',
+      image: 'https://raw.githubusercontent.com/AClassenglish/A_Class/main/images/Aisa.jpeg',
       alt: 'Aisa, IELTS-ის უფროსი ტუტორი',
       description: 'აისა არის გამოცდილი ინგლისურის პედაგოგი, რომელსაც IELTS-ის სწავლების 8-წლიანი და ზოგადად ინგლისურის სწავლების 10-წლიანი გამოცდილება აქვს. მისი IELTS-ის შედეგია 8.5, მათ შორის საუბარი-ში შესანიშნავი 9.0.',
       description2: 'Aisa is currently pursuing a master\'s degree through the MA TEFL program, specializing in Teaching English as a Foreign Language, at an American University of Armenia.',
@@ -4247,7 +4325,7 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
       name: 'Ademi',
       role: 'IELTS-ის ტუტორი',
       specialty: 'IELTS · ინგლისური',
-      image: 'https://raw.githubusercontent.com/AClassenglish/A_Class/main/Ademi.jpeg',
+      image: 'https://raw.githubusercontent.com/AClassenglish/A_Class/main/images/Ademi.jpeg',
       alt: 'Ademi, IELTS-ის ტუტორი',
       description: 'ადემი არის IELTS-ის თავდადებული ტუტორი 4.5-წლიანი გამოცდილებით. მან დაამთავრა American University of Central Asia და IELTS-ში მიიღო 8.0, მათ შორის Writing-სა და საუბარი-ში 8.0.',
       description2: '',
@@ -4257,7 +4335,7 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
       name: 'Inessa',
       role: 'IELTS-ის ტუტორი',
       specialty: 'IELTS · ინგლისური',
-      image: 'https://raw.githubusercontent.com/AClassenglish/A_Class/main/Inessa.JPG',
+      image: 'https://raw.githubusercontent.com/AClassenglish/A_Class/main/images/Inessa.JPG',
       alt: 'Miss Inessa, IELTS-ის ტუტორი',
       description: 'მის ინესა არის IELTS-ის ტუტორი 8 წელზე მეტი გამოცდილებით. მას მიღებული აქვს უცხო ენების სწავლების განათლება, რაც საშუალებას აძლევს, ძლიერი მეთოდოლოგიური საფუძველი IELTS-ის მომზადების პრაქტიკულ მიდგომასთან გააერთიანოს.',
       description2: 'გაკვეთილებზე მის ინესა განსაკუთრებულ ყურადღებას უთმობს IELTS-ის ოთხივე უნარის განვითარებას, ტიპურ შეცდომებზე მუშაობასა და გამოცდისთვის სტრუქტურირებულ და თანმიმდევრულ მომზადებას.',
@@ -4267,7 +4345,7 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
     name: 'ალექსი',
     role: 'SAT-ისა და NUET-ის ტუტორი',
     specialty: 'SAT · NUET',
-    image: 'https://raw.githubusercontent.com/AClassenglish/A_Class/main/Alex.png',
+    image: 'https://raw.githubusercontent.com/AClassenglish/A_Class/main/images/Alex.png',
     description: 'ალექსი არის SAT-ისა და NUET-ის ტუტორი 4-წლიანი გამოცდილებით. მისი პირადი SAT-ის შედეგია 1590, ხოლო NUET-ის შედეგი — 220.',
     description2: 'ამჟამად ალექსი Nazarbayev University-ის მედიცინის ფაკულტეტის სტუდენტია. გაკვეთილებზე ის ყურადღებას ამახვილებს კითხვების ლოგიკის გაგებაზე, ეფექტურ ამოცანის გადაჭრის სტრატეგიებსა და სტრუქტურირებულ მომზადებაზე, რომელიც სტუდენტებს შედეგების თავდაჯერებულად გაუმჯობესებაში ეხმარება.',
     metrics: [
@@ -4382,12 +4460,19 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
   /* შეფასებები slider — waits for deferred Swiper library. */
   function initშეფასებები() {
     if (typeof Swiper === 'undefined' || !document.querySelector('.reviews-swiper')) return;
-    new Swiper('.reviews-swiper', {
+    if (window.__aclassReviewSwiper) {
+      try { window.__aclassReviewSwiper.destroy(true, true); } catch (e) {}
+      window.__aclassReviewSwiper = null;
+    }
+    window.__aclassReviewSwiper = new Swiper('.reviews-swiper', {
       loop: true,
       centeredSlides: true,
       speed: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 600,
       spaceBetween: 48,
       slidesPerView: 1.5,
+      grabCursor: true,
+      touchRatio: 1,
+      simulateTouch: true,
       pagination: { el: '.swiper-pagination', clickable: true },
       navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
       breakpoints: {
@@ -4398,8 +4483,8 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
   }
   if (typeof Swiper !== 'undefined') {
     initშეფასებები();
-  } else {
-    window.addEventListener('load', initშეფასებები, { once: true });
+  } else if (window.__aclassEnsureSwiper) {
+    window.__aclassEnsureSwiper(function () { initშეფასებები(); });
   }
 
   /* Lazy-load the four collage videos only when they approach the viewport. */
@@ -4416,7 +4501,10 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
           });
           video.dataset.loaded = 'true';
           video.load();
-          video.play().catch(() => {});
+          const playPromise = video.play();
+          if (playPromise && typeof playPromise.catch === 'function') {
+            playPromise.catch(() => {});
+          }
         }
         videoObserver.unobserve(video);
       });
@@ -4477,6 +4565,11 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
 
     activeLanguage = lang;
     localStorage.setItem('aclass-language', lang);
+
+    if (window.__aclassReviewSwiper) {
+      try { window.__aclassReviewSwiper.destroy(true, true); } catch (e) {}
+      window.__aclassReviewSwiper = null;
+    }
 
     document.documentElement.lang = HTML_LANG[lang] || lang;
     document.title = META[lang] || META.en;
