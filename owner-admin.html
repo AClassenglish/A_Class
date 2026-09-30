@@ -238,6 +238,24 @@
 .content-editor ul,.content-editor ol{padding-left:1.5em}
 .content-editor a{color:#0fa6b3}
 @media (max-width:1100px){.editor-workspace-single{grid-template-columns:1fr}.site-preview-pane{min-width:0}}
+
+/* Focused Website CMS: Policies + Packages */
+.package-admin-list{display:grid;gap:12px}
+.package-admin-row{display:grid;grid-template-columns:minmax(220px,1.5fr) 150px 120px 150px 110px;gap:12px;align-items:end;padding:16px;border:1px solid var(--border);border-radius:14px;background:#fff}
+.package-admin-row .package-name strong{display:block;font-size:14px}
+.package-admin-row .package-name small{display:block;color:var(--muted);margin-top:4px}
+.package-admin-row .field-label{margin:0}
+.package-admin-row input,.package-admin-row select{width:100%}
+.package-admin-actions{display:flex;align-items:center;gap:8px;justify-content:flex-end}
+.package-admin-actions button{white-space:nowrap}
+.package-admin-note{display:flex;gap:10px;align-items:flex-start;margin-bottom:16px;padding:12px 14px;border:1px solid #dcece9;border-radius:12px;background:#f7fbfa;color:#526467;font-size:12px;line-height:1.5}
+.package-admin-note strong{color:#1c3437;white-space:nowrap}
+.package-status{display:flex;align-items:center;gap:7px;min-height:40px}
+.package-status input{width:auto}
+.package-price-input{text-align:right;font-weight:700}
+@media(max-width:1100px){.package-admin-row{grid-template-columns:1fr 1fr}.package-admin-actions{justify-content:flex-start}.package-status{align-self:center}}
+@media(max-width:700px){.package-admin-row{grid-template-columns:1fr}.package-admin-actions{justify-content:stretch}.package-admin-actions button{flex:1}}
+
 </style>
 </head>
 <body class="auth-initializing">
@@ -454,7 +472,7 @@
         <div class="welcome">
           <div>
             <h2>Website</h2>
-            <p>Edit navigation, footer links and page text without opening the HTML.</p>
+            <p>Manage legal pages and package pricing used for student enrollment.</p>
           </div>
           <div class="language-switch" id="cmsLanguageSwitch">
             <button class="lang-btn active" data-lang="en">EN</button>
@@ -464,57 +482,56 @@
         </div>
 
         <div class="cms-tabs">
-          <button class="cms-tab active" data-cms-tab="menus">Header & Footer</button>
-          <button class="cms-tab" data-cms-tab="pages">Pages</button>
+          <button class="cms-tab active" data-cms-tab="policies">Policies</button>
+          <button class="cms-tab" data-cms-tab="packages">Packages & Prices</button>
         </div>
 
-        <div id="cmsMenusPanel" class="cms-panel active">
-          <div class="cms-grid">
-            <div class="card cms-card">
-              <div class="card-head">
-                <div><h3>Header menu</h3><p>Change titles and links shown in the main navigation.</p></div>
-                <button class="ghost" id="addHeaderItem">+ Add</button>
-              </div>
-              <div id="headerMenuList" class="cms-list"></div>
-              <div class="coming hidden" id="headerMenuEmpty">No header items yet.</div>
-            </div>
-            <div class="card cms-card">
-              <div class="card-head">
-                <div><h3>Footer menu</h3><p>Manage footer navigation and legal links.</p></div>
-                <button class="ghost" id="addFooterItem">+ Add</button>
-              </div>
-              <div id="footerMenuList" class="cms-list"></div>
-              <div class="coming hidden" id="footerMenuEmpty">No footer items yet.</div>
-            </div>
-          </div>
-        </div>
-
-        <div id="cmsPagesPanel" class="cms-panel">
+        <div id="cmsPoliciesPanel" class="cms-panel active">
           <div class="cms-page-layout">
             <div class="card cms-card page-list-card">
-              <div class="card-head"><div><h3>Pages</h3><p>Separate editable documents for each page.</p></div><button class="ghost" id="addPageButton">+ New page</button></div>
-              <div id="pageList" class="page-list"></div>
-            </div>
-            <div class="card cms-card editor-card">
-              <div id="pageEditorEmpty" class="editor-empty"><div class="empty-icon">✎</div><h3>Select a page</h3><p>Choose a page on the left to edit its title and content.</p></div>
-              <form id="pageEditor" class="hidden">
-                <input type="hidden" id="pageId">
-                <div class="editor-top">
-                  <div><span class="eyebrow">Page editor</span><h3 id="pageEditorHeading">Edit page</h3></div>
-                  <div class="editor-actions"><button type="button" class="ghost danger-btn" id="deletePageButton">Delete</button><button type="submit" class="primary small-primary" id="savePageButton">Save changes</button></div>
+              <div class="card-head">
+                <div>
+                  <h3>Legal pages</h3>
+                  <p>Edit the existing policy pages directly.</p>
                 </div>
-                <label class="field-label">Slug<input id="pageSlug" required placeholder="privacy-policy"></label>
-                <label class="field-label">Page title<input id="pageTitle" required></label>
-                <div class="field-label">Page content
+              </div>
+              <div id="policyList" class="page-list"></div>
+              <div id="policyEmpty" class="coming hidden">No policy pages found for this language.</div>
+            </div>
+
+            <div class="card cms-card editor-card">
+              <div id="policyEditorEmpty" class="editor-empty">
+                <div class="empty-icon">✎</div>
+                <h3>Select a policy</h3>
+                <p>Choose Privacy Policy, Terms & Conditions, or Refund Policy.</p>
+              </div>
+
+              <form id="policyEditor" class="hidden">
+                <input type="hidden" id="policyId">
+                <div class="editor-top">
+                  <div>
+                    <span class="eyebrow">Policy editor</span>
+                    <h3 id="policyEditorHeading">Edit policy</h3>
+                  </div>
+                  <div class="editor-actions">
+                    <button type="submit" class="primary small-primary">Save changes</button>
+                  </div>
+                </div>
+
+                <label class="field-label">Page title
+                  <input id="policyTitle" required>
+                </label>
+
+                <div class="field-label">Policy content
                   <div class="editor-workspace-single">
                     <div class="editor-pane editor-pane-full">
                       <div class="pane-head">
                         <div>
-                          <strong>Page editor</strong>
-                          <span>Edit the page directly below — no HTML or code required.</span>
+                          <strong>Direct editor</strong>
+                          <span>Edit the policy text directly — like WordPress.</span>
                         </div>
                       </div>
-                      <div class="editor-toolbar" id="editorToolbar">
+                      <div class="editor-toolbar" id="policyEditorToolbar">
                         <button type="button" data-cmd="bold"><b>B</b></button>
                         <button type="button" data-cmd="italic"><i>I</i></button>
                         <button type="button" data-cmd="insertUnorderedList">• List</button>
@@ -524,29 +541,53 @@
                         <button type="button" data-cmd="formatBlock" data-value="p">P</button>
                         <button type="button" data-cmd="createLink">Link</button>
                       </div>
-                      <div id="pageContentEditor" class="content-editor visual-mode" contenteditable="true"></div>
+                      <div id="policyContentEditor" class="content-editor visual-mode" contenteditable="true"></div>
                     </div>
+
                     <div class="site-preview-pane">
                       <div class="pane-head">
                         <div>
                           <strong>Current website</strong>
-                          <div id="currentSiteUrlLabel" class="current-site-label">Select a page to preview it</div>
+                          <div id="policySiteUrlLabel" class="current-site-label">Select a policy</div>
                         </div>
                         <div class="preview-toolbar">
-                          <a id="openCurrentSite" class="preview-link" href="#" target="_blank" rel="noopener">Open ↗</a>
+                          <a id="openPolicySite" class="preview-link" href="#" target="_blank" rel="noopener">Open ↗</a>
                         </div>
                       </div>
-                      <iframe id="currentSitePreview" class="live-site-preview" title="Current website preview"></iframe>
-                      <div id="emptyContentNote" class="empty-content-note hidden">This CMS page does not have content saved yet. The preview on the right shows the existing website, so you can compare it before changing anything.</div>
+                      <iframe id="policySitePreview" class="live-site-preview" title="Current policy preview"></iframe>
                     </div>
                   </div>
-                </div></div>
-                <label class="publish-toggle"><input type="checkbox" id="pagePublished" checked> Published</label>
-                <div id="cmsMessage" class="cms-message hidden"></div>
+                </div>
+
+                <label class="publish-toggle">
+                  <input type="checkbox" id="policyPublished" checked> Published
+                </label>
               </form>
             </div>
           </div>
         </div>
+
+        <div id="cmsPackagesPanel" class="cms-panel">
+          <div class="card cms-card">
+            <div class="card-head">
+              <div>
+                <h3>Packages & Prices</h3>
+                <p>These prices will be used by the student checkout. Set the price before enabling payment.</p>
+              </div>
+              <button class="ghost" id="seedPackagesButton">Create packages</button>
+            </div>
+
+            <div class="package-admin-note">
+              <strong>Payment connection</strong>
+              <span>Changing a price here changes the amount available to the checkout after the public payment page is connected to this package list.</span>
+            </div>
+
+            <div id="packagesList" class="package-admin-list"></div>
+            <div id="packagesEmpty" class="coming hidden">No packages yet. Click “Create packages” to add the standard AClass package list.</div>
+          </div>
+        </div>
+
+        <div id="cmsMessage" class="cms-message hidden"></div>
       </section>
 
     </main>  </div>
@@ -869,207 +910,275 @@ document.addEventListener('DOMContentLoaded', async () => {
   authLoading.classList.add('hidden');
   document.body.classList.remove('auth-initializing');
 
-  /* Website CMS */
+  
+  /* Focused Website CMS: Policies + Packages */
   let cmsLanguage = 'en';
   let cmsPages = [];
-  let cmsMenus = [];
-  let selectedPageId = null;
+  let cmsPackages = [];
+  let selectedPolicyId = null;
 
-  function cmsEsc(v){ return escapeHtml(v); }
-  function cmsNotify(message, error=false){
-    const el=document.getElementById('cmsMessage'); if(!el) return;
-    el.textContent=message; el.classList.toggle('hidden',false); el.classList.toggle('error',error);
-    setTimeout(()=>el.classList.add('hidden'),2600);
-  }
-  const cmsSectionLinks = [
-    ['Home','#home'],['About','#about'],['Courses','#courses'],['Reviews','#reviews'],['Teachers','#teachers'],['Packages','#packages'],['Life at AClass','#life-at-aclass'],['Contact Us','#contact'],['Legal','#legal']
+  const POLICY_SLUGS = ['privacy-policy','terms-and-conditions','refund-policy'];
+
+  const PACKAGE_SEED = [
+    {package_key:'ielts_sat_standard', name_en:'IELTS/SAT Standard Group', name_ru:'IELTS/SAT Standard Group', name_ge:'IELTS/SAT Standard Group', sort_order:1},
+    {package_key:'ielts_sat_intensive', name_en:'IELTS/SAT Intensive Group', name_ru:'IELTS/SAT Intensive Group', name_ge:'IELTS/SAT Intensive Group', sort_order:2},
+    {package_key:'ielts_sat_individual', name_en:'IELTS/SAT Individual', name_ru:'IELTS/SAT Individual', name_ge:'IELTS/SAT Individual', sort_order:3},
+    {package_key:'ielts_sat_pair', name_en:'IELTS/SAT Pair Package', name_ru:'IELTS/SAT Pair Package', name_ge:'IELTS/SAT Pair Package', sort_order:4},
+    {package_key:'general_english_group', name_en:'General English Group', name_ru:'Общий английский — группа', name_ge:'ზოგადი ინგლისური — ჯგუფი', sort_order:5},
+    {package_key:'general_english_individual', name_en:'General English Individual', name_ru:'Общий английский — индивидуально', name_ge:'ზოგადი ინგლისური — ინდივიდუალური', sort_order:6}
   ];
 
-  const cmsSeedMenus = {
-    en: {
-      header: [
-        ['Home','#home'],['About','#about'],['Courses','#courses'],['Reviews','#reviews'],['Teachers','#teachers'],['Packages','#packages'],['Life at AClass','#life-at-aclass'],['Contact Us','#contact'],['Legal','#legal']
-      ],
-      footer: [
-        ['Home','#home'],['About','#about'],['Courses','#courses'],['All Packages','#packages'],['Life at AClass','#life-at-aclass'],['IELTS','#courses'],['SAT','#courses'],['General English','#courses'],['Contact Us','#contact'],['Privacy Policy','privacy-policy.html'],['Terms & Conditions','terms-and-conditions.html'],['Refund Policy','refund-policy.html']
-      ]
-    },
-    ru: {
-      header: [
-        ['Главная','#home'],['О нас','#about'],['Курсы','#courses'],['Отзывы','#reviews'],['Преподаватели','#teachers'],['Пакеты','#packages'],['Жизнь в AClass','#life-at-aclass'],['Связаться с нами','#contact'],['Правовая информация','#legal']
-      ],
-      footer: [
-        ['Главная','#home'],['О нас','#about'],['Курсы','#courses'],['Все пакеты','#packages'],['Жизнь в AClass','#life-at-aclass'],['IELTS','#courses'],['SAT','#courses'],['Общий английский','#courses'],['Контакты','#contact'],['Политика конфиденциальности','privacy-policy.html'],['Условия использования','terms-and-conditions.html'],['Политика возврата','refund-policy.html']
-      ]
-    },
-    ge: {
-      header: [
-        ['მთავარი','#home'],['ჩვენ შესახებ','#about'],['კურსები','#courses'],['შეფასებები','#reviews'],['მასწავლებლები','#teachers'],['პაკეტები','#packages'],['AClass-ის ცხოვრება','#life-at-aclass'],['დაგვიკავშირდით','#contact'],['იურიდიული ინფორმაცია','#legal']
-      ],
-      footer: [
-        ['მთავარი','#home'],['ჩვენ შესახებ','#about'],['კურსები','#courses'],['ყველა პაკეტი','#packages'],['AClass-ის ცხოვრება','#life-at-aclass'],['IELTS','#courses'],['SAT','#courses'],['ზოგადი ინგლისური','#courses'],['კონტაქტი','#contact'],['კონფიდენციალურობის პოლიტიკა','privacy-policy.html'],['წესები და პირობები','terms-and-conditions.html'],['თანხის დაბრუნების პოლიტიკა','refund-policy.html']
-      ]
-    }
-  };
+  function cmsEsc(v){ return escapeHtml(v); }
 
-  async function seedMenusIfEmpty(existingMenus){
-    if(existingMenus.length) return existingMenus;
-    const seed=cmsSeedMenus[cmsLanguage];
-    const rows=[...seed.header.map((x,i)=>({location:'header',language:cmsLanguage,title:x[0],href:x[1],sort_order:i,active:true})),...seed.footer.map((x,i)=>({location:'footer',language:cmsLanguage,title:x[0],href:x[1],sort_order:i,active:true}))];
-    const {data,error}=await supabase.from('site_menu_items').insert(rows).select();
-    if(error){cmsNotify('Could not create starter menus: '+error.message,true);return existingMenus;}
-    cmsNotify(cmsLanguage.toUpperCase()+' header and footer menus created.');
-    return data||[];
+  function cmsNotify(message, error=false){
+    const el=document.getElementById('cmsMessage');
+    if(!el) return;
+    el.textContent=message;
+    el.classList.toggle('hidden',false);
+    el.classList.toggle('error',error);
+    setTimeout(()=>el.classList.add('hidden'),3000);
+  }
+
+  function currentPackageName(row){
+    return row['name_'+cmsLanguage] || row.name_en || row.package_key;
+  }
+
+  function currentSiteUrlForPolicy(page){
+    const file = cmsLanguage==='ru' ? 'ru.html' : (cmsLanguage==='ge' ? 'Ge.html' : 'index.html');
+    return './' + page.slug + '.html';
+  }
+
+  function renderPolicies(){
+    const list=document.getElementById('policyList');
+    const policies=cmsPages.filter(p=>POLICY_SLUGS.includes(String(p.slug||'').toLowerCase()));
+
+    list.innerHTML=policies.map(p=>`
+      <button class="page-list-item ${p.id===selectedPolicyId?'active':''}" data-policy-id="${p.id}">
+        <strong>${cmsEsc(p.title||p.slug)}</strong>
+        <span>${cmsEsc(p.slug)}</span>
+      </button>
+    `).join('');
+
+    document.getElementById('policyEmpty').classList.toggle('hidden',policies.length!==0);
+    if(selectedPolicyId && !policies.some(p=>p.id===selectedPolicyId)) selectedPolicyId=null;
+  }
+
+  function openPolicyEditor(page){
+    selectedPolicyId=page.id;
+    document.getElementById('policyEditorEmpty').classList.add('hidden');
+    document.getElementById('policyEditor').classList.remove('hidden');
+    document.getElementById('policyId').value=page.id;
+    document.getElementById('policyTitle').value=page.title||'';
+    document.getElementById('policyContentEditor').innerHTML=page.content_html||'';
+    document.getElementById('policyPublished').checked=page.published!==false;
+    document.getElementById('policyEditorHeading').textContent='Edit '+(page.title||page.slug);
+    const url=currentSiteUrlForPolicy(page);
+    document.getElementById('policySiteUrlLabel').textContent=url;
+    document.getElementById('openPolicySite').href=url;
+    document.getElementById('policySitePreview').src=url;
+    renderPolicies();
+  }
+
+  function renderPackages(){
+    const list=document.getElementById('packagesList');
+    if(!cmsPackages.length){
+      list.innerHTML='';
+      document.getElementById('packagesEmpty').classList.remove('hidden');
+      return;
+    }
+
+    document.getElementById('packagesEmpty').classList.add('hidden');
+
+    list.innerHTML=cmsPackages.map(p=>`
+      <div class="package-admin-row" data-package-id="${p.id}">
+        <div class="package-name">
+          <strong>${cmsEsc(currentPackageName(p))}</strong>
+          <small>${cmsEsc(p.package_key)}</small>
+        </div>
+
+        <label class="field-label">
+          Price
+          <input class="package-price-input" type="number" min="0" step="0.01" value="${p.price==null?'':cmsEsc(p.price)}" placeholder="0.00">
+        </label>
+
+        <label class="field-label">
+          Currency
+          <select class="package-currency">
+            <option value="GEL" ${p.currency==='GEL'?'selected':''}>GEL</option>
+            <option value="AMD" ${p.currency==='AMD'?'selected':''}>AMD</option>
+          </select>
+        </label>
+
+        <label class="package-status">
+          <input type="checkbox" class="package-payment-enabled" ${p.payment_enabled?'checked':''}>
+          <span>Payment enabled</span>
+        </label>
+
+        <div class="package-admin-actions">
+          <button type="button" class="tiny-btn" data-save-package>Save</button>
+        </div>
+      </div>
+    `).join('');
   }
 
   async function loadCMS(){
-    const [pagesRes, menusRes] = await Promise.all([
-      supabase.from('site_pages').select('*').eq('language',cmsLanguage).order('slug'),
-      supabase.from('site_menu_items').select('*').eq('language',cmsLanguage).order('location').order('sort_order')
-    ]);
-    if(pagesRes.error){ cmsNotify('CMS tables are not ready yet. Run aclass-cms.sql in Supabase first.',true); return; }
-    if(menusRes.error){ cmsNotify('Could not load menus: '+menusRes.error.message,true); return; }
-    cmsPages=pagesRes.data||[]; cmsMenus=await seedMenusIfEmpty(menusRes.data||[]); renderCMS();
-  }
-  function renderCMS(){
-    const header=cmsMenus.filter(x=>x.location==='header'); const footer=cmsMenus.filter(x=>x.location==='footer');
-    renderMenuList('headerMenuList','headerMenuEmpty',header); renderMenuList('footerMenuList','footerMenuEmpty',footer);
-    const list=document.getElementById('pageList');
-    list.innerHTML=cmsPages.map(p=>`<button class="page-list-item ${p.id===selectedPageId?'active':''}" data-page-id="${p.id}"><strong>${cmsEsc(p.title||p.slug)}</strong><span>${cmsEsc(p.slug)}</span></button>`).join('');
-    if(selectedPageId && !cmsPages.some(p=>p.id===selectedPageId)) selectedPageId=null;
-  }
-  function renderMenuList(id,emptyId,items){
-    const el=document.getElementById(id);
-    const pageOptions=cmsPages.map(p=>`<option value="${cmsEsc(p.slug)}">${cmsEsc(p.title||p.slug)} — page</option>`).join('');
-    const sectionOptions=cmsSectionLinks.map(([label,href])=>`<option value="${cmsEsc(href)}">${cmsEsc(label)} — section</option>`).join('');
-    el.innerHTML=items.map((item,index)=>{
-      const href=item.href||'#';
-      const known=[...cmsSectionLinks.map(x=>x[1]),...cmsPages.map(p=>p.slug)];
-      const custom=!known.includes(href);
-      return `<details class="menu-row" data-menu-id="${item.id}" ${index===0?'open':''}>
-        <summary><span class="menu-summary-left"><span class="drag">☷</span><span class="menu-summary-title">${cmsEsc(item.title||'Untitled')}</span></span><span class="menu-summary-href">${cmsEsc(href)}</span></summary>
-        <div class="menu-editor">
-          <div class="menu-editor-grid">
-            <label class="menu-field">Title<input class="menu-title" value="${cmsEsc(item.title||'')}" placeholder="Menu title"></label>
-            <label class="menu-field">Link<select class="menu-href-select">${sectionOptions}${pageOptions}<option value="__custom__" ${custom?'selected':''}>Custom link…</option></select></label>
-          </div>
-          <label class="menu-field ${custom?'':'hidden'} custom-link-wrap">Custom link<input class="menu-href-custom" value="${custom?cmsEsc(href):''}" placeholder="#section or page.html"></label>
-          <div class="menu-actions"><label class="menu-active"><input type="checkbox" class="menu-active-check" ${item.active!==false?'checked':''}> Visible</label><div><button type="button" class="tiny-btn" data-save-menu="${item.id}">Save</button><button type="button" class="tiny-btn delete" data-delete-menu="${item.id}">Delete</button></div></div>
-        </div>
-      </details>`;
-    }).join('');
-    document.getElementById(emptyId).classList.toggle('hidden',items.length!==0);
-  }
-  function getCurrentSiteUrl(page){
-    const lang = cmsLanguage === 'ru' ? 'ru.html' : (cmsLanguage === 'ge' ? 'Ge.html' : 'index.html');
-    const base = './' + lang;
-    const slug = String(page?.slug || '').toLowerCase();
-    const legal = ['privacy-policy','terms-and-conditions','refund-policy'];
-    if(legal.includes(slug)) return './' + slug + '.html';
-    const sectionMap = {
-      'home':'#home','about':'#about','about-us':'#about','courses':'#courses',
-      'reviews':'#reviews','teachers':'#teachers','packages':'#packages',
-      'all-packages':'#packages','life-at-aclass':'#life-at-aclass','contact':'#contact','legal':'#legal'
-    };
-    const hash = sectionMap[slug] || '';
-    return base + hash;
-  }
+    const {data:pages,error:pagesError}=await supabase
+      .from('site_pages')
+      .select('*')
+      .eq('language',cmsLanguage)
+      .order('slug');
 
-  function refreshPagePreview(page){
-    const url=getCurrentSiteUrl(page);
-    const frame=document.getElementById('currentSitePreview');
-    const link=document.getElementById('openCurrentSite');
-    const label=document.getElementById('currentSiteUrlLabel');
-    if(frame) frame.src=url;
-    if(link){ link.href=url; }
-    if(label){ label.textContent=url; }
-    const note=document.getElementById('emptyContentNote');
-    if(note) note.classList.toggle('hidden',!!(page && page.content_html));
-  }
-
-  function syncEditorModes(from){
-    const visual=document.getElementById('pageContentEditor');
-    const html=document.getElementById('pageHtmlEditor');
-    if(!visual || !html) return;
-    if(from==='visual') html.value=visual.innerHTML;
-    if(from==='html') visual.innerHTML=html.value;
-  }
-
-  function openPageEditor(page){
-      selectedPageId=page.id;
-      document.getElementById('pageEditor').classList.remove('hidden');
-      document.getElementById('pageId').value=page.id;
-      document.getElementById('pageSlug').value=page.slug||'';
-      document.getElementById('pageTitle').value=page.title||'';
-      document.getElementById('pageContentEditor').innerHTML=page.content_html||'';
-      document.getElementById('pagePublished').checked=page.published!==false;
-      document.getElementById('pageEditorHeading').textContent='Edit '+(page.title||page.slug||'page');
-      refreshPagePreview(page);
-      document.getElementById('pageEditor').scrollIntoView({behavior:'smooth',block:'start'});
+    if(pagesError){
+      cmsNotify('Could not load website pages: '+pagesError.message,true);
+      return;
     }
-  async function addMenu(location){
-    const next=cmsMenus.filter(x=>x.location===location).length;
-    const {data,error}=await supabase.from('site_menu_items').insert({location,language:cmsLanguage,title:location==='header'?'New menu item':'New footer link',href:'#',sort_order:next,active:true}).select().single();
-    if(error){cmsNotify(error.message,true);return;} cmsMenus.push(data); renderCMS();
+
+    const {data:packages,error:packagesError}=await supabase
+      .from('site_packages')
+      .select('*')
+      .order('sort_order');
+
+    if(packagesError){
+      cmsNotify('Packages table is not ready yet. Run the package SQL setup first.',true);
+      cmsPages=pages||[];
+      cmsPackages=[];
+      renderPolicies();
+      renderPackages();
+      return;
+    }
+
+    cmsPages=pages||[];
+    cmsPackages=packages||[];
+    renderPolicies();
+    renderPackages();
   }
+
+  async function seedPackages(){
+    const rows=PACKAGE_SEED.map(p=>({
+      ...p,
+      price:null,
+      currency:'GEL',
+      active:true,
+      payment_enabled:false
+    }));
+
+    const {data,error}=await supabase.from('site_packages').upsert(rows,{onConflict:'package_key'}).select();
+    if(error){cmsNotify(error.message,true);return;}
+    cmsPackages=data||[];
+    renderPackages();
+    cmsNotify('Package list created. Add the real prices, then enable payment.');
+  }
+
   document.getElementById('websiteNav').addEventListener('click', async ()=>{
     showPage('websitePage');
     await loadCMS();
   });
-  document.getElementById('addHeaderItem').addEventListener('click',()=>addMenu('header'));
-  document.getElementById('addFooterItem').addEventListener('click',()=>addMenu('footer'));
-  document.getElementById('cmsLanguageSwitch').addEventListener('click',e=>{const b=e.target.closest('[data-lang]');if(!b)return;cmsLanguage=b.dataset.lang;document.querySelectorAll('.lang-btn').forEach(x=>x.classList.toggle('active',x===b));selectedPageId=null;document.getElementById('pageEditor').classList.add('hidden');document.getElementById('pageEditorEmpty').classList.remove('hidden');loadCMS();});
-  document.querySelector('.cms-tabs').addEventListener('click',e=>{const b=e.target.closest('[data-cms-tab]');if(!b)return;document.querySelectorAll('.cms-tab').forEach(x=>x.classList.toggle('active',x===b));document.getElementById('cmsMenusPanel').classList.toggle('active',b.dataset.cmsTab==='menus');document.getElementById('cmsPagesPanel').classList.toggle('active',b.dataset.cmsTab==='pages');});
-  document.getElementById('headerMenuList').addEventListener('click',menuAction); document.getElementById('footerMenuList').addEventListener('click',menuAction);
-  function syncMenuHrefField(row){
-    const select=row.querySelector('.menu-href-select'), customWrap=row.querySelector('.custom-link-wrap'), custom=row.querySelector('.menu-href-custom');
-    const isCustom=select.value==='__custom__';
-    customWrap.classList.toggle('hidden',!isCustom);
-    if(!isCustom && custom) custom.value='';
-  }
-  document.getElementById('headerMenuList').addEventListener('change',e=>{const row=e.target.closest('[data-menu-id]');if(row && e.target.matches('.menu-href-select'))syncMenuHrefField(row);});
-  document.getElementById('footerMenuList').addEventListener('change',e=>{const row=e.target.closest('[data-menu-id]');if(row && e.target.matches('.menu-href-select'))syncMenuHrefField(row);});
-  async function menuAction(e){
-    const save=e.target.closest('[data-save-menu]'), del=e.target.closest('[data-delete-menu]'); const row=e.target.closest('[data-menu-id]'); if(!row)return; const id=Number(row.dataset.menuId);
-    if(save){
-      const select=row.querySelector('.menu-href-select');
-      const href=select.value==='__custom__' ? row.querySelector('.menu-href-custom').value.trim() : select.value;
-      const payload={title:row.querySelector('.menu-title').value.trim(),href:href||'#',active:row.querySelector('.menu-active-check').checked,updated_at:new Date().toISOString()};
-      const {error}=await supabase.from('site_menu_items').update(payload).eq('id',id);
-      if(error)cmsNotify(error.message,true);else{row.querySelector('.menu-summary-title').textContent=payload.title||'Untitled';row.querySelector('.menu-summary-href').textContent=payload.href;cmsNotify('Menu item saved.');}
+
+  document.getElementById('cmsLanguageSwitch').addEventListener('click',e=>{
+    const b=e.target.closest('[data-lang]');
+    if(!b)return;
+    cmsLanguage=b.dataset.lang;
+    document.querySelectorAll('.lang-btn').forEach(x=>x.classList.toggle('active',x===b));
+    selectedPolicyId=null;
+    document.getElementById('policyEditor').classList.add('hidden');
+    document.getElementById('policyEditorEmpty').classList.remove('hidden');
+    loadCMS();
+  });
+
+  document.querySelector('.cms-tabs').addEventListener('click',e=>{
+    const b=e.target.closest('[data-cms-tab]');
+    if(!b)return;
+    document.querySelectorAll('.cms-tab').forEach(x=>x.classList.toggle('active',x===b));
+    document.getElementById('cmsPoliciesPanel').classList.toggle('active',b.dataset.cmsTab==='policies');
+    document.getElementById('cmsPackagesPanel').classList.toggle('active',b.dataset.cmsTab==='packages');
+  });
+
+  document.getElementById('policyList').addEventListener('click',e=>{
+    const b=e.target.closest('[data-policy-id]');
+    if(!b)return;
+    const page=cmsPages.find(p=>String(p.id)===b.dataset.policyId);
+    if(page)openPolicyEditor(page);
+  });
+
+  document.getElementById('policyEditorToolbar').addEventListener('click',e=>{
+    const b=e.target.closest('[data-cmd]');
+    if(!b)return;
+    document.getElementById('policyContentEditor').focus();
+    if(b.dataset.cmd==='createLink'){
+      const url=prompt('Link URL');
+      if(url)document.execCommand('createLink',false,url);
+      return;
     }
-    if(del){if(!confirm('Delete this menu item?'))return;const {error}=await supabase.from('site_menu_items').delete().eq('id',id);if(error)cmsNotify(error.message,true);else loadCMS();}
-  }
-  document.getElementById('pageList').addEventListener('click',e=>{const b=e.target.closest('[data-page-id]');if(!b)return;const page=cmsPages.find(p=>String(p.id)===b.dataset.pageId);if(page)openPageEditor(page);});
-  document.getElementById('pageEditor').addEventListener('submit',async e=>{
+    document.execCommand(b.dataset.cmd,false,b.dataset.value||null);
+  });
+
+  document.getElementById('policyEditor').addEventListener('submit',async e=>{
     e.preventDefault();
-    syncEditorModes(document.getElementById('htmlEditorPane').classList.contains('hidden')?'visual':'html');
-    const id=Number(document.getElementById('pageId').value);
-    const content=document.getElementById('pageHtmlEditor').value;
-    const payload={slug:document.getElementById('pageSlug').value.trim(),title:document.getElementById('pageTitle').value.trim(),content_html:content,published:document.getElementById('pagePublished').checked,updated_at:new Date().toISOString()};
-    if(!payload.slug||!payload.title){cmsNotify('Slug and title are required.',true);return;}
-    if(!payload.content_html.trim() && !confirm('This page currently has no CMS content. Save it blank anyway? The current website preview on the right will not be changed by this action.')) return;
+    const id=Number(document.getElementById('policyId').value);
+    const payload={
+      title:document.getElementById('policyTitle').value.trim(),
+      content_html:document.getElementById('policyContentEditor').innerHTML,
+      published:document.getElementById('policyPublished').checked,
+      updated_at:new Date().toISOString()
+    };
+
+    if(!payload.title){
+      cmsNotify('Policy title is required.',true);
+      return;
+    }
+
     const {data,error}=await supabase.from('site_pages').update(payload).eq('id',id).select().single();
     if(error){cmsNotify(error.message,true);return;}
-    const i=cmsPages.findIndex(p=>p.id===id);if(i>=0)cmsPages[i]=data;openPageEditor(data);cmsNotify('Page saved.');
+
+    const index=cmsPages.findIndex(p=>p.id===id);
+    if(index>=0)cmsPages[index]=data;
+    openPolicyEditor(data);
+    cmsNotify('Policy saved.');
   });
-  document.getElementById('deletePageButton').addEventListener('click',async()=>{const id=Number(document.getElementById('pageId').value);if(!id||!confirm('Delete this page?'))return;const {error}=await supabase.from('site_pages').delete().eq('id',id);if(error){cmsNotify(error.message,true);return;}selectedPageId=null;document.getElementById('pageEditor').classList.add('hidden');document.getElementById('pageEditorEmpty').classList.remove('hidden');loadCMS();});
-  document.getElementById('addPageButton').addEventListener('click',async()=>{const slug=prompt('Page slug, for example: about-us');if(!slug)return;const title=prompt('Page title');if(!title)return;const {data,error}=await supabase.from('site_pages').insert({slug:slug.trim().toLowerCase().replace(/\s+/g,'-'),language:cmsLanguage,title:title.trim(),content_html:'',published:true}).select().single();if(error){cmsNotify(error.message,true);return;}cmsPages.push(data);openPageEditor(data);});
-  document.getElementById('editorToolbar').addEventListener('click',e=>{const b=e.target.closest('[data-cmd]');if(!b)return;document.getElementById('pageContentEditor').focus();document.execCommand(b.dataset.cmd,false,b.dataset.value||null);});
-  document.getElementById('pageEditorModes').addEventListener('click',e=>{
-    const b=e.target.closest('[data-editor-mode]'); if(!b)return;
-    const mode=b.dataset.editorMode;
-    if(mode==='html') syncEditorModes('visual'); else syncEditorModes('html');
-    document.querySelectorAll('.page-editor-mode').forEach(x=>x.classList.toggle('active',x===b));
-    document.getElementById('visualEditorPane').classList.toggle('hidden',mode!=='visual');
-    document.getElementById('htmlEditorPane').classList.toggle('hidden',mode!=='html');
-    document.getElementById('editorPaneTitle').textContent=mode==='html'?'HTML / Liquid source':'Structured editor';
+
+  document.getElementById('seedPackagesButton').addEventListener('click',async()=>{
+    if(!confirm('Create the six standard AClass packages? Existing package prices will not be replaced.'))return;
+    await seedPackages();
   });
-  document.getElementById('pageHtmlEditor').addEventListener('input',()=>{
-    if(!document.getElementById('htmlEditorPane').classList.contains('hidden')) {
-      document.getElementById('pageContentEditor').innerHTML=document.getElementById('pageHtmlEditor').value;
+
+  document.getElementById('packagesList').addEventListener('click',async e=>{
+    const save=e.target.closest('[data-save-package]');
+    if(!save)return;
+
+    const row=save.closest('[data-package-id]');
+    const id=Number(row.dataset.packageId);
+    const priceInput=row.querySelector('.package-price-input');
+    const price=priceInput.value.trim()===''?null:Number(priceInput.value);
+
+    if(price!==null && (!Number.isFinite(price)||price<0)){
+      cmsNotify('Enter a valid non-negative price.',true);
+      return;
     }
+
+    const paymentEnabled=row.querySelector('.package-payment-enabled').checked;
+    if(paymentEnabled && (price===null || price<=0)){
+      cmsNotify('Set a real price before enabling payment.',true);
+      return;
+    }
+
+    const payload={
+      price,
+      currency:row.querySelector('.package-currency').value,
+      payment_enabled:paymentEnabled,
+      updated_at:new Date().toISOString()
+    };
+
+    const {data,error}=await supabase.from('site_packages').update(payload).eq('id',id).select().single();
+    if(error){cmsNotify(error.message,true);return;}
+
+    const index=cmsPackages.findIndex(p=>p.id===id);
+    if(index>=0)cmsPackages[index]=data;
+    renderPackages();
+    cmsNotify('Package price saved.');
   });
+
+  // Keep the package management tab usable even before the first load.
+
 
 });
 
