@@ -790,8 +790,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   authLoading.classList.add('hidden');
   document.body.classList.remove('auth-initializing');
-});
-
 
   /* Website CMS */
   let cmsLanguage = 'en';
@@ -853,6 +851,10 @@ document.addEventListener('DOMContentLoaded', async () => {
   document.getElementById('deletePageButton').addEventListener('click',async()=>{const id=Number(document.getElementById('pageId').value);if(!id||!confirm('Delete this page?'))return;const {error}=await supabase.from('site_pages').delete().eq('id',id);if(error){cmsNotify(error.message,true);return;}selectedPageId=null;document.getElementById('pageEditor').classList.add('hidden');document.getElementById('pageEditorEmpty').classList.remove('hidden');loadCMS();});
   document.getElementById('addPageButton').addEventListener('click',async()=>{const slug=prompt('Page slug, for example: about-us');if(!slug)return;const title=prompt('Page title');if(!title)return;const {data,error}=await supabase.from('site_pages').insert({slug:slug.trim().toLowerCase().replace(/\s+/g,'-'),language:cmsLanguage,title:title.trim(),content_html:'',published:true}).select().single();if(error){cmsNotify(error.message,true);return;}cmsPages.push(data);openPageEditor(data);});
   document.getElementById('editorToolbar').addEventListener('click',e=>{const b=e.target.closest('[data-cmd]');if(!b)return;document.getElementById('pageContentEditor').focus();document.execCommand(b.dataset.cmd,false,b.dataset.value||null);});
+
+});
+
+
 </script>
 </body>
 </html>
