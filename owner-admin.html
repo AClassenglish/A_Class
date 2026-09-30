@@ -1104,7 +1104,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   const PACKAGE_SEED = [
     {
       package_key:'ielts_sat_standard',
-      category:'ielts_sat',
+      category:'ielts',
       name_en:'IELTS/SAT Standard Group',
       name_ru:'IELTS/SAT Standard Group',
       name_ge:'IELTS/SAT Standard Group',
@@ -1119,7 +1119,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     },
     {
       package_key:'ielts_sat_intensive',
-      category:'ielts_sat',
+      category:'ielts',
       name_en:'IELTS/SAT Intensive Group',
       name_ru:'IELTS/SAT Intensive Group',
       name_ge:'IELTS/SAT Intensive Group',
@@ -1134,7 +1134,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     },
     {
       package_key:'ielts_sat_individual',
-      category:'ielts_sat',
+      category:'ielts',
       name_en:'IELTS/SAT Individual',
       name_ru:'IELTS/SAT Individual',
       name_ge:'IELTS/SAT Individual',
@@ -1149,7 +1149,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     },
     {
       package_key:'ielts_sat_pair',
-      category:'ielts_sat',
+      category:'ielts',
       name_en:'IELTS/SAT Pair Package',
       name_ru:'IELTS/SAT Pair Package',
       name_ge:'IELTS/SAT Pair Package',
@@ -1354,8 +1354,11 @@ document.addEventListener('DOMContentLoaded', async () => {
       .select('*');
 
     if(error){
-      cmsNotify('Packages table is empty, but the starter products could not be created: '+error.message,true);
-      return [];
+      // Still show the starter catalog even if Supabase blocks the insert
+      // (for example because of an RLS/check-constraint issue). The local
+      // ids are temporary and are converted into real rows when saved.
+      cmsNotify('Starter products are shown locally because Supabase could not create them: '+error.message,true);
+      return rows.map(item=>({...item,id:'seed_'+item.package_key}));
     }
 
     cmsNotify('Starter package catalog created.');
@@ -1375,11 +1378,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     if(packagesRes.error){
-      cmsPackages=[];
       cmsPages=pages;
+      cmsPackages=PACKAGE_SEED.map(item=>({...item,currency:'GEL',price:null,active:true,payment_enabled:false,id:'seed_'+item.package_key}));
       renderPolicies();
       renderPackages();
-      cmsNotify('Could not load packages: '+packagesRes.error.message,true);
+      cmsNotify('Could not read the packages table, so the starter catalog is shown locally: '+packagesRes.error.message,true);
       return;
     }
 
@@ -1468,14 +1471,23 @@ document.addEventListener('DOMContentLoaded', async () => {
     if(edit){ const row=edit.closest('[data-package-id]'); const product=cmsPackages.find(p=>String(p.id)===row.dataset.packageId); if(product)openProductEditor(product); return; }
     const save=e.target.closest('[data-save-package]');
     if(!save)return;
-    const row=save.closest('[data-package-id]'); const id=Number(row.dataset.packageId);
+    const row=save.closest('[data-package-id]'); const rawId=row.dataset.packageId;
+    const product=cmsPackages.find(p=>String(p.id)===rawId);
+    if(!product){cmsNotify('Could not find that product.',true);return;}
+    const id=String(rawId);
     const priceInput=row.querySelector('.package-price-input'); const price=priceInput.value.trim()===''?null:Number(priceInput.value);
     if(price!==null && (!Number.isFinite(price)||price<0)){cmsNotify('Enter a valid non-negative price.',true);return;}
     const paymentEnabled=row.querySelector('.package-payment-enabled').checked;
     if(paymentEnabled && (price===null || price<=0)){cmsNotify('Set a real price before enabling payment.',true);return;}
     const payload={price,currency:row.querySelector('.package-currency').value,payment_enabled:paymentEnabled,updated_at:new Date().toISOString()};
-    const {data,error}=await supabase.from('site_packages').update(payload).eq('id',id).select().single();
-    if(error){cmsNotify(error.message,true);return;} const index=cmsPackages.findIndex(p=>p.id===id); if(index>=0)cmsPackages[index]=data; renderPackages(); cmsNotify('Price and payment settings saved.');
+    let result;
+    if(id.startsWith('seed_')){
+      result=await supabase.from('site_packages').insert({...product,...payload,id:undefined}).select().single();
+    }else{
+      result=await supabase.from('site_packages').update(payload).eq('id',Number(id)).select().single();
+    }
+    if(result.error){cmsNotify(result.error.message,true);return;}
+    const index=cmsPackages.findIndex(p=>String(p.id)===id); if(index>=0)cmsPackages[index]=result.data; renderPackages(); cmsNotify('Price and payment settings saved.');
   });
 
   document.getElementById('productEditor').addEventListener('submit',async e=>{
@@ -1500,10 +1512,15 @@ document.addEventListener('DOMContentLoaded', async () => {
     };
     if(!payload.name_en||!payload.name_ru||!payload.name_ge){cmsNotify('Add the product title in all three languages.',true);return;}
     let result;
-    if(idValue){ result=await supabase.from('site_packages').update(payload).eq('id',Number(idValue)).select().single(); }
-    else { result=await supabase.from('site_packages').insert(payload).select().single(); }
+    if(idValue && idValue.startsWith('seed_')){
+      result=await supabase.from('site_packages').insert(payload).select().single();
+    }else if(idValue){
+      result=await supabase.from('site_packages').update(payload).eq('id',Number(idValue)).select().single();
+    }else {
+      result=await supabase.from('site_packages').insert(payload).select().single();
+    }
     if(result.error){cmsNotify(result.error.message,true);return;}
-    if(idValue){const i=cmsPackages.findIndex(p=>p.id===Number(idValue));if(i>=0)cmsPackages[i]=result.data;}else cmsPackages.push(result.data);
+    if(idValue){const i=cmsPackages.findIndex(p=>String(p.id)===String(idValue));if(i>=0)cmsPackages[i]=result.data;else cmsPackages.push(result.data);}else cmsPackages.push(result.data);
     cmsPackages.sort((a,b)=>(a.sort_order||0)-(b.sort_order||0)||(a.id||0)-(b.id||0));
     renderPackages(); closeProductEditor(); cmsNotify(idValue?'Product updated.':'Product created.');
   });
