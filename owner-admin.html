@@ -342,7 +342,28 @@
 @media(max-width:1100px){.package-admin-row{grid-template-columns:1fr 1fr}.package-admin-actions{justify-content:flex-start}.package-status{align-self:center}.product-editor-grid{grid-template-columns:1fr}}
 @media(max-width:700px){.package-admin-row{grid-template-columns:1fr}.package-admin-actions{justify-content:stretch}.package-admin-actions button{flex:1}.package-group-head{align-items:flex-start;flex-direction:column}}
 
-.packages-page-content{display:block}.packages-page-content .card{margin-top:0}\n  </style>
+.packages-page-content{display:block}.packages-page-content .card{margin-top:0}\n  
+    /* Owner Center package UX */
+    .package-admin-list{display:flex;flex-direction:column;gap:10px}
+    .package-admin-row{position:relative;display:grid;grid-template-columns:minmax(230px,1.5fr) 150px 130px 130px minmax(150px,1fr);gap:12px;align-items:center;padding:14px;border:1px solid #e7eeee;border-radius:13px;background:#fff;transition:border-color .2s ease,background .2s ease,box-shadow .2s ease}
+    .package-admin-row.is-editing{border-color:#8BD8D1;background:#F8FCFB;box-shadow:0 5px 20px rgba(15,166,179,.08)}
+    .package-admin-row.is-saved{border-color:#8AD8B6!important;background:#F2FCF7!important;box-shadow:0 0 0 3px rgba(21,154,103,.08)}
+    .package-inline-editor{grid-column:1/-1;margin:4px 0 0;padding:18px;border:1px solid #dfeae7;border-radius:13px;background:#FBFEFD}
+    .package-inline-editor .product-editor{margin:0;padding:0;border:0;background:transparent}
+    .package-inline-editor .product-editor-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+    .package-inline-editor .product-editor-grid .full{grid-column:1/-1}
+    .package-inline-editor .editor-section{margin-top:18px;padding-top:18px;border-top:1px solid var(--border)}
+    .package-inline-editor .product-editor-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:18px}
+    .package-save-note{display:flex;align-items:center;gap:8px;margin:0 0 14px;padding:10px 12px;border-radius:10px;background:#F3F8F7;border:1px solid #DCEAE7;color:#526467;font-size:11px;font-weight:800}
+    .package-save-note.saved{background:#EAF8F1;border-color:#CBE9DA;color:#137A55}
+    .save-icon{width:20px;height:20px;border-radius:50%;display:grid;place-items:center;background:#0FA6B3;color:#fff;font-size:11px;flex:0 0 20px}
+    .package-save-note.saved .save-icon{background:#159A67}
+    .save-button-saved{background:#EAF8F1!important;border-color:#9EDDBD!important;color:#137A55!important}
+    .saving-button{opacity:.72!important;pointer-events:none!important}
+    @media(max-width:1100px){.package-admin-row{grid-template-columns:1fr 1fr}.package-admin-actions{justify-content:flex-start}.package-status{align-self:center}.package-inline-editor .product-editor-grid{grid-template-columns:1fr}}
+    @media(max-width:700px){.package-admin-row{grid-template-columns:1fr}.package-admin-actions{justify-content:stretch}.package-admin-actions button{flex:1}}
+
+  </style>
 </head>
 <body class="auth-initializing">
 <div id="authLoading"><div class="loading-box">Checking Owner session…</div></div>
@@ -373,22 +394,18 @@
   <aside id="sidebar" class="sidebar">
     <div class="side-brand"><div class="side-mark">A</div><span>ACLASS</span></div>
 
-    <div class="nav-label">Overview</div>
+    <div class="nav-label">Navigation</div>
     <button class="nav-btn active" id="dashboardNav"><span class="icon">⌂</span> Dashboard</button>
+    <button class="nav-btn" id="ordersNav"><span class="icon">₾</span> Orders & Payments</button>
+    <button class="nav-btn" id="websiteNav"><span class="icon">▤</span> Website</button>
+    <button class="nav-btn" id="packagesNav"><span class="icon">◈</span> Packages</button>
 
-    <div class="nav-label">Management</div>
+    <div class="nav-label">Coming next</div>
     <button class="nav-btn disabled" title="Coming next"><span class="icon">♙</span> Students</button>
     <button class="nav-btn disabled" title="Coming next"><span class="icon">♙</span> Teachers</button>
     <button class="nav-btn disabled" title="Coming next"><span class="icon">▣</span> Classes</button>
-    <button class="nav-btn" id="ordersNav"><span class="icon">₾</span> Orders & Payments</button>
-
-    <div class="nav-label">Website</div>
-    <button class="nav-btn" id="websiteNav"><span class="icon">▤</span> Website</button>
-    <button class="nav-btn disabled" title="Coming next"><span class="icon">✦</span> Teachers</button>
-    <button class="nav-btn" id="packagesNav"><span class="icon">◈</span> Packages</button>
+    <button class="nav-btn disabled" title="Coming next"><span class="icon">✦</span> Website Teachers</button>
     <button class="nav-btn disabled" title="Coming next"><span class="icon">☰</span> Testimonials & FAQ</button>
-
-    <div class="nav-label">System</div>
     <button class="nav-btn disabled" title="Coming next"><span class="icon">⚙</span> Settings</button>
 
     <div class="side-bottom">
@@ -749,7 +766,7 @@
                 <label class="publish-toggle"><input type="checkbox" id="productActive" checked> Active</label>
                 <label class="publish-toggle"><input type="checkbox" id="productPaymentEnabled"> Payment enabled</label>
               </div>
-              <div class="product-editor-actions"><button type="submit" class="primary">Save product</button></div>
+              <div class="product-editor-actions"><button type="submit" class="primary">↻ Save product</button></div>
             </form>
           </div>
         </div>
@@ -976,16 +993,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     loadOrders().catch(()=>{});
 
-    // Restore the last section only AFTER the authenticated Owner app is ready.
-    // This prevents Website CMS queries from running before Supabase has a session.
-    const lastSection = localStorage.getItem('aclassLastSection');
-    if (lastSection === 'website') {
-      setTimeout(() => document.getElementById('websiteNav')?.click(), 0);
-    } else if (lastSection === 'orders') {
-      setTimeout(() => document.getElementById('ordersNav')?.click(), 0);
-    } else if (lastSection === 'packages') {
-      setTimeout(() => document.getElementById('packagesNav')?.click(), 0);
-    }
+    // Always start authenticated sessions on Dashboard.
+    localStorage.setItem('aclassLastSection','dashboard');
+    showPage('dashboardPage');
 
     return true;
   }
@@ -1154,6 +1164,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const loading=document.getElementById('packagesLoading');
     if(!list) return;
     if(loading) loading.classList.add('hidden');
+
     if(!cmsPackages.length){
       list.innerHTML='';
       if(empty){
@@ -1162,38 +1173,27 @@ document.addEventListener('DOMContentLoaded', async () => {
       }
       return;
     }
+
     if(empty) empty.classList.add('hidden');
 
-    const groups=[['ielts','IELTS'],['sat','SAT'],['general_english','General English'],['uncategorized','Other products']];
-    list.innerHTML=groups.map(([key,label])=>{
-      const items=cmsPackages.filter(p=>normalizePackageCategory(p)===key);
-      if(!items.length) return '';
-      return `<section class="package-group">
-        <div class="package-group-head">
-          <div><strong>${label}</strong><span> · ${items.length} product${items.length===1?'':'s'}</span></div>
-          <button type="button" class="ghost tiny-btn" data-add-category="${key==='uncategorized'?'':key}">+ Add here</button>
+    list.innerHTML=cmsPackages.map(p=>`
+      <div class="package-admin-row" data-package-id="${p.id}">
+        <div class="package-name">
+          <strong>${cmsEsc(currentPackageName(p))}</strong>
+          <small>${cmsEsc(p.package_key||'')}</small>
+          <div class="product-badges">
+            <span class="product-badge">${cmsEsc(categoryLabel(normalizePackageCategory(p)))}</span>
+            ${p.active?'<span class="product-badge">Active</span>':'<span class="product-badge warn">Inactive</span>'}
+            ${p.payment_enabled?'<span class="product-badge">Payment on</span>':'<span class="product-badge warn">Payment off</span>'}
+          </div>
         </div>
-        <div class="package-group-items">${items.map(p=>{
-          return `<div class="package-admin-row" data-package-id="${p.id}">
-            <div class="package-name">
-              <strong>${cmsEsc(currentPackageName(p))}</strong>
-              <small>${cmsEsc(p.package_key||'')}</small>
-              <div class="product-badges">
-                <span class="product-badge">${cmsEsc(categoryLabel(normalizePackageCategory(p)))}</span>
-                ${p.active?'<span class="product-badge">Active</span>':'<span class="product-badge warn">Inactive</span>'}
-                ${p.payment_enabled?'<span class="product-badge">Payment on</span>':'<span class="product-badge warn">Payment off</span>'}
-              </div>
-            </div>
-            <label class="field-label">Price<input class="package-price-input" type="number" min="0" step="0.01" value="${p.price==null?'':cmsEsc(p.price)}" placeholder="0.00"></label>
-            <label class="field-label">Currency<select class="package-currency"><option value="GEL" ${p.currency==='GEL'?'selected':''}>GEL</option><option value="AMD" ${p.currency==='AMD'?'selected':''}>AMD</option></select></label>
-            <label class="package-status"><input type="checkbox" class="package-payment-enabled" ${p.payment_enabled?'checked':''}><span>Payment</span></label>
-            <div class="package-admin-actions"><button type="button" class="tiny-btn" data-edit-package>Edit</button><button type="button" class="tiny-btn" data-save-package>Save</button></div>
-          </div>`;
-        }).join('')}</div>
-      </section>`;
-    }).join('');
+        <label class="field-label">Price<input class="package-price-input" type="number" min="0" step="0.01" value="${p.price==null?'':cmsEsc(p.price)}" placeholder="0.00"></label>
+        <label class="field-label">Currency<select class="package-currency"><option value="GEL" ${p.currency==='GEL'?'selected':''}>GEL</option><option value="AMD" ${p.currency==='AMD'?'selected':''}>AMD</option></select></label>
+        <label class="package-status"><input type="checkbox" class="package-payment-enabled" ${p.payment_enabled?'checked':''}><span>Payment</span></label>
+        <div class="package-admin-actions"><button type="button" class="tiny-btn" data-edit-package>✎ Edit</button><button type="button" class="tiny-btn" data-save-package>↻ Save</button></div>
+      </div>
+    `).join('');
   }
-
   function featureValues(language){
     return Array.from(document.querySelectorAll(`#featureList${language.toUpperCase()} .feature-input`))
       .map(input=>input.value.trim()).filter(Boolean);
@@ -1224,8 +1224,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     list.appendChild(row);
   }
 
-  function openProductEditor(product=null, category=''){
-    document.getElementById('productEditor').classList.remove('hidden');
+  function openProductEditor(product=null, category='', anchorRow=null){
+    const editor=document.getElementById('productEditor');
+    const existing=document.querySelector('.package-inline-editor');
+    if(existing) existing.remove();
+
+    document.querySelectorAll('.package-admin-row.is-editing').forEach(row=>row.classList.remove('is-editing'));
+
     document.getElementById('productEditorHeading').textContent=product?'Edit product':'Add product';
     productKeyTouched=!!product;
     document.getElementById('productId').value=product?.id||'';
@@ -1250,9 +1255,32 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.getElementById('productSortOrder').value=product?.sort_order??0;
     document.getElementById('productActive').checked=product?.active!==false;
     document.getElementById('productPaymentEnabled').checked=product?.payment_enabled===true;
-    document.getElementById('productEditor').scrollIntoView({behavior:'smooth',block:'start'});
+    editor.classList.remove('hidden');
+
+    const mount=document.createElement('div');
+    mount.className='package-inline-editor';
+    mount.innerHTML=`<div class="package-save-note"><span class="save-icon">${product?'✎':'＋'}</span><span>${product?'Edit this product here. The editor stays directly under the selected package.':'Add a new product to the catalog.'}</span></div>`;
+
+    if(anchorRow){
+      anchorRow.classList.add('is-editing');
+      anchorRow.after(mount);
+    }else{
+      document.getElementById('packagesList').appendChild(mount);
+    }
+    mount.appendChild(editor);
+    mount.scrollIntoView({behavior:'smooth',block:'nearest'});
   }
-  function closeProductEditor(){ document.getElementById('productEditor').classList.add('hidden'); }
+  function closeProductEditor(){
+    const editor=document.getElementById('productEditor');
+    const mount=document.querySelector('.package-inline-editor');
+    if(mount){
+      const host=document.getElementById('packagesPageContent');
+      if(host) host.appendChild(editor);
+      mount.remove();
+    }
+    document.querySelectorAll('.package-admin-row.is-editing').forEach(row=>row.classList.remove('is-editing'));
+    editor.classList.add('hidden');
+  }
 
   async function withTimeout(promise, ms=8000){
     return await Promise.race([
@@ -1497,20 +1525,62 @@ document.addEventListener('DOMContentLoaded', async () => {
   document.querySelectorAll('[data-add-feature]').forEach(btn=>btn.addEventListener('click',()=>addFeatureInput(btn.dataset.addFeature,'')));
 
   document.getElementById('packagesList').addEventListener('click',async e=>{
-    const add=e.target.closest('[data-add-category]');
-    if(add){ openProductEditor(null,add.dataset.addCategory||''); return; }
     const edit=e.target.closest('[data-edit-package]');
-    if(edit){ const row=edit.closest('[data-package-id]'); const product=cmsPackages.find(p=>String(p.id)===row.dataset.packageId); if(product)openProductEditor(product); return; }
+    if(edit){
+      const row=edit.closest('[data-package-id]');
+      const product=cmsPackages.find(p=>String(p.id)===row.dataset.packageId);
+      if(product) openProductEditor(product,'',row);
+      return;
+    }
+
     const save=e.target.closest('[data-save-package]');
     if(!save)return;
-    const row=save.closest('[data-package-id]'); const id=Number(row.dataset.packageId);
-    const priceInput=row.querySelector('.package-price-input'); const price=priceInput.value.trim()===''?null:Number(priceInput.value);
-    if(price!==null && (!Number.isFinite(price)||price<0)){cmsNotify('Enter a valid non-negative price.',true);return;}
+
+    const row=save.closest('[data-package-id]');
+    const id=Number(row.dataset.packageId);
+    const priceInput=row.querySelector('.package-price-input');
+    const price=priceInput.value.trim()===''?null:Number(priceInput.value);
+
+    if(price!==null && (!Number.isFinite(price)||price<0)){
+      cmsNotify('Enter a valid non-negative price.',true); return;
+    }
+
     const paymentEnabled=row.querySelector('.package-payment-enabled').checked;
-    if(paymentEnabled && (price===null || price<=0)){cmsNotify('Set a real price before enabling payment.',true);return;}
+    if(paymentEnabled && (price===null || price<=0)){
+      cmsNotify('Set a real price before enabling payment.',true); return;
+    }
+
     const payload={price,currency:row.querySelector('.package-currency').value,payment_enabled:paymentEnabled,updated_at:new Date().toISOString()};
+
+    save.disabled=true;
+    save.classList.add('saving-button');
+    save.textContent='↻ Saving…';
+
     const {data,error}=await supabase.from('site_packages').update(payload).eq('id',id).select().single();
-    if(error){cmsNotify(error.message,true);return;} const index=cmsPackages.findIndex(p=>p.id===id); if(index>=0)cmsPackages[index]=data; renderPackages(); cmsNotify('Price and payment settings saved.');
+
+    if(error){
+      save.disabled=false;
+      save.classList.remove('saving-button');
+      save.textContent='↻ Save';
+      cmsNotify(error.message,true); return;
+    }
+
+    const index=cmsPackages.findIndex(p=>p.id===id);
+    if(index>=0)cmsPackages[index]=data;
+
+    save.disabled=false;
+    save.classList.remove('saving-button');
+    save.textContent='✓ Saved';
+    save.classList.add('save-button-saved');
+    row.classList.add('is-saved');
+
+    cmsNotify('Package saved successfully.');
+
+    setTimeout(()=>{
+      save.textContent='↻ Save';
+      save.classList.remove('save-button-saved');
+      row.classList.remove('is-saved');
+    },2600);
   });
 
   document.getElementById('productEditor').addEventListener('submit',async e=>{
@@ -1537,10 +1607,63 @@ document.addEventListener('DOMContentLoaded', async () => {
     let result;
     if(idValue){ result=await supabase.from('site_packages').update(payload).eq('id',Number(idValue)).select().single(); }
     else { result=await supabase.from('site_packages').insert(payload).select().single(); }
-    if(result.error){cmsNotify(result.error.message,true);return;}
-    if(idValue){const i=cmsPackages.findIndex(p=>p.id===Number(idValue));if(i>=0)cmsPackages[i]=result.data;}else cmsPackages.push(result.data);
+    const saveBtn=document.querySelector('#productEditor button[type="submit"]');
+    if(saveBtn){
+      saveBtn.disabled=true;
+      saveBtn.classList.add('saving-button');
+      saveBtn.textContent='↻ Saving…';
+    }
+
+    if(result.error){
+      if(saveBtn){
+        saveBtn.disabled=false;
+        saveBtn.classList.remove('saving-button');
+        saveBtn.textContent='Save product';
+      }
+      cmsNotify(result.error.message,true);
+      return;
+    }
+
+    if(idValue){
+      const i=cmsPackages.findIndex(p=>p.id===Number(idValue));
+      if(i>=0)cmsPackages[i]=result.data;
+    }else{
+      cmsPackages.push(result.data);
+    }
+
     cmsPackages.sort((a,b)=>(a.sort_order||0)-(b.sort_order||0)||(a.id||0)-(b.id||0));
-    renderPackages(); closeProductEditor(); cmsNotify(idValue?'Product updated.':'Product created.');
+
+    if(saveBtn){
+      saveBtn.disabled=false;
+      saveBtn.classList.remove('saving-button');
+      saveBtn.textContent=idValue?'✓ Updated':'✓ Saved';
+      saveBtn.classList.add('save-button-saved');
+    }
+
+    const note=document.querySelector('.package-inline-editor .package-save-note');
+    if(note){
+      note.classList.add('saved');
+      note.innerHTML=`<span class="save-icon">✓</span><span>${idValue?'Product updated successfully — the website will use the new details.':'Product created successfully — it is now in your package catalog.'}</span>`;
+    }
+
+    cmsNotify(idValue?'Product updated.':'Product created.');
+
+    if(!idValue){
+      // New products are re-rendered so they immediately appear in the flat catalog.
+      setTimeout(()=>{
+        closeProductEditor();
+        renderPackages();
+      },900);
+    }else{
+      // Keep the editor open directly under the same product after saving.
+      setTimeout(()=>{
+        const currentRow=document.querySelector(`[data-package-id="${result.data.id}"]`);
+        if(currentRow){
+          currentRow.classList.add('is-saved');
+          setTimeout(()=>currentRow.classList.remove('is-saved'),2600);
+        }
+      },50);
+    }
   });
 
   const productNameEnInput=document.getElementById('productNameEn');
