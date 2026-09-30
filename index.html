@@ -1671,10 +1671,7 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
       <a href="#packages" class="tab-item"><i class="fas fa-tags"></i><span>Packages</span></a>
       <a href="#life-at-aclass" class="tab-item"><i class="fas fa-camera"></i><span>Life</span></a>
       <a href="#contact" class="tab-item"><i class="fas fa-envelope"></i><span>Contact</span></a>
-    <a href="#teachers" class="tab-item">
-          <i class="fas fa-chalkboard-teacher"></i>
-          <span>Teachers</span>
-        </a>
+      <a href="#teachers" class="tab-item"><i class="fas fa-chalkboard-teacher"></i><span>Teachers</span></a>
       <a href="#legal" class="tab-item"><i class="fas fa-scale-balanced"></i><span>Legal</span></a>
         </div>
   </div>
@@ -2163,6 +2160,11 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
           <span class="teacher-rail-name">Inessa</span>
           <span class="teacher-rail-role">IELTS Tutor</span>
         </button>
+        <button class="teacher-rail-item" type="button" data-teacher="4" aria-label="Show Alex">
+          <span class="teacher-rail-number">05</span>
+          <span class="teacher-rail-name">Alex</span>
+          <span class="teacher-rail-role">SAT &amp; NUET Tutor</span>
+        </button>
       </div>
 
       <div class="teacher-visual">
@@ -2192,7 +2194,7 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
 
       <div class="teacher-copy" aria-live="polite">
         <div class="teacher-copy-top">
-          <span class="teacher-slide-count" id="teacherSlideCount">01 / 04</span>
+          <span class="teacher-slide-count" id="teacherSlideCount">01 / 05</span>
           <span class="teacher-dot"></span>
           <span id="teacherSpecialty">IELTS · ENGLISH</span>
         </div>
@@ -2362,6 +2364,19 @@ document.addEventListener('DOMContentLoaded', function () {
       description: 'Miss Inessa is an IELTS tutor with over 8 years of teaching experience. She holds a degree in foreign language education, which allows her to combine a strong methodological background with a practical approach to IELTS preparation.',
       description2: 'In her classes, Miss Inessa focuses on developing all four IELTS skills, addressing common mistakes, and helping students prepare for the exam in a structured and consistent way.',
       metrics: [['8+', 'Years Teaching'], ['4', 'IELTS Skills'], ['8+', 'Years Experience']]
+    },
+    {
+    name: 'Alex',
+    role: 'SAT & NUET Tutor',
+    specialty: 'SAT · NUET',
+    image: 'https://raw.githubusercontent.com/AClassenglish/A_Class/main/Alex.png',
+    description: 'Alex is an SAT and NUET tutor with 4 years of teaching experience. His personal SAT score is 1590, and his NUET score is 220.',
+    description2: 'He is currently a medical student at Nazarbayev University. In his classes, Alex focuses on understanding question logic, effective problem-solving strategies, and structured preparation that helps students improve their scores with confidence.',
+    metrics: [
+      ['4+', 'Years Teaching'],
+      ['1590', 'SAT Score'],
+      ['220', 'NUET Score']
+    ]
     }
   ];
 
