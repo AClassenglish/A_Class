@@ -1745,6 +1745,13 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
 #aclass-language-loading.hidden { display:none; }
 #aclass-site-root { min-height:100vh; }
 </style>
+
+<style id="aclass-cms-package-styles">
+.package-cms-price{margin-top:10px;font-weight:800;color:var(--primary);font-size:1.05rem}
+.package-accordion .package-cms-price:empty{display:none}
+.package-cms-source{font-size:.78rem;opacity:.75;margin-top:6px}
+</style>
+
 </head>
 <body>
 <div id="aclass-language-loading">AClass</div>
@@ -4679,5 +4686,146 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
   switchLanguage(initial);
 })();
 </script>
+
+<script id="aclass-package-cms">
+(function(){
+  'use strict';
+  const SUPABASE_URL='https://tideabdwbgekztipetfu.supabase.co';
+  const SUPABASE_ANON_KEY='sb_publishable_3PbDtf_Qd6vdLWuO-kV_WA__MMFoFUs';
+  const PACKAGE_ENDPOINT=SUPABASE_URL+'/rest/v1/site_packages?select=*&active=eq.true&order=sort_order.asc,id.asc';
+  let packageRows=null;
+  let packageRequest=null;
+  let lastRenderedLanguage=null;
+
+  const FALLBACK_LANGUAGE={en:'en',ru:'ru',ge:'ge'};
+  const labels={
+    en:{ielts:'IELTS & SAT Packages',general:'General English Packages',ieltsSub:'Structured preparation for international examinations',generalSub:'Improve your overall English level for everyday communication',month:'Lessons/Month',week:'Lessons/Week',duration:'Duration',format:'Class format',price:'Price',contact:'Contact us',group:'Group',individual:'Individual',pair:'Pair',compareExam:'IELTS & SAT Packages Comparison',compareExamSub:'Compare all our exam preparation formats side by side',compareGeneral:'General English Packages Comparison',compareGeneralSub:'Choose between group interaction or personalized one-on-one lessons'},
+    ru:{ielts:'Пакеты IELTS и SAT',general:'Общий английский',ieltsSub:'Структурированная подготовка к международным экзаменам',generalSub:'Улучшайте общий уровень английского для общения каждый день',month:'Занятий в месяц',week:'Занятий в неделю',duration:'Длительность',format:'Формат',price:'Цена',contact:'Уточнить цену',group:'Группа',individual:'Индивидуально',pair:'Пара',compareExam:'Сравнение пакетов IELTS и SAT',compareExamSub:'Сравните форматы подготовки к экзаменам',compareGeneral:'Сравнение пакетов общего английского',compareGeneralSub:'Выберите групповые или индивидуальные занятия'},
+    ge:{ielts:'IELTS & SAT პაკეტები',general:'ზოგადი ინგლისურის პაკეტები',ieltsSub:'სტრუქტურირებული მომზადება საერთაშორისო გამოცდებისთვის',generalSub:'გაიუმჯობესეთ ინგლისური ყოველდღიური კომუნიკაციისთვის',month:'გაკვეთილი / თვე',week:'გაკვეთილი / კვირა',duration:'ხანგრძლივობა',format:'ფორმატი',price:'ფასი',contact:'ფასი მოთხოვნით',group:'ჯგუფური',individual:'ინდივიდუალური',pair:'წყვილი',compareExam:'IELTS & SAT პაკეტების შედარება',compareExamSub:'შეადარეთ საგამოცდო მომზადების ფორმატები',compareGeneral:'ზოგადი ინგლისურის პაკეტების შედარება',compareGeneralSub:'აირჩიეთ ჯგუფური ან ინდივიდუალური სწავლება'}
+  };
+
+  function currentLang(){
+    const root=document.getElementById('aclass-site-root');
+    const m=root && String(root.className).match(/lang-(en|ru|ge)/);
+    return m?m[1]:'en';
+  }
+  function esc(v){
+    return String(v??'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
+  }
+  function arr(v){ return Array.isArray(v)?v.filter(Boolean):[]; }
+  function localized(row,field,lang){ return row[field+'_'+lang] || row[field+'_en'] || ''; }
+  function category(row){
+    const raw=String(row.category||'').toLowerCase().replace(/[\s-]+/g,'_');
+    const key=String(row.package_key||'').toLowerCase();
+    if(raw==='ielts_sat' || raw==='ielts_and_sat' || (raw.includes('ielts')&&raw.includes('sat')) || (key.includes('ielts')&&key.includes('sat'))) return 'ielts_sat';
+    if(raw==='general_english' || raw.includes('general') || raw.includes('english') || key.includes('general_english')) return 'general_english';
+    if(raw.includes('ielts') || key.includes('ielts')) return 'ielts_sat';
+    if(raw.includes('sat') || key.includes('sat')) return 'ielts_sat';
+    return 'other';
+  }
+  function iconFor(row){
+    const f=String(row.format||'').toLowerCase();
+    if(f.includes('pair') || f.includes('2')) return 'fa-user-friends';
+    if(f.includes('individual') || f.includes('1-on-1') || f.includes('one')) return 'fa-user';
+    if((row.package_key||'').includes('intensive')) return 'fa-bolt';
+    if(category(row)==='general_english') return f.includes('individual')?'fa-user-graduate':'fa-comments';
+    return 'fa-users';
+  }
+  function formatValue(row,L){
+    if(row.lesson_length_minutes) return esc(row.lesson_length_minutes)+' min';
+    return row.format ? esc(row.format) : '—';
+  }
+  function priceValue(row,L){
+    const n=Number(row.price);
+    if(row.price!==null && row.price!=='' && Number.isFinite(n) && n>0){
+      return esc(new Intl.NumberFormat(undefined,{maximumFractionDigits:2}).format(n))+' '+esc(row.currency||'GEL');
+    }
+    return '';
+  }
+  function makeAccordion(row,lang){
+    const name=localized(row,'name',lang)||row.package_key;
+    const desc=localized(row,'description',lang);
+    const features=arr(row['features_'+lang]||row.features_en);
+    const L=labels[lang]||labels.en;
+    const price=priceValue(row,L);
+    const month=row.lessons??'—', week=row.lessons_per_week??'—';
+    const duration=formatValue(row,L);
+    const format=row.format||'';
+    const href='payment.html?package='+encodeURIComponent(row.package_key||name);
+    return `<div class="package-accordion" data-cms-package-key="${esc(row.package_key||'')}" onclick="togglePackage(this)">
+      <div class="package-header"><div class="package-header-left"><div class="package-icon"><i class="fas ${iconFor(row)}"></i></div><div class="package-header-content"><div class="package-title">${esc(name)}</div><div class="package-subtitle">${month} lessons/month${week!==null&&week!==''?' • '+esc(week)+' lessons/week':''}${row.lesson_length_minutes?' • '+esc(row.lesson_length_minutes)+' min':''}</div></div></div><div class="package-toggle"><i class="fas fa-chevron-down"></i></div></div>
+      <div class="package-content"><div class="package-body"><p class="package-description">${esc(desc)}</p>
+      <div class="package-details-grid"><div class="package-detail-card"><div class="package-detail-label">${esc(L.month)}</div><div class="package-detail-value">${esc(month)}</div></div><div class="package-detail-card"><div class="package-detail-label">${esc(L.week)}</div><div class="package-detail-value">${esc(week)}</div></div><div class="package-detail-card"><div class="package-detail-label">${esc(L.duration)}</div><div class="package-detail-value">${duration}</div></div>${format?`<div class="package-detail-card"><div class="package-detail-label">${esc(L.format)}</div><div class="package-detail-value">${esc(format)}</div></div>`:''}</div>
+      ${features.length?`<div class="package-features-list">${features.map(x=>`<div class="package-feature-item"><i class="fas fa-check"></i> ${esc(x)}</div>`).join('')}</div>`:''}
+      ${price?`<div class="package-cms-price">${esc(L.price)}: ${price}</div>`:''}
+      <button class="package-cta" onclick="event.stopPropagation(); window.location.href='${href}'">${lang==='ru'?'Записаться':lang==='ge'?'ჩაწერა':'Enroll Now'}</button></div></div></div>`;
+  }
+  function renderList(lang){
+    const list=document.querySelector('#packages #package-list .packages-container');
+    if(!list || !Array.isArray(packageRows) || !packageRows.length) return;
+    const active=packageRows.filter(r=>r.active!==false);
+    const exam=active.filter(r=>category(r)==='ielts_sat');
+    const general=active.filter(r=>category(r)==='general_english');
+    const other=active.filter(r=>!['ielts_sat','general_english'].includes(category(r)));
+    const L=labels[lang]||labels.en;
+    let html='';
+    if(exam.length){html+=`<div class="packages-section-title" id="ielts-sat"><h2>${esc(L.ielts)}</h2><p>${esc(L.ieltsSub)}</p></div>`+exam.map(r=>makeAccordion(r,lang)).join('');}
+    if(general.length){html+=`<div class="packages-section-title" id="general-english" style="margin-top:4rem"><h2>${esc(L.general)}</h2><p>${esc(L.generalSub)}</p></div>`+general.map(r=>makeAccordion(r,lang)).join('');}
+    if(other.length) html+=other.map(r=>makeAccordion(r,lang)).join('');
+    if(html) list.innerHTML=html;
+  }
+  function mark(v){ return v?'<i class="fas fa-check"></i>':'<i class="fas fa-minus"></i>'; }
+  function compareTable(rows,lang,title,sub){
+    const L=labels[lang]||labels.en;
+    if(!rows.length) return '';
+    const cols=rows.slice(0,10);
+    const head=cols.map(r=>`<th>${esc(localized(r,'name',lang)||r.package_key)}</th>`).join('');
+    const bodyRows=[
+      [L.month,...cols.map(r=>r.lessons??'—')],
+      [L.week,...cols.map(r=>r.lessons_per_week??'—')],
+      [L.duration,...cols.map(r=>formatValue(r,L).replace(/<[^>]*>/g,''))],
+      [L.format,...cols.map(r=>r.format||'—')],
+      [L.price,...cols.map(r=>priceValue(r,L)||L.contact)]
+    ];
+    return `<div class="comparison-block"><div class="comparison-header"><h2>${esc(title)}</h2><p>${esc(sub)}</p></div><div class="comparison-table-wrapper"><table class="comparison-table"><thead><tr><th>Feature</th>${head}</tr></thead><tbody>${bodyRows.map(row=>`<tr>${row.map((c,i)=>`<td>${i===0?esc(c):esc(String(c))}</td>`).join('')}</tr>`).join('')}</tbody></table></div></div>`;
+  }
+  function renderCompare(lang){
+    const section=document.querySelector('#package-compare .comparison-container');
+    if(!section || !Array.isArray(packageRows) || !packageRows.length) return;
+    const active=packageRows.filter(r=>r.active!==false);
+    const exam=active.filter(r=>category(r)==='ielts_sat');
+    const general=active.filter(r=>category(r)==='general_english');
+    const L=labels[lang]||labels.en;
+    section.innerHTML=compareTable(exam,lang,L.compareExam,L.compareExamSub)+compareTable(general,lang,L.compareGeneral,L.compareGeneralSub);
+  }
+  function render(){
+    if(!packageRows || !packageRows.length) return;
+    const lang=currentLang();
+    if(lastRenderedLanguage===lang && document.querySelector('#packages [data-cms-package-key]')) return;
+    renderList(lang); renderCompare(lang); lastRenderedLanguage=lang;
+    if(location.hash==='#compare') document.querySelector('.package-view-btn[data-view="package-compare"]')?.click();
+  }
+  async function load(){
+    if(packageRows){render();return;}
+    if(packageRequest){await packageRequest;return render();}
+    packageRequest=fetch(PACKAGE_ENDPOINT,{headers:{apikey:SUPABASE_ANON_KEY,Authorization:'Bearer '+SUPABASE_ANON_KEY},cache:'no-store',signal:AbortSignal.timeout?AbortSignal.timeout(2500):undefined})
+      .then(r=>r.ok?r.json():Promise.reject(new Error('Package catalog unavailable')))
+      .then(data=>{packageRows=Array.isArray(data)?data:[];render();})
+      .catch(()=>{packageRows=[];});
+    await packageRequest;
+  }
+  window.__aclassRefreshPackages=function(){ lastRenderedLanguage=null; render(); };
+  const root=document.getElementById('aclass-site-root');
+  if(root && 'MutationObserver' in window){
+    let timer=null;
+    new MutationObserver(()=>{ clearTimeout(timer); timer=setTimeout(()=>{lastRenderedLanguage=null;render();},40); }).observe(root,{childList:true});
+  }
+  // Do not block the initial page: keep the existing static packages visible immediately,
+  // then replace them only after the CMS response succeeds.
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',()=>setTimeout(load,0),{once:true});
+  else setTimeout(load,0);
+})();
+</script>
+
 </body>
 </html>
