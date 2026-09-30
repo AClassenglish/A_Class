@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="ka">
 <head>
@@ -6,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">
   <meta name="description" content="წესები და პირობები — AClass English School">
   <meta name="theme-color" content="#0FA6B3">
+  <link href="https://raw.githubusercontent.com/AClassenglish/A_Class/main/images/Aclasslogo.jpeg" rel="icon" type="image/jpeg">
+  <link href="https://raw.githubusercontent.com/AClassenglish/A_Class/main/images/Aclasslogo.jpeg" rel="shortcut icon" type="image/jpeg">
+  <link href="https://raw.githubusercontent.com/AClassenglish/A_Class/main/images/Aclasslogo.jpeg" rel="apple-touch-icon">
   <title>წესები და პირობები — AClass English School</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
@@ -192,7 +194,27 @@
         margin-top:1.5rem;
       }
     }
-  </style>
+  
+    /* Full-text legal document */
+    .policy{padding:clamp(1.7rem,4vw,3.2rem)}
+    .policy-language-heading{padding:0 0 .8rem;margin:0 0 1.4rem;border-bottom:1px solid var(--border)}
+    .policy-language-heading .language-label{margin:0;font-size:.75rem;letter-spacing:1.4px}
+    .policy-language-group .policy-section{padding:0 0 1.35rem;margin:0}
+    .policy-language-group .policy-section+.policy-section{padding-top:0;border-top:0}
+    .policy-language-group .language-label{display:none}
+    .policy-language-group h2{display:inline;font-size:1rem;line-height:1.7;margin:0;font-weight:800}
+    .policy-language-group p{display:inline;font-size:.94rem;line-height:1.8;color:var(--text-gray)}
+    .policy-language-group h2::after{content:" "}
+    .policy-language-group ul{margin:.35rem 0 0 1.2rem;padding:0;color:var(--text-gray)}
+    .policy-language-group li{margin:.2rem 0;padding-left:.15rem;font-size:.94rem;line-height:1.75}
+    .language-divider{height:1px;margin:2.2rem 0 3rem;background:var(--border)}
+    @media(max-width:600px){
+      .policy{padding:1.35rem}
+      .policy-language-group .policy-section{padding-bottom:1.1rem}
+      .policy-language-group h2,.policy-language-group p,.policy-language-group li{font-size:.9rem}
+    }
+
+</style>
 </head>
 
 <body>
@@ -201,7 +223,7 @@
     <div class="header-inner">
       <a class="logo" href="index.html" aria-label="AClass English School — Home">
         <img
-          src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/Aclasslogo.jpeg"
+          src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/images/Aclasslogo.jpeg"
           alt="AClass English School"
           width="42"
           height="42"
@@ -227,12 +249,9 @@
       </p>
     </div>
 
-    <article class="policy">
-
-      <!-- SECTION 1 -->
-      <section class="policy-section">
-
-        <div class="language-block" lang="ka">
+    <article class="policy"><section class="policy-language-group" lang="ka">
+<div class="policy-language-heading"><span class="language-label">ქართული</span></div>
+<section class="policy-section"><div class="language-block" lang="ka">
           <span class="language-label">ქართული</span>
           <h2>1. შესავალი</h2>
           <p>
@@ -241,25 +260,8 @@
             ურთიერთობას. ამ ვებსაიტის გამოყენებით თქვენ ეთანხმებით აღნიშნულ
             წესებსა და პირობებს.
           </p>
-        </div>
-
-        <div class="language-block" lang="en">
-          <span class="language-label">English</span>
-          <h2>1. Introduction</h2>
-          <p>
-            These Terms &amp; Conditions govern your use of the AClass English School
-            website and your interaction with our educational services. By using this
-            website, you agree to these terms.
-          </p>
-        </div>
-
-      </section>
-
-
-      <!-- SECTION 2 -->
-      <section class="policy-section">
-
-        <div class="language-block" lang="ka">
+        </div></section>
+<section class="policy-section"><div class="language-block" lang="ka">
           <span class="language-label">ქართული</span>
           <h2>2. ჩვენი სერვისები</h2>
           <p>
@@ -268,25 +270,8 @@
             ჯგუფურ გაკვეთილებსა და მოსამზადებელ პროგრამებს. კონკრეტული სერვისები,
             განრიგები და პაკეტების დეტალები შესაძლოა განსხვავდებოდეს.
           </p>
-        </div>
-
-        <div class="language-block" lang="en">
-          <span class="language-label">English</span>
-          <h2>2. Our Services</h2>
-          <p>
-            AClass English School provides English language education and related
-            learning services, including individual and group lessons and preparation
-            programs. Specific services, schedules, and package details may vary.
-          </p>
-        </div>
-
-      </section>
-
-
-      <!-- SECTION 3 -->
-      <section class="policy-section">
-
-        <div class="language-block" lang="ka">
+        </div></section>
+<section class="policy-section"><div class="language-block" lang="ka">
           <span class="language-label">ქართული</span>
           <h2>3. ვებსაიტის გამოყენება</h2>
           <p>
@@ -295,25 +280,8 @@
             მისი შინაარსის არასწორად გამოყენება ან ვებსაიტის უკანონო მიზნებისთვის
             გამოყენება.
           </p>
-        </div>
-
-        <div class="language-block" lang="en">
-          <span class="language-label">English</span>
-          <h2>3. Website Use</h2>
-          <p>
-            You agree to use this website lawfully and respectfully. You must not
-            attempt to interfere with the operation or security of the website,
-            misuse its content, or use the website for unlawful purposes.
-          </p>
-        </div>
-
-      </section>
-
-
-      <!-- SECTION 4 -->
-      <section class="policy-section">
-
-        <div class="language-block" lang="ka">
+        </div></section>
+<section class="policy-section"><div class="language-block" lang="ka">
           <span class="language-label">ქართული</span>
           <h2>4. ინფორმაცია და შინაარსი</h2>
           <p>
@@ -322,25 +290,8 @@
             სხვა ინფორმაცია შესაძლოა შეიცვალოს ან განახლდეს წინასწარი შეტყობინების
             გარეშე.
           </p>
-        </div>
-
-        <div class="language-block" lang="en">
-          <span class="language-label">English</span>
-          <h2>4. Information and Content</h2>
-          <p>
-            We make reasonable efforts to keep information on the website accurate and
-            up to date. Program descriptions, availability, schedules, and other
-            information may be changed or updated without prior notice.
-          </p>
-        </div>
-
-      </section>
-
-
-      <!-- SECTION 5 -->
-      <section class="policy-section">
-
-        <div class="language-block" lang="ka">
+        </div></section>
+<section class="policy-section"><div class="language-block" lang="ka">
           <span class="language-label">ქართული</span>
           <h2>5. დაჯავშნა და გადახდები</h2>
           <p>
@@ -349,25 +300,8 @@
             გადახდის პირობები, განრიგთან დაკავშირებული მოთხოვნები და ნებისმიერი
             გაუქმების ან თანხის დაბრუნების პირობები.
           </p>
-        </div>
-
-        <div class="language-block" lang="en">
-          <span class="language-label">English</span>
-          <h2>5. Bookings and Payments</h2>
-          <p>
-            Where a lesson, course, or package requires a booking or payment, the
-            applicable price, payment conditions, scheduling requirements, and any
-            cancellation or refund conditions will apply to that service.
-          </p>
-        </div>
-
-      </section>
-
-
-      <!-- SECTION 6 -->
-      <section class="policy-section">
-
-        <div class="language-block" lang="ka">
+        </div></section>
+<section class="policy-section"><div class="language-block" lang="ka">
           <span class="language-label">ქართული</span>
           <h2>6. ინტელექტუალური საკუთრება</h2>
           <p>
@@ -377,26 +311,8 @@
             უფლებამოსილებით და მათი კოპირება, რეპროდუცირება ან გავრცელება
             დაუშვებელია შესაბამისი ნებართვის გარეშე.
           </p>
-        </div>
-
-        <div class="language-block" lang="en">
-          <span class="language-label">English</span>
-          <h2>6. Intellectual Property</h2>
-          <p>
-            Unless otherwise stated, the content of this website, including text,
-            graphics, logos, images, and design elements, belongs to or is used by
-            AClass English School and may not be copied, reproduced, or distributed
-            without appropriate permission.
-          </p>
-        </div>
-
-      </section>
-
-
-      <!-- SECTION 7 -->
-      <section class="policy-section">
-
-        <div class="language-block" lang="ka">
+        </div></section>
+<section class="policy-section"><div class="language-block" lang="ka">
           <span class="language-label">ქართული</span>
           <h2>7. მესამე მხარის ბმულები და სერვისები</h2>
           <p>
@@ -405,49 +321,16 @@
             ვებსაიტების შინაარსზე, ხელმისაწვდომობაზე ან კონფიდენციალურობის
             პრაქტიკაზე.
           </p>
-        </div>
-
-        <div class="language-block" lang="en">
-          <span class="language-label">English</span>
-          <h2>7. Third-Party Links and Services</h2>
-          <p>
-            The website may contain links to third-party platforms or services.
-            AClass English School is not responsible for the content, availability,
-            or privacy practices of third-party websites.
-          </p>
-        </div>
-
-      </section>
-
-
-      <!-- SECTION 8 -->
-      <section class="policy-section">
-
-        <div class="language-block" lang="ka">
+        </div></section>
+<section class="policy-section"><div class="language-block" lang="ka">
           <span class="language-label">ქართული</span>
           <h2>8. ცვლილებები ამ წესებში</h2>
           <p>
             ჩვენ შესაძლოა დროდადრო განვაახლოთ ეს წესები და პირობები. ნებისმიერი
             ცვლილება გამოქვეყნდება ამ გვერდზე განახლებული თარიღის მითითებით.
           </p>
-        </div>
-
-        <div class="language-block" lang="en">
-          <span class="language-label">English</span>
-          <h2>8. Changes to These Terms</h2>
-          <p>
-            We may update these Terms &amp; Conditions from time to time. Changes will
-            be published on this page together with an updated revision date.
-          </p>
-        </div>
-
-      </section>
-
-
-      <!-- SECTION 9 -->
-      <section class="policy-section">
-
-        <div class="language-block" lang="ka">
+        </div></section>
+<section class="policy-section"><div class="language-block" lang="ka">
           <span class="language-label">ქართული</span>
           <h2>9. საკონტაქტო ინფორმაცია</h2>
           <p>
@@ -455,22 +338,93 @@
             დაუკავშირდეთ AClass English School-ს ჩვენი მთავარი გვერდზე მითითებული
             საკონტაქტო საშუალებების გამოყენებით.
           </p>
-        </div>
-
-        <div class="language-block" lang="en">
+        </div></section>
+</section>
+<div class="language-divider" aria-hidden="true"></div>
+<section class="policy-language-group" lang="en">
+<div class="policy-language-heading"><span class="language-label">English</span></div>
+<section class="policy-section"><div class="language-block" lang="en">
+          <span class="language-label">English</span>
+          <h2>1. Introduction</h2>
+          <p>
+            These Terms &amp; Conditions govern your use of the AClass English School
+            website and your interaction with our educational services. By using this
+            website, you agree to these terms.
+          </p>
+        </div></section>
+<section class="policy-section"><div class="language-block" lang="en">
+          <span class="language-label">English</span>
+          <h2>2. Our Services</h2>
+          <p>
+            AClass English School provides English language education and related
+            learning services, including individual and group lessons and preparation
+            programs. Specific services, schedules, and package details may vary.
+          </p>
+        </div></section>
+<section class="policy-section"><div class="language-block" lang="en">
+          <span class="language-label">English</span>
+          <h2>3. Website Use</h2>
+          <p>
+            You agree to use this website lawfully and respectfully. You must not
+            attempt to interfere with the operation or security of the website,
+            misuse its content, or use the website for unlawful purposes.
+          </p>
+        </div></section>
+<section class="policy-section"><div class="language-block" lang="en">
+          <span class="language-label">English</span>
+          <h2>4. Information and Content</h2>
+          <p>
+            We make reasonable efforts to keep information on the website accurate and
+            up to date. Program descriptions, availability, schedules, and other
+            information may be changed or updated without prior notice.
+          </p>
+        </div></section>
+<section class="policy-section"><div class="language-block" lang="en">
+          <span class="language-label">English</span>
+          <h2>5. Bookings and Payments</h2>
+          <p>
+            Where a lesson, course, or package requires a booking or payment, the
+            applicable price, payment conditions, scheduling requirements, and any
+            cancellation or refund conditions will apply to that service.
+          </p>
+        </div></section>
+<section class="policy-section"><div class="language-block" lang="en">
+          <span class="language-label">English</span>
+          <h2>6. Intellectual Property</h2>
+          <p>
+            Unless otherwise stated, the content of this website, including text,
+            graphics, logos, images, and design elements, belongs to or is used by
+            AClass English School and may not be copied, reproduced, or distributed
+            without appropriate permission.
+          </p>
+        </div></section>
+<section class="policy-section"><div class="language-block" lang="en">
+          <span class="language-label">English</span>
+          <h2>7. Third-Party Links and Services</h2>
+          <p>
+            The website may contain links to third-party platforms or services.
+            AClass English School is not responsible for the content, availability,
+            or privacy practices of third-party websites.
+          </p>
+        </div></section>
+<section class="policy-section"><div class="language-block" lang="en">
+          <span class="language-label">English</span>
+          <h2>8. Changes to These Terms</h2>
+          <p>
+            We may update these Terms &amp; Conditions from time to time. Changes will
+            be published on this page together with an updated revision date.
+          </p>
+        </div></section>
+<section class="policy-section"><div class="language-block" lang="en">
           <span class="language-label">English</span>
           <h2>9. Contact</h2>
           <p>
             If you have questions about these Terms &amp; Conditions, please contact
             AClass English School using the contact options provided on our home page.
           </p>
-        </div>
-
-      </section>
-
-    </article>
+        </div></section>
+</section></article>
   </main>
 
 </body>
 </html>
-```
