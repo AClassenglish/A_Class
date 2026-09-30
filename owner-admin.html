@@ -342,7 +342,7 @@
 @media(max-width:1100px){.package-admin-row{grid-template-columns:1fr 1fr}.package-admin-actions{justify-content:flex-start}.package-status{align-self:center}.product-editor-grid{grid-template-columns:1fr}}
 @media(max-width:700px){.package-admin-row{grid-template-columns:1fr}.package-admin-actions{justify-content:stretch}.package-admin-actions button{flex:1}.package-group-head{align-items:flex-start;flex-direction:column}}
 
-</style>
+.packages-page-content{display:block}.packages-page-content .card{margin-top:0}\n  </style>
 </head>
 <body class="auth-initializing">
 <div id="authLoading"><div class="loading-box">Checking Owner session…</div></div>
@@ -385,7 +385,7 @@
     <div class="nav-label">Website</div>
     <button class="nav-btn" id="websiteNav"><span class="icon">▤</span> Website</button>
     <button class="nav-btn disabled" title="Coming next"><span class="icon">✦</span> Teachers</button>
-    <button class="nav-btn disabled" title="Coming next"><span class="icon">◈</span> Packages</button>
+    <button class="nav-btn" id="packagesNav"><span class="icon">◈</span> Packages</button>
     <button class="nav-btn disabled" title="Coming next"><span class="icon">☰</span> Testimonials & FAQ</button>
 
     <div class="nav-label">System</div>
@@ -558,18 +558,13 @@
         <div class="welcome">
           <div>
             <h2>Website</h2>
-            <p>Manage legal pages and package pricing used for student enrollment.</p>
+            <p>Manage the AClass legal pages and policies.</p>
           </div>
           <div class="language-switch" id="cmsLanguageSwitch">
             <button class="lang-btn active" data-lang="en">EN</button>
             <button class="lang-btn" data-lang="ru">RU</button>
             <button class="lang-btn" data-lang="ge">GE</button>
           </div>
-        </div>
-
-        <div class="cms-tabs">
-          <button class="cms-tab active" data-cms-tab="policies">Policies</button>
-          <button class="cms-tab" data-cms-tab="packages">Packages & Prices</button>
         </div>
 
         <div id="cmsPoliciesPanel" class="cms-panel active">
@@ -653,7 +648,19 @@
           </div>
         </div>
 
-        <div id="cmsPackagesPanel" class="cms-panel">
+        
+
+      </section>
+      <section id="packagesPage" class="page">
+        <div class="welcome">
+          <div>
+            <h2>Packages</h2>
+            <p>Manage the products, prices, lesson details, features, and payment availability customers see when enrolling.</p>
+          </div>
+        </div>
+
+        <div id="packagesPageContent">
+          <div id="cmsPackagesPanel" class="packages-page-content">
           <div class="card cms-card">
             <div class="card-head">
               <div>
@@ -665,7 +672,7 @@
 
             <div class="package-admin-note">
               <strong>Product catalog</strong>
-              <span>Products are grouped by IELTS, SAT, and General English. You can edit titles, descriptions, lesson details, features, prices, and payment availability without touching the website code.</span>
+              <span>Manage IELTS, SAT, and General English products here. Edit titles, descriptions, lesson details, features, prices, and payment availability without touching the website code.</span>
             </div>
 
             <div id="packagesList" class="package-admin-list"></div>
@@ -737,9 +744,10 @@
             </form>
           </div>
         </div>
-
-        <div id="cmsMessage" class="cms-message hidden"></div>
+          <div id="cmsMessage" class="cms-message hidden"></div>
+        </div>
       </section>
+
 
     </main>  </div>
 </section>
@@ -966,6 +974,8 @@ document.addEventListener('DOMContentLoaded', async () => {
       setTimeout(() => document.getElementById('websiteNav')?.click(), 0);
     } else if (lastSection === 'orders') {
       setTimeout(() => document.getElementById('ordersNav')?.click(), 0);
+    } else if (lastSection === 'packages') {
+      setTimeout(() => document.getElementById('packagesNav')?.click(), 0);
     }
 
     return true;
@@ -1016,7 +1026,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     const activeNav = {
       dashboardPage: document.getElementById('dashboardNav'),
       ordersPage: document.getElementById('ordersNav'),
-      websitePage: document.getElementById('websiteNav')
+      websitePage: document.getElementById('websiteNav'),
+      packagesPage: document.getElementById('packagesNav')
     }[pageId];
     if (activeNav) activeNav.classList.add('active');
 
@@ -1266,6 +1277,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     await loadCMS();
   });
 
+  document.getElementById('packagesNav').addEventListener('click', async ()=>{
+    localStorage.setItem('aclassLastSection','packages');
+    showPage('packagesPage');
+    await loadCMS();
+  });
+
   document.getElementById('cmsLanguageSwitch').addEventListener('click',e=>{
     const b=e.target.closest('[data-lang]');
     if(!b)return;
@@ -1275,14 +1292,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.getElementById('policyEditor').classList.add('hidden');
     document.getElementById('policyEditorEmpty').classList.remove('hidden');
     loadCMS();
-  });
-
-  document.querySelector('.cms-tabs').addEventListener('click',e=>{
-    const b=e.target.closest('[data-cms-tab]');
-    if(!b)return;
-    document.querySelectorAll('.cms-tab').forEach(x=>x.classList.toggle('active',x===b));
-    document.getElementById('cmsPoliciesPanel').classList.toggle('active',b.dataset.cmsTab==='policies');
-    document.getElementById('cmsPackagesPanel').classList.toggle('active',b.dataset.cmsTab==='packages');
   });
 
   document.getElementById('policyList').addEventListener('click',e=>{
