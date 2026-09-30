@@ -672,7 +672,7 @@
 
             <div class="package-admin-note">
               <strong>Product catalog</strong>
-              <span>Manage IELTS & SAT and General English products here. Edit titles, descriptions, lesson details, features, prices, and payment availability without touching the website code.</span>
+              <span>Manage individual IELTS, SAT, and General English products here. Edit titles, descriptions, lesson details, features, prices, and payment availability without touching the website code.</span>
             </div>
 
             <div id="packagesList" class="package-admin-list"></div>
@@ -687,7 +687,7 @@
               <div class="product-editor-grid">
                 <label class="field-label">Category
                   <select id="productCategory" class="product-select" required>
-                    <option value="">Select category</option><option value="ielts_sat">IELTS &amp; SAT</option><option value="ielts">IELTS</option><option value="sat">SAT</option><option value="general_english">General English</option>
+                    <option value="">Select category</option><option value="ielts">IELTS</option><option value="sat">SAT</option><option value="general_english">General English</option>
                   </select>
                 </label>
                 <label class="field-label">Product key
@@ -1103,94 +1103,124 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   const PACKAGE_SEED = [
     {
-      package_key:'ielts_sat_standard',
-      category:'ielts',
-      name_en:'IELTS/SAT Standard Group',
-      name_ru:'IELTS/SAT Standard Group',
-      name_ge:'IELTS/SAT Standard Group',
-      description_en:'Structured group preparation for IELTS or SAT with a consistent weekly schedule.',
-      description_ru:'Структурированная групповая подготовка к IELTS или SAT по стабильному еженедельному расписанию.',
-      description_ge:'სტრუქტურირებული ჯგუფური მომზადება IELTS-ის ან SAT-ისთვის სტაბილური ყოველკვირეული გრაფიკით.',
+      package_key:'ielts_standard_group', category:'ielts',
+      name_en:'IELTS Standard Group', name_ru:'IELTS Standard Group', name_ge:'IELTS Standard Group',
+      description_en:'The Standard package provides consistent and structured IELTS preparation. It is suitable for students who have sufficient time before their examination and prefer a balanced study schedule.',
+      description_ru:'Стандартный пакет обеспечивает последовательную и структурированную подготовку к IELTS. Подходит студентам, у которых достаточно времени до экзамена и которым удобен сбалансированный график.',
+      description_ge:'სტანდარტული პაკეტი გთავაზობთ IELTS-ის თანმიმდევრულ და სტრუქტურირებულ მომზადებას. ის განკუთვნილია სტუდენტებისთვის, რომლებსაც გამოცდამდე საკმარისი დრო აქვთ და დაბალანსებულ გრაფიკს ანიჭებენ უპირატესობას.',
       lessons:12, lessons_per_week:3, lesson_length_minutes:90, duration_weeks:4, format:'Group',
-      features_en:['Speaking confidence & Pronunciation','Listening & Reading skills','Grammar accuracy & Vocabulary','Real-life practice'],
-      features_ru:['Уверенность в речи и произношение','Навыки аудирования и чтения','Грамматика и словарный запас','Практика реальных ситуаций'],
-      features_ge:['საუბრის თავდაჯერება და გამოთქმა','მოსმენისა და კითხვის უნარები','გრამატიკა და ლექსიკა','რეალური სიტუაციების პრაქტიკა'],
+      features_en:['Teacher-led lessons','Exam strategies','Practice exercises','Homework & feedback','Progress monitoring','Mock-test practice'],
+      features_ru:['Занятия с преподавателем','Экзаменационные стратегии','Практические упражнения','Домашние задания и обратная связь','Отслеживание прогресса','Практика пробных тестов'],
+      features_ge:['მასწავლებლის მიერ ჩატარებული გაკვეთილები','გამოცდის სტრატეგიები','პრაქტიკული სავარჯიშოები','საშინაო დავალება და უკუკავშირი','პროგრესის მონიტორინგი','საცდელი ტესტების პრაქტიკა'],
       sort_order:1
     },
     {
-      package_key:'ielts_sat_intensive',
-      category:'ielts',
-      name_en:'IELTS/SAT Intensive Group',
-      name_ru:'IELTS/SAT Intensive Group',
-      name_ge:'IELTS/SAT Intensive Group',
-      description_en:'Intensive group preparation for students who want a faster study pace.',
-      description_ru:'ინтенсивная групповая подготовка для студентов, которым нужен более быстрый темп обучения.',
-      description_ge:'ინტენსიური ჯგუფური მომზადება სტუდენტებისთვის, რომლებსაც სწავლის უფრო სწრაფი ტემპი სჭირდებათ.',
+      package_key:'ielts_intensive_group', category:'ielts',
+      name_en:'IELTS Intensive Group', name_ru:'IELTS Intensive Group', name_ge:'IELTS Intensive Group',
+      description_en:'The Intensive package is designed for students who need faster IELTS progress or have a limited amount of time before their examination. Students study more frequently and complete a larger amount of guided and independent practice.',
+      description_ru:'Интенсивный пакет предназначен для студентов, которым нужен более быстрый прогресс в IELTS или у которых мало времени до экзамена. Занятия проходят чаще и включают больше практики.',
+      description_ge:'ინტენსიური პაკეტი განკუთვნილია სტუდენტებისთვის, რომლებსაც IELTS-ში სწრაფი პროგრესი სჭირდებათ ან გამოცდამდე ცოტა დრო აქვთ. სტუდენტები უფრო ხშირად სწავლობენ და ასრულებენ მეტ პრაქტიკულ დავალებას.',
       lessons:20, lessons_per_week:5, lesson_length_minutes:90, duration_weeks:4, format:'Group',
-      features_en:['Focused exam preparation','Speaking confidence & Pronunciation','Listening & Reading skills','Detailed feedback'],
-      features_ru:['Целенаправленная подготовка к экзамену','Уверенность в речи и произношение','Навыки аудирования и чтения','Подробная обратная связь'],
-      features_ge:['გამოცდისთვის მიზნობრივი მომზადება','საუბრის თავდაჯერება და გამოთქმა','მოსმენისა და კითხვის უნარები','დეტალური უკუკავშირი'],
+      features_en:['High-frequency lessons','Ideal for upcoming exams','High practice volume','Intensive mock tests','Priority teacher support','Rapid progress tracking'],
+      features_ru:['Частые занятия','Идеально для ближайшего экзамена','Большой объём практики','Интенсивные пробные тесты','Приоритетная поддержка преподавателя','Быстрое отслеживание прогресса'],
+      features_ge:['მაღალი სიხშირის გაკვეთილები','იდეალურია მოახლოებული გამოცდებისთვის','პრაქტიკის დიდი მოცულობა','ინტენსიური საცდელი ტესტები','პრიორიტეტული მხარდაჭერა მასწავლებლისგან','სწრაფი პროგრესის მონიტორინგი'],
       sort_order:2
     },
     {
-      package_key:'ielts_sat_individual',
-      category:'ielts',
-      name_en:'IELTS/SAT Individual',
-      name_ru:'IELTS/SAT Individual',
-      name_ge:'IELTS/SAT Individual',
-      description_en:'One-to-one IELTS or SAT preparation tailored to the student’s goals and level.',
-      description_ru:'Индивидуальная подготовка к IELTS или SAT с учётом целей и уровня студента.',
-      description_ge:'ინდივიდუალური მომზადება IELTS-ის ან SAT-ისთვის სტუდენტის მიზნებსა და დონეზე მორგებული პროგრამით.',
+      package_key:'ielts_individual', category:'ielts',
+      name_en:'IELTS Individual', name_ru:'IELTS Individual', name_ge:'IELTS Individual',
+      description_en:"Individual IELTS lessons provide the highest level of personalisation. The teacher can focus entirely on the student's specific weaknesses, goals, and learning pace.",
+      description_ru:'Индивидуальные уроки IELTS обеспечивают максимальную персонализацию. Преподаватель полностью сосредотачивается на слабых сторонах, целях и темпе обучения студента.',
+      description_ge:'IELTS-ის ინდივიდუალური გაკვეთილები გთავაზობთ პერსონალიზაციის უმაღლეს დონეს. მასწავლებელს შეუძლია სრულად ფოკუსირდეს სტუდენტის სუსტ მხარეებზე, მიზნებსა და სწავლის ტემპზე.',
       lessons:12, lessons_per_week:3, lesson_length_minutes:60, duration_weeks:4, format:'Individual',
-      features_en:['Personalized plan','Targeted exam practice','Detailed feedback','Progress monitoring'],
-      features_ru:['Персональный план','Целевая экзаменационная практика','Подробная обратная связь','Отслеживание прогресса'],
-      features_ge:['პერსონალიზებული გეგმა','მიზნობრივი საგამოცდო პრაქტიკა','დეტალური უკუკავშირი','პროგრესის მონიტორინგი'],
+      features_en:['Fully personalized plan','Focus on weaknesses','Flexible schedule','One-on-one attention','Custom learning pace','Targeted skill work'],
+      features_ru:['Полностью персональный план','Работа над слабыми сторонами','Гибкий график','Индивидуальное внимание','Персональный темп обучения','Целевая работа над навыками'],
+      features_ge:['სრულად პერსონალიზებული გეგმა','სუსტ მხარეებზე ფოკუსირება','მოქნილი გრაფიკი','ინდივიდუალური ყურადღება','პერსონალიზებული სწავლის ტემპი','მიზნობრივი მუშაობა უნარებზე'],
       sort_order:3
     },
     {
-      package_key:'ielts_sat_pair',
-      category:'ielts',
-      name_en:'IELTS/SAT Pair Package',
-      name_ru:'IELTS/SAT Pair Package',
-      name_ge:'IELTS/SAT Pair Package',
-      description_en:'IELTS or SAT preparation for two students learning together.',
-      description_ru:'Подготовка к IELTS или SAT для двух студентов, которые занимаются вместе.',
-      description_ge:'IELTS-ის ან SAT-ისთვის მომზადება ორი სტუდენტისთვის, რომლებიც ერთად სწავლობენ.',
+      package_key:'ielts_pair', category:'ielts',
+      name_en:'IELTS Pair', name_ru:'IELTS Pair', name_ge:'IELTS Pair',
+      description_en:'Study for IELTS with a partner in a small, focused class of two students. This format combines personalized attention with collaborative learning.',
+      description_ru:'Подготовка к IELTS с партнёром в небольшой группе из двух студентов. Формат сочетает индивидуальное внимание и совместное обучение.',
+      description_ge:'IELTS-ისთვის მოემზადეთ პარტნიორთან ერთად ორ სტუდენტიან მცირე ჯგუფში. ეს ფორმატი აერთიანებს ინდივიდუალურ ყურადღებასა და თანამშრომლობით სწავლებას.',
       lessons:12, lessons_per_week:3, lesson_length_minutes:60, duration_weeks:4, format:'Pair',
-      features_en:['Shared personalized practice','Speaking practice','Exam-focused exercises','Detailed feedback'],
-      features_ru:['Совместная персонализированная практика','Разговорная практика','Упражнения для экзамена','Подробная обратная связь'],
-      features_ge:['ერთობლივი პერსონალიზებული პრაქტიკა','საუბრის პრაქტიკა','გამოცდაზე ორიენტირებული სავარჯიშოები','დეტალური უკუკავშირი'],
+      features_en:['Two students per class','Collaborative learning','Cost-effective','Shared motivation','Tailored pair exercises','Personalized attention'],
+      features_ru:['Два студента на занятии','Совместное обучение','Выгодный формат','Общая мотивация','Задания для пары','Персональное внимание'],
+      features_ge:['ორი სტუდენტი თითო გაკვეთილზე','თანამშრომლობითი სწავლება','ეკონომიური ფორმატი','საერთო მოტივაცია','წყვილზე მორგებული სავარჯიშოები','პერსონალიზებული ყურადღება'],
       sort_order:4
     },
     {
-      package_key:'general_english_group',
-      category:'general_english',
-      name_en:'General English Group',
-      name_ru:'Общий английский — группа',
-      name_ge:'ზოგადი ინგლისური — ჯგუფი',
-      description_en:'General English lessons focused on practical communication and everyday confidence.',
-      description_ru:'Общий английский с фокусом на практическое общение и уверенность в повседневной речи.',
-      description_ge:'ზოგადი ინგლისური პრაქტიკულ კომუნიკაციასა და ყოველდღიურ თავდაჯერებაზე ორიენტირებული გაკვეთილებით.',
-      format:'Group',
-      features_en:['Speaking confidence & Pronunciation','Listening & Reading skills','Grammar accuracy & Vocabulary','Real-life practice'],
-      features_ru:['Уверенность в речи и произношение','Навыки аудирования и чтения','Грамматика и словарный запас','Практика реальных ситуаций'],
-      features_ge:['საუბრის თავდაჯერება და გამოთქმა','მოსმენისა და კითხვის უნარები','გრამატიკა და ლექსიკა','რეალური სიტუაციების პრაქტიკა'],
+      package_key:'sat_standard_group', category:'sat',
+      name_en:'SAT Standard Group', name_ru:'SAT Standard Group', name_ge:'SAT Standard Group',
+      description_en:'The Standard package provides consistent and structured SAT preparation. It is suitable for students who have sufficient time before their examination and prefer a balanced study schedule.',
+      description_ru:'Стандартный пакет обеспечивает последовательную и структурированную подготовку к SAT. Подходит студентам, которым удобен сбалансированный график подготовки.',
+      description_ge:'სტანდარტული პაკეტი გთავაზობთ SAT-ის თანმიმდევრულ და სტრუქტურირებულ მომზადებას სტუდენტებისთვის, რომლებსაც დაბალანსებული სასწავლო გრაფიკი ურჩევნიათ.',
+      lessons:12, lessons_per_week:3, lesson_length_minutes:90, duration_weeks:4, format:'Group',
+      features_en:['Teacher-led lessons','Exam strategies','Practice exercises','Homework & feedback','Progress monitoring','Mock-test practice'],
+      features_ru:['Занятия с преподавателем','Экзаменационные стратегии','Практические упражнения','Домашние задания и обратная связь','Отслеживание прогресса','Практика пробных тестов'],
+      features_ge:['მასწავლებლის მიერ ჩატარებული გაკვეთილები','გამოცდის სტრატეგიები','პრაქტიკული სავარჯიშოები','საშინაო დავალება და უკუკავშირი','პროგრესის მონიტორინგი','საცდელი ტესტების პრაქტიკა'],
       sort_order:5
     },
     {
-      package_key:'general_english_individual',
-      category:'general_english',
-      name_en:'General English Individual',
-      name_ru:'Общий английский — индивидуально',
-      name_ge:'ზოგადი ინგლისური — ინდივიდუალური',
-      description_en:'One-to-one General English lessons tailored to the student’s level and goals.',
-      description_ru:'Индивидуальные уроки общего английского, адаптированные под уровень и цели студента.',
-      description_ge:'ზოგადი ინგლისურის ინდივიდუალური გაკვეთილები სტუდენტის დონისა და მიზნების მიხედვით.',
-      format:'Individual',
-      features_en:['Personalized plan','Speaking confidence','Grammar & Vocabulary','Progress monitoring'],
-      features_ru:['Персональный план','Уверенность в речи','Грамматика и словарный запас','Отслеживание прогресса'],
-      features_ge:['პერსონალიზებული გეგმა','საუბრის თავდაჯერება','გრამატიკა და ლექსიკა','პროგრესის მონიტორინგი'],
+      package_key:'sat_intensive_group', category:'sat',
+      name_en:'SAT Intensive Group', name_ru:'SAT Intensive Group', name_ge:'SAT Intensive Group',
+      description_en:'The Intensive package is designed for students who need faster SAT progress or have limited time before their examination, with a higher frequency of guided and independent practice.',
+      description_ru:'Интенсивный пакет предназначен для студентов, которым нужен более быстрый прогресс в SAT или у которых мало времени до экзамена, с более высокой частотой занятий и практики.',
+      description_ge:'ინტენსიური პაკეტი განკუთვნილია სტუდენტებისთვის, რომლებსაც SAT-ში სწრაფი პროგრესი სჭირდებათ ან გამოცდამდე ცოტა დრო აქვთ.',
+      lessons:20, lessons_per_week:5, lesson_length_minutes:90, duration_weeks:4, format:'Group',
+      features_en:['High-frequency lessons','Ideal for upcoming exams','High practice volume','Intensive mock tests','Priority teacher support','Rapid progress tracking'],
+      features_ru:['Частые занятия','Идеально для ближайшего экзамена','Большой объём практики','Интенсивные пробные тесты','Приоритетная поддержка преподавателя','Быстрое отслеживание прогресса'],
+      features_ge:['მაღალი სიხშირის გაკვეთილები','იდეალურია მოახლოებული გამოცდებისთვის','პრაქტიკის დიდი მოცულობა','ინტენსიური საცდელი ტესტები','პრიორიტეტული მხარდაჭერა მასწავლებლისგან','სწრაფი პროგრესის მონიტორინგი'],
       sort_order:6
+    },
+    {
+      package_key:'sat_individual', category:'sat',
+      name_en:'SAT Individual', name_ru:'SAT Individual', name_ge:'SAT Individual',
+      description_en:"Individual SAT lessons provide the highest level of personalisation, focusing on the student's specific weaknesses, goals, and learning pace.",
+      description_ru:'Индивидуальные уроки SAT обеспечивают максимальную персонализацию с фокусом на слабых сторонах, целях и темпе обучения студента.',
+      description_ge:'SAT-ის ინდივიდუალური გაკვეთილები გთავაზობთ მაქსიმალურ პერსონალიზაციას სტუდენტის სუსტ მხარეებზე, მიზნებსა და სწავლის ტემპზე ფოკუსირებით.',
+      lessons:12, lessons_per_week:3, lesson_length_minutes:60, duration_weeks:4, format:'Individual',
+      features_en:['Fully personalized plan','Focus on weaknesses','Flexible schedule','One-on-one attention','Custom learning pace','Targeted skill work'],
+      features_ru:['Полностью персональный план','Работа над слабыми сторонами','Гибкий график','Индивидуальное внимание','Персональный темп обучения','Целевая работа над навыками'],
+      features_ge:['სრულად პერსონალიზებული გეგმა','სუსტ მხარეებზე ფოკუსირება','მოქნილი გრაფიკი','ინდივიდუალური ყურადღება','პერსონალიზებული სწავლის ტემპი','მიზნობრივი მუშაობა უნარებზე'],
+      sort_order:7
+    },
+    {
+      package_key:'sat_pair', category:'sat',
+      name_en:'SAT Pair', name_ru:'SAT Pair', name_ge:'SAT Pair',
+      description_en:'Study for SAT with a partner in a small, focused class of two students, combining personalized attention with collaborative learning.',
+      description_ru:'Подготовка к SAT с партнёром в небольшой группе из двух студентов, сочетающей индивидуальное внимание и совместное обучение.',
+      description_ge:'SAT-ისთვის მოემზადეთ პარტნიორთან ერთად ორ სტუდენტიან მცირე ჯგუფში, რომელიც აერთიანებს ინდივიდუალურ ყურადღებასა და თანამშრომლობით სწავლებას.',
+      lessons:12, lessons_per_week:3, lesson_length_minutes:60, duration_weeks:4, format:'Pair',
+      features_en:['Two students per class','Collaborative learning','Cost-effective','Shared motivation','Tailored pair exercises','Personalized attention'],
+      features_ru:['Два студента на занятии','Совместное обучение','Выгодный формат','Общая мотивация','Задания для пары','Персональное внимание'],
+      features_ge:['ორი სტუდენტი თითო გაკვეთილზე','თანამშრომლობითი სწავლება','ეკონომიური ფორმატი','საერთო მოტივაცია','წყვილზე მორგებული სავარჯიშოები','პერსონალიზებული ყურადღება'],
+      sort_order:8
+    },
+    {
+      package_key:'general_english_group', category:'general_english',
+      name_en:'General English Group', name_ru:'Общий английский — группа', name_ge:'ზოგადი ინგლისური — ჯგუფი',
+      description_en:'Our General English programme is designed for students who want to improve their overall English level for education, work, travel, or everyday communication. Lessons are interactive and communication-focused.',
+      description_ru:'Программа общего английского предназначена для улучшения уровня языка для учёбы, работы, путешествий и повседневного общения. Занятия интерактивные и ориентированы на коммуникацию.',
+      description_ge:'ზოგადი ინგლისურის პროგრამა განკუთვნილია მათთვის, ვისაც ინგლისურის გაუმჯობესება სურს განათლებისთვის, სამუშაოსთვის, მოგზაურობისთვის ან ყოველდღიური კომუნიკაციისთვის.',
+      lessons:12, lessons_per_week:3, lesson_length_minutes:60, duration_weeks:4, format:'Group',
+      features_en:['Speaking confidence','Listening comprehension','Grammar accuracy','Vocabulary range','Reading skills','Writing skills','Pronunciation','Real-life practice'],
+      features_ru:['Уверенность в речи','Понимание речи на слух','Грамматическая точность','Словарный запас','Навыки чтения','Навыки письма','Произношение','Практика реальных ситуаций'],
+      features_ge:['საუბრის თავდაჯერება','მოსმენის გაგება','გრამატიკული სიზუსტე','ლექსიკური მარაგი','კითხვის უნარები','წერის უნარები','გამოთქმა','რეალური სიტუაციების პრაქტიკა'],
+      sort_order:9
+    },
+    {
+      package_key:'general_english_individual', category:'general_english',
+      name_en:'General English Individual', name_ru:'Общий английский — индивидуально', name_ge:'ზოგადი ინგლისური — ინდივიდუალური',
+      description_en:'Personalized General English lessons tailored entirely to your goals, pace, and interests, with a custom plan focused on your specific needs.',
+      description_ru:'Индивидуальные уроки общего английского, полностью адаптированные под ваши цели, темп и интересы, с персональным планом.',
+      description_ge:'ზოგადი ინგლისურის ინდივიდუალური გაკვეთილები სრულად მორგებულია თქვენს მიზნებზე, ტემპსა და ინტერესებზე პერსონალიზებული გეგმით.',
+      lessons:12, lessons_per_week:3, lesson_length_minutes:60, duration_weeks:4, format:'Individual',
+      features_en:['Customized curriculum','Focus on your goals','Pronunciation coaching','Flexible topics','One-on-one attention','Personal pace','Regular feedback','Progress tracking'],
+      features_ru:['Персональная программа','Фокус на ваших целях','Работа над произношением','Гибкие темы','Индивидуальное внимание','Персональный темп','Регулярная обратная связь','Отслеживание прогресса'],
+      features_ge:['მორგებული სასწავლო პროგრამა','ფოკუსი თქვენს მიზნებზე','გამოთქმის გაუმჯობესება','მოქნილი თემები','ინდივიდუალური ყურადღება','პერსონალური ტემპი','რეგულარული უკუკავშირი','პროგრესის მონიტორინგი'],
+      sort_order:10
     }
   ];
 
@@ -1207,12 +1237,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   function currentPackageName(row){ return row['name_'+cmsLanguage] || row.name_en || row.package_key; }
   function categoryLabel(category){
-    return ({
-      ielts_sat:'IELTS & SAT',
-      ielts:'IELTS',
-      sat:'SAT',
-      general_english:'General English'
-    })[category] || 'Needs category';
+    return ({ielts:'IELTS',sat:'SAT',general_english:'General English'})[category] || 'Needs category';
   }
   function linesToArray(value){ return String(value||'').split(/\r?\n/).map(x=>x.trim()).filter(Boolean); }
   function arrayToLines(value){ return Array.isArray(value) ? value.join('\n') : ''; }
@@ -1220,13 +1245,11 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   function normalizePackageCategory(product){
     const raw=String(product?.category||'').trim().toLowerCase().replace(/[\s-]+/g,'_');
-    if(raw==='ielts_sat' || raw==='ielts_and_sat' || (raw.includes('ielts') && raw.includes('sat'))) return 'ielts_sat';
     if(raw==='ielts' || raw.includes('ielts')) return 'ielts';
     if(raw==='sat' || raw.includes('sat')) return 'sat';
     if(raw==='general_english' || raw.includes('general') || raw.includes('english')) return 'general_english';
     const key=String(product?.package_key||'').toLowerCase();
     if(key.includes('general_english')) return 'general_english';
-    if(key.includes('ielts') && key.includes('sat')) return 'ielts_sat';
     if(key.includes('ielts')) return 'ielts';
     if(key.includes('sat')) return 'sat';
     return 'uncategorized';
@@ -1246,7 +1269,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
     if(empty) empty.classList.add('hidden');
 
-    const groups=[['ielts_sat','IELTS & SAT'],['ielts','IELTS'],['sat','SAT'],['general_english','General English'],['uncategorized','Other products']];
+    const groups=[['ielts','IELTS'],['sat','SAT'],['general_english','General English'],['uncategorized','Other products']];
     list.innerHTML=groups.map(([key,label])=>{
       const items=cmsPackages.filter(p=>normalizePackageCategory(p)===key);
       if(!items.length) return '';
@@ -1336,33 +1359,26 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
   function closeProductEditor(){ document.getElementById('productEditor').classList.add('hidden'); }
 
-  async function seedPackagesIfEmpty(existingPackages){
-    if(Array.isArray(existingPackages) && existingPackages.length) return existingPackages;
-
-    const rows = PACKAGE_SEED.map(item => ({
-      ...item,
-      currency:'GEL',
-      price:null,
-      active:true,
-      payment_enabled:false,
-      updated_at:new Date().toISOString()
-    }));
-
-    const {data,error}=await supabase
-      .from('site_packages')
-      .insert(rows)
-      .select('*');
-
-    if(error){
-      // Still show the starter catalog even if Supabase blocks the insert
-      // (for example because of an RLS/check-constraint issue). The local
-      // ids are temporary and are converted into real rows when saved.
-      cmsNotify('Starter products are shown locally because Supabase could not create them: '+error.message,true);
-      return rows.map(item=>({...item,id:'seed_'+item.package_key}));
+  async function ensurePackageCatalog(existingPackages){
+    let packages=Array.isArray(existingPackages)?[...existingPackages]:[];
+    const legacyKeys=['ielts_sat_standard','ielts_sat_intensive','ielts_sat_individual','ielts_sat_pair'];
+    const legacyRows=packages.filter(p=>legacyKeys.includes(p.package_key));
+    if(legacyRows.length){
+      await supabase.from('site_packages').update({active:false,updated_at:new Date().toISOString()}).in('package_key',legacyKeys);
+      packages=packages.filter(p=>!legacyKeys.includes(p.package_key));
     }
-
-    cmsNotify('Starter package catalog created.');
-    return data || [];
+    const existingKeys=new Set(packages.map(p=>p.package_key));
+    const missing=PACKAGE_SEED.filter(item=>!existingKeys.has(item.package_key)).map(item=>({
+      ...item,currency:'GEL',price:null,active:true,payment_enabled:false,updated_at:new Date().toISOString()
+    }));
+    if(!missing.length) return packages;
+    const {data,error}=await supabase.from('site_packages').insert(missing).select('*');
+    if(error){
+      cmsNotify('Some starter products could not be created: '+error.message,true);
+      return packages.length ? packages : PACKAGE_SEED.map(item=>({...item,currency:'GEL',price:null,active:true,payment_enabled:false,id:'seed_'+item.package_key}));
+    }
+    cmsNotify('10-product package catalog is ready.');
+    return packages.concat(data||[]);
   }
 
   async function loadCMS(){
@@ -1387,7 +1403,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     cmsPages=pages;
-    cmsPackages=await seedPackagesIfEmpty(packagesRes.data || []);
+    cmsPackages=await ensurePackageCatalog(packagesRes.data || []);
     cmsPackages.sort((a,b)=>(a.sort_order||0)-(b.sort_order||0)||(a.id||0)-(b.id||0));
 
     renderPolicies();
