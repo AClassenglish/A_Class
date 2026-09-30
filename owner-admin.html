@@ -37,6 +37,75 @@
       var(--bg);
     }
     button,input{font:inherit}
+
+    /* Polished select controls */
+    select{
+      width:100%;
+      min-height:44px;
+      border:1px solid var(--border);
+      border-radius:13px;
+      padding:11px 42px 11px 14px;
+      background-color:#fff;
+      color:var(--navy);
+      font:inherit;
+      font-size:12px;
+      font-weight:700;
+      line-height:1.2;
+      outline:none;
+      cursor:pointer;
+      appearance:none;
+      -webkit-appearance:none;
+      -moz-appearance:none;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%235B6B6D' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat:no-repeat;
+      background-position:right 14px center;
+      background-size:16px 16px;
+      transition:border-color .18s ease,box-shadow .18s ease,background-color .18s ease;
+    }
+    select:hover{
+      border-color:#A9DCD5;
+      background-color:#FCFFFE;
+    }
+    select:focus{
+      border-color:var(--teal);
+      box-shadow:0 0 0 4px rgba(15,166,179,.10);
+    }
+    select:disabled{
+      opacity:.55;
+      cursor:not-allowed;
+      background-color:#F4F7F7;
+    }
+    select option{
+      background:#fff;
+      color:var(--navy);
+      font-weight:600;
+      padding:10px;
+    }
+
+    .filter-select{
+      min-width:145px;
+      min-height:44px;
+      padding:11px 40px 11px 13px;
+    }
+
+    .menu-row select{
+      min-height:38px;
+      border-radius:9px;
+      padding:8px 34px 8px 10px;
+      font-size:11px;
+      background-position:right 9px center;
+      background-size:14px 14px;
+    }
+
+    .package-currency{
+      min-height:40px;
+      min-width:105px;
+      border-radius:10px;
+      padding:9px 34px 9px 11px;
+      font-size:11px;
+      background-position:right 9px center;
+      background-size:14px 14px;
+    }
     button{cursor:pointer}
     .hidden{display:none!important}
     #authLoading{position:fixed;inset:0;z-index:200;display:grid;place-items:center;background:var(--bg);font-weight:800;color:var(--navy)}
@@ -596,7 +665,7 @@
               <input type="hidden" id="productId">
               <div class="product-editor-grid">
                 <label class="field-label">Category
-                  <select id="productCategory" required>
+                  <select id="productCategory" class="product-select" required>
                     <option value="">Select category</option><option value="ielts">IELTS</option><option value="sat">SAT</option><option value="general_english">General English</option>
                   </select>
                 </label>
@@ -620,7 +689,7 @@
                   <label class="field-label">Lesson length — minutes<input id="productLessonMinutes" type="number" min="0" step="1" placeholder="90"></label>
                   <label class="field-label">Duration — weeks<input id="productDurationWeeks" type="number" min="0" step="1" placeholder="8"></label>
                   <label class="field-label">Price<input id="productPrice" type="number" min="0" step="0.01" placeholder="0.00"></label>
-                  <label class="field-label">Currency<select id="productCurrency"><option value="GEL">GEL</option><option value="AMD">AMD</option></select></label>
+                  <label class="field-label">Currency<select id="productCurrency" class="product-select"><option value="GEL">GEL</option><option value="AMD">AMD</option></select></label>
                 </div>
               </div>
 
