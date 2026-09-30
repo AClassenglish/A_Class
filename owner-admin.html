@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#0FA6B3">
   <title>AClass Owner Center</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%230FA6B3'/%3E%3Cstop offset='100%25' stop-color='%2378D64B'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='16' fill='url(%23g)'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-family='Arial,sans-serif' font-size='36' font-weight='900' fill='white'%3EA%3C/text%3E%3C/svg%3E">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -35,6 +36,8 @@
     button,input{font:inherit}
     button{cursor:pointer}
     .hidden{display:none!important}
+    #authLoading{position:fixed;inset:0;z-index:200;display:grid;place-items:center;background:var(--bg);font-weight:800;color:var(--navy)}
+    #authLoading .loading-box{padding:16px 20px;border:1px solid var(--border);border-radius:14px;background:#fff;box-shadow:var(--shadow);font-size:12px}
 
     /* Login */
     .login-wrap{min-height:100vh;display:grid;place-items:center;padding:24px}
@@ -164,6 +167,7 @@
   </style>
 </head>
 <body>
+<div id="authLoading"><div class="loading-box">Checking Owner session…</div></div>
 
 <section id="loginView" class="login-wrap">
   <div class="login-card">
@@ -390,6 +394,13 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', async () => {
+  history.scrollRestoration = 'manual';
+  window.scrollTo(0, 0);
+
+  const SESSION_MAX_AGE = 30 * 24 * 60 * 60 * 1000;
+  const LOGIN_STAMP_KEY = 'aclass_owner_login_at';
+  const authLoading = document.getElementById('authLoading');
+
   const SUPABASE_URL = 'https://tideabdwbgekztipetfu.supabase.co';
   const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_3PbDtf_Qd6vdLWuO-kV_WA__MMFoFUs';
   const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
@@ -422,6 +433,30 @@ document.addEventListener('DOMContentLoaded', async () => {
       year:'numeric', month:'short', day:'numeric',
       hour:'2-digit', minute:'2-digit'
     });
+  }
+
+  function isRememberedSessionValid() {
+    const raw = localStorage.getItem(LOGIN_STAMP_KEY);
+    if (!raw) return false;
+    const loginAt = Number(raw);
+    if (!Number.isFinite(loginAt)) return false;
+    return (Date.now() - loginAt) < SESSION_MAX_AGE;
+  }
+
+  function rememberOwnerLogin() {
+    localStorage.setItem(LOGIN_STAMP_KEY, String(Date.now()));
+  }
+
+  function clearRememberedLogin() {
+    localStorage.removeItem(LOGIN_STAMP_KEY);
+  }
+
+  async function forceLogin() {
+    try { await supabase.auth.signOut(); } catch (_) {}
+    clearRememberedLogin();
+    appView.classList.add('hidden');
+    loginView.classList.remove('hidden');
+    window.scrollTo(0, 0);
   }
 
   async function getOwnerProfile() {
@@ -532,6 +567,11 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   async function openApp() {
+    if (!isRememberedSessionValid()) {
+      await forceLogin();
+      return false;
+    }
+
     const result = await getOwnerProfile();
 
     if (!result.user) return false;
@@ -545,6 +585,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     ownerName.textContent = result.profile.full_name || result.user.email || 'AClass Owner';
     loginView.classList.add('hidden');
     appView.classList.remove('hidden');
+    window.scrollTo(0, 0);
     document.getElementById('today').textContent = new Date().toLocaleDateString(undefined, {
       weekday:'long', year:'numeric', month:'long', day:'numeric'
     });
@@ -571,6 +612,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       return;
     }
 
+    rememberOwnerLogin();
     const ok = await openApp();
     if (!ok) {
       loginButton.disabled = false;
@@ -579,6 +621,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   });
 
   logoutButton.addEventListener('click', async () => {
+    clearRememberedLogin();
     await supabase.auth.signOut();
     appView.classList.add('hidden');
     loginView.classList.remove('hidden');
@@ -627,7 +670,17 @@ document.addEventListener('DOMContentLoaded', async () => {
   });
 
   const { data: { session } } = await supabase.auth.getSession();
-  if (session) await openApp();
+  if (session && isRememberedSessionValid()) {
+    await openApp();
+  } else {
+    if (session) await supabase.auth.signOut();
+    clearRememberedLogin();
+    loginView.classList.remove('hidden');
+    appView.classList.add('hidden');
+    window.scrollTo(0, 0);
+  }
+
+  authLoading.classList.add('hidden');
 });
 </script>
 </body>
