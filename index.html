@@ -20,7 +20,7 @@
 <style>
 :root{--primary:#0FA6B3;--primary-dark:#087F89;--primary-light:#E8F7EE;--secondary:#78D64B;--gradient-start:#0FA6B3;--gradient-end:#78D64B;--gradient-accent:linear-gradient(135deg,#0FA6B3 0%,#35C78D 50%,#78D64B 100%);--gradient-story:linear-gradient(45deg,#0FA6B3 0%,#35C78D 50%,#78D64B 100%);--text-dark:#102022;--text-gray:#4B5B5D;--text-light:#8B999B;--white:#fff;--bg-light:#F7FBF8;--border:#E3ECE8;--whatsapp-green:#25D366;--glass-bg:rgba(255,255,255,.92);--glass-border:rgba(238,240,246,.8)}
 *,::before,::after{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html{scroll-behavior:smooth;scroll-padding-top:110px;width:100%;overflow-x:hidden}
+html {scroll-padding-top:110px;width:100%;overflow-x:hidden}
 body{font-family:'Plus Jakarta Sans',system-ui,-apple-system,sans-serif;color:var(--text-dark);line-height:1.6;background:var(--white);overflow-x:hidden;padding-bottom:80px;-webkit-font-smoothing:antialiased;width:100%;max-width:100vw}
 img{max-width:100%;height:auto;display:block}
 button{font-family:inherit}
@@ -1272,7 +1272,7 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
   }
   .teacher-rail::-webkit-scrollbar{display:none}
   .teacher-rail-item{
-    flex:1 0 145px;
+    flex:0 0 145px;
     padding:.9rem .8rem;
   }
   .teacher-rail-item::before{
@@ -1566,6 +1566,52 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
   }
 }
 
+
+@media (min-width:901px){
+  .nav-container{padding:0 1.15rem;}
+  .nav-menu{gap:1.25rem;}
+  .nav-link{font-size:.88rem;}
+  .nav-cta{padding:.62rem 1.1rem;white-space:nowrap;}
+  .language-switcher a{min-width:28px;height:26px;padding:0 6px;font-size:10px;}
+}
+
+.legal-section{padding:6rem 2rem;background:var(--bg-light,#fafbff);}
+.legal-grid{max-width:1050px;margin:0 auto;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;}
+.legal-card{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:1rem;padding:1.35rem;text-decoration:none;color:inherit;background:#fff;border:1px solid rgba(15,166,179,.14);border-radius:20px;box-shadow:0 10px 30px rgba(15,166,179,.07);transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;}
+.legal-card:hover{transform:translateY(-4px);box-shadow:0 16px 36px rgba(15,166,179,.12);border-color:rgba(15,166,179,.3);}
+.legal-card-icon{width:44px;height:44px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:rgba(15,166,179,.1);color:var(--primary);font-size:1rem;}
+.legal-card h3{margin:0 0 .35rem;font-size:1rem;color:var(--text-dark);}
+.legal-card p{margin:0;color:var(--text-gray);font-size:.78rem;line-height:1.5;}
+.legal-card-arrow{color:var(--primary);font-size:.8rem;}
+.payment-section{padding:4.5rem 2rem 6rem;background:var(--bg-light,#fafbff);}
+.payment-card{max-width:1050px;margin:0 auto;display:flex;align-items:center;gap:1.5rem;padding:1.7rem 1.9rem;border:1px dashed rgba(15,166,179,.3);border-radius:24px;background:rgba(255,255,255,.72);}
+.payment-icon{width:58px;height:58px;flex:0 0 58px;border-radius:18px;display:flex;align-items:center;justify-content:center;background:var(--gradient-accent);color:#fff;font-size:1.25rem;box-shadow:0 10px 25px rgba(15,166,179,.2);}
+.payment-copy{flex:1;}
+.payment-kicker{display:block;margin-bottom:.25rem;font-size:.7rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--primary);}
+.payment-copy h2{margin:0 0 .35rem;font-size:1.45rem;}
+.payment-copy p{margin:0;color:var(--text-gray);font-size:.88rem;line-height:1.55;}
+.payment-status{flex:0 0 auto;padding:.45rem .75rem;border-radius:999px;background:rgba(15,166,179,.1);color:var(--primary);font-size:.7rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap;}
+.footer-contact-label{display:block;font-size:.68rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--primary);margin-bottom:.15rem;}
+.footer-contact-name{display:block;font-weight:700;color:#fff;margin-bottom:.2rem;}
+@media(max-width:900px){
+  .legal-section{padding:5rem 1rem;}
+  .legal-grid{grid-template-columns:1fr;max-width:620px;}
+  .payment-section{padding:1rem 1rem 5rem;}
+  .payment-card{align-items:flex-start;flex-wrap:wrap;padding:1.35rem;gap:1rem;}
+  .payment-copy{min-width:0;}
+  .payment-status{margin-left:74px;}
+}
+@media(max-width:520px){
+  .legal-card{grid-template-columns:auto 1fr;}
+  .legal-card-arrow{display:none;}
+  .payment-card{display:grid;grid-template-columns:auto 1fr;}
+  .payment-status{grid-column:2;margin-left:0;justify-self:start;}
+}
+#legal{scroll-margin-top:90px;}
+
+html { scroll-behavior: auto !important; }
+
+section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
 </style>
 
   <!-- AClass favicon -->
@@ -1597,6 +1643,7 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
         <li><a href="#courses" class="nav-link">Courses</a></li>
         <li><a href="#reviews" class="nav-link">Reviews</a></li>
          <li><a href="#teachers" class="nav-link">Teachers</a></li>
+        <li><a href="#legal" class="nav-link">Legal</a></li>
         <li><a href="#packages" class="nav-link">Packages</a></li>
         <li><a href="#life-at-aclass" class="nav-link">Life at AClass</a></li>
         <li><a href="#contact" class="nav-cta">Contact Us</a></li>
@@ -1628,6 +1675,7 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
           <i class="fas fa-chalkboard-teacher"></i>
           <span>Teachers</span>
         </a>
+      <a href="#legal" class="tab-item"><i class="fas fa-scale-balanced"></i><span>Legal</span></a>
         </div>
   </div>
 
@@ -2071,7 +2119,21 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
     </div>
   </section>
 
-  <section class="teachers-section-packages" id="teachers">
+  <section id="payment" class="payment-section">
+    <div class="container">
+      <div class="payment-card">
+        <div class="payment-icon"><i class="fas fa-credit-card"></i></div>
+        <div class="payment-copy">
+          <span class="payment-kicker">Payment</span>
+          <h2>Payment Information</h2>
+          <p>Payment methods and instructions will be available here soon. We’ll add the official payment details once they are ready.</p>
+        </div>
+        <span class="payment-status">Coming soon</span>
+      </div>
+    </div>
+  </section>
+
+<section class="teachers-section-packages" id="teachers">
   <div class="teachers-container">
     <div class="teachers-intro">
       <span class="teachers-kicker"><i class="fas fa-sparkles"></i> Our Teachers</span>
@@ -2081,14 +2143,24 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
 
     <div class="teacher-showcase" id="teacherShowcase">
       <div class="teacher-rail" aria-label="Choose a teacher">
-        <button class="teacher-rail-item active" type="button" data-teacher="0" aria-label="Show Aisa">
+        <button class="teacher-rail-item active" type="button" data-teacher="0" aria-label="Show Aika">
           <span class="teacher-rail-number">01</span>
+          <span class="teacher-rail-name">Aika</span>
+          <span class="teacher-rail-role">Founder · IELTS Instructor</span>
+        </button>
+        <button class="teacher-rail-item" type="button" data-teacher="1" aria-label="Show Aisa">
+          <span class="teacher-rail-number">02</span>
           <span class="teacher-rail-name">Aisa</span>
           <span class="teacher-rail-role">Senior IELTS Tutor</span>
         </button>
-        <button class="teacher-rail-item" type="button" data-teacher="1" aria-label="Show Ademi">
-          <span class="teacher-rail-number">02</span>
+        <button class="teacher-rail-item" type="button" data-teacher="2" aria-label="Show Ademi">
+          <span class="teacher-rail-number">03</span>
           <span class="teacher-rail-name">Ademi</span>
+          <span class="teacher-rail-role">IELTS Tutor</span>
+        </button>
+        <button class="teacher-rail-item" type="button" data-teacher="3" aria-label="Show Inessa">
+          <span class="teacher-rail-number">04</span>
+          <span class="teacher-rail-name">Inessa</span>
           <span class="teacher-rail-role">IELTS Tutor</span>
         </button>
       </div>
@@ -2099,8 +2171,8 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
           <div class="teacher-photo-wrap">
             <img loading="lazy"
               id="teacherPhoto"
-              src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/Aisa.jpeg"
-              alt="Aisa, Senior IELTS Tutor"
+              src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/Aika.jpeg"
+              alt="Miss Aika, Founder and IELTS Instructor"
               width="720"
               height="900"
               fetchpriority="high"
@@ -2120,16 +2192,16 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
 
       <div class="teacher-copy" aria-live="polite">
         <div class="teacher-copy-top">
-          <span class="teacher-slide-count" id="teacherSlideCount">01 / 02</span>
+          <span class="teacher-slide-count" id="teacherSlideCount">01 / 04</span>
           <span class="teacher-dot"></span>
           <span id="teacherSpecialty">IELTS · ENGLISH</span>
         </div>
 
-        <h3 id="teacherName">Aisa</h3>
-        <div class="teacher-role" id="teacherRole">Senior IELTS Tutor</div>
+        <h3 id="teacherName">Aika</h3>
+        <div class="teacher-role" id="teacherRole">Founder · IELTS Instructor</div>
         <div class="teacher-description-wrap">
-          <p id="teacherDescription">Aisa is an experienced English educator with 8 years of IELTS teaching experience and 10 years of experience teaching English overall. She holds an outstanding IELTS score of 8.5, including a perfect 9.0 in Speaking.</p>
-          <p id="teacherDescription2">Aisa is currently pursuing a master's degree through the MA TEFL program, specializing in Teaching English as a Foreign Language, at an American University of Armenia.</p>
+          <p id="teacherDescription">Miss Aika is the founder of A Class and an IELTS instructor with over 15 years of teaching experience. Throughout her career, she has taught more than 1,000 students, with an average IELTS score of 7.5 among her learners.</p>
+          <p id="teacherDescription2">Her personal IELTS score is 8.5. Miss Aika studied at Mikkeli University in Finland and Karel de Grote University in the Netherlands. In her teaching, she focuses on structured preparation, a deep understanding of the IELTS exam, and developing the practical language skills students need to achieve consistently strong results.</p>
         </div>
 
         <div class="teacher-metrics">
@@ -2172,26 +2244,37 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
 
   <section id="contact" class="contact">
     <div class="container">
-      <div class="section-header"><span class="section-tag"><i class="fas fa-envelope"></i> Contact Us</span><h2>Get in Touch</h2><p>Reach out to us directly via WhatsApp or Instagram</p></div>
+      <div class="section-header">
+        <span class="section-tag"><i class="fas fa-envelope"></i> Contact Us</span>
+        <h2>Get in Touch</h2>
+        <p>Reach out to us directly via WhatsApp or Instagram</p>
+      </div>
+
       <div class="contact-buttons">
         <a href="https://api.whatsapp.com/send?phone=77472297002" target="_blank" class="contact-btn whatsapp"><i class="fab fa-whatsapp"></i><span>WhatsApp</span></a>
         <a href="https://www.instagram.com/aclass.kz" target="_blank" class="contact-btn instagram"><i class="fab fa-instagram"></i><span>Instagram</span></a>
       </div>
+
       <div class="contact-note"><i class="fas fa-clock"></i> We typically respond within 1-2 hours during business hours</div>
     </div>
   </section>
-
-  <footer>
+<footer>
     <div class="footer-grid">
       <div class="footer-col"><h4>AClass English School</h4><p>Empowering students to achieve English fluency and exam success for over 15 years.</p><div class="social-links"><a href="https://www.instagram.com/aclass.kz" target="_blank"><i class="fab fa-instagram"></i></a><a href="https://api.whatsapp.com/send?phone=77472297002" target="_blank"><i class="fab fa-whatsapp"></i></a></div></div>
       <div class="footer-col"><h4>Quick Links</h4><ul class="footer-links"><li><a href="#home"><i class="fas fa-chevron-right"></i> Home</a></li><li><a href="#about"><i class="fas fa-chevron-right"></i> About Us</a></li><li><a href="#courses"><i class="fas fa-chevron-right"></i> Courses</a></li><li><a href="#packages"><i class="fas fa-chevron-right"></i> All Packages</a></li><li><a href="#life-at-aclass"><i class="fas fa-chevron-right"></i> Life at AClass</a></li></ul></div>
       <div class="footer-col"><h4>Programs</h4><ul class="footer-links"><li><a href="#courses"><i class="fas fa-chevron-right"></i> IELTS</a></li><li><a href="#courses"><i class="fas fa-chevron-right"></i> SAT</a></li><li><a href="#courses"><i class="fas fa-chevron-right"></i> General English</a></li></ul></div>
-      <div class="footer-col"><h4>Contact</h4><ul class="footer-links"><li><a href="mailto:info@aclass.am"><i class="fas fa-envelope"></i> info@aclass.am</a></li><li><a href="https://api.whatsapp.com/send?phone=77472297002"><i class="fas fa-phone"></i> +7 (747) 229-70-02</a></li></ul></div>
-      <div class="footer-col"><h4>Legal</h4><ul class="footer-links"><li><a href="privacy-policy.html"><i class="fas fa-shield-halved"></i> Privacy Policy</a></li><li><a href="terms-and-conditions.html"><i class="fas fa-file-contract"></i> Terms &amp; Conditions</a></li><li><a href="refund-policy.html"><i class="fas fa-rotate-left"></i> Refund Policy</a></li></ul></div>
+      <div class="footer-col"><h4>Contact</h4><ul class="footer-links"><li><span class="footer-contact-label">Director</span></li><li><span class="footer-contact-name">Gvalia Aigerim</span></li><li><a href="tel:555637881"><i class="fas fa-phone"></i> 555 637 881</a></li><li><a href="mailto:info@aclass.am"><i class="fas fa-envelope"></i> info@aclass.am</a></li><li><a href="https://api.whatsapp.com/send?phone=77472297002"><i class="fab fa-whatsapp"></i> WhatsApp</a></li></ul></div>
     </div>
+      <div class="footer-col" id="legal">
+        <h4>Legal</h4>
+        <ul class="footer-links">
+          <li><a href="privacy-policy.html"><i class="fas fa-chevron-right"></i> Privacy Policy</a></li>
+          <li><a href="terms-and-conditions.html"><i class="fas fa-chevron-right"></i> Terms &amp; Conditions</a></li>
+          <li><a href="refund-policy.html"><i class="fas fa-chevron-right"></i> Refund Policy</a></li>
+        </ul>
+      </div>
     <div class="footer-bottom">© 2026 AClass English School. All rights reserved.</div>
   </footer>
-
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
 <script>
 document.addEventListener('DOMContentLoaded', function () {
@@ -2241,6 +2324,16 @@ document.addEventListener('DOMContentLoaded', function () {
   /* Teacher spotlight slider */
   const teacherData = [
     {
+      name: 'Aika',
+      role: 'Founder · IELTS Instructor',
+      specialty: 'IELTS · ENGLISH',
+      image: 'https://raw.githubusercontent.com/AClassenglish/A_Class/main/Aika.jpeg',
+      alt: 'Miss Aika, Founder and IELTS Instructor',
+      description: 'Miss Aika is the founder of A Class and an IELTS instructor with over 15 years of teaching experience. Throughout her career, she has taught more than 1,000 students, with an average IELTS score of 7.5 among her learners.',
+      description2: 'Her personal IELTS score is 8.5. Miss Aika studied at Mikkeli University in Finland and Karel de Grote University in the Netherlands. In her teaching, she focuses on structured preparation, a deep understanding of the IELTS exam, and developing the practical language skills students need to achieve consistently strong results.',
+      metrics: [['15+', 'Years Teaching'], ['8.5', 'IELTS Score'], ['1000+', 'Students Taught']]
+    },
+    {
       name: 'Aisa',
       role: 'Senior IELTS Tutor',
       specialty: 'IELTS · ENGLISH',
@@ -2259,6 +2352,16 @@ document.addEventListener('DOMContentLoaded', function () {
       description: 'Ademi is a dedicated IELTS tutor with 4.5 years of teaching experience. She graduated from the American University of Central Asia and achieved an impressive IELTS score of 8.0 with 8.0 for both Writing and Speaking.',
       description2: '',
       metrics: [['4.5+', 'Years Teaching'], ['8.0', 'IELTS Score'], ['8.0', 'Writing + Speaking']]
+    },
+    {
+      name: 'Inessa',
+      role: 'IELTS Tutor',
+      specialty: 'IELTS · ENGLISH',
+      image: 'https://raw.githubusercontent.com/AClassenglish/A_Class/main/Inessa.JPG',
+      alt: 'Miss Inessa, IELTS Tutor',
+      description: 'Miss Inessa is an IELTS tutor with over 8 years of teaching experience. She holds a degree in foreign language education, which allows her to combine a strong methodological background with a practical approach to IELTS preparation.',
+      description2: 'In her classes, Miss Inessa focuses on developing all four IELTS skills, addressing common mistakes, and helping students prepare for the exam in a structured and consistent way.',
+      metrics: [['8+', 'Years Teaching'], ['4', 'IELTS Skills'], ['8+', 'Years Experience']]
     }
   ];
 
@@ -2325,7 +2428,7 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 
     /*
-     * Both teacher images are preloaded. If the requested image is already
+     * All teacher images are preloaded. If the requested image is already
      * ready, swap immediately; otherwise wait for that image only.
      * Nothing else in the section is hidden or animated.
      */
