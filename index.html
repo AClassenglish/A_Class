@@ -558,6 +558,31 @@ a{color:inherit;text-decoration:none}
   transition:width .35s ease;
 }
 
+/* Georgian language layout fixes */
+.lang-ge .nav-menu{gap:1.15rem}
+.lang-ge .nav-link{font-size:.84rem}
+.lang-ge .nav-cta{padding:.68rem 1.15rem;font-size:.9rem;white-space:nowrap}
+.lang-ge .hero-container{max-width:1400px;display:grid;grid-template-columns:minmax(0,1.08fr) minmax(340px,.82fr);gap:4rem;align-items:center;text-align:left}
+.lang-ge .hero-badge{grid-column:1/-1;justify-self:start;margin-bottom:0}
+.lang-ge .hero h1{min-width:0;font-size:clamp(3rem,4vw,4.7rem);line-height:1.08;letter-spacing:-1px;overflow-wrap:anywhere;word-break:normal;margin-bottom:1.2rem}
+.lang-ge .hero p{max-width:650px;margin:0 0 2.5rem;align-self:center;line-height:1.75}
+.lang-ge .hero-buttons{justify-content:flex-start}
+.lang-ge .hero-stats{grid-column:1/-1}
+@media (max-width:1100px){
+  .lang-ge .nav-menu{gap:.75rem}
+  .lang-ge .nav-link{font-size:.78rem}
+  .lang-ge .hero-container{grid-template-columns:1fr 1fr;gap:2.5rem}
+  .lang-ge .hero h1{font-size:clamp(2.7rem,4.5vw,4rem)}
+}
+@media (max-width:768px){
+  .lang-ge .nav-menu{gap:0}
+  .lang-ge .hero-container{display:block;text-align:center;max-width:100%;padding:0 1.25rem}
+  .lang-ge .hero-badge{justify-self:center;margin-bottom:1.5rem}
+  .lang-ge .hero h1{font-size:clamp(2.2rem,9vw,3rem);overflow-wrap:anywhere}
+  .lang-ge .hero p{margin:0 auto 2rem;max-width:650px}
+  .lang-ge .hero-buttons{justify-content:center}
+}
+
 /* ===== Package view polish + accessibility ===== */
 .package-view-panel{display:none;}
 .package-view-panel.active{display:block;animation:packageFade .35s ease;}
@@ -1833,25 +1858,25 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
 <div class="video-collage-grid">
 <div class="video-collage-item">
 <video data-lazy-video="" loop="" muted="" playsinline="" preload="none">
-<source src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/videos/IMG_0629.MOV" type="video/quicktime"/>
+<source src="./videos/IMG_0629.MOV" type="video/quicktime"/>
 </video>
 <span class="life-video-label">In the classroom</span>
 </div>
 <div class="video-collage-item">
 <video data-lazy-video="" loop="" muted="" playsinline="" preload="none">
-<source src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/videos/IMG_2948.MOV" type="video/quicktime"/>
+<source src="./videos/IMG_2948.MOV" type="video/quicktime"/>
 </video>
 <span class="life-video-label">Student moments</span>
 </div>
 <div class="video-collage-item">
 <video data-lazy-video="" loop="" muted="" playsinline="" preload="none">
-<source src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/videos/IMG_3018.MOV" type="video/quicktime"/>
+<source src="./videos/IMG_3018.MOV" type="video/quicktime"/>
 </video>
 <span class="life-video-label">Speaking &amp; practice</span>
 </div>
 <div class="video-collage-item">
 <video data-lazy-video="" loop="" muted="" playsinline="" preload="none">
-<source src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/videos/IMG_8786.MOV" type="video/quicktime"/>
+<source src="./videos/IMG_8786.MOV" type="video/quicktime"/>
 </video>
 <span class="life-video-label">Celebrations</span>
 </div>
@@ -1968,7 +1993,7 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
 <div class="package-feature-item"><i class="fas fa-check"></i> Progress monitoring</div>
 <div class="package-feature-item"><i class="fas fa-check"></i> Mock-test practice</div>
 </div>
-<button class="package-cta" onclick="event.stopPropagation(); window.location.href='index.html#contact'">Enroll Now</button>
+<button class="package-cta" onclick="event.stopPropagation(); window.location.href='payment.html'">Enroll Now</button>
 </div>
 </div>
 </div>
@@ -1999,7 +2024,7 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
 <div class="package-feature-item"><i class="fas fa-check"></i> Priority teacher support</div>
 <div class="package-feature-item"><i class="fas fa-check"></i> Rapid progress tracking</div>
 </div>
-<button class="package-cta" onclick="event.stopPropagation(); window.location.href='index.html#contact'">Enroll Now</button>
+<button class="package-cta" onclick="event.stopPropagation(); window.location.href='payment.html'">Enroll Now</button>
 </div>
 </div>
 </div>
@@ -2030,7 +2055,7 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
 <div class="package-feature-item"><i class="fas fa-check"></i> Custom learning pace</div>
 <div class="package-feature-item"><i class="fas fa-check"></i> Targeted skill work</div>
 </div>
-<button class="package-cta" onclick="event.stopPropagation(); window.location.href='index.html#contact'">Enroll Now</button>
+<button class="package-cta" onclick="event.stopPropagation(); window.location.href='payment.html'">Enroll Now</button>
 </div>
 </div>
 </div>
@@ -2061,7 +2086,7 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
 <div class="package-feature-item"><i class="fas fa-check"></i> Tailored pair exercises</div>
 <div class="package-feature-item"><i class="fas fa-check"></i> Personalized attention</div>
 </div>
-<button class="package-cta" onclick="event.stopPropagation(); window.location.href='index.html#contact'">Enroll Now</button>
+<button class="package-cta" onclick="event.stopPropagation(); window.location.href='payment.html'">Enroll Now</button>
 </div>
 </div>
 </div>
@@ -2099,7 +2124,7 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
 <div class="package-feature-item"><i class="fas fa-check"></i> Pronunciation</div>
 <div class="package-feature-item"><i class="fas fa-check"></i> Real-life practice</div>
 </div>
-<button class="package-cta" onclick="event.stopPropagation(); window.location.href='index.html#contact'">Enroll Now</button>
+<button class="package-cta" onclick="event.stopPropagation(); window.location.href='payment.html'">Enroll Now</button>
 </div>
 </div>
 </div>
@@ -2132,7 +2157,7 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
 <div class="package-feature-item"><i class="fas fa-check"></i> Regular feedback</div>
 <div class="package-feature-item"><i class="fas fa-check"></i> Progress tracking</div>
 </div>
-<button class="package-cta" onclick="event.stopPropagation(); window.location.href='index.html#contact'">Enroll Now</button>
+<button class="package-cta" onclick="event.stopPropagation(); window.location.href='payment.html'">Enroll Now</button>
 </div>
 </div>
 </div>
@@ -2495,25 +2520,25 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
 <div class="video-collage-grid">
 <div class="video-collage-item">
 <video data-lazy-video="" loop="" muted="" playsinline="" preload="none">
-<source src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/videos/IMG_0629.MOV" type="video/quicktime"/>
+<source src="./videos/IMG_0629.MOV" type="video/quicktime"/>
 </video>
 <span class="life-video-label">В классе</span>
 </div>
 <div class="video-collage-item">
 <video data-lazy-video="" loop="" muted="" playsinline="" preload="none">
-<source src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/videos/IMG_2948.MOV" type="video/quicktime"/>
+<source src="./videos/IMG_2948.MOV" type="video/quicktime"/>
 </video>
 <span class="life-video-label">Моменты учеников</span>
 </div>
 <div class="video-collage-item">
 <video data-lazy-video="" loop="" muted="" playsinline="" preload="none">
-<source src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/videos/IMG_3018.MOV" type="video/quicktime"/>
+<source src="./videos/IMG_3018.MOV" type="video/quicktime"/>
 </video>
 <span class="life-video-label">Разговорная практика</span>
 </div>
 <div class="video-collage-item">
 <video data-lazy-video="" loop="" muted="" playsinline="" preload="none">
-<source src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/videos/IMG_8786.MOV" type="video/quicktime"/>
+<source src="./videos/IMG_8786.MOV" type="video/quicktime"/>
 </video>
 <span class="life-video-label">Праздники</span>
 </div>
@@ -3147,25 +3172,25 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
 <div class="video-collage-grid">
 <div class="video-collage-item">
 <video data-lazy-video="" loop="" muted="" playsinline="" preload="none">
-<source src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/videos/IMG_0629.MOV" type="video/quicktime"/>
+<source src="./videos/IMG_0629.MOV" type="video/quicktime"/>
 </video>
 <span class="life-video-label">საკლასო ოთახში</span>
 </div>
 <div class="video-collage-item">
 <video data-lazy-video="" loop="" muted="" playsinline="" preload="none">
-<source src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/videos/IMG_2948.MOV" type="video/quicktime"/>
+<source src="./videos/IMG_2948.MOV" type="video/quicktime"/>
 </video>
 <span class="life-video-label">სტუდენტური მომენტები</span>
 </div>
 <div class="video-collage-item">
 <video data-lazy-video="" loop="" muted="" playsinline="" preload="none">
-<source src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/videos/IMG_3018.MOV" type="video/quicktime"/>
+<source src="./videos/IMG_3018.MOV" type="video/quicktime"/>
 </video>
 <span class="life-video-label">საუბარი და პრაქტიკა</span>
 </div>
 <div class="video-collage-item">
 <video data-lazy-video="" loop="" muted="" playsinline="" preload="none">
-<source src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/videos/IMG_8786.MOV" type="video/quicktime"/>
+<source src="./videos/IMG_8786.MOV" type="video/quicktime"/>
 </video>
 <span class="life-video-label">აღნიშვნები</span>
 </div>
@@ -4564,6 +4589,7 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
     if (!SUPPORTED.includes(lang)) lang = 'en';
 
     activeLanguage = lang;
+    root.className = 'lang-' + lang;
     localStorage.setItem('aclass-language', lang);
 
     if (window.__aclassReviewSwiper) {
