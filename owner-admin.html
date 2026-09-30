@@ -37,6 +37,89 @@
       var(--bg);
     }
     button,input{font:inherit}
+
+
+    .feature-language-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+    .feature-box{border:1px solid var(--border);border-radius:13px;background:#fff;padding:12px}
+    .feature-box-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px}
+    .feature-box-head strong{font-size:12px;color:var(--navy)}
+    .feature-list{display:flex;flex-direction:column;gap:8px}
+    .feature-row{display:grid;grid-template-columns:1fr 34px;gap:7px;align-items:center}
+    .feature-row input{min-height:40px}
+    .feature-remove{width:34px;height:34px;border:1px solid #e5dddd;border-radius:9px;background:#fff;color:#a34b4b;cursor:pointer;font-size:18px;line-height:1}
+    .feature-remove:hover{background:#fff7f7;border-color:#e4bcbc}
+    .feature-empty{font-size:11px;color:var(--muted);padding:7px 2px}
+    .feature-meta-grid{margin-top:12px}
+    @media(max-width:900px){.feature-language-grid{grid-template-columns:1fr}}
+
+    /* Polished select controls */
+    select{
+      width:100%;
+      min-height:44px;
+      border:1px solid var(--border);
+      border-radius:13px;
+      padding:11px 42px 11px 14px;
+      background-color:#fff;
+      color:var(--navy);
+      font:inherit;
+      font-size:12px;
+      font-weight:700;
+      line-height:1.2;
+      outline:none;
+      cursor:pointer;
+      appearance:none;
+      -webkit-appearance:none;
+      -moz-appearance:none;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%235B6B6D' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat:no-repeat;
+      background-position:right 14px center;
+      background-size:16px 16px;
+      transition:border-color .18s ease,box-shadow .18s ease,background-color .18s ease;
+    }
+    select:hover{
+      border-color:#A9DCD5;
+      background-color:#FCFFFE;
+    }
+    select:focus{
+      border-color:var(--teal);
+      box-shadow:0 0 0 4px rgba(15,166,179,.10);
+    }
+    select:disabled{
+      opacity:.55;
+      cursor:not-allowed;
+      background-color:#F4F7F7;
+    }
+    select option{
+      background:#fff;
+      color:var(--navy);
+      font-weight:600;
+      padding:10px;
+    }
+
+    .filter-select{
+      min-width:145px;
+      min-height:44px;
+      padding:11px 40px 11px 13px;
+    }
+
+    .menu-row select{
+      min-height:38px;
+      border-radius:9px;
+      padding:8px 34px 8px 10px;
+      font-size:11px;
+      background-position:right 9px center;
+      background-size:14px 14px;
+    }
+
+    .package-currency{
+      min-height:40px;
+      min-width:105px;
+      border-radius:10px;
+      padding:9px 34px 9px 11px;
+      font-size:11px;
+      background-position:right 9px center;
+      background-size:14px 14px;
+    }
     button{cursor:pointer}
     .hidden{display:none!important}
     #authLoading{position:fixed;inset:0;z-index:200;display:grid;place-items:center;background:var(--bg);font-weight:800;color:var(--navy)}
@@ -176,21 +259,90 @@
     .cms-panel{display:none}.cms-panel.active{display:block}
     .cms-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
     .cms-card{min-width:0}.cms-list{display:flex;flex-direction:column;gap:9px}
-    .menu-row{display:grid;grid-template-columns:minmax(0,1fr) 120px 64px 36px;gap:8px;align-items:center;border:1px solid var(--border);padding:10px;border-radius:12px;background:#fff}
-    .menu-row input,.menu-row select,.field-label input{width:100%;border:1px solid var(--border);border-radius:9px;padding:9px 10px;font-size:11px;outline:none}
-    .menu-row input:focus,.field-label input:focus{border-color:var(--teal)}
-    .menu-row .drag{font-size:12px;color:#A1ADAE;text-align:center}
+    .menu-row{border:1px solid var(--border);border-radius:12px;background:#fff;overflow:hidden}
+    .menu-row summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 13px;font-size:11px;font-weight:900;color:var(--navy)}
+    .menu-row summary::-webkit-details-marker{display:none}
+    .menu-row summary:after{content:'⌄';font-size:15px;color:var(--muted);transition:transform .15s ease}
+    .menu-row[open] summary:after{transform:rotate(180deg)}
+    .menu-summary-left{display:flex;align-items:center;gap:9px;min-width:0}
+    .menu-summary-left .drag{font-size:12px;color:#A1ADAE}
+    .menu-summary-title{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .menu-summary-href{font-size:9px;color:var(--muted);font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:46%}
+    .menu-editor{padding:0 13px 13px;border-top:1px solid var(--border);display:grid;gap:10px}
+    .menu-editor-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:9px;padding-top:11px}
+    .menu-row input,.menu-row select,.field-label input{width:100%;border:1px solid var(--border);border-radius:9px;padding:9px 10px;font-size:11px;outline:none;background:#fff}.field-label input[type="checkbox"]{width:16px;height:16px;padding:0;margin:0}
+    .menu-row input:focus,.menu-row select:focus,.field-label input:focus{border-color:var(--teal)}
+    .menu-field{display:grid;gap:5px;font-size:9px;font-weight:900;color:var(--muted)}
+    .menu-actions{display:flex;align-items:center;justify-content:space-between;gap:8px}
+    .menu-active{display:flex;align-items:center;gap:7px;font-size:10px;font-weight:800;color:var(--muted)}
     .tiny-btn{border:1px solid var(--border);background:#fff;border-radius:8px;padding:8px;font-size:10px;font-weight:800}
     .tiny-btn.delete{color:#c44343}.cms-status{font-size:10px;color:var(--muted);margin-top:10px}
     .cms-page-layout{display:grid;grid-template-columns:290px minmax(0,1fr);gap:18px;align-items:start}
     .page-list{display:flex;flex-direction:column;gap:6px}.page-list-item{border:1px solid var(--border);background:#fff;border-radius:10px;padding:11px 12px;text-align:left;cursor:pointer}.page-list-item.active{border-color:#8BD8D1;background:#F1FBF9}.page-list-item strong{display:block;font-size:11px}.page-list-item span{font-size:9px;color:var(--muted)}
     .editor-top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:16px}.editor-top h3{margin:3px 0 0}.editor-actions{display:flex;gap:7px}.small-primary{padding:10px 13px;font-size:10px}.danger-btn{color:#c44343}
-    .field-label{display:block;font-size:10px;font-weight:900;margin:0 0 13px}.field-label input{display:block;margin-top:6px;font-size:11px}.field-label input[type="checkbox"]{display:inline-block;width:16px;margin:0}
+    .field-label{display:block;font-size:10px;font-weight:900;margin:0 0 13px}.field-label input{display:block;margin-top:6px;font-size:11px}
     .editor-toolbar{display:flex;gap:5px;flex-wrap:wrap;border:1px solid var(--border);border-bottom:0;border-radius:10px 10px 0 0;padding:7px;background:#F8FBFA}.editor-toolbar button{border:1px solid var(--border);background:#fff;border-radius:7px;padding:6px 9px;font-size:10px}.content-editor{min-height:390px;border:1px solid var(--border);border-radius:0 0 10px 10px;padding:16px;font-size:12px;line-height:1.7;outline:none;background:#fff}.content-editor:focus{border-color:var(--teal)}
     .publish-toggle{display:flex;gap:18px;align-items:center;flex-wrap:wrap;font-size:10px;font-weight:800;margin-top:12px}.publish-toggle label{display:inline-flex;align-items:center;gap:7px;width:auto}.publish-toggle input[type="checkbox"]{width:16px;height:16px;margin:0;flex:0 0 auto}.cms-message{margin-top:12px;padding:10px;border-radius:9px;background:#EAF8F1;color:#137A55;font-size:10px;font-weight:800}.cms-message.error{background:#FFF0F0;color:#B13C3C}.editor-empty{min-height:450px;display:grid;place-items:center;text-align:center;align-content:center;color:var(--muted)}.empty-icon{font-size:28px;color:var(--teal);margin-bottom:7px}.editor-empty h3{margin:0;color:var(--navy)}.editor-empty p{font-size:11px}
-    @media(max-width:900px){.cms-grid,.cms-page-layout{grid-template-columns:1fr}.menu-row{grid-template-columns:1fr 110px 50px 34px}.editor-card{min-height:500px}}
+    @media(max-width:900px){.cms-grid,.cms-page-layout{grid-template-columns:1fr}.menu-editor-grid{grid-template-columns:1fr}.menu-summary-href{max-width:42%}.editor-card{min-height:500px}}
 
-  </style>
+
+    .page-editor-modes{display:flex;gap:7px;align-items:center;margin:12px 0 0;border-bottom:1px solid var(--border);padding-bottom:8px}
+    .page-editor-mode{border:1px solid var(--border);background:#fff;color:var(--muted);border-radius:9px;padding:8px 11px;font-size:10px;font-weight:900;cursor:pointer}
+    .page-editor-mode.active{background:#EAF8F1;color:#008D9D;border-color:#CBEDE1}
+    .page-editor-workspace{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:14px;margin-top:10px}
+    .editor-pane,.site-preview-pane{border:1px solid var(--border);border-radius:12px;background:#fff;overflow:hidden;min-width:0}
+    .pane-head{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 12px;border-bottom:1px solid var(--border);background:#FAFCFC}
+    .pane-head strong{font-size:10px;color:var(--navy)}
+    .pane-head span{font-size:9px;color:var(--muted)}
+    .content-editor.visual-mode{min-height:520px;border:0;border-radius:0;padding:20px;overflow:auto}
+    .html-editor{width:100%;min-height:520px;border:0;border-radius:0;padding:16px;font:11px/1.55 ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;resize:vertical;outline:none;box-sizing:border-box;color:#173033;background:#FCFEFE}
+    .page-draft-preview{width:100%;height:560px;border:0;display:block;background:#F7FAF8}
+    .live-site-preview{width:100%;height:560px;border:0;display:block;background:#fff}
+    .preview-toolbar{display:flex;gap:6px;align-items:center}
+    .preview-link{font-size:9px;font-weight:900;color:#008D9D;text-decoration:none}
+    .editor-note{padding:9px 12px;background:#FFF9E8;color:#7C6414;border-top:1px solid #F0E4B8;font-size:9px;line-height:1.5}
+    .empty-content-note{margin:10px 0 0;padding:10px 12px;border-radius:9px;background:#FFF4E8;color:#875E25;font-size:9px;line-height:1.5}
+    .current-site-label{font-size:9px;font-weight:900;color:#008D9D}
+    @media(max-width:1100px){.page-editor-workspace{grid-template-columns:1fr}.live-site-preview,.page-draft-preview{height:430px}}
+  
+/* Single visual page editor */
+.editor-workspace-single{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(360px,.9fr);gap:18px;align-items:start}
+.editor-pane-full{width:100%;min-width:0}
+.editor-pane-full .pane-head{min-height:62px}
+.editor-pane-full .pane-head strong{display:block}
+.editor-pane-full .pane-head span{display:block;margin-top:4px}
+.editor-toolbar{display:flex;align-items:center;flex-wrap:wrap;gap:7px;padding:10px 12px;border:1px solid #dfe9e7;border-bottom:0;border-radius:12px 12px 0 0;background:#f8fbfa}
+.editor-toolbar button{min-width:38px;height:34px;padding:0 10px;border:1px solid #dbe7e5;border-radius:8px;background:#fff;color:#203337;cursor:pointer;font-weight:700}
+.editor-toolbar button:hover{border-color:#0fa6b3;color:#0fa6b3}
+.content-editor{min-height:520px;padding:28px 32px;border:1px solid #dfe9e7;border-radius:0 0 12px 12px;background:#fff;color:#253538;line-height:1.75;font-size:16px;outline:none;overflow:auto}
+.content-editor:focus{border-color:#0fa6b3;box-shadow:0 0 0 3px rgba(15,166,179,.10)}
+.content-editor h1,.content-editor h2,.content-editor h3{color:#15282b;line-height:1.25;margin:1.3em 0 .55em}
+.content-editor p{margin:.7em 0}
+.content-editor ul,.content-editor ol{padding-left:1.5em}
+.content-editor a{color:#0fa6b3}
+@media (max-width:1100px){.editor-workspace-single{grid-template-columns:1fr}.site-preview-pane{min-width:0}}
+
+/* Focused Website CMS: Policies + Products */
+.package-admin-list{display:grid;gap:18px}
+.package-group{border:1px solid var(--border);border-radius:16px;background:#fff;overflow:hidden}
+.package-group-head{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:15px 18px;background:#f7fbfa;border-bottom:1px solid var(--border)}
+.package-group-head strong{font-size:14px;color:#193336}.package-group-head span{font-size:12px;color:var(--muted)}
+.package-group-items{display:grid;gap:10px;padding:12px}
+.package-admin-row{display:grid;grid-template-columns:minmax(230px,1.5fr) 150px 130px 130px minmax(150px,1fr);gap:12px;align-items:center;padding:14px;border:1px solid #e7eeee;border-radius:13px;background:#fff}
+.package-admin-row .package-name strong{display:block;font-size:14px}.package-admin-row .package-name small{display:block;color:var(--muted);margin-top:4px}
+.package-admin-row .field-label{margin:0}.package-admin-row input,.package-admin-row select{width:100%}
+.package-admin-actions{display:flex;align-items:center;gap:8px;justify-content:flex-end}.package-admin-actions button{white-space:nowrap}
+.package-admin-note{display:flex;gap:10px;align-items:flex-start;margin-bottom:16px;padding:12px 14px;border:1px solid #dcece9;border-radius:12px;background:#f7fbfa;color:#526467;font-size:12px;line-height:1.5}.package-admin-note strong{color:#1c3437;white-space:nowrap}
+.package-status{display:flex;align-items:center;gap:7px;min-height:40px}.package-status input{width:auto}.package-price-input{text-align:right;font-weight:700}
+.product-editor{margin-top:18px;padding:20px;border:1px solid var(--border);border-radius:16px;background:#fbfdfd}.product-editor.hidden{display:none}
+.product-editor-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.product-editor-grid .full{grid-column:1/-1}
+.product-editor textarea{width:100%;min-height:92px;resize:vertical}.product-editor .editor-section{margin-top:18px;padding-top:18px;border-top:1px solid var(--border)}
+.product-editor .editor-section h4{margin:0 0 10px;color:#193336}.product-editor-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:18px}.feature-hint{font-size:11px;color:var(--muted);margin-top:5px}
+.product-badges{display:flex;gap:6px;flex-wrap:wrap;margin-top:7px}.product-badge{font-size:10px;padding:4px 7px;border-radius:999px;background:#eef7f5;color:#315c5c}.product-badge.warn{background:#fff5df;color:#8b6416}
+@media(max-width:1100px){.package-admin-row{grid-template-columns:1fr 1fr}.package-admin-actions{justify-content:flex-start}.package-status{align-self:center}.product-editor-grid{grid-template-columns:1fr}}
+@media(max-width:700px){.package-admin-row{grid-template-columns:1fr}.package-admin-actions{justify-content:stretch}.package-admin-actions button{flex:1}.package-group-head{align-items:flex-start;flex-direction:column}}
+
+</style>
 </head>
 <body class="auth-initializing">
 <div id="authLoading"><div class="loading-box">Checking Owner session…</div></div>
@@ -406,7 +558,7 @@
         <div class="welcome">
           <div>
             <h2>Website</h2>
-            <p>Edit navigation, footer links and page text without opening the HTML.</p>
+            <p>Manage legal pages and package pricing used for student enrollment.</p>
           </div>
           <div class="language-switch" id="cmsLanguageSwitch">
             <button class="lang-btn active" data-lang="en">EN</button>
@@ -416,59 +568,177 @@
         </div>
 
         <div class="cms-tabs">
-          <button class="cms-tab active" data-cms-tab="menus">Header & Footer</button>
-          <button class="cms-tab" data-cms-tab="pages">Pages</button>
+          <button class="cms-tab active" data-cms-tab="policies">Policies</button>
+          <button class="cms-tab" data-cms-tab="packages">Packages & Prices</button>
         </div>
 
-        <div id="cmsMenusPanel" class="cms-panel active">
-          <div class="cms-grid">
-            <div class="card cms-card">
-              <div class="card-head">
-                <div><h3>Header menu</h3><p>Change titles and links shown in the main navigation.</p></div>
-                <button class="ghost" id="addHeaderItem">+ Add</button>
-              </div>
-              <div id="headerMenuList" class="cms-list"></div>
-              <div class="coming hidden" id="headerMenuEmpty">No header items yet.</div>
-            </div>
-            <div class="card cms-card">
-              <div class="card-head">
-                <div><h3>Footer menu</h3><p>Manage footer navigation and legal links.</p></div>
-                <button class="ghost" id="addFooterItem">+ Add</button>
-              </div>
-              <div id="footerMenuList" class="cms-list"></div>
-              <div class="coming hidden" id="footerMenuEmpty">No footer items yet.</div>
-            </div>
-          </div>
-        </div>
-
-        <div id="cmsPagesPanel" class="cms-panel">
+        <div id="cmsPoliciesPanel" class="cms-panel active">
           <div class="cms-page-layout">
             <div class="card cms-card page-list-card">
-              <div class="card-head"><div><h3>Pages</h3><p>Separate editable documents for each page.</p></div><button class="ghost" id="addPageButton">+ New page</button></div>
-              <div id="pageList" class="page-list"></div>
+              <div class="card-head">
+                <div>
+                  <h3>Legal pages</h3>
+                  <p>Edit the existing policy pages directly.</p>
+                </div>
+              </div>
+              <div id="policyList" class="page-list"></div>
+              <div id="policyEmpty" class="coming hidden">No policy pages found for this language.</div>
             </div>
+
             <div class="card cms-card editor-card">
-              <div id="pageEditorEmpty" class="editor-empty"><div class="empty-icon">✎</div><h3>Select a page</h3><p>Choose a page on the left to edit its title and content.</p></div>
-              <form id="pageEditor" class="hidden">
-                <input type="hidden" id="pageId">
+              <div id="policyEditorEmpty" class="editor-empty">
+                <div class="empty-icon">✎</div>
+                <h3>Select a policy</h3>
+                <p>Choose Privacy Policy, Terms & Conditions, or Refund Policy.</p>
+              </div>
+
+              <form id="policyEditor" class="hidden">
+                <input type="hidden" id="policyId">
                 <div class="editor-top">
-                  <div><span class="eyebrow">Page editor</span><h3 id="pageEditorHeading">Edit page</h3></div>
-                  <div class="editor-actions"><button type="button" class="ghost danger-btn" id="deletePageButton">Delete</button><button type="submit" class="primary small-primary" id="savePageButton">Save changes</button></div>
-                </div>
-                <label class="field-label">Slug<input id="pageSlug" required placeholder="privacy-policy"></label>
-                <label class="field-label">Page title<input id="pageTitle" required></label>
-                <div class="field-label">Content
-                  <div class="editor-toolbar" id="editorToolbar">
-                    <button type="button" data-cmd="bold"><b>B</b></button><button type="button" data-cmd="italic"><i>I</i></button><button type="button" data-cmd="insertUnorderedList">• List</button><button type="button" data-cmd="insertOrderedList">1. List</button><button type="button" data-cmd="formatBlock" data-value="h2">H2</button><button type="button" data-cmd="formatBlock" data-value="p">P</button>
+                  <div>
+                    <span class="eyebrow">Policy editor</span>
+                    <h3 id="policyEditorHeading">Edit policy</h3>
                   </div>
-                  <div id="pageContentEditor" class="content-editor" contenteditable="true"></div>
+                  <div class="editor-actions">
+                    <button type="submit" class="primary small-primary">Save changes</button>
+                  </div>
                 </div>
-                <label class="publish-toggle"><input type="checkbox" id="pagePublished" checked> Published</label>
-                <div id="cmsMessage" class="cms-message hidden"></div>
+
+                <label class="field-label">Page title
+                  <input id="policyTitle" required>
+                </label>
+
+                <div class="field-label">Policy content
+                  <div class="editor-workspace-single">
+                    <div class="editor-pane editor-pane-full">
+                      <div class="pane-head">
+                        <div>
+                          <strong>Direct editor</strong>
+                          <span>Edit the policy text directly — like WordPress.</span>
+                        </div>
+                      </div>
+                      <div class="editor-toolbar" id="policyEditorToolbar">
+                        <button type="button" data-cmd="bold"><b>B</b></button>
+                        <button type="button" data-cmd="italic"><i>I</i></button>
+                        <button type="button" data-cmd="insertUnorderedList">• List</button>
+                        <button type="button" data-cmd="insertOrderedList">1. List</button>
+                        <button type="button" data-cmd="formatBlock" data-value="h2">H2</button>
+                        <button type="button" data-cmd="formatBlock" data-value="h3">H3</button>
+                        <button type="button" data-cmd="formatBlock" data-value="p">P</button>
+                        <button type="button" data-cmd="createLink">Link</button>
+                      </div>
+                      <div id="policyContentEditor" class="content-editor visual-mode" contenteditable="true"></div>
+                    </div>
+
+                    <div class="site-preview-pane">
+                      <div class="pane-head">
+                        <div>
+                          <strong>Current website</strong>
+                          <div id="policySiteUrlLabel" class="current-site-label">Select a policy</div>
+                        </div>
+                        <div class="preview-toolbar">
+                          <a id="openPolicySite" class="preview-link" href="#" target="_blank" rel="noopener">Open ↗</a>
+                        </div>
+                      </div>
+                      <iframe id="policySitePreview" class="live-site-preview" title="Current policy preview"></iframe>
+                    </div>
+                  </div>
+                </div>
+
+                <label class="publish-toggle">
+                  <input type="checkbox" id="policyPublished" checked> Published
+                </label>
               </form>
             </div>
           </div>
         </div>
+
+        <div id="cmsPackagesPanel" class="cms-panel">
+          <div class="card cms-card">
+            <div class="card-head">
+              <div>
+                <h3>Packages & Products</h3>
+                <p>Manage the products customers will see and enroll in. Prices and product details are stored here for the website and checkout.</p>
+              </div>
+              <button class="primary small-primary" id="addPackageButton">+ Add product</button>
+            </div>
+
+            <div class="package-admin-note">
+              <strong>Product catalog</strong>
+              <span>Products are grouped by IELTS, SAT, and General English. You can edit titles, descriptions, lesson details, features, prices, and payment availability without touching the website code.</span>
+            </div>
+
+            <div id="packagesList" class="package-admin-list"></div>
+            <div id="packagesEmpty" class="coming hidden">No products yet. Click “Add product” to create the first one.</div>
+
+            <form id="productEditor" class="product-editor hidden">
+              <div class="editor-top">
+                <div><span class="eyebrow">Product editor</span><h3 id="productEditorHeading">Add product</h3></div>
+                <button type="button" class="ghost" id="cancelProductButton">Cancel</button>
+              </div>
+              <input type="hidden" id="productId">
+              <div class="product-editor-grid">
+                <label class="field-label">Category
+                  <select id="productCategory" class="product-select" required>
+                    <option value="">Select category</option><option value="ielts">IELTS</option><option value="sat">SAT</option><option value="general_english">General English</option>
+                  </select>
+                </label>
+                <label class="field-label">Product key
+                  <input id="productKey" required placeholder="ielts_group">
+                </label>
+                <label class="field-label">Title — English<input id="productNameEn" required></label>
+                <label class="field-label">Title — Russian<input id="productNameRu" required></label>
+                <label class="field-label">Title — Georgian<input id="productNameGe" required></label>
+                <label class="field-label">Format<input id="productFormat" placeholder="Group / Individual / Pair"></label>
+                <label class="field-label full">Description — English<textarea id="productDescEn"></textarea></label>
+                <label class="field-label full">Description — Russian<textarea id="productDescRu"></textarea></label>
+                <label class="field-label full">Description — Georgian<textarea id="productDescGe"></textarea></label>
+              </div>
+
+              <div class="editor-section">
+                <h4>Course details</h4>
+                <div class="product-editor-grid">
+                  <label class="field-label">Lessons<input id="productLessons" type="number" min="0" step="1" placeholder="16"></label>
+                  <label class="field-label">Lessons per week<input id="productLessonsWeek" type="number" min="0" step="1" placeholder="2"></label>
+                  <label class="field-label">Lesson length — minutes<input id="productLessonMinutes" type="number" min="0" step="1" placeholder="90"></label>
+                  <label class="field-label">Duration — weeks<input id="productDurationWeeks" type="number" min="0" step="1" placeholder="8"></label>
+                  <label class="field-label">Price<input id="productPrice" type="number" min="0" step="0.01" placeholder="0.00"></label>
+                  <label class="field-label">Currency<select id="productCurrency" class="product-select"><option value="GEL">GEL</option><option value="AMD">AMD</option></select></label>
+                </div>
+              </div>
+
+              <div class="editor-section">
+                <h4>Features</h4>
+                <div class="feature-language-grid">
+                  <div class="feature-box">
+                    <div class="feature-box-head"><strong>English</strong><button type="button" class="ghost tiny-btn" data-add-feature="en">+ Add feature</button></div>
+                    <div id="featureListEn" class="feature-list"></div>
+                  </div>
+                  <div class="feature-box">
+                    <div class="feature-box-head"><strong>Russian</strong><button type="button" class="ghost tiny-btn" data-add-feature="ru">+ Add feature</button></div>
+                    <div id="featureListRu" class="feature-list"></div>
+                  </div>
+                  <div class="feature-box">
+                    <div class="feature-box-head"><strong>Georgian</strong><button type="button" class="ghost tiny-btn" data-add-feature="ge">+ Add feature</button></div>
+                    <div id="featureListGe" class="feature-list"></div>
+                  </div>
+                </div>
+                <div class="product-editor-grid feature-meta-grid">
+                  <label class="field-label">Display order<input id="productSortOrder" type="number" step="1" value="0"></label>
+                </div>
+                <div class="feature-hint">Add each feature separately. Empty feature rows are ignored when saving.</div>
+              </div>
+
+              <div class="editor-section">
+                <label class="publish-toggle"><input type="checkbox" id="productActive" checked> Active</label>
+                <label class="publish-toggle"><input type="checkbox" id="productPaymentEnabled"> Payment enabled</label>
+              </div>
+              <div class="product-editor-actions"><button type="submit" class="primary">Save product</button></div>
+            </form>
+          </div>
+        </div>
+
+        <div id="cmsMessage" class="cms-message hidden"></div>
       </section>
 
     </main>  </div>
@@ -687,7 +957,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       weekday:'long', year:'numeric', month:'long', day:'numeric'
     });
 
-    await loadOrders();
+    loadOrders().catch(()=>{});
     return true;
   }
 
@@ -744,10 +1014,16 @@ document.addEventListener('DOMContentLoaded', async () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  document.getElementById('dashboardNav').addEventListener('click', () => showPage('dashboardPage'));
-  document.getElementById('ordersNav').addEventListener('click', () => showPage('ordersPage'));
+  document.getElementById('dashboardNav').addEventListener('click', () => { localStorage.setItem('aclassLastSection','dashboard'); showPage('dashboardPage'); });
+  document.getElementById('ordersNav').addEventListener('click', () => { localStorage.setItem('aclassLastSection','orders'); showPage('ordersPage'); });
   document.getElementById('dashboardOrdersButton').addEventListener('click', () => showPage('ordersPage'));
   document.getElementById('ordersRefreshButton').addEventListener('click', loadOrders);
+  const lastSection = localStorage.getItem('aclassLastSection');
+  if (lastSection === 'website') {
+    setTimeout(() => document.getElementById('websiteNav')?.click(), 0);
+  } else if (lastSection === 'orders') {
+    setTimeout(() => document.getElementById('ordersNav')?.click(), 0);
+  }
   document.getElementById('orderSearch').addEventListener('input', applyOrderFilters);
   document.getElementById('statusFilter').addEventListener('change', applyOrderFilters);
   document.getElementById('currencyFilter').addEventListener('change', applyOrderFilters);
@@ -777,11 +1053,21 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.getElementById('sidebar').classList.toggle('open');
   });
 
-  const { data: { session } } = await supabase.auth.getSession();
-  if (session && isRememberedSessionValid()) {
+  let initialSession = null;
+  try {
+    const sessionResult = await Promise.race([
+      supabase.auth.getSession(),
+      new Promise(resolve => setTimeout(() => resolve({data:{session:null}, timedOut:true}), 3500))
+    ]);
+    initialSession = sessionResult?.data?.session || null;
+  } catch (error) {
+    initialSession = null;
+  }
+
+  if (initialSession && isRememberedSessionValid()) {
     await openApp();
   } else {
-    if (session) await supabase.auth.signOut();
+    if (initialSession) await supabase.auth.signOut().catch(()=>{});
     clearRememberedLogin();
     loginView.classList.remove('hidden');
     appView.classList.add('hidden');
@@ -790,69 +1076,306 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   authLoading.classList.add('hidden');
   document.body.classList.remove('auth-initializing');
-});
 
-
-  /* Website CMS */
+  
+  /* Focused Website CMS: Policies + Packages */
   let cmsLanguage = 'en';
   let cmsPages = [];
-  let cmsMenus = [];
-  let selectedPageId = null;
+  let cmsPackages = [];
+  let selectedPolicyId = null;
+
+  const POLICY_SLUGS = ['privacy-policy','terms-and-conditions','refund-policy'];
+
+  const PACKAGE_SEED = [
+    {package_key:'ielts_sat_standard', name_en:'IELTS/SAT Standard Group', name_ru:'IELTS/SAT Standard Group', name_ge:'IELTS/SAT Standard Group', sort_order:1},
+    {package_key:'ielts_sat_intensive', name_en:'IELTS/SAT Intensive Group', name_ru:'IELTS/SAT Intensive Group', name_ge:'IELTS/SAT Intensive Group', sort_order:2},
+    {package_key:'ielts_sat_individual', name_en:'IELTS/SAT Individual', name_ru:'IELTS/SAT Individual', name_ge:'IELTS/SAT Individual', sort_order:3},
+    {package_key:'ielts_sat_pair', name_en:'IELTS/SAT Pair Package', name_ru:'IELTS/SAT Pair Package', name_ge:'IELTS/SAT Pair Package', sort_order:4},
+    {package_key:'general_english_group', name_en:'General English Group', name_ru:'Общий английский — группа', name_ge:'ზოგადი ინგლისური — ჯგუფი', sort_order:5},
+    {package_key:'general_english_individual', name_en:'General English Individual', name_ru:'Общий английский — индивидуально', name_ge:'ზოგადი ინგლისური — ინდივიდუალური', sort_order:6}
+  ];
 
   function cmsEsc(v){ return escapeHtml(v); }
+
   function cmsNotify(message, error=false){
-    const el=document.getElementById('cmsMessage'); if(!el) return;
-    el.textContent=message; el.classList.toggle('hidden',false); el.classList.toggle('error',error);
-    setTimeout(()=>el.classList.add('hidden'),2600);
+    const el=document.getElementById('cmsMessage');
+    if(!el) return;
+    el.textContent=message;
+    el.classList.toggle('hidden',false);
+    el.classList.toggle('error',error);
+    setTimeout(()=>el.classList.add('hidden'),3000);
   }
+
+  function currentPackageName(row){ return row['name_'+cmsLanguage] || row.name_en || row.package_key; }
+  function categoryLabel(category){ return ({ielts:'IELTS',sat:'SAT',general_english:'General English'})[category] || 'Needs category'; }
+  function linesToArray(value){ return String(value||'').split(/\r?\n/).map(x=>x.trim()).filter(Boolean); }
+  function arrayToLines(value){ return Array.isArray(value) ? value.join('\n') : ''; }
+  function numberOrNull(id){ const v=document.getElementById(id).value.trim(); return v===''?null:Number(v); }
+
+  function normalizePackageCategory(product){
+    const raw=String(product?.category||'').trim().toLowerCase().replace(/[\s-]+/g,'_');
+    if(raw==='ielts' || raw.includes('ielts')) return 'ielts';
+    if(raw==='sat' || raw.includes('sat')) return 'sat';
+    if(raw==='general_english' || raw.includes('general') || raw.includes('english')) return 'general_english';
+    const key=String(product?.package_key||'').toLowerCase();
+    if(key.includes('general_english')) return 'general_english';
+    if(key.includes('ielts')) return 'ielts';
+    if(key.includes('sat')) return 'sat';
+    return 'uncategorized';
+  }
+
+  function renderPackages(){
+    const list=document.getElementById('packagesList');
+    const empty=document.getElementById('packagesEmpty');
+    if(!list) return;
+    if(!cmsPackages.length){
+      list.innerHTML='';
+      if(empty){
+        empty.classList.remove('hidden');
+        empty.innerHTML='<strong>No packages were returned from Supabase.</strong><br><span>Check the site_packages table and your Owner permissions.</span>';
+      }
+      return;
+    }
+    if(empty) empty.classList.add('hidden');
+
+    const groups=[['ielts','IELTS'],['sat','SAT'],['general_english','General English'],['uncategorized','Other products']];
+    list.innerHTML=groups.map(([key,label])=>{
+      const items=cmsPackages.filter(p=>normalizePackageCategory(p)===key);
+      if(!items.length) return '';
+      return `<section class="package-group">
+        <div class="package-group-head">
+          <div><strong>${label}</strong><span> · ${items.length} product${items.length===1?'':'s'}</span></div>
+          <button type="button" class="ghost tiny-btn" data-add-category="${key==='uncategorized'?'':key}">+ Add here</button>
+        </div>
+        <div class="package-group-items">${items.map(p=>{
+          return `<div class="package-admin-row" data-package-id="${p.id}">
+            <div class="package-name">
+              <strong>${cmsEsc(currentPackageName(p))}</strong>
+              <small>${cmsEsc(p.package_key||'')}</small>
+              <div class="product-badges">
+                <span class="product-badge">${cmsEsc(categoryLabel(normalizePackageCategory(p)))}</span>
+                ${p.active?'<span class="product-badge">Active</span>':'<span class="product-badge warn">Inactive</span>'}
+                ${p.payment_enabled?'<span class="product-badge">Payment on</span>':'<span class="product-badge warn">Payment off</span>'}
+              </div>
+            </div>
+            <label class="field-label">Price<input class="package-price-input" type="number" min="0" step="0.01" value="${p.price==null?'':cmsEsc(p.price)}" placeholder="0.00"></label>
+            <label class="field-label">Currency<select class="package-currency"><option value="GEL" ${p.currency==='GEL'?'selected':''}>GEL</option><option value="AMD" ${p.currency==='AMD'?'selected':''}>AMD</option></select></label>
+            <label class="package-status"><input type="checkbox" class="package-payment-enabled" ${p.payment_enabled?'checked':''}><span>Payment</span></label>
+            <div class="package-admin-actions"><button type="button" class="tiny-btn" data-edit-package>Edit</button><button type="button" class="tiny-btn" data-save-package>Save</button></div>
+          </div>`;
+        }).join('')}</div>
+      </section>`;
+    }).join('');
+  }
+
+  function featureValues(language){
+    return Array.from(document.querySelectorAll(`#featureList${language.toUpperCase()} .feature-input`))
+      .map(input=>input.value.trim()).filter(Boolean);
+  }
+
+  function renderFeatureInputs(language, values){
+    const list=document.getElementById(`featureList${language.toUpperCase()}`);
+    if(!list)return;
+    const items=Array.isArray(values) ? values : [];
+    list.innerHTML='';
+    if(!items.length){
+      addFeatureInput(language,'');
+      return;
+    }
+    items.forEach(value=>addFeatureInput(language,value));
+  }
+
+  function addFeatureInput(language, value=''){
+    const list=document.getElementById(`featureList${language.toUpperCase()}`);
+    if(!list)return;
+    const row=document.createElement('div');
+    row.className='feature-row';
+    row.innerHTML=`<input class="feature-input" type="text" value="${cmsEsc(value)}" placeholder="Feature"><button type="button" class="feature-remove" title="Remove feature" aria-label="Remove feature">×</button>`;
+    row.querySelector('.feature-remove').addEventListener('click',()=>{
+      row.remove();
+      if(!list.querySelector('.feature-row')) addFeatureInput(language,'');
+    });
+    list.appendChild(row);
+  }
+
+  function openProductEditor(product=null, category=''){
+    document.getElementById('productEditor').classList.remove('hidden');
+    document.getElementById('productEditorHeading').textContent=product?'Edit product':'Add product';
+    productKeyTouched=!!product;
+    document.getElementById('productId').value=product?.id||'';
+    document.getElementById('productCategory').value=product?.category||category||'';
+    document.getElementById('productKey').value=product?.package_key||'';
+    document.getElementById('productNameEn').value=product?.name_en||'';
+    document.getElementById('productNameRu').value=product?.name_ru||'';
+    document.getElementById('productNameGe').value=product?.name_ge||'';
+    document.getElementById('productFormat').value=product?.format||'';
+    document.getElementById('productDescEn').value=product?.description_en||'';
+    document.getElementById('productDescRu').value=product?.description_ru||'';
+    document.getElementById('productDescGe').value=product?.description_ge||'';
+    document.getElementById('productLessons').value=product?.lessons??'';
+    document.getElementById('productLessonsWeek').value=product?.lessons_per_week??'';
+    document.getElementById('productLessonMinutes').value=product?.lesson_length_minutes??'';
+    document.getElementById('productDurationWeeks').value=product?.duration_weeks??'';
+    document.getElementById('productPrice').value=product?.price??'';
+    document.getElementById('productCurrency').value=product?.currency||'GEL';
+    renderFeatureInputs('en', product?.features_en);
+    renderFeatureInputs('ru', product?.features_ru);
+    renderFeatureInputs('ge', product?.features_ge);
+    document.getElementById('productSortOrder').value=product?.sort_order??0;
+    document.getElementById('productActive').checked=product?.active!==false;
+    document.getElementById('productPaymentEnabled').checked=product?.payment_enabled===true;
+    document.getElementById('productEditor').scrollIntoView({behavior:'smooth',block:'start'});
+  }
+  function closeProductEditor(){ document.getElementById('productEditor').classList.add('hidden'); }
+
   async function loadCMS(){
-    const [pagesRes, menusRes] = await Promise.all([
-      supabase.from('site_pages').select('*').eq('language',cmsLanguage).order('slug'),
-      supabase.from('site_menu_items').select('*').eq('language',cmsLanguage).order('location').order('sort_order')
-    ]);
-    if(pagesRes.error){ cmsNotify('CMS tables are not ready yet. Run aclass-cms.sql in Supabase first.',true); return; }
-    if(menusRes.error){ cmsNotify('Could not load menus: '+menusRes.error.message,true); return; }
-    cmsPages=pagesRes.data||[]; cmsMenus=menusRes.data||[]; renderCMS();
+    const {data:pages,error:pagesError}=await supabase.from('site_pages').select('*').eq('language',cmsLanguage).order('slug');
+    if(pagesError){ cmsNotify('Could not load website pages: '+pagesError.message,true); return; }
+    const {data:packages,error:packagesError}=await supabase.from('site_packages').select('*').order('sort_order').order('id');
+    if(packagesError){ cmsNotify('Packages table is not ready yet. Run the upgraded package SQL first.',true); cmsPages=pages||[]; cmsPackages=[]; renderPolicies(); renderPackages(); return; }
+    cmsPages=pages||[]; cmsPackages=packages||[]; renderPolicies(); renderPackages();
   }
-  function renderCMS(){
-    const header=cmsMenus.filter(x=>x.location==='header'); const footer=cmsMenus.filter(x=>x.location==='footer');
-    renderMenuList('headerMenuList','headerMenuEmpty',header); renderMenuList('footerMenuList','footerMenuEmpty',footer);
-    const list=document.getElementById('pageList');
-    list.innerHTML=cmsPages.map(p=>`<button class="page-list-item ${p.id===selectedPageId?'active':''}" data-page-id="${p.id}"><strong>${cmsEsc(p.title||p.slug)}</strong><span>${cmsEsc(p.slug)}</span></button>`).join('');
-    if(selectedPageId && !cmsPages.some(p=>p.id===selectedPageId)) selectedPageId=null;
-  }
-  function renderMenuList(id,emptyId,items){
-    const el=document.getElementById(id); el.innerHTML=items.map(item=>`<div class="menu-row" data-menu-id="${item.id}"><span class="drag">☷</span><input class="menu-title" value="${cmsEsc(item.title)}" placeholder="Title"><input class="menu-href" value="${cmsEsc(item.href)}" placeholder="#section or page.html"><button class="tiny-btn" data-save-menu="${item.id}">Save</button><button class="tiny-btn delete" data-delete-menu="${item.id}">×</button></div>`).join('');
-    document.getElementById(emptyId).classList.toggle('hidden',items.length!==0);
-  }
-  function openPageEditor(page){
-    selectedPageId=page.id; document.getElementById('pageEditorEmpty').classList.add('hidden'); document.getElementById('pageEditor').classList.remove('hidden');
-    document.getElementById('pageId').value=page.id; document.getElementById('pageSlug').value=page.slug; document.getElementById('pageTitle').value=page.title; document.getElementById('pagePublished').checked=page.published; document.getElementById('pageContentEditor').innerHTML=page.content_html||''; document.getElementById('pageEditorHeading').textContent=page.title||'Edit page'; renderCMS();
-  }
-  async function addMenu(location){
-    const next=cmsMenus.filter(x=>x.location===location).length;
-    const {data,error}=await supabase.from('site_menu_items').insert({location,language:cmsLanguage,title:location==='header'?'New menu item':'New footer link',href:'#',sort_order:next,active:true}).select().single();
-    if(error){cmsNotify(error.message,true);return;} cmsMenus.push(data); renderCMS();
-  }
+
   document.getElementById('websiteNav').addEventListener('click', async ()=>{
+    localStorage.setItem('aclassLastSection','website');
     showPage('websitePage');
     await loadCMS();
   });
-  document.getElementById('addHeaderItem').addEventListener('click',()=>addMenu('header'));
-  document.getElementById('addFooterItem').addEventListener('click',()=>addMenu('footer'));
-  document.getElementById('cmsLanguageSwitch').addEventListener('click',e=>{const b=e.target.closest('[data-lang]');if(!b)return;cmsLanguage=b.dataset.lang;document.querySelectorAll('.lang-btn').forEach(x=>x.classList.toggle('active',x===b));selectedPageId=null;document.getElementById('pageEditor').classList.add('hidden');document.getElementById('pageEditorEmpty').classList.remove('hidden');loadCMS();});
-  document.querySelector('.cms-tabs').addEventListener('click',e=>{const b=e.target.closest('[data-cms-tab]');if(!b)return;document.querySelectorAll('.cms-tab').forEach(x=>x.classList.toggle('active',x===b));document.getElementById('cmsMenusPanel').classList.toggle('active',b.dataset.cmsTab==='menus');document.getElementById('cmsPagesPanel').classList.toggle('active',b.dataset.cmsTab==='pages');});
-  document.getElementById('headerMenuList').addEventListener('click',menuAction); document.getElementById('footerMenuList').addEventListener('click',menuAction);
-  async function menuAction(e){
-    const save=e.target.closest('[data-save-menu]'), del=e.target.closest('[data-delete-menu]'); const row=e.target.closest('[data-menu-id]'); if(!row)return; const id=Number(row.dataset.menuId);
-    if(save){const {error}=await supabase.from('site_menu_items').update({title:row.querySelector('.menu-title').value.trim(),href:row.querySelector('.menu-href').value.trim()||'#',updated_at:new Date().toISOString()}).eq('id',id);if(error)cmsNotify(error.message,true);else cmsNotify('Menu item saved.');}
-    if(del){if(!confirm('Delete this menu item?'))return;const {error}=await supabase.from('site_menu_items').delete().eq('id',id);if(error)cmsNotify(error.message,true);else loadCMS();}
-  }
-  document.getElementById('pageList').addEventListener('click',e=>{const b=e.target.closest('[data-page-id]');if(!b)return;const page=cmsPages.find(p=>String(p.id)===b.dataset.pageId);if(page)openPageEditor(page);});
-  document.getElementById('pageEditor').addEventListener('submit',async e=>{e.preventDefault();const id=Number(document.getElementById('pageId').value);const payload={slug:document.getElementById('pageSlug').value.trim(),title:document.getElementById('pageTitle').value.trim(),content_html:document.getElementById('pageContentEditor').innerHTML,published:document.getElementById('pagePublished').checked,updated_at:new Date().toISOString()};if(!payload.slug||!payload.title){cmsNotify('Slug and title are required.',true);return;}const {data,error}=await supabase.from('site_pages').update(payload).eq('id',id).select().single();if(error){cmsNotify(error.message,true);return;}const i=cmsPages.findIndex(p=>p.id===id);if(i>=0)cmsPages[i]=data;openPageEditor(data);cmsNotify('Page saved.');});
-  document.getElementById('deletePageButton').addEventListener('click',async()=>{const id=Number(document.getElementById('pageId').value);if(!id||!confirm('Delete this page?'))return;const {error}=await supabase.from('site_pages').delete().eq('id',id);if(error){cmsNotify(error.message,true);return;}selectedPageId=null;document.getElementById('pageEditor').classList.add('hidden');document.getElementById('pageEditorEmpty').classList.remove('hidden');loadCMS();});
-  document.getElementById('addPageButton').addEventListener('click',async()=>{const slug=prompt('Page slug, for example: about-us');if(!slug)return;const title=prompt('Page title');if(!title)return;const {data,error}=await supabase.from('site_pages').insert({slug:slug.trim().toLowerCase().replace(/\s+/g,'-'),language:cmsLanguage,title:title.trim(),content_html:'',published:true}).select().single();if(error){cmsNotify(error.message,true);return;}cmsPages.push(data);openPageEditor(data);});
-  document.getElementById('editorToolbar').addEventListener('click',e=>{const b=e.target.closest('[data-cmd]');if(!b)return;document.getElementById('pageContentEditor').focus();document.execCommand(b.dataset.cmd,false,b.dataset.value||null);});
+
+  document.getElementById('cmsLanguageSwitch').addEventListener('click',e=>{
+    const b=e.target.closest('[data-lang]');
+    if(!b)return;
+    cmsLanguage=b.dataset.lang;
+    document.querySelectorAll('.lang-btn').forEach(x=>x.classList.toggle('active',x===b));
+    selectedPolicyId=null;
+    document.getElementById('policyEditor').classList.add('hidden');
+    document.getElementById('policyEditorEmpty').classList.remove('hidden');
+    loadCMS();
+  });
+
+  document.querySelector('.cms-tabs').addEventListener('click',e=>{
+    const b=e.target.closest('[data-cms-tab]');
+    if(!b)return;
+    document.querySelectorAll('.cms-tab').forEach(x=>x.classList.toggle('active',x===b));
+    document.getElementById('cmsPoliciesPanel').classList.toggle('active',b.dataset.cmsTab==='policies');
+    document.getElementById('cmsPackagesPanel').classList.toggle('active',b.dataset.cmsTab==='packages');
+  });
+
+  document.getElementById('policyList').addEventListener('click',e=>{
+    const b=e.target.closest('[data-policy-id]');
+    if(!b)return;
+    const page=cmsPages.find(p=>String(p.id)===b.dataset.policyId);
+    if(page)openPolicyEditor(page);
+  });
+
+  document.getElementById('policyEditorToolbar').addEventListener('click',e=>{
+    const b=e.target.closest('[data-cmd]');
+    if(!b)return;
+    document.getElementById('policyContentEditor').focus();
+    if(b.dataset.cmd==='createLink'){
+      const url=prompt('Link URL');
+      if(url)document.execCommand('createLink',false,url);
+      return;
+    }
+    document.execCommand(b.dataset.cmd,false,b.dataset.value||null);
+  });
+
+  document.getElementById('policyEditor').addEventListener('submit',async e=>{
+    e.preventDefault();
+    const id=Number(document.getElementById('policyId').value);
+    const payload={
+      title:document.getElementById('policyTitle').value.trim(),
+      content_html:document.getElementById('policyContentEditor').innerHTML,
+      published:document.getElementById('policyPublished').checked,
+      updated_at:new Date().toISOString()
+    };
+
+    if(!payload.title){
+      cmsNotify('Policy title is required.',true);
+      return;
+    }
+
+    const {data,error}=await supabase.from('site_pages').update(payload).eq('id',id).select().single();
+    if(error){cmsNotify(error.message,true);return;}
+
+    const index=cmsPages.findIndex(p=>p.id===id);
+    if(index>=0)cmsPages[index]=data;
+    openPolicyEditor(data);
+    cmsNotify('Policy saved.');
+  });
+
+  document.getElementById('addPackageButton').addEventListener('click',()=>openProductEditor());
+  document.getElementById('cancelProductButton').addEventListener('click',closeProductEditor);
+  document.querySelectorAll('[data-add-feature]').forEach(btn=>btn.addEventListener('click',()=>addFeatureInput(btn.dataset.addFeature,'')));
+
+  document.getElementById('packagesList').addEventListener('click',async e=>{
+    const add=e.target.closest('[data-add-category]');
+    if(add){ openProductEditor(null,add.dataset.addCategory||''); return; }
+    const edit=e.target.closest('[data-edit-package]');
+    if(edit){ const row=edit.closest('[data-package-id]'); const product=cmsPackages.find(p=>String(p.id)===row.dataset.packageId); if(product)openProductEditor(product); return; }
+    const save=e.target.closest('[data-save-package]');
+    if(!save)return;
+    const row=save.closest('[data-package-id]'); const id=Number(row.dataset.packageId);
+    const priceInput=row.querySelector('.package-price-input'); const price=priceInput.value.trim()===''?null:Number(priceInput.value);
+    if(price!==null && (!Number.isFinite(price)||price<0)){cmsNotify('Enter a valid non-negative price.',true);return;}
+    const paymentEnabled=row.querySelector('.package-payment-enabled').checked;
+    if(paymentEnabled && (price===null || price<=0)){cmsNotify('Set a real price before enabling payment.',true);return;}
+    const payload={price,currency:row.querySelector('.package-currency').value,payment_enabled:paymentEnabled,updated_at:new Date().toISOString()};
+    const {data,error}=await supabase.from('site_packages').update(payload).eq('id',id).select().single();
+    if(error){cmsNotify(error.message,true);return;} const index=cmsPackages.findIndex(p=>p.id===id); if(index>=0)cmsPackages[index]=data; renderPackages(); cmsNotify('Price and payment settings saved.');
+  });
+
+  document.getElementById('productEditor').addEventListener('submit',async e=>{
+    e.preventDefault();
+    const idValue=document.getElementById('productId').value.trim();
+    const category=document.getElementById('productCategory').value;
+    const packageKey=document.getElementById('productKey').value.trim();
+    const price=numberOrNull('productPrice');
+    const paymentEnabled=document.getElementById('productPaymentEnabled').checked;
+    if(!category){cmsNotify('Choose a product category.',true);return;}
+    if(!packageKey){cmsNotify('Product key is required.',true);return;}
+    if(price!==null && (!Number.isFinite(price)||price<0)){cmsNotify('Enter a valid price.',true);return;}
+    if(paymentEnabled && (price===null || price<=0)){cmsNotify('Set a real price before enabling payment.',true);return;}
+    const payload={
+      package_key:packageKey, category,
+      name_en:document.getElementById('productNameEn').value.trim(), name_ru:document.getElementById('productNameRu').value.trim(), name_ge:document.getElementById('productNameGe').value.trim(),
+      description_en:document.getElementById('productDescEn').value.trim(), description_ru:document.getElementById('productDescRu').value.trim(), description_ge:document.getElementById('productDescGe').value.trim(),
+      lessons:numberOrNull('productLessons'), lessons_per_week:numberOrNull('productLessonsWeek'), lesson_length_minutes:numberOrNull('productLessonMinutes'), duration_weeks:numberOrNull('productDurationWeeks'), format:document.getElementById('productFormat').value.trim(),
+      price, currency:document.getElementById('productCurrency').value,
+      features_en:featureValues('en'), features_ru:featureValues('ru'), features_ge:featureValues('ge'),
+      sort_order:Number(document.getElementById('productSortOrder').value||0), active:document.getElementById('productActive').checked, payment_enabled:paymentEnabled, updated_at:new Date().toISOString()
+    };
+    if(!payload.name_en||!payload.name_ru||!payload.name_ge){cmsNotify('Add the product title in all three languages.',true);return;}
+    let result;
+    if(idValue){ result=await supabase.from('site_packages').update(payload).eq('id',Number(idValue)).select().single(); }
+    else { result=await supabase.from('site_packages').insert(payload).select().single(); }
+    if(result.error){cmsNotify(result.error.message,true);return;}
+    if(idValue){const i=cmsPackages.findIndex(p=>p.id===Number(idValue));if(i>=0)cmsPackages[i]=result.data;}else cmsPackages.push(result.data);
+    cmsPackages.sort((a,b)=>(a.sort_order||0)-(b.sort_order||0)||(a.id||0)-(b.id||0));
+    renderPackages(); closeProductEditor(); cmsNotify(idValue?'Product updated.':'Product created.');
+  });
+
+  const productNameEnInput=document.getElementById('productNameEn');
+  const productKeyInput=document.getElementById('productKey');
+  let productKeyTouched=false;
+  productKeyInput.addEventListener('input',()=>{ productKeyTouched=true; });
+  productNameEnInput.addEventListener('input',()=>{
+    if(productKeyTouched || document.getElementById('productId').value) return;
+    const slug=productNameEnInput.value.toLowerCase().trim().replace(/[^a-z0-9]+/g,'_').replace(/^_+|_+$/g,'');
+    const category=document.getElementById('productCategory').value;
+    productKeyInput.value=slug || (category ? category+'_product' : '');
+  });
+  document.getElementById('productCategory').addEventListener('change',()=>{
+    if(productKeyTouched || document.getElementById('productId').value) return;
+    if(!productNameEnInput.value.trim()) productKeyInput.value=document.getElementById('productCategory').value+'_product';
+  });
+
+  // Load website CMS only when the Website section is opened.
+
+
+});
+
+
 </script>
 </body>
 </html>
