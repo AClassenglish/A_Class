@@ -167,6 +167,29 @@
       .stats{grid-template-columns:1fr}
       .login-card{padding:27px}
     }
+
+    .language-switch{display:flex;gap:5px;background:#fff;border:1px solid var(--border);padding:4px;border-radius:11px}
+    .lang-btn,.cms-tab{border:0;background:transparent;border-radius:8px;padding:8px 11px;font-size:10px;font-weight:900;color:var(--muted)}
+    .lang-btn.active,.cms-tab.active{background:#E9F8F5;color:var(--teal)}
+    .cms-tabs{display:flex;gap:5px;border-bottom:1px solid var(--border);margin-bottom:18px}
+    .cms-tab{border-radius:10px 10px 0 0;padding:11px 14px}
+    .cms-panel{display:none}.cms-panel.active{display:block}
+    .cms-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .cms-card{min-width:0}.cms-list{display:flex;flex-direction:column;gap:9px}
+    .menu-row{display:grid;grid-template-columns:minmax(0,1fr) 120px 64px 36px;gap:8px;align-items:center;border:1px solid var(--border);padding:10px;border-radius:12px;background:#fff}
+    .menu-row input,.menu-row select,.field-label input{width:100%;border:1px solid var(--border);border-radius:9px;padding:9px 10px;font-size:11px;outline:none}
+    .menu-row input:focus,.field-label input:focus{border-color:var(--teal)}
+    .menu-row .drag{font-size:12px;color:#A1ADAE;text-align:center}
+    .tiny-btn{border:1px solid var(--border);background:#fff;border-radius:8px;padding:8px;font-size:10px;font-weight:800}
+    .tiny-btn.delete{color:#c44343}.cms-status{font-size:10px;color:var(--muted);margin-top:10px}
+    .cms-page-layout{display:grid;grid-template-columns:290px minmax(0,1fr);gap:18px;align-items:start}
+    .page-list{display:flex;flex-direction:column;gap:6px}.page-list-item{border:1px solid var(--border);background:#fff;border-radius:10px;padding:11px 12px;text-align:left;cursor:pointer}.page-list-item.active{border-color:#8BD8D1;background:#F1FBF9}.page-list-item strong{display:block;font-size:11px}.page-list-item span{font-size:9px;color:var(--muted)}
+    .editor-top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:16px}.editor-top h3{margin:3px 0 0}.editor-actions{display:flex;gap:7px}.small-primary{padding:10px 13px;font-size:10px}.danger-btn{color:#c44343}
+    .field-label{display:block;font-size:10px;font-weight:900;margin:0 0 13px}.field-label input{display:block;margin-top:6px;font-size:11px}
+    .editor-toolbar{display:flex;gap:5px;flex-wrap:wrap;border:1px solid var(--border);border-bottom:0;border-radius:10px 10px 0 0;padding:7px;background:#F8FBFA}.editor-toolbar button{border:1px solid var(--border);background:#fff;border-radius:7px;padding:6px 9px;font-size:10px}.content-editor{min-height:390px;border:1px solid var(--border);border-radius:0 0 10px 10px;padding:16px;font-size:12px;line-height:1.7;outline:none;background:#fff}.content-editor:focus{border-color:var(--teal)}
+    .publish-toggle{display:flex;gap:7px;align-items:center;font-size:10px;font-weight:800;margin-top:12px}.cms-message{margin-top:12px;padding:10px;border-radius:9px;background:#EAF8F1;color:#137A55;font-size:10px;font-weight:800}.cms-message.error{background:#FFF0F0;color:#B13C3C}.editor-empty{min-height:450px;display:grid;place-items:center;text-align:center;align-content:center;color:var(--muted)}.empty-icon{font-size:28px;color:var(--teal);margin-bottom:7px}.editor-empty h3{margin:0;color:var(--navy)}.editor-empty p{font-size:11px}
+    @media(max-width:900px){.cms-grid,.cms-page-layout{grid-template-columns:1fr}.menu-row{grid-template-columns:1fr 110px 50px 34px}.editor-card{min-height:500px}}
+
   </style>
 </head>
 <body class="auth-initializing">
@@ -208,7 +231,7 @@
     <button class="nav-btn" id="ordersNav"><span class="icon">₾</span> Orders & Payments</button>
 
     <div class="nav-label">Website</div>
-    <button class="nav-btn disabled" title="Coming next"><span class="icon">▤</span> Pages</button>
+    <button class="nav-btn" id="websiteNav"><span class="icon">▤</span> Website</button>
     <button class="nav-btn disabled" title="Coming next"><span class="icon">✦</span> Teachers</button>
     <button class="nav-btn disabled" title="Coming next"><span class="icon">◈</span> Packages</button>
     <button class="nav-btn disabled" title="Coming next"><span class="icon">☰</span> Testimonials & FAQ</button>
@@ -374,6 +397,77 @@
             </table>
           </div>
           <div id="ordersTableEmpty" class="coming hidden">No orders match your filters.</div>
+        </div>
+      </section>
+
+
+      <!-- WEBSITE CMS -->
+      <section id="websitePage" class="page">
+        <div class="welcome">
+          <div>
+            <h2>Website</h2>
+            <p>Edit navigation, footer links and page text without opening the HTML.</p>
+          </div>
+          <div class="language-switch" id="cmsLanguageSwitch">
+            <button class="lang-btn active" data-lang="en">EN</button>
+            <button class="lang-btn" data-lang="ru">RU</button>
+            <button class="lang-btn" data-lang="ge">GE</button>
+          </div>
+        </div>
+
+        <div class="cms-tabs">
+          <button class="cms-tab active" data-cms-tab="menus">Header & Footer</button>
+          <button class="cms-tab" data-cms-tab="pages">Pages</button>
+        </div>
+
+        <div id="cmsMenusPanel" class="cms-panel active">
+          <div class="cms-grid">
+            <div class="card cms-card">
+              <div class="card-head">
+                <div><h3>Header menu</h3><p>Change titles and links shown in the main navigation.</p></div>
+                <button class="ghost" id="addHeaderItem">+ Add</button>
+              </div>
+              <div id="headerMenuList" class="cms-list"></div>
+              <div class="coming hidden" id="headerMenuEmpty">No header items yet.</div>
+            </div>
+            <div class="card cms-card">
+              <div class="card-head">
+                <div><h3>Footer menu</h3><p>Manage footer navigation and legal links.</p></div>
+                <button class="ghost" id="addFooterItem">+ Add</button>
+              </div>
+              <div id="footerMenuList" class="cms-list"></div>
+              <div class="coming hidden" id="footerMenuEmpty">No footer items yet.</div>
+            </div>
+          </div>
+        </div>
+
+        <div id="cmsPagesPanel" class="cms-panel">
+          <div class="cms-page-layout">
+            <div class="card cms-card page-list-card">
+              <div class="card-head"><div><h3>Pages</h3><p>Separate editable documents for each page.</p></div><button class="ghost" id="addPageButton">+ New page</button></div>
+              <div id="pageList" class="page-list"></div>
+            </div>
+            <div class="card cms-card editor-card">
+              <div id="pageEditorEmpty" class="editor-empty"><div class="empty-icon">✎</div><h3>Select a page</h3><p>Choose a page on the left to edit its title and content.</p></div>
+              <form id="pageEditor" class="hidden">
+                <input type="hidden" id="pageId">
+                <div class="editor-top">
+                  <div><span class="eyebrow">Page editor</span><h3 id="pageEditorHeading">Edit page</h3></div>
+                  <div class="editor-actions"><button type="button" class="ghost danger-btn" id="deletePageButton">Delete</button><button type="submit" class="primary small-primary" id="savePageButton">Save changes</button></div>
+                </div>
+                <label class="field-label">Slug<input id="pageSlug" required placeholder="privacy-policy"></label>
+                <label class="field-label">Page title<input id="pageTitle" required></label>
+                <div class="field-label">Content
+                  <div class="editor-toolbar" id="editorToolbar">
+                    <button type="button" data-cmd="bold"><b>B</b></button><button type="button" data-cmd="italic"><i>I</i></button><button type="button" data-cmd="insertUnorderedList">• List</button><button type="button" data-cmd="insertOrderedList">1. List</button><button type="button" data-cmd="formatBlock" data-value="h2">H2</button><button type="button" data-cmd="formatBlock" data-value="p">P</button>
+                  </div>
+                  <div id="pageContentEditor" class="content-editor" contenteditable="true"></div>
+                </div>
+                <label class="publish-toggle"><input type="checkbox" id="pagePublished" checked> Published</label>
+                <div id="cmsMessage" class="cms-message hidden"></div>
+              </form>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -686,6 +780,65 @@ document.addEventListener('DOMContentLoaded', async () => {
   authLoading.classList.add('hidden');
   document.body.classList.remove('auth-initializing');
 });
+
+
+  /* Website CMS */
+  let cmsLanguage = 'en';
+  let cmsPages = [];
+  let cmsMenus = [];
+  let selectedPageId = null;
+
+  function cmsEsc(v){ return escapeHtml(v); }
+  function cmsNotify(message, error=false){
+    const el=document.getElementById('cmsMessage'); if(!el) return;
+    el.textContent=message; el.classList.toggle('hidden',false); el.classList.toggle('error',error);
+    setTimeout(()=>el.classList.add('hidden'),2600);
+  }
+  async function loadCMS(){
+    const [pagesRes, menusRes] = await Promise.all([
+      supabase.from('site_pages').select('*').eq('language',cmsLanguage).order('slug'),
+      supabase.from('site_menu_items').select('*').eq('language',cmsLanguage).order('location').order('sort_order')
+    ]);
+    if(pagesRes.error){ cmsNotify('CMS tables are not ready yet. Run aclass-cms.sql in Supabase first.',true); return; }
+    if(menusRes.error){ cmsNotify('Could not load menus: '+menusRes.error.message,true); return; }
+    cmsPages=pagesRes.data||[]; cmsMenus=menusRes.data||[]; renderCMS();
+  }
+  function renderCMS(){
+    const header=cmsMenus.filter(x=>x.location==='header'); const footer=cmsMenus.filter(x=>x.location==='footer');
+    renderMenuList('headerMenuList','headerMenuEmpty',header); renderMenuList('footerMenuList','footerMenuEmpty',footer);
+    const list=document.getElementById('pageList');
+    list.innerHTML=cmsPages.map(p=>`<button class="page-list-item ${p.id===selectedPageId?'active':''}" data-page-id="${p.id}"><strong>${cmsEsc(p.title||p.slug)}</strong><span>${cmsEsc(p.slug)}</span></button>`).join('');
+    if(selectedPageId && !cmsPages.some(p=>p.id===selectedPageId)) selectedPageId=null;
+  }
+  function renderMenuList(id,emptyId,items){
+    const el=document.getElementById(id); el.innerHTML=items.map(item=>`<div class="menu-row" data-menu-id="${item.id}"><span class="drag">☷</span><input class="menu-title" value="${cmsEsc(item.title)}" placeholder="Title"><input class="menu-href" value="${cmsEsc(item.href)}" placeholder="#section or page.html"><button class="tiny-btn" data-save-menu="${item.id}">Save</button><button class="tiny-btn delete" data-delete-menu="${item.id}">×</button></div>`).join('');
+    document.getElementById(emptyId).classList.toggle('hidden',items.length!==0);
+  }
+  function openPageEditor(page){
+    selectedPageId=page.id; document.getElementById('pageEditorEmpty').classList.add('hidden'); document.getElementById('pageEditor').classList.remove('hidden');
+    document.getElementById('pageId').value=page.id; document.getElementById('pageSlug').value=page.slug; document.getElementById('pageTitle').value=page.title; document.getElementById('pagePublished').checked=page.published; document.getElementById('pageContentEditor').innerHTML=page.content_html||''; document.getElementById('pageEditorHeading').textContent=page.title||'Edit page'; renderCMS();
+  }
+  async function addMenu(location){
+    const next=cmsMenus.filter(x=>x.location===location).length;
+    const {data,error}=await supabase.from('site_menu_items').insert({location,language:cmsLanguage,title:location==='header'?'New menu item':'New footer link',href:'#',sort_order:next,active:true}).select().single();
+    if(error){cmsNotify(error.message,true);return;} cmsMenus.push(data); renderCMS();
+  }
+  document.getElementById('websiteNav').addEventListener('click',()=>{showPage('websitePage');loadCMS();});
+  document.getElementById('addHeaderItem').addEventListener('click',()=>addMenu('header'));
+  document.getElementById('addFooterItem').addEventListener('click',()=>addMenu('footer'));
+  document.getElementById('cmsLanguageSwitch').addEventListener('click',e=>{const b=e.target.closest('[data-lang]');if(!b)return;cmsLanguage=b.dataset.lang;document.querySelectorAll('.lang-btn').forEach(x=>x.classList.toggle('active',x===b));selectedPageId=null;document.getElementById('pageEditor').classList.add('hidden');document.getElementById('pageEditorEmpty').classList.remove('hidden');loadCMS();});
+  document.querySelector('.cms-tabs').addEventListener('click',e=>{const b=e.target.closest('[data-cms-tab]');if(!b)return;document.querySelectorAll('.cms-tab').forEach(x=>x.classList.toggle('active',x===b));document.getElementById('cmsMenusPanel').classList.toggle('active',b.dataset.cmsTab==='menus');document.getElementById('cmsPagesPanel').classList.toggle('active',b.dataset.cmsTab==='pages');});
+  document.getElementById('headerMenuList').addEventListener('click',menuAction); document.getElementById('footerMenuList').addEventListener('click',menuAction);
+  async function menuAction(e){
+    const save=e.target.closest('[data-save-menu]'), del=e.target.closest('[data-delete-menu]'); const row=e.target.closest('[data-menu-id]'); if(!row)return; const id=Number(row.dataset.menuId);
+    if(save){const {error}=await supabase.from('site_menu_items').update({title:row.querySelector('.menu-title').value.trim(),href:row.querySelector('.menu-href').value.trim()||'#',updated_at:new Date().toISOString()}).eq('id',id);if(error)cmsNotify(error.message,true);else cmsNotify('Menu item saved.');}
+    if(del){if(!confirm('Delete this menu item?'))return;const {error}=await supabase.from('site_menu_items').delete().eq('id',id);if(error)cmsNotify(error.message,true);else loadCMS();}
+  }
+  document.getElementById('pageList').addEventListener('click',e=>{const b=e.target.closest('[data-page-id]');if(!b)return;const page=cmsPages.find(p=>String(p.id)===b.dataset.pageId);if(page)openPageEditor(page);});
+  document.getElementById('pageEditor').addEventListener('submit',async e=>{e.preventDefault();const id=Number(document.getElementById('pageId').value);const payload={slug:document.getElementById('pageSlug').value.trim(),title:document.getElementById('pageTitle').value.trim(),content_html:document.getElementById('pageContentEditor').innerHTML,published:document.getElementById('pagePublished').checked,updated_at:new Date().toISOString()};if(!payload.slug||!payload.title){cmsNotify('Slug and title are required.',true);return;}const {data,error}=await supabase.from('site_pages').update(payload).eq('id',id).select().single();if(error){cmsNotify(error.message,true);return;}const i=cmsPages.findIndex(p=>p.id===id);if(i>=0)cmsPages[i]=data;openPageEditor(data);cmsNotify('Page saved.');});
+  document.getElementById('deletePageButton').addEventListener('click',async()=>{const id=Number(document.getElementById('pageId').value);if(!id||!confirm('Delete this page?'))return;const {error}=await supabase.from('site_pages').delete().eq('id',id);if(error){cmsNotify(error.message,true);return;}selectedPageId=null;document.getElementById('pageEditor').classList.add('hidden');document.getElementById('pageEditorEmpty').classList.remove('hidden');loadCMS();});
+  document.getElementById('addPageButton').addEventListener('click',async()=>{const slug=prompt('Page slug, for example: about-us');if(!slug)return;const title=prompt('Page title');if(!title)return;const {data,error}=await supabase.from('site_pages').insert({slug:slug.trim().toLowerCase().replace(/\s+/g,'-'),language:cmsLanguage,title:title.trim(),content_html:'',published:true}).select().single();if(error){cmsNotify(error.message,true);return;}cmsPages.push(data);openPageEditor(data);});
+  document.getElementById('editorToolbar').addEventListener('click',e=>{const b=e.target.closest('[data-cmd]');if(!b)return;document.getElementById('pageContentEditor').focus();document.execCommand(b.dataset.cmd,false,b.dataset.value||null);});
 </script>
 </body>
 </html>
