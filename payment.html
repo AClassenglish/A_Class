@@ -3,8 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">
-  <meta name="description" content="AClass English School — Test Payment">
+  <meta name="description" content="AClass English School — Enrollment Checkout">
   <meta name="theme-color" content="#0FA6B3">
+<link href="https://raw.githubusercontent.com/AClassenglish/A_Class/main/images/Aclasslogo.jpeg" rel="icon" type="image/jpeg">
+<link href="https://raw.githubusercontent.com/AClassenglish/A_Class/main/images/Aclasslogo.jpeg" rel="shortcut icon" type="image/jpeg">
+<link href="https://raw.githubusercontent.com/AClassenglish/A_Class/main/images/Aclasslogo.jpeg" rel="apple-touch-icon">
   <title>Payment — AClass English School</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
@@ -13,849 +16,363 @@
         href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap">
   <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <style>
     :root{
-      --primary:#0FA6B3;
-      --primary-dark:#087F89;
-      --primary-light:#E8F7EE;
-      --secondary:#78D64B;
-      --gradient:linear-gradient(135deg,#0FA6B3 0%,#35C78D 50%,#78D64B 100%);
-      --text-dark:#102022;
-      --text-gray:#4B5B5D;
-      --text-light:#8B999B;
-      --white:#fff;
-      --bg-light:#F7FBF8;
-      --border:#E3ECE8;
-      --danger:#D64545;
-      --success:#1B9B68;
-      --glass-bg:rgba(255,255,255,.92);
+      --primary:#0FA6B3;--primary-dark:#087F89;--primary-light:#E8F7EE;
+      --secondary:#78D64B;--gradient:linear-gradient(135deg,#0FA6B3 0%,#35C78D 50%,#78D64B 100%);
+      --text-dark:#102022;--text-gray:#4B5B5D;--text-light:#8B999B;
+      --white:#fff;--bg-light:#F7FBF8;--border:#E3ECE8;--danger:#D64545;--success:#1B9B68;
     }
-
     *{box-sizing:border-box;margin:0;padding:0}
     html{scroll-behavior:smooth}
     body{
-      min-height:100vh;
-      font-family:'Plus Jakarta Sans',system-ui,-apple-system,sans-serif;
-      color:var(--text-dark);
-      background:
-        radial-gradient(circle at 10% 10%,rgba(15,166,179,.10),transparent 28%),
-        radial-gradient(circle at 90% 85%,rgba(120,214,75,.10),transparent 30%),
-        linear-gradient(135deg,#fff 0%,#F7FBF8 55%,#F2F9F5 100%);
+      min-height:100vh;font-family:'Plus Jakarta Sans',system-ui,-apple-system,sans-serif;
+      color:var(--text-dark);background:
+      radial-gradient(circle at 10% 10%,rgba(15,166,179,.10),transparent 28%),
+      radial-gradient(circle at 90% 85%,rgba(120,214,75,.10),transparent 30%),
+      linear-gradient(135deg,#fff 0%,#F7FBF8 55%,#F2F9F5 100%);
       -webkit-font-smoothing:antialiased;
     }
-
-    a{color:inherit;text-decoration:none}
-    button,input,select{font:inherit}
-
-    .topbar{
-      position:fixed;
-      top:0;left:0;right:0;
-      z-index:100;
-      padding:1rem 0;
-      background:var(--glass-bg);
-      backdrop-filter:blur(15px);
-      border-bottom:1px solid rgba(238,240,246,.8);
-    }
-
-    .topbar-inner{
-      max-width:1200px;
-      margin:auto;
-      padding:0 1.25rem;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:1rem;
-    }
-
-    .logo{
-      display:flex;
-      align-items:center;
-      gap:.7rem;
-      font-weight:800;
-      letter-spacing:1.5px;
-    }
-
-    .logo img{
-      width:42px;
-      height:42px;
-      border-radius:50%;
-      object-fit:cover;
-      border:2px solid var(--primary);
-    }
-
-    .logo span{
-      background:var(--gradient);
-      -webkit-background-clip:text;
-      background-clip:text;
-      -webkit-text-fill-color:transparent;
-    }
-
-    .back-link{
-      display:inline-flex;
-      align-items:center;
-      gap:.5rem;
-      color:var(--text-gray);
-      font-size:.9rem;
-      font-weight:600;
-      transition:.25s ease;
-    }
-
+    a{color:inherit;text-decoration:none} button,input,select{font:inherit}
+    .topbar{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 0;background:rgba(255,255,255,.92);backdrop-filter:blur(15px);border-bottom:1px solid rgba(238,240,246,.8)}
+    .topbar-inner{max-width:1200px;margin:auto;padding:0 1.25rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+    .logo{display:flex;align-items:center;gap:.7rem;font-weight:800;letter-spacing:1.5px}
+    .logo img{width:42px;height:42px;border-radius:50%;object-fit:cover;border:2px solid var(--primary)}
+    .logo span{background:var(--gradient);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+    .back-link{display:inline-flex;align-items:center;gap:.5rem;color:var(--text-gray);font-size:.9rem;font-weight:600;transition:.25s}
     .back-link:hover{color:var(--primary);transform:translateX(-2px)}
-
-    main{
-      width:100%;
-      padding:8rem 1.25rem 5rem;
-    }
-
-    .page-header{
-      max-width:850px;
-      margin:0 auto 2.5rem;
-      text-align:center;
-    }
-
-    .kicker{
-      display:inline-flex;
-      align-items:center;
-      gap:.5rem;
-      padding:.5rem 1rem;
-      border-radius:999px;
-      background:var(--primary-light);
-      border:1px solid rgba(15,166,179,.15);
-      color:var(--primary-dark);
-      font-size:.75rem;
-      font-weight:800;
-      letter-spacing:.08em;
-      text-transform:uppercase;
-      margin-bottom:1rem;
-    }
-
-    h1{
-      font-size:clamp(2.2rem,5vw,3.8rem);
-      line-height:1.05;
-      letter-spacing:-1.8px;
-      margin-bottom:1rem;
-    }
-
-    .page-header p{
-      max-width:650px;
-      margin:auto;
-      color:var(--text-gray);
-      line-height:1.7;
-    }
-
-    .test-banner{
-      max-width:1050px;
-      margin:0 auto 1.5rem;
-      padding:1rem 1.2rem;
-      border:1px solid rgba(15,166,179,.25);
-      border-radius:16px;
-      background:rgba(15,166,179,.07);
-      color:var(--primary-dark);
-      display:flex;
-      align-items:flex-start;
-      gap:.75rem;
-      font-size:.82rem;
-      line-height:1.55;
-    }
-
-    .test-banner i{margin-top:.15rem}
-
-    .checkout{
-      max-width:1050px;
-      margin:0 auto;
-      display:grid;
-      grid-template-columns:minmax(280px,.82fr) minmax(340px,1.18fr);
-      gap:1.5rem;
-      align-items:start;
-    }
-
-    .card{
-      background:rgba(255,255,255,.94);
-      border:1px solid var(--border);
-      border-radius:24px;
-      box-shadow:0 15px 45px rgba(15,166,179,.09);
-    }
-
-    .summary{
-      padding:2rem;
-      position:sticky;
-      top:100px;
-    }
-
-    .card-title{
-      display:flex;
-      align-items:center;
-      gap:.75rem;
-      margin-bottom:1.5rem;
-    }
-
-    .card-title-icon{
-      width:44px;
-      height:44px;
-      border-radius:13px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      background:var(--primary-light);
-      color:var(--primary);
-    }
-
-    .card-title h2{
-      font-size:1.15rem;
-      font-weight:800;
-    }
-
+    main{width:100%;padding:8rem 1.25rem 5rem}
+    .page-header{max-width:850px;margin:0 auto 2.5rem;text-align:center}
+    .kicker{display:inline-flex;align-items:center;gap:.5rem;padding:.5rem 1rem;border-radius:999px;background:var(--primary-light);border:1px solid rgba(15,166,179,.15);color:var(--primary-dark);font-size:.75rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;margin-bottom:1rem}
+    h1{font-size:clamp(2.2rem,5vw,3.8rem);line-height:1.05;letter-spacing:-1.8px;margin-bottom:1rem}
+    .page-header p{max-width:650px;margin:auto;color:var(--text-gray);line-height:1.7}
+    .test-banner{max-width:1050px;margin:0 auto 1.5rem;padding:1rem 1.2rem;border:1px solid rgba(15,166,179,.25);border-radius:16px;background:rgba(15,166,179,.07);color:var(--primary-dark);display:flex;align-items:flex-start;gap:.75rem;font-size:.82rem;line-height:1.55}
+    .checkout{max-width:1050px;margin:0 auto;display:grid;grid-template-columns:minmax(280px,.82fr) minmax(340px,1.18fr);gap:1.5rem;align-items:start}
+    .card{background:rgba(255,255,255,.94);border:1px solid var(--border);border-radius:24px;box-shadow:0 15px 45px rgba(15,166,179,.09)}
+    .summary{padding:2rem;position:sticky;top:100px}
+    .card-title{display:flex;align-items:center;gap:.75rem;margin-bottom:1.5rem}
+    .card-title-icon{width:44px;height:44px;border-radius:13px;display:flex;align-items:center;justify-content:center;background:var(--primary-light);color:var(--primary)}
+    .card-title h2{font-size:1.15rem;font-weight:800}
     .field{margin-bottom:1.1rem}
-
-    label{
-      display:block;
-      margin-bottom:.45rem;
-      color:var(--text-dark);
-      font-size:.82rem;
-      font-weight:700;
-    }
-
-    input,select{
-      width:100%;
-      border:1px solid var(--border);
-      background:#fff;
-      color:var(--text-dark);
-      border-radius:13px;
-      padding:.9rem 1rem;
-      outline:none;
-      transition:border-color .2s,box-shadow .2s;
-    }
-
-    input:focus,select:focus{
-      border-color:var(--primary);
-      box-shadow:0 0 0 4px rgba(15,166,179,.10);
-    }
-
-    .package-select{
-      margin-bottom:1.5rem;
-    }
-
-    .selected-package{
-      padding:1.2rem;
-      border-radius:17px;
-      background:linear-gradient(135deg,rgba(15,166,179,.08),rgba(120,214,75,.09));
-      border:1px solid rgba(15,166,179,.15);
-      margin-bottom:1.25rem;
-    }
-
-    .selected-package-label{
-      color:var(--text-light);
-      font-size:.7rem;
-      font-weight:800;
-      letter-spacing:.08em;
-      text-transform:uppercase;
-      margin-bottom:.35rem;
-    }
-
-    .selected-package-name{
-      font-weight:800;
-      font-size:1rem;
-      line-height:1.4;
-    }
-
-    .amount-row{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:1rem;
-      padding:1rem 0;
-      border-bottom:1px solid var(--border);
-    }
-
-    .amount-row span:first-child{
-      color:var(--text-gray);
-      font-size:.9rem;
-    }
-
-    .amount{
-      font-size:1.45rem;
-      font-weight:900;
-      background:var(--gradient);
-      -webkit-background-clip:text;
-      background-clip:text;
-      -webkit-text-fill-color:transparent;
-      white-space:nowrap;
-    }
-
-    .summary-note{
-      margin-top:1.25rem;
-      color:var(--text-light);
-      font-size:.76rem;
-      line-height:1.6;
-    }
-
+    label{display:block;margin-bottom:.45rem;color:var(--text-dark);font-size:.82rem;font-weight:700}
+    input,select{width:100%;border:1px solid var(--border);background:#fff;color:var(--text-dark);border-radius:13px;padding:.9rem 1rem;outline:none;transition:border-color .2s,box-shadow .2s}
+    input:focus,select:focus{border-color:var(--primary);box-shadow:0 0 0 4px rgba(15,166,179,.10)}
+    .selected-package{padding:1.2rem;border-radius:17px;background:linear-gradient(135deg,rgba(15,166,179,.08),rgba(120,214,75,.09));border:1px solid rgba(15,166,179,.15);margin-bottom:1.25rem}
+    .selected-package-label{color:var(--text-light);font-size:.7rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.35rem}
+    .selected-package-name{font-weight:800;font-size:1rem;line-height:1.4}
+    .amount-row{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:1rem 0;border-bottom:1px solid var(--border)}
+    .amount-row span:first-child{color:var(--text-gray);font-size:.9rem}
+    .amount{font-size:1.45rem;font-weight:900;background:var(--gradient);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;white-space:nowrap}
+    .summary-note{margin-top:1.25rem;color:var(--text-light);font-size:.76rem;line-height:1.6}
     .form-card{padding:2rem}
-
-    .grid-2{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:1rem;
-    }
-
-    .payment-methods{
-      display:grid;
-      grid-template-columns:1fr;
-      gap:.75rem;
-      margin-bottom:1.5rem;
-    }
-
-    .method{
-      display:flex;
-      align-items:center;
-      gap:.8rem;
-      padding:.9rem 1rem;
-      border:1px solid var(--primary);
-      border-radius:13px;
-      background:rgba(15,166,179,.05);
-      color:var(--text-dark);
-      font-weight:700;
-      font-size:.85rem;
-    }
-
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+    .payment-methods{display:grid;grid-template-columns:1fr;gap:.75rem;margin-bottom:1.5rem}
+    .method{display:flex;align-items:center;gap:.8rem;padding:.9rem 1rem;border:1px solid var(--primary);border-radius:13px;background:rgba(15,166,179,.05);font-weight:700;font-size:.85rem}
     .method i{color:var(--primary)}
-
-    .card-fields{
-      padding:1.2rem;
-      border:1px solid var(--border);
-      border-radius:17px;
-      background:#FBFDFC;
-      margin-bottom:1.25rem;
-    }
-
-    .card-fields-title{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:1rem;
-      margin-bottom:1rem;
-    }
-
-    .card-fields-title strong{font-size:.9rem}
-    .test-chip{
-      padding:.3rem .55rem;
-      border-radius:999px;
-      background:#fff3d6;
-      color:#946200;
-      font-size:.65rem;
-      font-weight:800;
-      letter-spacing:.04em;
-      text-transform:uppercase;
-    }
-
-    .helper{
-      color:var(--text-light);
-      font-size:.7rem;
-      line-height:1.5;
-      margin-top:.4rem;
-    }
-
-    .terms{
-      display:flex;
-      align-items:flex-start;
-      gap:.7rem;
-      margin:1rem 0 1.25rem;
-      color:var(--text-gray);
-      font-size:.76rem;
-      line-height:1.5;
-    }
-
-    .terms input{
-      width:18px;
-      height:18px;
-      margin-top:1px;
-      flex:0 0 18px;
-      accent-color:var(--primary);
-    }
-
-    .terms a{
-      color:var(--primary-dark);
-      text-decoration:underline;
-    }
-
-    .pay-button{
-      width:100%;
-      border:0;
-      border-radius:15px;
-      padding:1rem 1.2rem;
-      background:var(--gradient);
-      color:#fff;
-      font-weight:800;
-      cursor:pointer;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      gap:.65rem;
-      box-shadow:0 10px 25px rgba(15,166,179,.22);
-      transition:.25s ease;
-    }
-
-    .pay-button:hover:not(:disabled){
-      transform:translateY(-2px);
-      box-shadow:0 14px 32px rgba(15,166,179,.28);
-    }
-
-    .pay-button:disabled{
-      opacity:.7;
-      cursor:not-allowed;
-    }
-
-    .security-note{
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      gap:.4rem;
-      margin-top:.9rem;
-      color:var(--text-light);
-      font-size:.68rem;
-    }
-
-    .message{
-      display:none;
-      margin-top:1rem;
-      padding:1rem;
-      border-radius:14px;
-      font-size:.82rem;
-      line-height:1.55;
-    }
-
-    .message.show{display:block}
-    .message.error{
-      background:rgba(214,69,69,.08);
-      color:var(--danger);
-      border:1px solid rgba(214,69,69,.2);
-    }
-
-    .success-screen{
-      display:none;
-      max-width:700px;
-      margin:0 auto;
-      text-align:center;
-      padding:3rem 2rem;
-    }
-
+    .card-fields{padding:1.2rem;border:1px solid var(--border);border-radius:17px;background:#FBFDFC;margin-bottom:1.25rem}
+    .card-fields-title{display:flex;justify-content:space-between;align-items:center;gap:1rem;margin-bottom:1rem}
+    .test-chip{padding:.3rem .55rem;border-radius:999px;background:#fff3d6;color:#946200;font-size:.65rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase}
+    .helper{color:var(--text-light);font-size:.7rem;line-height:1.5;margin-top:.4rem}
+    .terms{display:flex;align-items:flex-start;gap:.7rem;margin:1rem 0 1.25rem;color:var(--text-gray);font-size:.76rem;line-height:1.5}
+    .terms input{width:18px;height:18px;margin-top:1px;flex:0 0 18px;accent-color:var(--primary)}
+    .terms a{color:var(--primary-dark);text-decoration:underline}
+    .pay-button{width:100%;border:0;border-radius:15px;padding:1rem 1.2rem;background:var(--gradient);color:#fff;font-weight:800;cursor:pointer;display:flex;justify-content:center;align-items:center;gap:.65rem;box-shadow:0 10px 25px rgba(15,166,179,.22);transition:.25s}
+    .pay-button:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 14px 32px rgba(15,166,179,.28)}
+    .pay-button:disabled{opacity:.7;cursor:not-allowed}
+    .security-note{display:flex;justify-content:center;align-items:center;gap:.4rem;margin-top:.9rem;color:var(--text-light);font-size:.68rem}
+    .message{display:none;margin-top:1rem;padding:1rem;border-radius:14px;font-size:.82rem;line-height:1.55}
+    .message.show{display:block}.message.error{background:rgba(214,69,69,.08);color:var(--danger);border:1px solid rgba(214,69,69,.2)}
+    .success-screen{display:none;max-width:700px;margin:0 auto;text-align:center;padding:3rem 2rem}
     .success-screen.show{display:block}
-
-    .success-icon{
-      width:82px;
-      height:82px;
-      margin:0 auto 1.5rem;
-      border-radius:50%;
-      background:rgba(27,155,104,.12);
-      color:var(--success);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-size:2.1rem;
-    }
-
-    .success-screen h2{
-      font-size:2rem;
-      margin-bottom:.7rem;
-    }
-
-    .success-screen p{
-      color:var(--text-gray);
-      line-height:1.7;
-      margin-bottom:1.5rem;
-    }
-
-    .test-reference{
-      display:inline-flex;
-      flex-direction:column;
-      gap:.25rem;
-      padding:1rem 1.4rem;
-      border:1px solid var(--border);
-      border-radius:14px;
-      background:#fff;
-      margin-bottom:1.5rem;
-    }
-
-    .test-reference small{
-      color:var(--text-light);
-      font-size:.65rem;
-      text-transform:uppercase;
-      letter-spacing:.08em;
-      font-weight:800;
-    }
-
+    .success-icon{width:82px;height:82px;margin:0 auto 1.5rem;border-radius:50%;background:rgba(27,155,104,.12);color:var(--success);display:flex;align-items:center;justify-content:center;font-size:2.1rem}
+    .success-screen h2{font-size:2rem;margin-bottom:.7rem}.success-screen p{color:var(--text-gray);line-height:1.7;margin-bottom:1.5rem}
+    .test-reference{display:inline-flex;flex-direction:column;gap:.25rem;padding:1rem 1.4rem;border:1px solid var(--border);border-radius:14px;background:#fff;margin-bottom:1.5rem}
+    .test-reference small{color:var(--text-light);font-size:.65rem;text-transform:uppercase;letter-spacing:.08em;font-weight:800}
     .test-reference strong{letter-spacing:.05em}
-
-    .return-button{
-      display:inline-flex;
-      align-items:center;
-      gap:.6rem;
-      padding:.9rem 1.4rem;
-      border-radius:50px;
-      background:var(--text-dark);
-      color:#fff;
-      font-weight:700;
-      transition:.25s ease;
-    }
-
-    .return-button:hover{transform:translateY(-2px)}
-
-    footer{
-      text-align:center;
-      color:var(--text-light);
-      font-size:.72rem;
-      padding:0 1rem 2rem;
-    }
-
-    @media(max-width:800px){
-      main{padding-top:7rem}
-      .checkout{grid-template-columns:1fr}
-      .summary{position:static}
-    }
-
-    @media(max-width:520px){
-      .topbar-inner{padding:0 1rem}
-      .logo span{font-size:1rem}
-      .back-link{font-size:.78rem}
-      main{padding:6.5rem .8rem 4rem}
-      .summary,.form-card{padding:1.25rem}
-      .grid-2{grid-template-columns:1fr}
-      .page-header{margin-bottom:1.5rem}
-      .page-header p{font-size:.88rem}
-      .test-banner{font-size:.74rem}
-    }
-
-    @media(prefers-reduced-motion:reduce){
-      *,*::before,*::after{
-        transition-duration:.01ms!important;
-        animation-duration:.01ms!important;
-      }
-    }
+    .return-button{display:inline-flex;align-items:center;gap:.6rem;padding:.9rem 1.4rem;border-radius:50px;background:var(--text-dark);color:#fff;font-weight:700}
+    footer{text-align:center;color:var(--text-light);font-size:.72rem;padding:0 1rem 2rem}
+    .hidden{display:none!important}
+    .loading{color:var(--text-gray);font-size:.85rem}
+    @media(max-width:800px){main{padding-top:7rem}.checkout{grid-template-columns:1fr}.summary{position:static}}
+    @media(max-width:520px){.topbar-inner{padding:0 1rem}.logo span{font-size:1rem}.back-link{font-size:.78rem}main{padding:6.5rem .8rem 4rem}.summary,.form-card{padding:1.25rem}.grid-2{grid-template-columns:1fr}.page-header{margin-bottom:1.5rem}.page-header p{font-size:.88rem}.test-banner{font-size:.74rem}}
   </style>
-
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 
 <body>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="logo" href="index.html">
+      <img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/images/Aclasslogo.jpeg" alt="AClass Logo">
+      <span>ACLASS</span>
+    </a>
+    <a class="back-link" href="index.html#packages"><i class="fas fa-arrow-left"></i> Back to Packages</a>
+  </div>
+</header>
 
-  <header class="topbar">
-    <div class="topbar-inner">
-      <a class="logo" href="index.html">
-        <img src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/Aclasslogo.jpeg"
-             alt="AClass Logo">
-        <span>ACLASS</span>
-      </a>
+<main>
+  <div class="page-header">
+    <span class="kicker"><i class="fas fa-credit-card"></i> Secure Checkout</span>
+    <h1>Complete Your <span style="background:var(--gradient);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">Enrollment</span></h1>
+    <p>Select your package and enter your information. This is currently a <strong>test payment page</strong>; no real payment is processed.</p>
+  </div>
 
-      <a class="back-link" href="index.html#packages">
-        <i class="fas fa-arrow-left"></i>
-        Back to Packages
-      </a>
+  <div class="test-banner">
+    <i class="fas fa-flask"></i>
+    <div><strong>TEST MODE</strong><br>
+      This page does not contact a bank or payment provider and does not charge a card.
+      Student/order details are saved to the AClass Payments database for testing.
     </div>
-  </header>
+  </div>
 
-  <main>
-    <div class="page-header">
-      <span class="kicker"><i class="fas fa-credit-card"></i> Secure Checkout</span>
-      <h1>Complete Your <span style="background:var(--gradient);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">Enrollment</span></h1>
-      <p>Select your package and enter your information. This first version is a <strong>test payment page</strong>; no real payment is processed.</p>
-    </div>
-
-    <div class="test-banner">
-      <i class="fas fa-flask"></i>
-      <div>
-        <strong>TEST MODE</strong><br>
-        This page is currently designed for testing the checkout experience only.
-        The payment button does not contact a bank or payment provider and does not charge a card.
-        For testing, the student/order details are saved to the AClass Payments database.
-        Real payment processing will be connected later through the official payment API.
-      </div>
-    </div>
-
-    <section class="checkout" id="checkout">
-
-      <aside class="card summary">
-        <div class="card-title">
-          <div class="card-title-icon"><i class="fas fa-receipt"></i></div>
-          <h2>Order Summary</h2>
-        </div>
-
-        <div class="field package-select">
-          <label for="package">Choose package</label>
-          <select id="package">
-            <option value="IELTS/SAT Standard Group">IELTS/SAT Standard Group</option>
-            <option value="IELTS/SAT Intensive Group">IELTS/SAT Intensive Group</option>
-            <option value="IELTS/SAT Individual">IELTS/SAT Individual</option>
-            <option value="IELTS/SAT Pair Package">IELTS/SAT Pair Package</option>
-            <option value="General English Group">General English Group</option>
-            <option value="General English Individual">General English Individual</option>
-          </select>
-        </div>
-
-        <div class="selected-package">
-          <div class="selected-package-label">Selected package</div>
-          <div class="selected-package-name" id="selectedPackageName">IELTS/SAT Standard Group</div>
-        </div>
-
-        <div class="amount-row">
-          <span>Test payment amount</span>
-          <strong class="amount">100 GEL</strong>
-        </div>
-
-        <p class="summary-note">
-          The website currently does not contain official package prices, so this first test version uses a fixed
-          <strong>100 GEL TEST amount</strong>. We will replace this with the real package price once your pricing/API setup is confirmed.
-        </p>
-      </aside>
-
-      <form class="card form-card" id="paymentForm" novalidate>
-        <div class="card-title">
-          <div class="card-title-icon"><i class="fas fa-user"></i></div>
-          <h2>Student Information</h2>
-        </div>
-
-        <div class="grid-2">
-          <div class="field">
-            <label for="fullName">Full name *</label>
-            <input id="fullName" name="fullName" type="text" autocomplete="name" placeholder="Your full name" required>
-          </div>
-
-          <div class="field">
-            <label for="phone">Phone number *</label>
-            <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="+374 XX XXX XXX" required>
-          </div>
-        </div>
-
-        <div class="field">
-          <label for="email">Email address *</label>
-          <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
-        </div>
-
-        <div class="payment-methods">
-          <div class="method">
-            <i class="fas fa-credit-card"></i>
-            <span>Card payment</span>
-          </div>
-        </div>
-
-        <div class="card-fields">
-          <div class="card-fields-title">
-            <strong>Test card details</strong>
-            <span class="test-chip">TEST ONLY</span>
-          </div>
-
-          <div class="field">
-            <label for="cardNumber">Card number *</label>
-            <input id="cardNumber" inputmode="numeric" autocomplete="off"
-                   maxlength="19" placeholder="4242 4242 4242 4242" required>
-            <div class="helper">Use 4242 4242 4242 4242 for the successful test scenario.</div>
-          </div>
-
-          <div class="grid-2">
-            <div class="field">
-              <label for="expiry">Expiry *</label>
-              <input id="expiry" inputmode="numeric" autocomplete="off"
-                     maxlength="5" placeholder="12/30" required>
-            </div>
-
-            <div class="field">
-              <label for="cvv">CVV *</label>
-              <input id="cvv" inputmode="numeric" autocomplete="off"
-                     maxlength="4" placeholder="123" required>
-            </div>
-          </div>
-
-          <div class="helper">
-            These test card fields are used only for local validation and are never saved to the AClass database or sent to a payment provider.
-          </div>
-        </div>
-
-        <label class="terms">
-          <input type="checkbox" id="terms" required>
-          <span>
-            I agree to the
-            <a href="terms-and-conditions.html" target="_blank" rel="noopener">Terms &amp; Conditions</a>
-            and
-            <a href="refund-policy.html" target="_blank" rel="noopener">Refund Policy</a>.
-          </span>
-        </label>
-
-        <button class="pay-button" type="submit" id="payButton">
-          <i class="fas fa-lock"></i>
-          <span>Test Pay — 100 GEL</span>
-        </button>
-
-        <div class="security-note">
-          <i class="fas fa-shield-halved"></i>
-          Test mode — no real payment is processed
-        </div>
-
-        <div class="message error" id="errorMessage"></div>
-      </form>
-
-    </section>
-
-    <section class="card success-screen" id="successScreen" aria-live="polite">
-      <div class="success-icon">
-        <i class="fas fa-check"></i>
+  <section class="checkout" id="checkout">
+    <aside class="card summary">
+      <div class="card-title">
+        <div class="card-title-icon"><i class="fas fa-receipt"></i></div>
+        <h2>Order Summary</h2>
       </div>
 
-      <h2>Test Payment Successful</h2>
+      <div class="field">
+        <label for="package">Choose package</label>
+        <select id="package"><option value="">Loading packages…</option></select>
+      </div>
 
-      <p>
-        The test order was successfully saved to the AClass Payments database. No real money was charged.
-        This confirms that the checkout form can create an order record for the next stage.
+      <div class="selected-package">
+        <div class="selected-package-label">Selected package</div>
+        <div class="selected-package-name" id="selectedPackageName">Loading…</div>
+      </div>
+
+      <div class="amount-row">
+        <span>Package price</span>
+        <strong class="amount" id="packageAmount">—</strong>
+      </div>
+
+      <p class="summary-note" id="summaryNote">
+        Package pricing is loaded directly from the AClass Owner Center catalog.
       </p>
+    </aside>
 
-      <div class="test-reference">
-        <small>Test reference</small>
-        <strong id="referenceNumber">—</strong>
+    <form class="card form-card" id="paymentForm" novalidate>
+      <div class="card-title">
+        <div class="card-title-icon"><i class="fas fa-user"></i></div>
+        <h2>Student Information</h2>
       </div>
 
-      <br>
+      <div class="grid-2">
+        <div class="field"><label for="fullName">Full name *</label><input id="fullName" type="text" autocomplete="name" placeholder="Your full name" required></div>
+        <div class="field"><label for="phone">Phone number *</label><input id="phone" type="tel" autocomplete="tel" placeholder="+374 XX XXX XXX" required></div>
+      </div>
 
-      <a class="return-button" href="index.html#packages">
-        <i class="fas fa-arrow-left"></i>
-        Return to Packages
-      </a>
-    </section>
-  </main>
+      <div class="field"><label for="email">Email address *</label><input id="email" type="email" autocomplete="email" placeholder="you@example.com" required></div>
 
-  <footer>
-    © 2026 AClass English School. Test payment environment.
-  </footer>
+      <div class="payment-methods">
+        <div class="method"><i class="fas fa-credit-card"></i><span>Card payment</span></div>
+      </div>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      // AClass Payments — Supabase connection
-      // This is a publishable client key. Never put a Supabase secret/service_role key here.
-      const SUPABASE_URL = 'https://tideabdwbgekztipetfu.supabase.co';
-      const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_3PbDtf_Qd6vdLWuO-kV_WA__MMFoFUs';
-      const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
+      <div class="card-fields">
+        <div class="card-fields-title"><strong>Test card details</strong><span class="test-chip">TEST ONLY</span></div>
+        <div class="field">
+          <label for="cardNumber">Card number *</label>
+          <input id="cardNumber" inputmode="numeric" autocomplete="off" maxlength="19" placeholder="4242 4242 4242 4242" required>
+          <div class="helper">Use 4242 4242 4242 4242 for the successful test scenario.</div>
+        </div>
+        <div class="grid-2">
+          <div class="field"><label for="expiry">Expiry *</label><input id="expiry" inputmode="numeric" autocomplete="off" maxlength="5" placeholder="12/30" required></div>
+          <div class="field"><label for="cvv">CVV *</label><input id="cvv" inputmode="numeric" autocomplete="off" maxlength="4" placeholder="123" required></div>
+        </div>
+        <div class="helper">These test card fields are only validated locally and are never saved to AClass.</div>
+      </div>
 
-      const form = document.getElementById('paymentForm');
-      const packageSelect = document.getElementById('package');
-      const selectedPackageName = document.getElementById('selectedPackageName');
-      const cardNumber = document.getElementById('cardNumber');
-      const expiry = document.getElementById('expiry');
-      const cvv = document.getElementById('cvv');
-      const errorMessage = document.getElementById('errorMessage');
-      const payButton = document.getElementById('payButton');
-      const checkout = document.getElementById('checkout');
-      const successScreen = document.getElementById('successScreen');
-      const referenceNumber = document.getElementById('referenceNumber');
+      <label class="terms">
+        <input type="checkbox" id="terms" required>
+        <span>I agree to the <a href="terms-and-conditions.html" target="_blank" rel="noopener">Terms &amp; Conditions</a> and <a href="refund-policy.html" target="_blank" rel="noopener">Refund Policy</a>.</span>
+      </label>
 
-      packageSelect.addEventListener('change', function () {
-        selectedPackageName.textContent = this.value;
-      });
+      <button class="pay-button" type="submit" id="payButton" disabled>
+        <i class="fas fa-lock"></i><span>Loading package…</span>
+      </button>
 
-      cardNumber.addEventListener('input', function () {
-        let value = this.value.replace(/\D/g, '').slice(0, 16);
-        this.value = value.replace(/(.{4})/g, '$1 ').trim();
-      });
+      <div class="security-note"><i class="fas fa-shield-halved"></i> Test mode — no real payment is processed</div>
+      <div class="message error" id="errorMessage"></div>
+    </form>
+  </section>
 
-      expiry.addEventListener('input', function () {
-        let value = this.value.replace(/\D/g, '').slice(0, 4);
-        if (value.length > 2) value = value.slice(0, 2) + '/' + value.slice(2);
-        this.value = value;
-      });
+  <section class="card success-screen" id="successScreen" aria-live="polite">
+    <div class="success-icon"><i class="fas fa-check"></i></div>
+    <h2>Test Payment Successful</h2>
+    <p>The test order was successfully saved to the AClass Payments database. No real money was charged.</p>
+    <div class="test-reference"><small>Test reference</small><strong id="referenceNumber">ACLASS-TEST-000000</strong></div>
+    <br>
+    <a class="return-button" href="index.html#packages"><i class="fas fa-arrow-left"></i> Return to Packages</a>
+  </section>
+</main>
 
-      cvv.addEventListener('input', function () {
-        this.value = this.value.replace(/\D/g, '').slice(0, 4);
-      });
+<footer>© 2026 AClass English School. Test payment environment.</footer>
 
-      function showError(message) {
-        errorMessage.textContent = message;
-        errorMessage.classList.add('show');
-      }
+<script>
+document.addEventListener('DOMContentLoaded', async function(){
+  const SUPABASE_URL='https://tideabdwbgekztipetfu.supabase.co';
+  const SUPABASE_KEY='sb_publishable_3PbDtf_Qd6vdLWuO-kV_WA__MMFoFUs';
+  const supabase=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
 
-      function clearError() {
-        errorMessage.textContent = '';
-        errorMessage.classList.remove('show');
-      }
+  const select=document.getElementById('package');
+  const selectedName=document.getElementById('selectedPackageName');
+  const amountEl=document.getElementById('packageAmount');
+  const note=document.getElementById('summaryNote');
+  const form=document.getElementById('paymentForm');
+  const payButton=document.getElementById('payButton');
+  const errorEl=document.getElementById('errorMessage');
+  const checkout=document.getElementById('checkout');
+  const success=document.getElementById('successScreen');
+  const reference=document.getElementById('referenceNumber');
+  let packages=[];
+  let selectedPackage=null;
 
-      function makeReference() {
-        const random = Math.floor(100000 + Math.random() * 900000);
-        return 'ACLASS-TEST-' + random;
-      }
+  const esc=v=>String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
+  const priceText=p=>{
+    const n=Number(p?.price);
+    return p?.price!==null && p?.price!=='' && Number.isFinite(n) && n>0
+      ? new Intl.NumberFormat(undefined,{maximumFractionDigits:2}).format(n)+' '+(p.currency||'GEL')
+      : 'Price unavailable';
+  };
 
-      form.addEventListener('submit', async function (event) {
-        event.preventDefault();
-        clearError();
+  function showError(msg){
+    errorEl.textContent=msg;
+    errorEl.classList.add('show');
+  }
+  function clearError(){
+    errorEl.textContent='';
+    errorEl.classList.remove('show');
+  }
 
-        const fullName = document.getElementById('fullName').value.trim();
-        const phone = document.getElementById('phone').value.trim();
-        const email = document.getElementById('email').value.trim();
-        const terms = document.getElementById('terms').checked;
-        const normalizedCard = cardNumber.value.replace(/\s/g, '');
+  function getPackageKey(){
+    const params=new URLSearchParams(window.location.search);
+    return params.get('package') || '';
+  }
 
-        if (!fullName || !phone || !email) {
-          showError('Please complete your name, phone number, and email address.');
-          return;
-        }
+  function renderSelected(){
+    selectedPackage=packages.find(p=>p.package_key===select.value) || packages[0] || null;
+    if(!selectedPackage)return;
+    selectedName.textContent=selectedPackage.name_en || selectedPackage.package_key;
+    amountEl.textContent=priceText(selectedPackage);
 
-        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-          showError('Please enter a valid email address.');
-          return;
-        }
+    const price=Number(selectedPackage.price);
+    const usable=Number.isFinite(price) && price>0;
+    const paymentEnabled=selectedPackage.payment_enabled!==false;
 
-        if (!/^\d{16}$/.test(normalizedCard)) {
-          showError('For this test, enter the 16-digit test card number 4242 4242 4242 4242.');
-          return;
-        }
+    if(usable){
+      note.textContent='This price is loaded directly from the AClass Owner Center package catalog.';
+    }else{
+      note.textContent='This package does not currently have a valid price in the Owner Center.';
+    }
 
-        if (!/^\d{2}\/\d{2}$/.test(expiry.value)) {
-          showError('Please enter the test expiry in MM/YY format, for example 12/30.');
-          return;
-        }
+    payButton.disabled=!usable || !paymentEnabled;
+    payButton.innerHTML=usable && paymentEnabled
+      ? '<i class="fas fa-lock"></i><span>Test Pay — '+esc(priceText(selectedPackage))+'</span>'
+      : '<i class="fas fa-ban"></i><span>Payment unavailable</span>';
+  }
 
-        if (!/^\d{3,4}$/.test(cvv.value)) {
-          showError('Please enter a 3 or 4 digit test CVV.');
-          return;
-        }
+  try{
+    const {data,error}=await supabase
+      .from('site_packages')
+      .select('*')
+      .eq('active',true)
+      .order('sort_order',{ascending:true})
+      .order('id',{ascending:true});
 
-        if (!terms) {
-          showError('Please agree to the Terms & Conditions and Refund Policy.');
-          return;
-        }
+    if(error)throw error;
+    packages=data||[];
 
-        const orderReference = makeReference();
+    if(!packages.length)throw new Error('No active packages are available.');
+    const requested=getPackageKey();
 
-        payButton.disabled = true;
-        payButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i><span>Saving test order…</span>';
+    select.innerHTML=packages.map(p=>
+      '<option value="'+esc(p.package_key)+'">'+esc(p.name_en||p.package_key)+'</option>'
+    ).join('');
 
-        try {
-          const { error } = await supabase
-            .from('orders')
-            .insert([{
-              order_reference: orderReference,
-              student_name: fullName,
-              phone: phone,
-              email: email,
-              package_name: packageSelect.value,
-              amount: 100,
-              currency: 'GEL',
-              payment_status: 'test_paid'
-            }]);
+    const requestedMatch=packages.find(p=>p.package_key===requested);
+    select.value=requestedMatch ? requested : packages[0].package_key;
+    renderSelected();
+  }catch(error){
+    showError('Could not load package pricing. '+(error?.message||'Please try again.'));
+    selectedName.textContent='Package unavailable';
+    amountEl.textContent='—';
+    payButton.disabled=true;
+    payButton.innerHTML='<i class="fas fa-triangle-exclamation"></i><span>Package unavailable</span>';
+  }
 
-          if (error) {
-            console.error('Supabase order error:', error);
-            throw error;
-          }
+  select.addEventListener('change',renderSelected);
 
-          // Replace the placeholder completely so the reference can never be duplicated.
-          referenceNumber.replaceChildren(document.createTextNode(orderReference));
-          checkout.style.display = 'none';
-          successScreen.classList.add('show');
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        } catch (error) {
-          payButton.disabled = false;
-          payButton.innerHTML = '<i class="fas fa-lock"></i><span>Test Pay — 100 GEL</span>';
+  document.getElementById('cardNumber').addEventListener('input',function(){
+    let v=this.value.replace(/\D/g,'').slice(0,16);
+    this.value=v.replace(/(.{4})/g,'$1 ').trim();
+  });
+  document.getElementById('expiry').addEventListener('input',function(){
+    let v=this.value.replace(/\D/g,'').slice(0,4);
+    if(v.length>2)v=v.slice(0,2)+'/'+v.slice(2);
+    this.value=v;
+  });
+  document.getElementById('cvv').addEventListener('input',function(){
+    this.value=this.value.replace(/\D/g,'').slice(0,4);
+  });
 
-          const details = error && error.message ? ' ' + error.message : '';
-          showError('The test order could not be saved to the database.' + details);
-        }
-      });
-    });
-  </script>
+  form.addEventListener('submit',async function(e){
+    e.preventDefault();
+    clearError();
+
+    if(!selectedPackage){
+      showError('Please select a valid package.');
+      return;
+    }
+
+    const fullName=document.getElementById('fullName').value.trim();
+    const phone=document.getElementById('phone').value.trim();
+    const email=document.getElementById('email').value.trim();
+    const terms=document.getElementById('terms').checked;
+    const card=document.getElementById('cardNumber').value.replace(/\s/g,'');
+    const expiry=document.getElementById('expiry').value;
+    const cvv=document.getElementById('cvv').value;
+
+    const price=Number(selectedPackage.price);
+    if(!fullName||!phone||!email){showError('Please complete your name, phone number, and email address.');return;}
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){showError('Please enter a valid email address.');return;}
+    if(!Number.isFinite(price)||price<=0){showError('This package does not have a valid price.');return;}
+    if(!/^\d{16}$/.test(card)){showError('For this test, enter 4242 4242 4242 4242.');return;}
+    if(!/^\d{2}\/\d{2}$/.test(expiry)){showError('Please enter the test expiry in MM/YY format, for example 12/30.');return;}
+    if(!/^\d{3,4}$/.test(cvv)){showError('Please enter a 3 or 4 digit test CVV.');return;}
+    if(!terms){showError('Please agree to the Terms & Conditions and Refund Policy.');return;}
+
+    const orderReference='ACLASS-TEST-'+Math.floor(100000+Math.random()*900000);
+    payButton.disabled=true;
+    payButton.innerHTML='<i class="fas fa-spinner fa-spin"></i><span>Saving test order…</span>';
+
+    try{
+      const {error}=await supabase.from('orders').insert([{
+        order_reference:orderReference,
+        student_name:fullName,
+        phone,
+        email,
+        package_name:selectedPackage.name_en || selectedPackage.package_key,
+        package_key:selectedPackage.package_key,
+        amount:price,
+        currency:selectedPackage.currency||'GEL',
+        payment_status:'test_paid'
+      }]);
+
+      if(error)throw error;
+
+      reference.textContent=orderReference;
+      checkout.style.display='none';
+      success.classList.add('show');
+      window.scrollTo({top:0,behavior:'smooth'});
+    }catch(error){
+      payButton.disabled=false;
+      payButton.innerHTML='<i class="fas fa-lock"></i><span>Test Pay — '+esc(priceText(selectedPackage))+'</span>';
+      showError('The test order could not be saved to the database. '+(error?.message||''));
+    }
+  });
+});
+</script>
 </body>
 </html>
