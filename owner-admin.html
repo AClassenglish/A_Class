@@ -222,7 +222,7 @@
     <div class="side-brand"><div class="side-mark">A</div><span>ACLASS</span></div>
 
     <div class="nav-label">Overview</div>
-    <button class="nav-btn active"><span class="icon">⌂</span> Dashboard</button>
+    <button class="nav-btn active" id="dashboardNav"><span class="icon">⌂</span> Dashboard</button>
 
     <div class="nav-label">Management</div>
     <button class="nav-btn disabled" title="Coming next"><span class="icon">♙</span> Students</button>
@@ -268,7 +268,7 @@
         </div>
 
         <div class="notice">
-          <strong>Owner mode:</strong> You are signed in with the Owner role. Students, teachers, classes and website editing will be added to this center next.
+          <strong>Owner mode:</strong> You are signed in with the Owner role. Students, teachers and classes will be added here next. Website editing is now available under Website.
         </div>
 
         <section class="stats">
@@ -335,7 +335,7 @@
             </div>
             <div class="coming">
               <strong>What we'll add next</strong><br>
-              Students → Teachers → Classes & attendance → Website CMS.
+              Students → Teachers → Classes & attendance → more Website CMS tools.
             </div>
           </div>
         </section>
@@ -726,14 +726,25 @@ document.addEventListener('DOMContentLoaded', async () => {
   });
 
   function showPage(pageId) {
+    const target = document.getElementById(pageId);
+    if (!target) return;
+
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    document.getElementById(pageId).classList.add('active');
+    target.classList.add('active');
+
     document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-    if (pageId === 'dashboardPage') document.querySelector('.nav-btn').classList.add('active');
-    if (pageId === 'ordersPage') document.getElementById('ordersNav').classList.add('active');
+    const activeNav = {
+      dashboardPage: document.getElementById('dashboardNav'),
+      ordersPage: document.getElementById('ordersNav'),
+      websitePage: document.getElementById('websiteNav')
+    }[pageId];
+    if (activeNav) activeNav.classList.add('active');
+
     document.getElementById('sidebar').classList.remove('open');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
+  document.getElementById('dashboardNav').addEventListener('click', () => showPage('dashboardPage'));
   document.getElementById('ordersNav').addEventListener('click', () => showPage('ordersPage'));
   document.getElementById('dashboardOrdersButton').addEventListener('click', () => showPage('ordersPage'));
   document.getElementById('ordersRefreshButton').addEventListener('click', loadOrders);
@@ -823,7 +834,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     const {data,error}=await supabase.from('site_menu_items').insert({location,language:cmsLanguage,title:location==='header'?'New menu item':'New footer link',href:'#',sort_order:next,active:true}).select().single();
     if(error){cmsNotify(error.message,true);return;} cmsMenus.push(data); renderCMS();
   }
-  document.getElementById('websiteNav').addEventListener('click',()=>{showPage('websitePage');loadCMS();});
+  document.getElementById('websiteNav').addEventListener('click', async ()=>{
+    showPage('websitePage');
+    await loadCMS();
+  });
   document.getElementById('addHeaderItem').addEventListener('click',()=>addMenu('header'));
   document.getElementById('addFooterItem').addEventListener('click',()=>addMenu('footer'));
   document.getElementById('cmsLanguageSwitch').addEventListener('click',e=>{const b=e.target.closest('[data-lang]');if(!b)return;cmsLanguage=b.dataset.lang;document.querySelectorAll('.lang-btn').forEach(x=>x.classList.toggle('active',x===b));selectedPageId=null;document.getElementById('pageEditor').classList.add('hidden');document.getElementById('pageEditorEmpty').classList.remove('hidden');loadCMS();});
