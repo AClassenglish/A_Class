@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" media="print" onload="this.media='all'">
 <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 <noscript>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
@@ -27,11 +27,6 @@ button{font-family:inherit}
 a{color:inherit;text-decoration:none}
 
 /* Custom Cursor */
-.custom-cursor{position:fixed;top:0;left:0;width:36px;height:36px;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .1s ease-out,opacity .3s;opacity:0}
-.custom-cursor.active{opacity:1}
-.custom-cursor-inner{width:100%;height:100%;background:var(--gradient-accent);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1rem;font-weight:800;box-shadow:0 4px 15px rgba(15,166,179,.4);transition:transform .2s}
-.custom-cursor.hovering .custom-cursor-inner{transform:scale(1.4)}
-
 /* Backgrounds */
 .animated-bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;background:linear-gradient(135deg,#fff 0%,#F7FBF8 50%,#F2F9F5 100%)}
 .floating-shape{position:absolute;border-radius:50%;background:linear-gradient(135deg,var(--gradient-start),var(--gradient-end));opacity:.04;filter:blur(100px);animation:float 30s infinite ease-in-out}
@@ -1612,6 +1607,10 @@ footer{background:var(--text-dark);color:var(--text-light);padding:4rem 2rem 2re
 html { scroll-behavior: auto !important; }
 
 section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
+
+@media (prefers-reduced-motion: reduce){
+  *, *::before, *::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;scroll-behavior:auto !important;}
+}
 </style>
 
   <!-- AClass favicon -->
@@ -1621,7 +1620,6 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
 </head>
 <body>
   <div class="animated-bg"><div class="floating-shape"></div><div class="floating-shape"></div></div>
-  <div class="custom-cursor" id="customCursor"><div class="custom-cursor-inner">A</div></div>
   <div class="header-animations"><div class="header-blob header-blob-1"></div><div class="header-blob header-blob-2"></div><div class="header-blob header-blob-3"></div></div>
   
   <div class="side-tracks">
@@ -1643,10 +1641,10 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
         <li><a href="#courses" class="nav-link">კურსები</a></li>
         <li><a href="#reviews" class="nav-link">შეფასებები</a></li>
          <li><a href="#teachers" class="nav-link">მასწავლებლები</a></li>
-        <li><a href="#legal" class="nav-link">იურიდიული ინფორმაცია</a></li>
         <li><a href="#packages" class="nav-link">პაკეტები</a></li>
         <li><a href="#life-at-aclass" class="nav-link">AClass-ის ცხოვრება</a></li>
         <li><a href="#contact" class="nav-cta">დაგვიკავშირდით</a></li>
+        <li><a href="#legal" class="nav-link">იურიდიული ინფორმაცია</a></li>
         <li class="language-nav-item">
           <div class="language-switcher" aria-label="Language selection">
            <a href="./" aria-label="English">EN</a>
@@ -1701,11 +1699,11 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
       <div class="reviews-header"><h2>სტუდენტების წარმატების ისტორიები</h2><p>ჩვენი სტუდენტების რეალური შედეგები</p></div>
       <div class="swiper reviews-swiper">
         <div class="swiper-wrapper">
-          <div class="swiper-slide"><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/1rewiew.png" alt="Review 1"></div>
-          <div class="swiper-slide"><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/2review.png" alt="Review 2"></div>
-          <div class="swiper-slide"><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/3review.png" alt="Review 3"></div>
-          <div class="swiper-slide"><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/6review.png" alt="Review 4"></div>
-          <div class="swiper-slide"><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/7review.png" alt="Review 5"></div>
+          <div class="swiper-slide"><img decoding="async" loading="lazy" fetchpriority="low" src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/1rewiew.png" alt="Review 1"></div>
+          <div class="swiper-slide"><img decoding="async" loading="lazy" fetchpriority="low" src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/2review.png" alt="Review 2"></div>
+          <div class="swiper-slide"><img decoding="async" loading="lazy" fetchpriority="low" src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/3review.png" alt="Review 3"></div>
+          <div class="swiper-slide"><img decoding="async" loading="lazy" fetchpriority="low" src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/6review.png" alt="Review 4"></div>
+          <div class="swiper-slide"><img decoding="async" loading="lazy" fetchpriority="low" src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/7review.png" alt="Review 5"></div>
         </div>
         <div class="swiper-pagination"></div>
         <div class="swiper-button-prev"></div>
@@ -2173,7 +2171,7 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
         <div class="teacher-frame teacher-frame-back"></div>
         <div class="teacher-frame teacher-frame-front">
           <div class="teacher-photo-wrap">
-            <img loading="lazy"
+            <img loading="eager"
               id="teacherPhoto"
               src="https://raw.githubusercontent.com/AClassenglish/A_Class/main/Aika.jpeg"
               alt="Miss აიკა, A Class-ის დამფუძნებელი და IELTS-ის ინსტრუქტორი"
@@ -2268,8 +2266,7 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
       <div class="footer-col"><h4>სწრაფი ბმულები</h4><ul class="footer-links"><li><a href="#home"><i class="fas fa-chevron-right"></i> მთავარი</a></li><li><a href="#about"><i class="fas fa-chevron-right"></i> ჩვენ შესახებ</a></li><li><a href="#courses"><i class="fas fa-chevron-right"></i> კურსები</a></li><li><a href="#packages"><i class="fas fa-chevron-right"></i> ყველა პაკეტი</a></li><li><a href="#life-at-aclass"><i class="fas fa-chevron-right"></i> AClass-ის ცხოვრება</a></li></ul></div>
       <div class="footer-col"><h4>პროგრამები</h4><ul class="footer-links"><li><a href="#courses"><i class="fas fa-chevron-right"></i> IELTS</a></li><li><a href="#courses"><i class="fas fa-chevron-right"></i> SAT</a></li><li><a href="#courses"><i class="fas fa-chevron-right"></i> ზოგადი ინგლისური</a></li></ul></div>
       <div class="footer-col"><h4>კონტაქტი</h4><ul class="footer-links"><li><span class="footer-contact-label">დირექტორი</span></li><li><span class="footer-contact-name">Gvalia Aigerim</span></li><li><a href="tel:555637881"><i class="fas fa-phone"></i> 555 637 881</a></li><li><a href="mailto:info@aclass.am"><i class="fas fa-envelope"></i> info@aclass.am</a></li><li><a href="https://api.whatsapp.com/send?phone=77472297002"><i class="fab fa-whatsapp"></i> WhatsApp</a></li></ul></div>
-    </div>
-      <div class="footer-col" id="legal">
+      <div class="footer-col">
         <h4>იურიდიული ინფორმაცია</h4>
         <ul class="footer-links">
           <li><a href="privacy-policy.html"><i class="fas fa-chevron-right"></i> კონფიდენციალურობის პოლიტიკა</a></li>
@@ -2277,6 +2274,7 @@ section[id], div[id="legal"] { scroll-margin-top: 0 !important; }
           <li><a href="refund-policy.html"><i class="fas fa-chevron-right"></i> თანხის დაბრუნების პოლიტიკა</a></li>
         </ul>
       </div>
+    </div>
     <div class="footer-bottom">© 2026 AClass English School. All rights reserved.</div>
   </footer>
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
@@ -2402,12 +2400,6 @@ document.addEventListener('DOMContentLoaded', function () {
    * No fade-out, no delayed DOM swap, and no height animation.
    * The layout stays exactly the same when switching between teachers.
    */
-  const teacherImages = teacherData.map(teacher => {
-    const img = new Image();
-    img.src = teacher.image;
-    return img;
-  });
-
   function renderTeacher(index) {
     teacherIndex = (index + teacherData.length) % teacherData.length;
     const teacher = teacherData[teacherIndex];
@@ -2444,21 +2436,12 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     };
 
-    /*
-     * All teacher images are preloaded. If the requested image is already
-     * ready, swap immediately; otherwise wait for that image only.
-     * Nothing else in the section is hidden or animated.
-     */
-    const image = teacherImages[teacherIndex];
-
-    if (image && image.complete) {
-      updateContent();
-    } else if (image) {
-      image.onload = updateContent;
-      image.onerror = updateContent;
-    } else {
-      updateContent();
-    }
+    /* Load only the selected teacher image. Other teacher images are not
+       requested until the user selects that teacher. */
+    photo.src = teacher.image;
+    photo.alt = teacher.alt;
+    photo.fetchPriority = teacherIndex === 0 ? 'high' : 'auto';
+    updateContent();
   }
 
   railItems.forEach(item => {
@@ -2471,21 +2454,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
   renderTeacher(0);
 
-  /* Custom cursor only on devices that actually have a fine pointer. */
-  const cursor = document.getElementById('customCursor');
-  if (cursor && window.matchMedia('(pointer: fine)').matches) {
-    document.addEventListener('mousemove', e => {
-      cursor.style.left = e.clientX + 'px';
-      cursor.style.top = e.clientY + 'px';
-      cursor.classList.add('active');
-    }, { passive: true });
-    document.addEventListener('mouseleave', () => cursor.classList.remove('active'));
-
-    document.querySelectorAll('a,button,.package-accordion,.course-card,.step-card,.teacher-rail-item,.teacher-arrow').forEach(el => {
-      el.addEventListener('mouseenter', () => cursor.classList.add('hovering'));
-      el.addEventListener('mouseleave', () => cursor.classList.remove('hovering'));
-    });
-  }
 
   /* Mobile menu */
   const navMenu = document.getElementById('navMenu');
@@ -2519,7 +2487,7 @@ document.addEventListener('DOMContentLoaded', function () {
     new Swiper('.reviews-swiper', {
       loop: true,
       centeredSlides: true,
-      speed: 600,
+      speed: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 600,
       spaceBetween: 48,
       slidesPerView: 1.5,
       pagination: { el: '.swiper-pagination', clickable: true },
