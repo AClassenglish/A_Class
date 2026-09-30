@@ -744,7 +744,7 @@
     </main>  </div>
 </section>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
 
 <div id="detailOverlay" class="detail-overlay" role="dialog" aria-modal="true">
   <div class="detail-card">
@@ -759,7 +759,7 @@
   </div>
 </div>
 
-<script>
+<script defer>
 document.addEventListener('DOMContentLoaded', async () => {
   history.scrollRestoration = 'manual';
   window.scrollTo(0, 0);
@@ -957,16 +957,18 @@ document.addEventListener('DOMContentLoaded', async () => {
       weekday:'long', year:'numeric', month:'long', day:'numeric'
     });
 
-    await loadOrders();
-
+    // Show the Owner Center immediately after auth. Heavy data loads happen in the background.
     let savedPage = 'dashboardPage';
     try { savedPage = sessionStorage.getItem('aclass_owner_page') || 'dashboardPage'; } catch (_) {}
     if (!['dashboardPage','ordersPage','websitePage'].includes(savedPage)) savedPage = 'dashboardPage';
+    showPage(savedPage);
+
+    // Never make the whole Owner Center wait for the orders query.
+    loadOrders().catch(err => console.error('Background orders load failed:', err));
+
+    // Only load Website data when Website is actually the current section.
     if (savedPage === 'websitePage') {
-      showPage('websitePage');
-      await loadCMS();
-    } else {
-      showPage(savedPage);
+      loadCMS().catch(err => console.error('Background CMS load failed:', err));
     }
     return true;
   }
@@ -1058,15 +1060,29 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.getElementById('sidebar').classList.toggle('open');
   });
 
-  const { data: { session } } = await supabase.auth.getSession();
+  // Fast auth bootstrap: never leave the user on a blocking loading screen indefinitely.
+  let session = null;
+  let sessionTimedOut = false;
+  try {
+    const result = await Promise.race([
+      supabase.auth.getSession(),
+      new Promise((_, reject) => setTimeout(() => reject(new Error('Auth check timeout')), 3500))
+    ]);
+    session = result?.data?.session || null;
+  } catch (error) {
+    sessionTimedOut = true;
+    console.warn('Owner session check was slow:', error);
+  }
+
   if (session && isRememberedSessionValid()) {
     await openApp();
   } else {
-    if (session) await supabase.auth.signOut();
+    if (session && !isRememberedSessionValid()) await supabase.auth.signOut();
     clearRememberedLogin();
     loginView.classList.remove('hidden');
     appView.classList.add('hidden');
     window.scrollTo(0, 0);
+    if (sessionTimedOut) setLoginError('Session check timed out. You can sign in again.');
   }
 
   authLoading.classList.add('hidden');
@@ -1189,38 +1205,29 @@ document.addEventListener('DOMContentLoaded', async () => {
   function closeProductEditor(){ document.getElementById('productEditor').classList.add('hidden'); }
 
   async function loadCMS(){
-    const {data:pages,error:pagesError}=await supabase.from('site_pages').select('*').eq('language',cmsLanguage).order('slug');
-    if(pagesError){
-      cmsNotify('Could not load website pages: '+pagesError.message,true);
-      return;
-    }
+    const [pagesResult, packagesResult] = await Promise.all([
+      supabase.from('site_pages').select('*').eq('language',cmsLanguage).order('slug'),
+      supabase.from('site_packages').select('*').order('sort_order',{ascending:true}).order('id',{ascending:true})
+    ]);
 
-    const {data:packages,error:packagesError}=await supabase
-      .from('site_packages')
-      .select('*')
-      .order('sort_order', {ascending:true})
-      .order('id', {ascending:true});
+    const {data:pages,error:pagesError}=pagesResult;
+    const {data:packages,error:packagesError}=packagesResult;
 
-    if(packagesError){
+    if(pagesError) cmsNotify('Could not load website pages: '+pagesError.message,true);
+    if(packagesError) {
       console.error('site_packages load error:', packagesError);
       cmsNotify('Could not load packages: '+packagesError.message,true);
-      cmsPages=pages||[];
-      cmsPackages=[];
-      renderPolicies();
-      renderPackages();
-      return;
     }
 
     cmsPages=pages||[];
     cmsPackages=packages||[];
-    console.log('Loaded site packages:', cmsPackages);
     renderPolicies();
     renderPackages();
   }
 
-  document.getElementById('websiteNav').addEventListener('click', async ()=>{
+  document.getElementById('websiteNav').addEventListener('click', ()=>{
     showPage('websitePage');
-    await loadCMS();
+    loadCMS().catch(err => console.error('Website CMS load failed:', err));
   });
 
   document.getElementById('cmsLanguageSwitch').addEventListener('click',e=>{
