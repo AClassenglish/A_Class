@@ -669,7 +669,7 @@
             </div>
 
             <div id="packagesList" class="package-admin-list"></div>
-            <div id="packagesEmpty" class="coming hidden">No products yet. Click “Add product” to create the first one.</div>
+            <div id="packagesEmpty" class="coming hidden">No packages were returned from the database yet.</div>
 
             <form id="productEditor" class="product-editor hidden">
               <div class="editor-top">
@@ -958,6 +958,16 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
 
     loadOrders().catch(()=>{});
+
+    // Restore the last section only AFTER the authenticated Owner app is ready.
+    // This prevents Website CMS queries from running before Supabase has a session.
+    const lastSection = localStorage.getItem('aclassLastSection');
+    if (lastSection === 'website') {
+      setTimeout(() => document.getElementById('websiteNav')?.click(), 0);
+    } else if (lastSection === 'orders') {
+      setTimeout(() => document.getElementById('ordersNav')?.click(), 0);
+    }
+
     return true;
   }
 
@@ -1018,12 +1028,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   document.getElementById('ordersNav').addEventListener('click', () => { localStorage.setItem('aclassLastSection','orders'); showPage('ordersPage'); });
   document.getElementById('dashboardOrdersButton').addEventListener('click', () => showPage('ordersPage'));
   document.getElementById('ordersRefreshButton').addEventListener('click', loadOrders);
-  const lastSection = localStorage.getItem('aclassLastSection');
-  if (lastSection === 'website') {
-    setTimeout(() => document.getElementById('websiteNav')?.click(), 0);
-  } else if (lastSection === 'orders') {
-    setTimeout(() => document.getElementById('ordersNav')?.click(), 0);
-  }
   document.getElementById('orderSearch').addEventListener('input', applyOrderFilters);
   document.getElementById('statusFilter').addEventListener('change', applyOrderFilters);
   document.getElementById('currencyFilter').addEventListener('change', applyOrderFilters);
@@ -1229,11 +1233,31 @@ document.addEventListener('DOMContentLoaded', async () => {
   function closeProductEditor(){ document.getElementById('productEditor').classList.add('hidden'); }
 
   async function loadCMS(){
-    const {data:pages,error:pagesError}=await supabase.from('site_pages').select('*').eq('language',cmsLanguage).order('slug');
-    if(pagesError){ cmsNotify('Could not load website pages: '+pagesError.message,true); return; }
-    const {data:packages,error:packagesError}=await supabase.from('site_packages').select('*').order('sort_order').order('id');
-    if(packagesError){ cmsNotify('Packages table is not ready yet. Run the upgraded package SQL first.',true); cmsPages=pages||[]; cmsPackages=[]; renderPolicies(); renderPackages(); return; }
-    cmsPages=pages||[]; cmsPackages=packages||[]; renderPolicies(); renderPackages();
+    const [pagesRes, packagesRes] = await Promise.all([
+      supabase.from('site_pages').select('*').eq('language',cmsLanguage).order('slug'),
+      supabase.from('site_packages').select('*').order('sort_order').order('id')
+    ]);
+
+    const pages = pagesRes.data || [];
+    const packages = packagesRes.data || [];
+
+    if(pagesRes.error){
+      cmsNotify('Could not load website pages: '+pagesRes.error.message,true);
+    }
+
+    if(packagesRes.error){
+      cmsPackages=[];
+      cmsPages=pages;
+      renderPolicies();
+      renderPackages();
+      cmsNotify('Could not load packages: '+packagesRes.error.message,true);
+      return;
+    }
+
+    cmsPages=pages;
+    cmsPackages=packages;
+    renderPolicies();
+    renderPackages();
   }
 
   document.getElementById('websiteNav').addEventListener('click', async ()=>{
