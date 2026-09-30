@@ -665,7 +665,7 @@
 
             <div class="package-admin-note">
               <strong>Product catalog</strong>
-              <span>The existing AClass packages are already loaded here. You only need to enter or change prices unless you want to edit the package details.</span>
+              <span>Products are grouped by IELTS, SAT, and General English. You can edit titles, descriptions, lesson details, features, prices, and payment availability without touching the website code.</span>
             </div>
 
             <div id="packagesList" class="package-admin-list"></div>
@@ -958,6 +958,16 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
 
     await loadOrders();
+
+    let savedPage = 'dashboardPage';
+    try { savedPage = sessionStorage.getItem('aclass_owner_page') || 'dashboardPage'; } catch (_) {}
+    if (!['dashboardPage','ordersPage','websitePage'].includes(savedPage)) savedPage = 'dashboardPage';
+    if (savedPage === 'websitePage') {
+      showPage('websitePage');
+      await loadCMS();
+    } else {
+      showPage(savedPage);
+    }
     return true;
   }
 
@@ -1011,6 +1021,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (activeNav) activeNav.classList.add('active');
 
     document.getElementById('sidebar').classList.remove('open');
+    try { sessionStorage.setItem('aclass_owner_page', pageId); } catch (_) {}
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
@@ -1179,10 +1190,32 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   async function loadCMS(){
     const {data:pages,error:pagesError}=await supabase.from('site_pages').select('*').eq('language',cmsLanguage).order('slug');
-    if(pagesError){ cmsNotify('Could not load website pages: '+pagesError.message,true); return; }
-    const {data:packages,error:packagesError}=await supabase.from('site_packages').select('*').order('sort_order').order('id');
-    if(packagesError){ cmsNotify('Packages table is not ready yet. Run the upgraded package SQL first.',true); cmsPages=pages||[]; cmsPackages=[]; renderPolicies(); renderPackages(); return; }
-    cmsPages=pages||[]; cmsPackages=packages||[]; renderPolicies(); renderPackages();
+    if(pagesError){
+      cmsNotify('Could not load website pages: '+pagesError.message,true);
+      return;
+    }
+
+    const {data:packages,error:packagesError}=await supabase
+      .from('site_packages')
+      .select('*')
+      .order('sort_order', {ascending:true})
+      .order('id', {ascending:true});
+
+    if(packagesError){
+      console.error('site_packages load error:', packagesError);
+      cmsNotify('Could not load packages: '+packagesError.message,true);
+      cmsPages=pages||[];
+      cmsPackages=[];
+      renderPolicies();
+      renderPackages();
+      return;
+    }
+
+    cmsPages=pages||[];
+    cmsPackages=packages||[];
+    console.log('Loaded site packages:', cmsPackages);
+    renderPolicies();
+    renderPackages();
   }
 
   document.getElementById('websiteNav').addEventListener('click', async ()=>{
