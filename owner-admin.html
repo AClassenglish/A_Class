@@ -334,6 +334,10 @@
 .package-admin-actions{display:flex;align-items:center;gap:8px;justify-content:flex-end}.package-admin-actions button{white-space:nowrap}
 .package-admin-note{display:flex;gap:10px;align-items:flex-start;margin-bottom:16px;padding:12px 14px;border:1px solid #dcece9;border-radius:12px;background:#f7fbfa;color:#526467;font-size:12px;line-height:1.5}.package-admin-note strong{color:#1c3437;white-space:nowrap}
 .package-status{display:flex;align-items:center;gap:7px;min-height:40px}.package-status input{width:auto}.package-price-input{text-align:right;font-weight:700}
+    .package-usd{font-size:10px;color:#087F89;font-weight:800;margin-top:4px;text-align:right;white-space:nowrap}
+    .package-rate-note{font-size:10px;color:var(--muted);margin-top:5px}
+    .price-usd-preview{margin-top:6px;font-size:11px;color:#087F89;font-weight:800}
+
 .product-editor{margin-top:18px;padding:20px;border:1px solid var(--border);border-radius:16px;background:#fbfdfd}.product-editor.hidden{display:none}
 .product-editor-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.product-editor-grid .full{grid-column:1/-1}
 .product-editor textarea{width:100%;min-height:92px;resize:vertical}.product-editor .editor-section{margin-top:18px;padding-top:18px;border-top:1px solid var(--border)}
@@ -690,6 +694,8 @@
               </div>
             </div>
 
+            <div class="package-admin-note"><strong>Currency</strong><span>Choose the actual currency for each package. The selected currency is saved with the price and is used for the customer-facing website and checkout. No automatic currency conversion is applied.</span></div>
+
             <div class="package-admin-note">
               <strong>Product catalog</strong>
               <span>Manage IELTS, SAT, and General English products here. Edit titles, descriptions, lesson details, features, prices, and payment availability without touching the website code.</span>
@@ -736,7 +742,7 @@
                   <label class="field-label">Lesson length — minutes<input id="productLessonMinutes" type="number" min="0" step="1" placeholder="90"></label>
                   <label class="field-label">Duration — weeks<input id="productDurationWeeks" type="number" min="0" step="1" placeholder="8"></label>
                   <label class="field-label">Price<input id="productPrice" type="number" min="0" step="0.01" placeholder="0.00"></label>
-                  <label class="field-label">Currency<select id="productCurrency" class="product-select"><option value="GEL">GEL</option><option value="AMD">AMD</option></select></label>
+                  <label class="field-label">Currency<select id="productCurrency" class="product-select"><option value="GEL">GEL — Georgian Lari</option><option value="USD">USD — US Dollar</option><option value="AMD">AMD — Armenian Dram</option></select></label>
                 </div>
               </div>
 
@@ -886,7 +892,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         <td>${escapeHtml(o.student_name)}</td>
         ${includeContact ? `<td>${escapeHtml(o.email || '—')}<br><span style="color:#8B999B">${escapeHtml(o.phone || '—')}</span></td>` : ''}
         <td>${escapeHtml(o.package_name)}</td>
-        <td><strong>${Number(o.amount || 0).toFixed(2)} ${escapeHtml(o.currency)}</strong></td>
+        <td><strong>${Number(o.amount || 0).toFixed(2)} ${escapeHtml(o.currency)}</strong><br></td>
         <td><span class="status ${o.payment_status === 'test_paid' ? 'test' : 'paid'}">${escapeHtml(o.payment_status)}</span></td>
         <td>${escapeHtml(formatDate(o.created_at))}</td>
         ${includeContact ? `<td><button class="view-btn" data-view-order="${escapeHtml(o.order_reference)}">View</button></td>` : ''}
@@ -901,11 +907,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     const revenue = orders.reduce((sum,o) =>
       o.currency === 'GEL' && ['paid','test_paid','completed'].includes(o.payment_status)
         ? sum + Number(o.amount || 0) : sum, 0);
-    document.getElementById('statRevenue').textContent = revenue.toFixed(2) + ' GEL';
+    document.getElementById('statRevenue').innerHTML = `${revenue.toFixed(2)} GEL`;
 
     document.getElementById('ordersCount').textContent = orders.length;
     document.getElementById('ordersPaidCount').textContent = paid.length;
-    document.getElementById('ordersRevenue').textContent = revenue.toFixed(2) + ' GEL';
+    document.getElementById('ordersRevenue').innerHTML = `${revenue.toFixed(2)} GEL`;
   }
 
   function applyOrderFilters() {
@@ -1130,6 +1136,11 @@ document.addEventListener('DOMContentLoaded', async () => {
   ];
 
   function cmsEsc(v){ return escapeHtml(v); }
+  function displayCurrencyCode(value){
+    const code = String(value || 'GEL').toUpperCase();
+    return ['GEL','USD','AMD'].includes(code) ? code : code;
+  }
+
 
   function cmsNotify(message, error=false){
     const el=document.getElementById('cmsMessage');
@@ -1145,6 +1156,57 @@ document.addEventListener('DOMContentLoaded', async () => {
   function linesToArray(value){ return String(value||'').split(/\r?\n/).map(x=>x.trim()).filter(Boolean); }
   function arrayToLines(value){ return Array.isArray(value) ? value.join('\n') : ''; }
   function numberOrNull(id){ const v=document.getElementById(id).value.trim(); return v===''?null:Number(v); }
+  let nbgRates = {};
+  let nbgRateDate = '';
+  async function loadCurrencyRates(){
+    try{
+      const response = await fetch('https://nbg.gov.ge/gw/api/ct/monetarypolicy/currencies/en/json/', {cache:'no-store'});
+      if(!response.ok) throw new Error('Currency rate request failed');
+      const json = await response.json();
+      const set = Array.isArray(json) ? json[0] : json;
+      nbgRates = {};
+      (set?.currencies || []).forEach(r => {
+        const rate=Number(r.rate), quantity=Number(r.quantity||1);
+        if(r.code && Number.isFinite(rate) && quantity>0) nbgRates[r.code]={rate,quantity};
+      });
+      nbgRateDate = set?.date || '';
+      updateAllUsdDisplays();
+    }catch(error){
+      console.warn('Could not load NBG currency rates:', error);
+    }
+  }
+  function amountToUsd(amount,currency){
+    const value=Number(amount);
+    if(!Number.isFinite(value) || value<0) return null;
+    if(currency==='USD') return value;
+    const usd=nbgRates.USD;
+    if(!usd || !Number.isFinite(usd.rate) || !usd.quantity) return null;
+    if(currency==='GEL') return value / (usd.rate / usd.quantity);
+    const source=nbgRates[currency];
+    if(!source || !Number.isFinite(source.rate) || !source.quantity) return null;
+    const sourceGelPerUnit=source.rate/source.quantity;
+    const usdGelPerUnit=usd.rate/usd.quantity;
+    return value*sourceGelPerUnit/usdGelPerUnit;
+  }
+  function formatUsd(amount,currency){
+    const usd=amountToUsd(amount,currency);
+    return usd===null ? '—' : '$'+usd.toFixed(2);
+  }
+  function updateProductUsdPreview(){
+    const el=document.getElementById('productUsdPreview');
+    if(!el) return;
+    const amount=document.getElementById('productPrice')?.value;
+    const currency=document.getElementById('productCurrency')?.value || 'GEL';
+    const usd=amountToUsd(amount,currency);
+    el.textContent=usd===null ? 'USD equivalent will appear here' : `≈ ${formatUsd(amount,currency)} USD`;
+  }
+  function updateAllUsdDisplays(){
+    document.querySelectorAll('[data-usd-amount]').forEach(el=>{
+      el.textContent=formatUsd(el.dataset.usdAmount,el.dataset.usdCurrency||'GEL');
+    });
+    updateProductUsdPreview();
+  }
+
 
   function normalizePackageCategory(product){
     const raw=String(product?.category||'').trim().toLowerCase().replace(/[\s-]+/g,'_');
@@ -1188,7 +1250,7 @@ document.addEventListener('DOMContentLoaded', async () => {
           </div>
         </div>
         <label class="field-label">Price<input class="package-price-input" type="number" min="0" step="0.01" value="${p.price==null?'':cmsEsc(p.price)}" placeholder="0.00"></label>
-        <label class="field-label">Currency<select class="package-currency"><option value="GEL" ${p.currency==='GEL'?'selected':''}>GEL</option><option value="AMD" ${p.currency==='AMD'?'selected':''}>AMD</option></select></label>
+        <label class="field-label">Currency<select class="package-currency"><option value="GEL" ${p.currency==='GEL'?'selected':''}>GEL — Georgian Lari</option><option value="USD" ${p.currency==='USD'?'selected':''}>USD — US Dollar</option><option value="AMD" ${p.currency==='AMD'?'selected':''}>AMD — Armenian Dram</option><option value="USD" ${p.currency==='USD'?'selected':''}>USD</option></select></label>
         <label class="package-status"><input type="checkbox" class="package-payment-enabled" ${p.payment_enabled?'checked':''}><span>Payment</span></label>
         <div class="package-admin-actions"><button type="button" class="tiny-btn" data-edit-package>✎ Edit</button><button type="button" class="tiny-btn" data-save-package>↻ Save</button></div>
       </div>
@@ -1680,9 +1742,36 @@ document.addEventListener('DOMContentLoaded', async () => {
     if(productKeyTouched || document.getElementById('productId').value) return;
     if(!productNameEnInput.value.trim()) productKeyInput.value=document.getElementById('productCategory').value+'_product';
   });
+  document.getElementById('productPrice').addEventListener('input', updateProductUsdPreview);
+  document.getElementById('productCurrency').addEventListener('change', updateProductUsdPreview);
+  document.getElementById('packagesList').addEventListener('input', e=>{
+    if(e.target.matches('.package-price-input')){
+      const row=e.target.closest('[data-package-id]');
+      const product=row ? cmsPackages.find(p=>String(p.id)===row.dataset.packageId) : null;
+      const currency=row?.querySelector('.package-currency')?.value || product?.currency || 'GEL';
+      const usdEl=row?.querySelector('.package-usd');
+      if(usdEl){
+        usdEl.dataset.usdAmount=e.target.value;
+        usdEl.dataset.usdCurrency=currency;
+        usdEl.textContent=formatUsd(e.target.value,currency);
+      }
+    }
+  });
+  document.getElementById('packagesList').addEventListener('change', e=>{
+    if(e.target.matches('.package-currency')){
+      const row=e.target.closest('[data-package-id]');
+      const price=row?.querySelector('.package-price-input')?.value;
+      const usdEl=row?.querySelector('.package-usd');
+      if(usdEl){
+        usdEl.dataset.usdAmount=price;
+        usdEl.dataset.usdCurrency=e.target.value;
+        usdEl.textContent=formatUsd(price,e.target.value);
+      }
+    }
+  });
 
   // Load website CMS only when the Website section is opened.
-
+  loadCurrencyRates();
 
 });
 
